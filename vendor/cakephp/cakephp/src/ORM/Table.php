@@ -40,6 +40,8 @@ use Cake\Validation\ValidatorAwareTrait;
 use InvalidArgumentException;
 use RuntimeException;
 
+use Cake\Network\Request;
+
 /**
  * Represents a single database table.
  *
@@ -220,6 +222,9 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
      * @var string
      */
     protected $_registryAlias;
+    
+    
+    protected $_dbconnect = [];
 
     /**
      * Initializes a new instance
@@ -291,6 +296,10 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
         $this->dispatchEvent('Model.initialize');
     }
 
+    //to set value for
+    public function setConnection($name) {
+        $this->_dbname = $name;
+    }
     /**
      * Get the default connection name.
      *
@@ -301,8 +310,8 @@ class Table implements RepositoryInterface, EventListenerInterface, EventDispatc
      * @see \Cake\ORM\TableRegistry::get()
      */
     public static function defaultConnectionName()
-    {
-        return 'default';
+    {   
+        return 'local';//change made for change default DB connection 
     }
 
     /**
