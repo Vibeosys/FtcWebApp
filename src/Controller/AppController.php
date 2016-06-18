@@ -16,6 +16,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Datasource;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Application Controller
@@ -27,7 +29,18 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
+    public $config =  [
+            'className' => 'Cake\Database\Connection',
+            'driver' => 'Cake\Database\Driver\Mysql',
+            'persistent' => false,
+            'host' => 'localhost',
+            'username' => 'root',
+            'password' => '',
+            'database' => 'demo',
+            'encoding' => 'utf8',
+            'timezone' => 'UTC',
+            'cacheMetadata' => true,
+        ];
     /**
      * Initialization hook method.
      *
@@ -58,5 +71,32 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+    
+    public function conncetionCaterator($custId = false) {
+        $this->configDBToMain();
+        if(!$custId){
+            return;
+        }
+        $dbConnectionController = new DatabaseConnectionController();
+        $config = $dbConnectionController->getCustomerConnection($custId);
+        $this->reliseConnection();
+        if($config){
+         $this->config['host'] = $config->host;   
+         $this->config['username'] = $config->username;   
+         $this->config['password'] = $config->pwd;   
+         $this->config['database'] = $config->dbName;   
+        }
+       ConnectionManager::config('local',$this->config);
+        return ConnectionManager::get('local');
+    }
+    
+    public function configDBToMain() {
+        ConnectionManager::config('local',$this->config);
+        return ConnectionManager::get('local');
+    }
+    
+    public function reliseConnection() {
+        ConnectionManager::drop('local');
     }
 }
