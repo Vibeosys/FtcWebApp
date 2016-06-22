@@ -10,6 +10,7 @@ namespace App\controller\V1;
 use App\Controller;
 use App\Model\Table\V1;
 use App\DTO;
+use Cake\Log\Log;
 //use App\Request\V1;
 /**
  * Description of UserController
@@ -52,8 +53,9 @@ class UserController extends Controller\ApiController{
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $loginRequest = \App\Request\V1\UserLoginRequest::Deserialize($request->data);
+        Log::debug("request data string: ".$request->data);
         $this->conncetionCreator();
-        if(!$this->getTableObj()->validateCredential($loginRequest->username, $loginRequest->pwd))
+        if(!$this->getTableObj()->validateCredential($loginRequest->username, md5($loginRequest->pwd)))
            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(103));
         else
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3));

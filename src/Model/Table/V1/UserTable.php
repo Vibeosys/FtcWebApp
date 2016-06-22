@@ -59,11 +59,10 @@ class UserTable extends Table{
                 'username =' => $username,
                 'password =' => $pwd
             ];
+        //print_r($conditions);
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
             return true;
         return FALSE;
-        
-        
     }
 }
