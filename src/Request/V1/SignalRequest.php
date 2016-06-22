@@ -9,14 +9,15 @@
 namespace App\Request\V1;
 use App\Request;
 /**
- * Description of UserV1Request
+ * Description of SignalV1Request
  *
  * @author niteen
  */
-class UserV1Request extends Request\JsonDeserializer{
+class SignalRequest extends Request\JsonDeserializer{
     
-    public $userId;
-    public $subscriberId;
-    public $userName;
-    public $pwd;
+    public $date;
+    
+    public function __construct($date = null) {
+        $this->date = $date;
+    }
 }

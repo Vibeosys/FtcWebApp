@@ -45,10 +45,20 @@ Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/V1/', function (RouteBuilder $routes) {
   
-    $routes->connect('getSignal', ['controller' => 'V1/SignalV1', 'action' => 'getTradeSignal']);
+    $routes->connect('getSignal', ['controller' => 'V1/Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('registerUser', ['controller' => 'V1/User', 'action' => 'userregistration']);
+    $routes->connect('userLogin', ['controller' => 'V1/User', 'action' => 'userLogin']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 });
+/*
+Router::scope('/V2/', function (RouteBuilder $routes) {
+  
+    $routes->connect('getSignal', ['controller' => 'V2/Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->fallbacks('DashedRoute');
+});  */
+
 
 /**
  * Load all plugin routes.  See the Plugin documentation on

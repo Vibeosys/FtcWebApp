@@ -71,7 +71,7 @@ class PagesController extends AppController
     public function pageCreation() {
         //$this->autoRender = FALSE;
         $customerId = $this->request->query('cust');
-        $this->conncetionCaterator($customerId);
+        $this->conncetionCreator($customerId);
         $this->set([
             'permission' => 1
         ]);

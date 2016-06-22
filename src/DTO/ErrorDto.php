@@ -39,8 +39,8 @@ class ErrorDto {
     
     protected $errorDictionary = [
         101 => 'Signals not found for given criteria.',
-        102 => 'Login failed for the user',
-        103 => 'Sorry..! User registration Failed.',
+        102 => 'Sorry..! User registration Failed.',
+        103 => 'Login failed for the user',
         104 => 'Email id is invalid, it does not exist in our record',
         105 => 'Unable to get the details.',
         106 => 'Error while changing the Ad status.',
@@ -58,7 +58,7 @@ class ErrorDto {
     protected $SuccessDictionary = [
         1 => 'Signals found.',
         2 => 'Congrasts..!You are register with us.',
-        3 => 'Please check your mail box..!',
+        3 => 'Login successful..!',
         4 => 'Ad status changed.',
         5 => 'Invalid request',
         6 => 'Error to Place order',

@@ -29,7 +29,7 @@ class ApiController extends AppController{
     }
     
     public function validateUser($json) {
-       $user = V1\UserV1Request::Deserialize($json); 
+       $user = V1\UserRequest::Deserialize($json); 
        
     }
 }

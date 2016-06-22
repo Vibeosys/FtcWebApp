@@ -17,18 +17,18 @@ use App\DTO;
  *
  * @author niteen
  */
-class SignalV1Controller extends Controller\ApiController{
+class SignalController extends Controller\ApiController{
     
     
     public function getTableObj() {
-        return new V1\SignalV1Table();
+        return new V1\SignalTable();
     }
     
     public function getTradeSignal() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $signalRequest = \App\Request\V1\SignalV1Request::Deserialize($request->data);
-        $this->conncetionCaterator();
+        $signalRequest = \App\Request\V1\SignalRequest::Deserialize($request->data);
+        $this->conncetionCreator();
         $signals = $this->getTableObj()->getSignal($signalRequest->date);
         if(empty($signals))
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(101));

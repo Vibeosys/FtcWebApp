@@ -76,13 +76,13 @@ class AppController extends Controller
         }
     }
     
-    public function conncetionCaterator($custId = false) {
+    public function conncetionCreator($subscriberId = false) {
         $this->configDBToMain();
-        if(!$custId){
+        if(!$subscriberId){
             return;
         }
         $dbConnectionController = new DatabaseConnectionController();
-        $config = $dbConnectionController->getCustomerConnection($custId);
+        $config = $dbConnectionController->getCustomerConnection($subscriberId);
         $this->reliseConnection();
         if($config){
          $this->config['host'] = $config->host;   

@@ -16,7 +16,7 @@ use App\Model\Mtrait;
  *
  * @author niteen
  */
-class SignalV1Table extends Table{
+class SignalTable extends Table{
     
     use Mtrait\DateConvertorTrait;
     
@@ -32,6 +32,7 @@ class SignalV1Table extends Table{
             'open_time >' => $date
         ];
         $rows = $this->connect()->find()->where($conditions);
+        if($rows->count()){
         foreach ($rows as $row){
             $signals[$counter++] = new DTO\SignalDto(
                     $row->Ticket, $row->Symbol, 
@@ -43,6 +44,7 @@ class SignalV1Table extends Table{
                     $this->dateToTimestamp($row->close_time), 
                     $row->status, $row->copy, 
                     $this->dateToTimestamp($row->exp_time));
+        }
         }
         return $signals;
         
