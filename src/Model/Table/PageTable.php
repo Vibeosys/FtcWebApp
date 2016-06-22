@@ -28,8 +28,8 @@ class PageTable extends Table{
         if($data->count()){
         foreach ($data as $row){
            // print_r($row);  
-            echo $row->username.'</br>';
-            echo $row->pwd;
+            //echo $row->username.'</br>';
+            //echo $row->pwd;
         }
         }
         

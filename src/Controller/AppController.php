@@ -33,13 +33,16 @@ class AppController extends Controller
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => 'localhost',
-            'username' => 'root',
-            'password' => '',
-            'database' => 'demo',
+            'host' => '192.168.1.6',
+            'username' => 'dev',
+            'password' => 'dev',
+            'database' => 'forex_trade_copier',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
+            'log' => false,
+            'quoteIdentifiers' => true,
+           
         ];
     /**
      * Initialization hook method.

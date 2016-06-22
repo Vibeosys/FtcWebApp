@@ -64,12 +64,14 @@ class PagesController extends AppController
         }
     }
     
+    public function getTableObj() {
+        return new Table\PageTable();
+    }
+    
     public function pageCreation() {
-        $this->autoRender = FALSE;
+        //$this->autoRender = FALSE;
         $customerId = $this->request->query('cust');
         $this->conncetionCaterator($customerId);
-        $pageTable = new Table\PageTable();
-        $pageTable->testDb();
         $this->set([
             'permission' => 1
         ]);
