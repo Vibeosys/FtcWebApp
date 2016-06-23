@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\controller\V1;
+namespace App\Controller\V1;
 use App\Controller;
 use App\Model\Table\V1;
 use App\DTO;

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\controller\V1;
+namespace App\Controller\V1;
 use App\Controller;
 use App\Model\Table\V1;
 use App\DTO;
@@ -60,6 +60,38 @@ class UserController extends Controller\ApiController{
         else
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3));
            
+        $this->response->body(json_encode($response)); 
+    }
+    
+    public function userSubLogin() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $loginRequest = \App\Request\V1\UserSubLoginRequest::Deserialize($request->data);
+        //connect to database using subscriberId
+        $this->conncetionCreator($loginRequest->subscriberId);
+        //validate user using username, password, and validate license availability and expiry date
+        // return bool true if all condition true else return error object
+        $result = $this->userValidation($loginRequest);
+            if(is_bool($result))
+                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3));
+            else
+               $response = $result;
+        $this->response->body(json_encode($response)); 
+    }
+    
+    public function checkUserCredential($username, $pwd = null) {
+        return $this->getTableObj()->validateCredential($username, $pwd);
+    }
+    
+    public function usernameAvailability() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $usernameRequest = \App\Request\V1\UsernameAvailabilityRequest::Deserialize($request->data);
+        $this->conncetionCreator();
+        if($this->getTableObj()->validateCredential($usernameRequest->username))
+            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(106));
+        else
+            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(4));
         $this->response->body(json_encode($response)); 
     }
 }

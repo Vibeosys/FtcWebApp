@@ -19,6 +19,8 @@ use Cake\Log\Log;
  */
 class UserTable extends Table{
     
+    use Mtrait\DateConvertorTrait;
+    
     public function connect() {
         return TableRegistry::get('users');
     }
@@ -49,7 +51,7 @@ class UserTable extends Table{
         return FALSE;
     }
     
-    public function validateCredential($username , $pwd = null) {
+    public function validateCredential($username, $pwd = null) {
         if(is_null($pwd))
             $conditions = [
                 'username =' => $username 
@@ -62,7 +64,8 @@ class UserTable extends Table{
         //print_r($conditions);
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
-            return true;
+            foreach ($rows as $row)
+            return $row->userid;
         return FALSE;
     }
 }

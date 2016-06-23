@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Model\Table;
+namespace App\Model\Table\V1;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use App\DTO;
@@ -15,16 +15,16 @@ use App\DTO;
  *
  * @author niteen
  */
-class DatabaseConnectionTable extends Table{
+class SubscriptionTable extends Table{
     
     public function connect() {
-        return TableRegistry::get('database_connection');
+        return TableRegistry::get('subscription');
     }
     
-    public function getConnection($customerId) {
+    public function getConnection($subscriberId) {
         
         $conditions = [
-            'CustomerId =' => $customerId
+            'SubscriberId =' => $subscriberId
         ];
         $connections = $this->connect()->find()->where($conditions);
         if($connections->count()){
@@ -35,6 +35,20 @@ class DatabaseConnectionTable extends Table{
                       $connection->Pwd, 
                       $connection->DatabaseName);  
                 
+            }
+            return $config;
+        }
+        return false;
+    }
+    
+    public function getOwnerId($subscriberId) {
+        $conditions = [
+            'SubscriberId =' => $subscriberId
+        ];
+        $connections = $this->connect()->find()->where($conditions);
+        if($connections->count()){
+            foreach ($connections as $connection){
+              $config = $connection->OwnerId;  
             }
             return $config;
         }

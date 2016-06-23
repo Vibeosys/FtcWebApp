@@ -7,15 +7,13 @@
  */
 
 namespace App\Request\V1;
-use App\Request;
+
 /**
- * Description of UserLoginRequest
+ * Description of UserSubLoginRequest
  *
  * @author niteen
  */
-class UserLoginRequest extends Request\JsonDeserializer{
-   
-    public $username;
-    public $pwd;
+class UserSubLoginRequest extends UserLoginRequest{
     
+    public $subscriberId;
 }

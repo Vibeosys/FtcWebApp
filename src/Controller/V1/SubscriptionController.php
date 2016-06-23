@@ -6,20 +6,27 @@
  * and open the template in the editor.
  */
 
-namespace App\Controller;
-use App\Model\Table;
+namespace App\Controller\V1;
+use App\Model\Table\V1;
+use App\Controller;
 /**
  * Description of DatabaseConnectionController
  *
  * @author niteen
  */
-class DatabaseConnectionController extends AppController{
+class SubscriptionController extends Controller\ApiController{
     
     public function getTableObj() {
-        return new Table\DatabaseConnectionTable();
+        return new V1\SubscriptionTable();
     }
     
     public function getCustomerConnection($custId) {
         return $this->getTableObj()->getConnection($custId);
+    }
+    
+    public function getOwner($subscriberId) {
+        $id = $this->getTableObj()->getOwnerId($subscriberId);
+        return $id;
+        
     }
 }

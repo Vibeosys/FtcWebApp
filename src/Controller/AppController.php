@@ -76,30 +76,6 @@ class AppController extends Controller
         }
     }
     
-    public function conncetionCreator($subscriberId = false) {
-        $this->configDBToMain();
-        if(!$subscriberId){
-            return;
-        }
-        $dbConnectionController = new DatabaseConnectionController();
-        $config = $dbConnectionController->getCustomerConnection($subscriberId);
-        $this->reliseConnection();
-        if($config){
-         $this->config['host'] = $config->host;   
-         $this->config['username'] = $config->username;   
-         $this->config['password'] = $config->pwd;   
-         $this->config['database'] = $config->dbName;   
-        }
-       ConnectionManager::config('local',$this->config);
-        return ConnectionManager::get('local');
-    }
     
-    public function configDBToMain() {
-        ConnectionManager::config('local',$this->config);
-        return ConnectionManager::get('local');
-    }
     
-    public function reliseConnection() {
-        ConnectionManager::drop('local');
-    }
 }
