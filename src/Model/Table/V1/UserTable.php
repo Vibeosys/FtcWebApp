@@ -68,4 +68,36 @@ class UserTable extends Table{
             return $row->userid;
         return FALSE;
     }
+    
+    public function getPassword($username, $email) {
+        $conditions = [
+                'username =' => $username,
+                'email =' => $email
+            ];
+            $rows = $this->connect()->find()->where($conditions);
+        if($rows->count())
+            foreach ($rows as $row)
+            return $row->pwd;
+        return FALSE;
+    }
+    
+    public function getUserDetails($username) {
+          $conditions = [
+                'username =' => $username 
+            ];
+        $user = null;
+        $rows = $this->connect()->find()->where($conditions);
+        if($rows->count())
+            foreach ($rows as $row)
+            $user = new \App\Response\V1\UserLoginResponse (
+                    $row->userid, 
+                    $row->fullname, 
+                    $row->username, 
+                    $row->password, 
+                    $row->email, 
+                    $row->userid);
+        return $user;
+    }
+    
+    
 }

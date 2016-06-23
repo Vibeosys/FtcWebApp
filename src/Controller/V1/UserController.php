@@ -55,8 +55,10 @@ class UserController extends Controller\ApiController{
         $loginRequest = \App\Request\V1\UserLoginRequest::Deserialize($request->data);
         Log::debug("request data string: ".$request->data);
         $this->conncetionCreator();
+        $info = $this->getTableObj()->getUserDetails($loginRequest->username);
+               $info->subscriberId = null;
         if(!$this->getTableObj()->validateCredential($loginRequest->username, md5($loginRequest->pwd)))
-           $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(103));
+           $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(103), $info);
         else
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3));
            
@@ -72,9 +74,11 @@ class UserController extends Controller\ApiController{
         //validate user using username, password, and validate license availability and expiry date
         // return bool true if all condition true else return error object
         $result = $this->userValidation($loginRequest);
-            if(is_bool($result))
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3));
-            else
+            if(is_bool($result)){
+               $info = $this->getTableObj()->getUserDetails($loginRequest->username);
+               $info->subscriberId = $loginRequest->subscriberId;
+                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3), $info);
+            }else
                $response = $result;
         $this->response->body(json_encode($response)); 
     }
@@ -93,5 +97,17 @@ class UserController extends Controller\ApiController{
         else
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(4));
         $this->response->body(json_encode($response)); 
+    }
+    
+    public function forgotPassword() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $this->conncetionCreator();
+        $forgotRequest = \App\Request\V1\ForgotPasswordRequest::Deserialize($request->data);
+        $result = $this->getTableObj()->getPassword($forgotRequest->username,$forgotRequest->email);
+        if($result){
+            echo $result;
+        }
+            
     }
 }
