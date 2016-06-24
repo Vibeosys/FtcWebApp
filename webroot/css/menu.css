@@ -636,3 +636,9 @@ body{
         }
    
 }
+
+p#change_password_msg{
+        padding: 5px;
+    border: 1px solid;
+    background: white;
+}

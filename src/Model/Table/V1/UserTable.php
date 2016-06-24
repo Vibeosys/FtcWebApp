@@ -74,10 +74,11 @@ class UserTable extends Table{
                 'username =' => $username,
                 'email =' => $email
             ];
+            Log::debug($conditions);
             $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
             foreach ($rows as $row)
-            return $row->pwd;
+            return $row->userid;
         return FALSE;
     }
     
@@ -97,6 +98,23 @@ class UserTable extends Table{
                     $row->email, 
                     $row->userid);
         return $user;
+    }
+    
+    public function changePassword($userId, $newPwd) {
+       /* $conditions = [
+                'userid =' => $userId
+            ];
+        $key = [
+            'password' => $newPwd
+        ];*/
+        
+        $update = $this->connect();
+        $row = $update->get($userId);
+        $row->password = md5($newPwd);
+        if($update->save($row))
+            return true;
+        return FALSE;
+        
     }
     
     

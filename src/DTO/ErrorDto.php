@@ -37,6 +37,11 @@ class ErrorDto {
         return json_encode($errorDto);
     }
     
+    public static function getWebMessage($messageCode) {
+         $errorDto = new ErrorDto();
+        return $errorDto->webMessageDictionary[$messageCode];
+    }
+    
     protected $errorDictionary = [
         101 => 'Signals not found for given criteria.',
         102 => 'Sorry..! User registration Failed.',
@@ -44,8 +49,8 @@ class ErrorDto {
         104 => 'Your subscription expired. Please contact administrator',
         105 => 'Your subscription not found. Please contact administrator',
         106 => 'Username not available.',
-        107 => 'Configurations could not be saved.',
-        108 => 'User is not authorised for this activity',
+        107 => 'Sorry the email service is currently unavailable, please try after some time',
+        108 => 'Your information didnt match.',
         109 => 'Error ocurred while posting the Ad.',
         110 => 'Error occurred while saving the Ad.',
         111 => 'No ads found for the given criteria',
@@ -60,7 +65,7 @@ class ErrorDto {
         2 => 'Congrasts..!You are register with us.',
         3 => 'Login successful..!',
         4 => 'Username available.',
-        5 => 'Invalid request',
+        5 => 'Please check your mailbox and follow instruction.',
         6 => 'Error to Place order',
         7 => 'Orders Not FulFilled for requested customer',
         8 => 'Configurations saved successfully',
@@ -75,4 +80,23 @@ class ErrorDto {
         17 => 'Your ad removed from Favourite successfully.',
        ];
     
+    protected $webMessageDictionary = [
+        1 => 'This link is expired.Please try again.',
+        2 => 'Congrasts..!Your password successfully changed.',
+        3 => 'Sorry..! Your password not changed.',
+        4 => 'Username available.',
+        5 => 'Please check your mailbox and follow instruction.',
+        6 => 'Error to Place order',
+        7 => 'Orders Not FulFilled for requested customer',
+        8 => 'Configurations saved successfully',
+        9 => 'Your ad posted successfully.',
+        10 => 'Your ad set as Favourite successfully.',
+        11 => 'Ad found.',
+        12 => 'categories are found.',
+        13 => 'Types are found.',
+        14 => 'Requested profile found.',
+        15 => 'User radius settings changed.',
+        16 => 'User profile updated.',
+        17 => 'Your ad removed from Favourite successfully.',
+       ];
 }

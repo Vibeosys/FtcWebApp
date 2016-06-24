@@ -29,4 +29,12 @@ define('ACTIVE', '1');
 
 define('INACTIVE', '0');
 
+define('DEFAULT_EMAIL', 'hr@vibeosys.com');
+
+define('TEMPLATE_NIDDLE', '{reset_link}');
+
+define('CHANGE_PASSWORD_URL', 'user/changepassword');
+
+
+
 
