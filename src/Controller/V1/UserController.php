@@ -179,5 +179,10 @@ class UserController extends Controller\ApiController {
         }
         // $this->response->type('html');
     }
+    
+    public function resetPassword() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+    }
 
 }

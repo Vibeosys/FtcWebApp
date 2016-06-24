@@ -51,12 +51,13 @@ class ApiController extends AppController{
         $config = $dbConnectionController->getCustomerConnection($subscriberId);
         $this->reliseConnection();
         if($config){
-         $this->config['host'] = $config->host;   
-         $this->config['username'] = $config->username;   
-         $this->config['password'] = $config->pwd;   
-         $this->config['database'] = $config->dbName;   
+            $this->dumy = $this->config;
+         $this->dumy['host'] = $config->host;   
+         $this->dumy['username'] = $config->username;   
+         $this->dumy['password'] = $config->pwd;   
+         $this->dumy['database'] = $config->dbName;   
         }
-       ConnectionManager::config('local',$this->config);
+       ConnectionManager::config('local',$this->dumy);
         return ConnectionManager::get('local');
     }
     

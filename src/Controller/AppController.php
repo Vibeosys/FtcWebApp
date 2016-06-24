@@ -44,6 +44,7 @@ class AppController extends Controller
             'quoteIdentifiers' => true,
            
         ];
+        public $dumy = [];
     /**
      * Initialization hook method.
      *
