@@ -31,11 +31,7 @@ class UserController extends Controller\ApiController {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $userRequest = \App\Request\V1\UserRegisterRequest::Deserialize($request->data);
-        $registorInfo = new DTO\UserRegistrationDto($userRequest->username, 
-                $userRequest->name, md5($userRequest->pwd), $userRequest->email, 
-                $userRequest->phone, USER_GROUP, null, CREATOR_ID, 
-                date(DATE_TIME_FORMAT), CLIENT_ID, DELETE_STATUS, 
-                COMPANY_NAME, ACTIVE);
+        $registorInfo = new DTO\UserRegistrationDto($userRequest->username, $userRequest->name, md5($userRequest->pwd), $userRequest->email, $userRequest->phone, USER_GROUP, null, CREATOR_ID, date(DATE_TIME_FORMAT), CLIENT_ID, DELETE_STATUS, COMPANY_NAME, ACTIVE);
         $this->conncetionCreator();
         if (!$this->getTableObj()->insert($registorInfo))
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(102));
@@ -52,8 +48,7 @@ class UserController extends Controller\ApiController {
         Log::debug("request data string: " . $request->data);
         $this->conncetionCreator();
 
-        if (!$this->getTableObj()->validateCredential($loginRequest->username, 
-                md5($loginRequest->pwd)))
+        if (!$this->getTableObj()->validateCredential($loginRequest->username, md5($loginRequest->pwd)))
             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(103));
         else {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
@@ -179,10 +174,27 @@ class UserController extends Controller\ApiController {
         }
         // $this->response->type('html');
     }
-    
+
     public function resetPassword() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
+        $resetRequest = \App\Request\V1\ResetPasswordRequest::Deserialize($request->data);
+        $resetUser = \App\Request\V1\UserRequest::Deserialize($request->user);
+        $this->conncetionCreator($resetUser->subscriberId);
+        $result = $this->userValidation($resetUser, FALSE);
+        if (is_bool($result)) {
+            if ($this->getTableObj()->validateCredential($resetUser->username, md5($resetRequest->oldPwd)))
+                if ($this->getTableObj()->changePassword($resetUser->userId, $resetRequest->newPwd)) {
+                    $info = $this->getTableObj()->getUserDetails(null, $resetUser->userId);
+                    $info->subscriberId = $resetUser->subscriberId;
+                    $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(6), json_encode($info));
+                } else
+                    $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(109));
+            else
+                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(111));
+        } else
+            $response = $result;
+        $this->response->body(json_encode($response));
     }
 
 }

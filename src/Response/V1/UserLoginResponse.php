@@ -21,7 +21,7 @@ class UserLoginResponse {
     public $subscriberId;
             
     public function __construct($userId = null, $fullName = null, $username = null, 
-            $pwd = null, $email = null, $subscriberId = null) {
+            $pwd = null, $email = null, $subscriberId = 0) {
         $this->userId = $userId;
         $this->username = $username;
         $this->fullName = $fullName;

@@ -51,17 +51,23 @@ class UserTable extends Table{
         return FALSE;
     }
     
-    public function validateCredential($username, $pwd = null) {
+    public function validateCredential($username, $pwd = null, $userId = null) {
         if(is_null($pwd))
             $conditions = [
                 'username =' => $username 
             ];
-        else
+        else if(is_null($userId))
             $conditions = [
                 'username =' => $username,
                 'password =' => $pwd
             ];
+        else
+            $conditions = [
+                'userid =' => $userId,
+                'password =' => $pwd
+            ]; 
         //print_r($conditions);
+        Log::debug($conditions);
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
             foreach ($rows as $row)
@@ -82,10 +88,15 @@ class UserTable extends Table{
         return FALSE;
     }
     
-    public function getUserDetails($username) {
-          $conditions = [
+    public function getUserDetails($username, $userId = null) {
+        if(is_null($userId))  
+        $conditions = [
                 'username =' => $username 
             ];
+        else
+           $conditions = [
+                'userid =' => $userId
+            ];  
         $user = null;
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
