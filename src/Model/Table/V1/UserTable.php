@@ -111,6 +111,24 @@ class UserTable extends Table{
         return $user;
     }
     
+    public function getProfile($userId) {
+        $conditions = [
+                'userid =' => $userId
+            ];  
+        $user = null;
+        $rows = $this->connect()->find()->where($conditions);
+         if($rows->count())
+            foreach ($rows as $row)
+                $user = new \App\Response\V1\getUserProfileResponse (
+                        $row->userid, 
+                        $row->username, 
+                        $row->fullname, 
+                        $row->email, 
+                        $row->phone, 
+                        $row->company_name); 
+         return $user;
+    }
+    
     public function changePassword($userId, $newPwd) {
        /* $conditions = [
                 'userid =' => $userId

@@ -68,7 +68,7 @@ class ErrorDto {
         5 => 'Please check your mailbox and follow instruction.',
         6 => 'Password reset successfull.',
         7 => 'Orders Not FulFilled for requested customer',
-        8 => 'Configurations saved successfully',
+        8 => 'User profile.',
         9 => 'Your ad posted successfully.',
         10 => 'Your ad set as Favourite successfully.',
         11 => 'Ad found.',

@@ -52,6 +52,7 @@ Router::scope('/V1/', function (RouteBuilder $routes) {
     $routes->connect('forgotPassword', ['controller' => 'V1/User', 'action' => 'forgotPassword']);
     $routes->connect('forgotSubPassword', ['controller' => 'V1/User', 'action' => 'forgotSubPassword']);
     $routes->connect('resetPassword', ['controller' => 'V1/User', 'action' => 'resetPassword']);
+    $routes->connect('getUserProfile', ['controller' => 'V1/User', 'action' => 'getUserProfile']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 });

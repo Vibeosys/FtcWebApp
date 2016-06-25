@@ -181,6 +181,7 @@ class UserController extends Controller\ApiController {
         $resetRequest = \App\Request\V1\ResetPasswordRequest::Deserialize($request->data);
         $resetUser = \App\Request\V1\UserRequest::Deserialize($request->user);
         $this->conncetionCreator($resetUser->subscriberId);
+        // pass false for login user validation
         $result = $this->userValidation($resetUser, FALSE);
         if (is_bool($result)) {
             if ($this->getTableObj()->validateCredential($resetUser->username, md5($resetRequest->oldPwd)))
@@ -192,6 +193,26 @@ class UserController extends Controller\ApiController {
                     $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(109));
             else
                 $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(111));
+        } else
+            $response = $result;
+        $this->response->body(json_encode($response));
+    }
+    
+    public function getUserProfile() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $getProfileRequest = \App\Request\V1\UserRequest::Deserialize($request->user);
+        $this->conncetionCreator($getProfileRequest->subscriberId);
+        $result = $this->userValidation($getProfileRequest, FALSE);
+        if (is_bool($result)) {
+           $profile = $this->getTableObj()->getProfile($getProfileRequest->userId);
+            if(is_null($profile))
+              $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(112));  
+            else{
+                $profile->plan = "monthly";
+                $profile->subscriberId = $getProfileRequest->subscriberId;
+                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(8), json_encode($profile));
+            }
         } else
             $response = $result;
         $this->response->body(json_encode($response));
