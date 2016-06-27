@@ -57,26 +57,32 @@ Router::scope('/V1/', function (RouteBuilder $routes) {
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 });
-// temp website route
+// temp website route for local server
 Router::scope('/tradenowwebapp/', function (RouteBuilder $routes) {
 $routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 'changePassword','change_password']);    
     
  $routes->fallbacks('DashedRoute');    
 });
 
-// website route
+// website route for V1
 Router::scope('/', function (RouteBuilder $routes) {
 $routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 'changePassword','change_password']);    
     
  $routes->fallbacks('DashedRoute');    
 });
-/*
-Router::scope('/V2/', function (RouteBuilder $routes) {
+
+// website route for V2
+Router::scope('/', function (RouteBuilder $routes) {
+$routes->connect('/', ['controller' => 'V2/User', 'action' => 'adminWebLogin']);    
+    
+ $routes->fallbacks('DashedRoute');    
+});
+Router::scope('/v2/', function (RouteBuilder $routes) {
   
-    $routes->connect('getSignal', ['controller' => 'V2/Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('getpages', ['controller' => 'V2/Signal', 'action' => 'getTradeSignal']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
-});  */
+}); 
 
 
 /**
