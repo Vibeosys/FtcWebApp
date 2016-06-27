@@ -174,6 +174,7 @@ myApp.directive("addbuttons", function($compile){
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><input type='file' class='form-control' ng-model=myFile"+scope.countfile+" file id=file-input-"+scope.countfile+" accept='image/*'><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
             
 		});
+           
 	};
 });
 myApp.directive("addtextdiv", function($compile){
@@ -184,6 +185,7 @@ myApp.directive("addtextdiv", function($compile){
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><textarea rows='4' placeholder='Text' class='form-control'  id=text-input-"+scope.counttext+" ng-model=textfile"+scope.count+"></textarea><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
             
 		});
+             
 	};
 });
 myApp.directive("addlinktext", function($compile){
@@ -194,6 +196,7 @@ myApp.directive("addlinktext", function($compile){
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><div style='display:flex'>Link<input type='text'  placeholder='Link' class='form-control link-input'  id=text-input-link-"+scope.countlinktext+" ng-model=linkfile"+scope.countlinktext+"> Link Caption<input type='text' placeholder='Link Caption' class='form-control link-input'  id=text-input-cap-link-"+scope.countlinktext+" ng-model=capfile"+scope.countlinktext+"></div> <button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
             
 		});
+        
 	};
 });
 myApp.directive("addvideolink", function($compile){
@@ -204,7 +207,8 @@ myApp.directive("addvideolink", function($compile){
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><div style='display:flex'>Video Link<input type='text'  placeholder='Video Link' class='form-control'  id=text-input-video-"+scope.countvideolink+" ng-model=videolinkfile"+scope.countvideolink+"></div> <button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
             
 		});
-	};
+             var count = $('#itemcount').val();
+            
 });
 
 myApp.directive("addheadinglink", function($compile){
@@ -215,6 +219,9 @@ myApp.directive("addheadinglink", function($compile){
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><input type='text'  placeholder='Heading' class='form-control'  id=text-input-head-"+scope.countheading+" ng-model=headingfile"+scope.countheading+"><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
             
 		});
+            var count = $('#itemcount').val();
+            count++;
+                $('#itemcount').val(count);
 	};
 });
 //Directive for showing an alert on click
@@ -235,50 +242,28 @@ myApp.directive("removeMe", function($rootScope) {
                     var id= attrs['id'];
                    
                    $("."+id).remove();
+                   $('#itemcount').val(scope.count);
                 });
             }
+          
       
 });
-
+myApp.directive("additems", function($rootScope) {
+      return function(scope,element,attrs)
+            { 
+                var count = $('#itemcount').val();
+                    count++;
+                $('#itemcount').val(count);
+            }
+           
+      
+});
 
   
   
           
        </script>  
-       <script>
-           /*
-function MainCtrl($scope) {
-    $scope.countForFile = 0;
-    $scope.countForText = 0;
-    $scope.AppendFile = function() {
-     $scope.countForFile++;
-     var myEl = angular.element( document.querySelector( '#space-for-tool' ) );
-     myEl.append("<input type='file' class='form-control' onchange='angular.element(this).scope().setFile(this)' accept='image/*'><br/>");  
-        
-    var privewEl = angular.element( document.querySelector( '#privew-for-tool' ) );
-        privewEl.append('<img ng-src="{{image_source}}">');
-    }
-    $scope.AppendText = function() {
-     $scope.countForText++;
-     var myEl = angular.element( document.querySelector( '#space-for-tool' ) );
-     myEl.append('<textarea rows="4" placeholder="Text" class="form-control" ></textarea><br/>');
-    }
-   $scope.setFile = function(element) {
-  $scope.currentFile = element.files[0];
-   var reader = new FileReader();
-
-  reader.onload = function(event) {
-    $scope.image_source = event.target.result
-    $scope.$apply()
-
-  }
-  // when the file is read it triggers the onload event above.
-  reader.readAsDataURL(element.files[0]);
-}
-}
-*/
-</script>
-       
+   <?php if($this->fetch('script')){ echo $this->fetch('script');}?>
 
     </body>
 </html>
