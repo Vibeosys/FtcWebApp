@@ -23,14 +23,25 @@ class UserPlanTable extends Table{
         return TableRegistry::get('user_plan');
     }
     
-    public function getUserPlan($userId) {
+    public function getPlan($userId) {
         
         $joins = [
             'p'=>[
                 'table' => 'plans',
                 'type' => 'INNER',
-                'conditions' => 'p.plan_id = user_plan.planid'
+                'conditions' => 'p.plan_id = user_plan.planid and user_plan.userid ='.$userId
             ]
         ];
+        
+        $fields = [
+            'PlanId' => 'user_plan.planid',
+            'UserPlan' => 'p.display_name'
+        ];
+        
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($joins);
+        if($rows->count())
+            foreach ($rows as $row)
+                return $row->UserPlan;
+        return null;
     }
 }

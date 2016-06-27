@@ -8,6 +8,7 @@
 
 namespace App\Controller\V1;
 use App\Controller;
+use App\Model\Table\V1;
 /**
  * Description of UserPlanController
  *
@@ -16,6 +17,10 @@ use App\Controller;
 class UserPlanController extends Controller\ApiController{
     
     public function getTableObj() {
-        
+        return new V1\UserPlanTable();
+    }
+    
+    public function getUserPlan($userId) {
+        return $this->getTableObj()->getPlan($userId);
     }
 }

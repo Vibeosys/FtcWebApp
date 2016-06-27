@@ -29,7 +29,7 @@ use Cake\Datasource\ConnectionManager;
  */
 class AppController extends Controller
 {
-    public $config =  [
+    public $config =  [];/*[
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
@@ -43,7 +43,7 @@ class AppController extends Controller
             'log' => false,
             'quoteIdentifiers' => true,
            
-        ];
+        ];*/
         public $dumy = [];
     /**
      * Initialization hook method.
@@ -57,7 +57,7 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
+        $this->config = $datasource = ConnectionManager::config('default');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
     }

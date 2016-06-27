@@ -209,13 +209,31 @@ class UserController extends Controller\ApiController {
             if(is_null($profile))
               $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(112));  
             else{
-                $profile->plan = "monthly";
+                $userPlanController = new UserPlanController();
+                $profile->plan = $userPlanController->getUserPlan($getProfileRequest->userId);
                 $profile->subscriberId = $getProfileRequest->subscriberId;
                 $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(8), json_encode($profile));
             }
         } else
             $response = $result;
         $this->response->body(json_encode($response));
+    }
+    
+    public function updateUserProfile() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $requestUser = \App\Request\V1\UserRequest::Deserialize($request->user);
+        $updateRequest = \App\Request\V1\UpdateUserProfileRequest::Deserialize($request->data);
+        $this->conncetionCreator($requestUser->subscriberId);
+        $result = $this->userValidation($requestUser, FALSE);
+        if (is_bool($result)) {
+        if($this->getTableObj()->updateProfile($requestUser->userId, $updateRequest))
+        $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(9));    
+        else
+            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(114)); 
+         } else
+            $response = $result;
+        $this->response->body(json_encode($response));    
     }
 
 }

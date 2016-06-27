@@ -12,6 +12,7 @@ use Cake\ORM\Table;
 use App\DTO;
 use App\Model\Mtrait;
 use Cake\Log\Log;
+use App\Request\V1;
 /**
  * Description of UserTable
  *
@@ -127,6 +128,17 @@ class UserTable extends Table{
                         $row->phone, 
                         $row->company_name); 
          return $user;
+    }
+    
+    public function updateProfile($userId, V1\UpdateUserProfileRequest $update) {
+        $tableObj = $this->connect();
+        $entity = $tableObj->get($userId);
+        $entity->email = $update->email;
+        $entity->fullname = $update->fullName;
+        $entity->phone = $update->phone;
+        if($tableObj->save($entity))
+            return TRUE;
+        return false;
     }
     
     public function changePassword($userId, $newPwd) {
