@@ -30,13 +30,29 @@ class UserController extends Controller\ApiController {
     public function UserRegistration() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $userRequest = \App\Request\V1\UserRegisterRequest::Deserialize($request->data);
-        $registorInfo = new DTO\UserRegistrationDto($userRequest->username, $userRequest->name, md5($userRequest->pwd), $userRequest->email, $userRequest->phone, USER_GROUP, null, CREATOR_ID, date(DATE_TIME_FORMAT), CLIENT_ID, DELETE_STATUS, COMPANY_NAME, ACTIVE);
+        $userRequest = \App\Request\V1\UserRegisterRequest::Deserialize(
+                $request->data);
+        $registorInfo = new DTO\UserRegistrationDto(
+                $userRequest->username, 
+                $userRequest->name, 
+                md5($userRequest->pwd), 
+                $userRequest->email, 
+                $userRequest->phone, 
+                USER_GROUP, 
+                null, 
+                CREATOR_ID, 
+                date(DATE_TIME_FORMAT), 
+                CLIENT_ID, 
+                DELETE_STATUS, 
+                COMPANY_NAME, 
+                ACTIVE);
         $this->conncetionCreator();
         if (!$this->getTableObj()->insert($registorInfo))
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(102));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(102));
         else
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(2));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareSuccessMessage(2));
 
         $this->response->body(json_encode($response));
     }
@@ -44,16 +60,20 @@ class UserController extends Controller\ApiController {
     public function userLogin() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $loginRequest = \App\Request\V1\UserLoginRequest::Deserialize($request->data);
+        $loginRequest = \App\Request\V1\UserLoginRequest::Deserialize(
+                $request->data);
         Log::debug("request data string: " . $request->data);
         $this->conncetionCreator();
 
-        if (!$this->getTableObj()->validateCredential($loginRequest->username, md5($loginRequest->pwd)))
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(103));
+        if (!$this->getTableObj()->validateCredential(
+                $loginRequest->username, md5($loginRequest->pwd)))
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(103));
         else {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
             $info->subscriberId = 0;
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
         }
         $this->response->body(json_encode($response));
     }
@@ -61,16 +81,24 @@ class UserController extends Controller\ApiController {
     public function userSubLogin() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $loginRequest = \App\Request\V1\UserSubLoginRequest::Deserialize($request->data);
+        $loginRequest = \App\Request\V1\UserSubLoginRequest::Deserialize(
+                $request->data);
         //connect to database using subscriberId
-        $this->conncetionCreator($loginRequest->subscriberId);
-        //validate user using username, password, and validate license availability and expiry date
+        if (!$this->conncetionCreator($loginRequest->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+        }
+        //validate user using username, password, and validate license 
+        //availability and expiry date
         // return bool true if all condition true else return error object
         $result = $this->userValidation($loginRequest);
         if (is_bool($result)) {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
             $info->subscriberId = $loginRequest->subscriberId;
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
         } else
             $response = $result;
         $this->response->body(json_encode($response));
@@ -83,12 +111,15 @@ class UserController extends Controller\ApiController {
     public function usernameAvailability() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $usernameRequest = \App\Request\V1\UsernameAvailabilityRequest::Deserialize($request->data);
+        $usernameRequest = \App\Request\V1\UsernameAvailabilityRequest::Deserialize(
+                $request->data);
         $this->conncetionCreator();
         if ($this->getTableObj()->validateCredential($usernameRequest->username))
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(106));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(106));
         else
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(4));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareSuccessMessage(4));
         $this->response->body(json_encode($response));
     }
 
@@ -96,8 +127,10 @@ class UserController extends Controller\ApiController {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $this->conncetionCreator();
-        $forgotRequest = \App\Request\V1\ForgotPasswordRequest::Deserialize($request->data);
-        $result = $this->getTableObj()->getPassword($forgotRequest->username, $forgotRequest->email);
+        $forgotRequest = \App\Request\V1\ForgotPasswordRequest::Deserialize(
+                $request->data);
+        $result = $this->getTableObj()->getPassword(
+                $forgotRequest->username, $forgotRequest->email);
         Log::debug('Result of forgot password is : ' . $result);
         if ($result) {
             $link = $this->getChangePasswordLink($result);
@@ -105,20 +138,30 @@ class UserController extends Controller\ApiController {
             $template = $FpEmailTemplate->getEmailTemplate();
             $message = str_replace(TEMPLATE_NIDDLE, $link, $template);
             if ($this->mail($forgotRequest->email, $this->email_subject, $message))
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(5));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareSuccessMessage(5));
             else
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(107));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareError(107));
         } else
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(108));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(108));
         $this->response->body(json_encode($response));
     }
 
     public function forgotSubPassword() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $forgotRequest = \App\Request\V1\ForgotPasswordSubRequest::Deserialize($request->data);
-        $this->conncetionCreator($forgotRequest->subscriberId);
-        $result = $this->getTableObj()->getPassword($forgotRequest->username, $forgotRequest->email);
+        $forgotRequest = \App\Request\V1\ForgotPasswordSubRequest::Deserialize(
+                $request->data);
+        if (!$this->conncetionCreator($forgotRequest->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+        }
+        $result = $this->getTableObj()->getPassword(
+                $forgotRequest->username, $forgotRequest->email);
         if ($result) {
             $this->reliseConnection();
             $this->conncetionCreator();
@@ -128,11 +171,14 @@ class UserController extends Controller\ApiController {
             $template = $FpEmailTemplate->getEmailTemplate();
             $message = str_replace(TEMPLATE_NIDDLE, $link, $template);
             if ($this->mail($forgotRequest->email, $this->email_subject, $message))
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(5));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareSuccessMessage(5));
             else
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(107));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareError(107));
         } else
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(108));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(108));
         $this->response->body(json_encode($response));
     }
 
@@ -145,9 +191,11 @@ class UserController extends Controller\ApiController {
                 $subId = $data['subscriberId'];
             else
                 $subId = false;
-            $changeRequest = new \App\Request\V1\ChangePasswordRequest($data['userId'], $subId, $data['pwd']);
+            $changeRequest = new \App\Request\V1\ChangePasswordRequest(
+                    $data['userId'], $subId, $data['pwd']);
             $this->conncetionCreator($subId);
-            if ($this->getTableObj()->changePassword($changeRequest->userId, $changeRequest->pwd))
+            if ($this->getTableObj()->changePassword(
+                    $changeRequest->userId, $changeRequest->pwd))
                 $this->set([
                     'sucMsg' => DTO\ErrorDto::getWebMessage(2),
                     'color' => 'green'
@@ -178,62 +226,95 @@ class UserController extends Controller\ApiController {
     public function resetPassword() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $resetRequest = \App\Request\V1\ResetPasswordRequest::Deserialize($request->data);
-        $resetUser = \App\Request\V1\UserRequest::Deserialize($request->user);
-        $this->conncetionCreator($resetUser->subscriberId);
+        $resetRequest = \App\Request\V1\ResetPasswordRequest::Deserialize(
+                $request->data);
+        $resetUser = \App\Request\V1\UserRequest::Deserialize(
+                $request->user);
+        if (!$this->conncetionCreator($resetUser->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+        }
         // pass false for login user validation
         $result = $this->userValidation($resetUser, FALSE);
         if (is_bool($result)) {
-            if ($this->getTableObj()->validateCredential($resetUser->username, md5($resetRequest->oldPwd)))
-                if ($this->getTableObj()->changePassword($resetUser->userId, $resetRequest->newPwd)) {
+            if ($this->getTableObj()->validateCredential(
+                    $resetUser->username, md5($resetRequest->oldPwd)))
+                if ($this->getTableObj()->changePassword(
+                        $resetUser->userId, $resetRequest->newPwd)) {
                     $info = $this->getTableObj()->getUserDetails(null, $resetUser->userId);
                     $info->subscriberId = $resetUser->subscriberId;
-                    $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(6), json_encode($info));
+                    $response = new \App\Response\V1\BaseResponse(
+                            DTO\ErrorDto::prepareSuccessMessage(6), json_encode($info));
                 } else
-                    $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(109));
+                    $response = new \App\Response\V1\BaseResponse(
+                            DTO\ErrorDto::prepareError(109));
             else
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(111));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareError(111));
         } else
             $response = $result;
         $this->response->body(json_encode($response));
     }
-    
+
     public function getUserProfile() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
-        $getProfileRequest = \App\Request\V1\UserRequest::Deserialize($request->user);
-        $this->conncetionCreator($getProfileRequest->subscriberId);
+        $getProfileRequest = \App\Request\V1\UserRequest::Deserialize(
+                $request->user);
+   
+        if (!$this->conncetionCreator($getProfileRequest->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+        }
         $result = $this->userValidation($getProfileRequest, FALSE);
         if (is_bool($result)) {
-           $profile = $this->getTableObj()->getProfile($getProfileRequest->userId);
-            if(is_null($profile))
-              $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(112));  
-            else{
+            $profile = $this->getTableObj()->getProfile(
+                    $getProfileRequest->userId);
+            if (is_null($profile))
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareError(112));
+            else {
                 $userPlanController = new UserPlanController();
-                $profile->plan = $userPlanController->getUserPlan($getProfileRequest->userId);
+                $profile->plan = $userPlanController->getUserPlan(
+                        $getProfileRequest->userId);
                 $profile->subscriberId = $getProfileRequest->subscriberId;
-                $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(8), json_encode($profile));
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareSuccessMessage(8), json_encode($profile));
             }
         } else
             $response = $result;
         $this->response->body(json_encode($response));
     }
-    
+
     public function updateUserProfile() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $requestUser = \App\Request\V1\UserRequest::Deserialize($request->user);
-        $updateRequest = \App\Request\V1\UpdateUserProfileRequest::Deserialize($request->data);
-        $this->conncetionCreator($requestUser->subscriberId);
+        $updateRequest = \App\Request\V1\UpdateUserProfileRequest::Deserialize(
+                $request->data);
+         Log::debug($updateRequest);
+        if (!$this->conncetionCreator($requestUser->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+        }
         $result = $this->userValidation($requestUser, FALSE);
         if (is_bool($result)) {
-        if($this->getTableObj()->updateProfile($requestUser->userId, $updateRequest))
-        $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(9));    
-        else
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(114)); 
-         } else
+            if ($this->getTableObj()->updateProfile(
+                    $requestUser->userId, $updateRequest))
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareSuccessMessage(9));
+            else
+                $response = new \App\Response\V1\BaseResponse(
+                        DTO\ErrorDto::prepareError(114));
+        } else
             $response = $result;
-        $this->response->body(json_encode($response));    
+        $this->response->body(json_encode($response));
     }
 
 }

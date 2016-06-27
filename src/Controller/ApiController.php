@@ -41,10 +41,10 @@ class ApiController extends AppController{
        
     }
     
-    public function conncetionCreator($subscriberId = false) {
+    public function conncetionCreator($subscriberId = 0) {
         $this->configDBToMain();
-        if(!$subscriberId){
-            return;
+        if($subscriberId == 0){
+            return true;
         }
         Log::debug('connection create for subscriber :'.$subscriberId);
         $dbConnectionController = new V1\SubscriptionController();
@@ -56,6 +56,8 @@ class ApiController extends AppController{
          $this->dumy['username'] = $config->username;   
          $this->dumy['password'] = $config->pwd;   
          $this->dumy['database'] = $config->dbName;   
+        }  else {
+            return $config;
         }
        ConnectionManager::config('local',$this->dumy);
         return ConnectionManager::get('local');
@@ -87,6 +89,7 @@ class ApiController extends AppController{
             $pwd = $loginRequest->pwd;
             $errorCode = 110;
         }
+        Log::debug('Subscriber Id of user :- '.$loginRequest->subscriberId);
         $userController = new V1\UserController();
         $loginResult = $userController->checkUserCredential($loginRequest->username,$pwd); 
         if($loginResult){
