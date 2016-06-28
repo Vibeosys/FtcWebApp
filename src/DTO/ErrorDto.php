@@ -57,7 +57,7 @@ class ErrorDto {
         112 => 'No data found.',
         113 => 'Sorry the email service is currently unavailable, please try after some time',
         114 => 'Error while updating user profile.',
-        115 => 'Error while .',
+        115 => 'Trade history signal not found for given criteria.',
         116 => 'Error occurred while removing favourite Ad.',
        ];
     protected $SuccessDictionary = [
@@ -70,7 +70,7 @@ class ErrorDto {
         7 => 'Orders Not FulFilled for requested customer',
         8 => 'User profile.',
         9 => 'Profile updated successfully.',
-        10 => 'Your ad set as Favourite successfully.',
+        10 => 'Trade history signal found.',
         11 => 'Ad found.',
         12 => 'categories are found.',
         13 => 'Types are found.',

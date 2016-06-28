@@ -78,8 +78,19 @@ $routes->connect('/', ['controller' => 'V2/User', 'action' => 'adminWebLogin']);
  $routes->fallbacks('DashedRoute');    
 });
 Router::scope('/v2/', function (RouteBuilder $routes) {
-  
-    $routes->connect('getpages', ['controller' => 'V2/Signal', 'action' => 'getTradeSignal']);
+    $version = 'V2/';
+    $routes->connect('getSignal', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('registerUser', ['controller' => $version.'User', 'action' => 'userregistration']);
+    $routes->connect('userLogin', ['controller' => $version.'User', 'action' => 'userLogin']);
+    $routes->connect('userSubLogin', ['controller' => $version.'User', 'action' => 'userSubLogin']);
+    $routes->connect('usernameAvailability', ['controller' => $version.'User', 'action' => 'usernameAvailability']);
+    $routes->connect('forgotPassword', ['controller' => $version.'User', 'action' => 'forgotPassword']);
+    $routes->connect('forgotSubPassword', ['controller' => $version.'User', 'action' => 'forgotSubPassword']);
+    $routes->connect('resetPassword', ['controller' => $version.'User', 'action' => 'resetPassword']);
+    $routes->connect('getUserProfile', ['controller' => $version.'User', 'action' => 'getUserProfile']);
+    $routes->connect('updateUserProfile', ['controller' => $version.'User', 'action' => 'updateUserProfile']);
+    $routes->connect('gettradehistory', ['controller' => $version.'TradeBackup', 'action' => 'getTradeBackup']);
+   // $routes->connect('getpages', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 }); 
