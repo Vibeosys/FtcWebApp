@@ -90,7 +90,7 @@ Router::scope('/v2/', function (RouteBuilder $routes) {
     $routes->connect('getUserProfile', ['controller' => $version.'User', 'action' => 'getUserProfile']);
     $routes->connect('updateUserProfile', ['controller' => $version.'User', 'action' => 'updateUserProfile']);
     $routes->connect('gettradehistory', ['controller' => $version.'TradeBackup', 'action' => 'getTradeBackup']);
-   // $routes->connect('getpages', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 }); 

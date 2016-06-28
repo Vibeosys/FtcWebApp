@@ -53,7 +53,7 @@ use Cake\Cache\Cache;
 		<input type="password" name="pwd" id="user_pass" aria-describedby="login_error" class="input" value="" size="20" /></label>
 	</p>
     	<p>
-		<label for="subscribe_id">Conform Password<br />
+		<label for="subscribe_id">Confirm Password<br />
 		<input type="password" name="c_pwd" id="subscribe_id" aria-describedby="login_error" class="input" value="" size="20" /></label>
 	</p>
 		

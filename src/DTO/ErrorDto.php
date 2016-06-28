@@ -58,11 +58,11 @@ class ErrorDto {
         113 => 'Sorry the email service is currently unavailable, please try after some time',
         114 => 'Error while updating user profile.',
         115 => 'Trade history signal not found for given criteria.',
-        116 => 'Error occurred while removing favourite Ad.',
+        116 => 'Pages not found for given criteria.',
        ];
     protected $SuccessDictionary = [
         1 => 'Signals found.',
-        2 => 'Congrasts..!You are register with us.',
+        2 => 'Congrats..!You are register with us.',
         3 => 'Login successful..!',
         4 => 'Username available.',
         5 => 'Please check your mailbox and follow instruction.',
@@ -71,7 +71,7 @@ class ErrorDto {
         8 => 'User profile.',
         9 => 'Profile updated successfully.',
         10 => 'Trade history signal found.',
-        11 => 'Ad found.',
+        11 => 'Pages found.',
         12 => 'categories are found.',
         13 => 'Types are found.',
         14 => 'Requested profile found.',
@@ -82,7 +82,7 @@ class ErrorDto {
     
     protected $webMessageDictionary = [
         1 => 'This link is expired.Please try again.',
-        2 => 'Congrasts..!Your password successfully changed.',
+        2 => 'Congrats..!Your password successfully changed.',
         3 => 'Sorry..! Your password not changed.',
         4 => 'Username available.',
         5 => 'Please check your mailbox and follow instruction.',

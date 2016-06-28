@@ -31,7 +31,8 @@ class SignalTable extends Table{
         $conditions = [
             'open_time >' => $date
         ];
-        $rows = $this->connect()->find()->where($conditions);
+        $order = 'open_time';
+        $rows = $this->connect()->find()->where($conditions)->orderAsc($order);
         if($rows->count()){
         foreach ($rows as $row){
             $signals[$counter++] = new DTO\SignalDto(

@@ -31,9 +31,11 @@ class SignalController extends Controller\ApiController{
         $this->conncetionCreator();
         $signals = $this->getTableObj()->getSignal($signalRequest->date);
         if(empty($signals))
-            $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError(101));
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(101));
         else
-             $response = new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(1), json_encode ($signals));
+             $response = new \App\Response\V1\BaseResponse(
+                     DTO\ErrorDto::prepareSuccessMessage(1), json_encode ($signals));
         
          $this->response->body(json_encode($response));     
     }

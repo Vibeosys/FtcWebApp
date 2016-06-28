@@ -32,7 +32,7 @@ class TradeBackupTable extends Table{
         $conditions = [
             'close_time >' => $date
         ];
-        $rows = $this->connect()->find()->where($conditions);
+        $rows = $this->connect()->find()->where($conditions)->orderAsc('close_time');
         //\Cake\Log\Log::debug($rows->sql());
         if($rows->count()){
         foreach ($rows as $row){

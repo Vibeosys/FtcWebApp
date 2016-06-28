@@ -100,6 +100,25 @@ class ApiController extends AppController{
             return new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError($errorCode));
     }
     
+    public function userValidationV2($loginRequest, $type = true) {
+        if($type){
+            $pwd = md5($loginRequest->pwd);
+            $errorCode = 103;
+        }else{
+            $pwd = $loginRequest->pwd;
+            $errorCode = 110;
+        }
+        Log::debug('Subscriber Id of user :- '.$loginRequest->subscriberId);
+        $userController = new V1\UserController();
+        $loginResult = $userController->checkUserCredential($loginRequest->username,$pwd); 
+        if($loginResult){
+            if($loginRequest->subscriberId > 0)
+            return $this->checkLicenseValidity($loginResult);
+        return TRUE;
+        }else
+            return new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError($errorCode));
+    }
+    
     public function mail($to, $subject, $message) {
       
         $email = new Email('default');
