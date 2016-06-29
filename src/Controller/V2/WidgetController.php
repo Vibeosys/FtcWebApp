@@ -16,6 +16,7 @@ use App\Model\Table\V2;
  */
 class WidgetController extends Controller\ApiController{
     
+    public  $tableName = 'widget';
     public function getTableObj() {
         return new V2\WidgetTable();
     }
@@ -28,6 +29,20 @@ class WidgetController extends Controller\ApiController{
     public function getAllWidgets() {
         $result = $this->getTableObj()->getWidgets();
         return $result;
+    }
+    
+     public function insertNewWidget($newWidget, $authorId, $subscriberId) {
+        $result = $this->getTableObj()->insert($newWidget);
+        if($result){
+            $syncEntry = new DTO\SyncInsertDto(
+                    $authorId, 
+                    $this->tableName, 
+                    INSERT, 
+                    $this->getPageWidgets($result), $subscriberId);
+            $syncController = new SyncController();
+            $syncController->makeSyncEntry($syncEntry);
+        }
+        return FALSE;
     }
     
 }

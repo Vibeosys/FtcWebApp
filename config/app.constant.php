@@ -35,6 +35,11 @@ define('TEMPLATE_NIDDLE', '{reset_link}');
 
 define('CHANGE_PASSWORD_URL', 'user/changepassword');
 
+define('INSERT', 'insert');
+
+define('UPDATE', 'update');
+
+define('DELETE', 'delete');
 
 
 

@@ -8,6 +8,7 @@
 
 namespace App\Controller\V2;
 use App\Controller\V1;
+use App\Model\Table\V2;
 /**
  * Description of UserController
  *
@@ -15,7 +16,12 @@ use App\Controller\V1;
  */
 class UserController extends V1\UserController{
     
-    public function adminWebLogin() {
-        
+    public function getTableObj() {
+        return new V2\UserTable();
+    }
+    
+    public function getAdminClients($subscriberId) {
+        $result = $this->getTableObj()->getUser($subscriberId);
+        return $result;
     }
 }

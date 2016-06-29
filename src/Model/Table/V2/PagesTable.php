@@ -58,4 +58,39 @@ class PagesTable extends Table{
                     $row->Active);
      return $pages;  
      }
+     
+    public function getSingalPage($pageId) {
+          $conditions = [
+            'PageId =' => $pageId
+        ];
+        $pages = FALSE; 
+        $rows = $this->connect()->find()->where($conditions);
+        if($rows->count())
+            foreach ($rows as $row)    
+            $pages = new DTO\PagesDto(
+                    $row->PageId, 
+                    $row->PageTitle, 
+                    $row->Status, 
+                    $row->PageTypeId,
+                    $row->Active);
+        return $pages;
+    }
+     
+     public function insert(DTO\PageInsertDto $pageInsertDto) {
+         $tableobj = $this->connect();
+         $newEntity = $tableobj->newEntity();
+         $newEntity->PageTitle = $pageInsertDto->pageTitle;
+         $newEntity->Status = $pageInsertDto->status;
+         $newEntity->PageTypeId = $pageInsertDto->pageType;
+         $newEntity->CreatedDate = date(DATE_TIME_FORMAT);
+         $newEntity->UpdatedDate = date(DATE_TIME_FORMAT);
+         $newEntity->Active = $pageInsertDto->active;
+         $newEntity->Author = $pageInsertDto->author;
+         if($tableobj->save($newEntity))
+             return $newEntity->PageId;
+         return FALSE;
+         
+         
+         
+     }
 }

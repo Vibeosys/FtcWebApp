@@ -43,4 +43,19 @@ class WidgetTable extends Table{
                     $row->WidgetData);
     return $widgets;    
     }
+    
+    public function insert($widgets) {
+        $result = FALSE;
+        $tableObj = $this->connect();
+        foreach ($widgets as $widget){
+            $newEntity = $tableObj->newEntity();
+            $newEntity->WidgetTitle = $widget->title;
+            $newEntity->position = $widget->position;
+            $newEntity->WidgetData = $widget->data;
+            $newEntity->PageId = $widget->pageId;
+            if($tableObj->save($newEntity))
+                $result = $newEntity->pageId;
+        }
+        return $result;
+    }
 }

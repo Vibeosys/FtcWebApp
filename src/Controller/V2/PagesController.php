@@ -18,7 +18,8 @@ use App\DTO;
  * @author niteen
  */
 class PagesController extends Controller\ApiController{
-    
+    private $tableName = 'mobile_pages';
+
     public function getTableObj() {
         return new V2\PagesTable();
     }
@@ -32,8 +33,10 @@ class PagesController extends Controller\ApiController{
         $widgets = $widgetController->getAllWidgets();
         $pageType = $pageTypeController->getAllPageType();
         if(!empty($pages)){
-              $pagesCustomization = new \App\Response\V2\PageCustomizationResponse($pageType, $pages, $widgets);  
-        $response = new V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(11), json_encode($pagesCustomization));    
+              $pagesCustomization = new \App\Response\V2\PageCustomizationResponse(
+                      json_encode($pageType), json_encode($pages), json_encode($widgets));  
+        $response = new V1\BaseResponse(DTO\ErrorDto::prepareSuccessMessage(11), 
+                json_encode($pagesCustomization));    
         }else
         $response = new V1\BaseResponse(DTO\ErrorDto::prepareError(116));
         
@@ -43,6 +46,20 @@ class PagesController extends Controller\ApiController{
     public function getAllPages() {
         $result = $this->getTableObj()->getPages();
         return $result;
+    }
+    
+    public function insertNewPage($newPage) {
+        $result = $this->getTableObj()->insert($newPage);
+        if($result){
+            $syncEntry = new DTO\SyncInsertDto(
+                    $newPage->author, 
+                    $this->tableName, 
+                    INSERT, 
+                    $this->getTableObj()->getSingalPage($result), $newPage->subscriberId);
+            $syncController = new SyncController();
+            $syncController->makeSyncEntry($syncEntry);
+        }
+        return FALSE;
     }
     
 }

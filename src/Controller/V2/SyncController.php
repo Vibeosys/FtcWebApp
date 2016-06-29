@@ -10,6 +10,9 @@ namespace App\Controller\V2;
 use App\Controller;
 use App\Model\Table\V2;
 use App\Request\V1;
+
+use App\DTO;
+
 /**
  * Description of SyncController
  *
@@ -21,8 +24,14 @@ class SyncController extends Controller\ApiController{
         return new V2\SyncTable();
     }
     
-    public function makeSyncEntry($syncEntry) {
-        $result = $this->getTableObj()->newEntry($syncEntry);
+    public function makeSyncEntry(DTO\SyncInsertDto $syncEntry) {
+        $this->reliseConnection();
+        $this->conncetionCreator($syncEntry->subscriberId);
+        $userController = new UserController();
+        $clients = $userController->getAdminClients($syncEntry->subscriberId);
+        $this->reliseConnection();
+        $this->conncetionCreator();
+        $result = $this->getTableObj()->newEntry($clients, $syncEntry);
         return $result;
     }
     
@@ -30,12 +39,19 @@ class SyncController extends Controller\ApiController{
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user);
-        $this->conncetionCreator($requestUser->subscriberId);
+        if(!$this->conncetionCreator($requestUser->subscriberId)){
+            $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
+            $this->response->body($dbError);
+            return;
+        }   
+        $updates = $this->getTableObj()->getUpdates($requestUser->userId);
+        if(!empty($updates))
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage (11), $updates);
+        else
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(116));
         
-        
+        $this->response->body($response);
     }
     
-    public function getSyncUpdates($userId) {
-        
-    }
+    
 }

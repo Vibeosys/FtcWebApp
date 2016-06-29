@@ -18,4 +18,26 @@ class UserTable extends V1\UserTable{
     public function login($username, $pwd) {
         
     }
+    
+    public function getUser($subscriberId) {
+        
+        $join = [
+            'US' => [
+                'table' => 'user_subsctiption',
+                'type' => 'INNER',
+                'conditions' => 'users.userid and US.subscriberId ='.$subscriberId
+            ]
+        ];
+        $fields = [
+            'UserId' => 'users.userid'
+        ];
+        $users = [];
+        $counter = 0;
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
+        if($rows->count())
+            foreach ($rows as $row)
+            $users[$counter++] = $row->UserId;
+    return $users;
+        
+    }
 }

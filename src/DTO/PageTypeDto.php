@@ -22,6 +22,6 @@ class PageTypeDto {
     public function __construct($id = null, $desc = null, $active = null) {
         $this->pageTypeId = $id;
         $this->pageTypeDesc = $desc;
-        $this->Active = $active;
+        $this->active = $active;
     }
 }
