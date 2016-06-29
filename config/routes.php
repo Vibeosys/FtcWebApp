@@ -73,7 +73,14 @@ $routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 
 
 // website route for V2
 Router::scope('/', function (RouteBuilder $routes) {
-$routes->connect('/', ['controller' => 'V2/User', 'action' => 'adminWebLogin']);    
+    $version = 'V2/';
+    $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);    
+    $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
+    $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
+    $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
+    $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
+    $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
+    $routes->connect('user/assignsubscription', ['controller' => $version.'UserSubscription', 'action' => 'assignSubscription']);    
     
  $routes->fallbacks('DashedRoute');    
 });

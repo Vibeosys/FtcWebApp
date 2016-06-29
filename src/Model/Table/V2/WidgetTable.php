@@ -40,7 +40,8 @@ class WidgetTable extends Table{
                     $row->WidgetId, 
                     $row->WidgetTitle, 
                     $row->Position, 
-                    $row->WidgetData);
+                    $row->WidgetData,
+                    $row->PageId);
     return $widgets;    
     }
     

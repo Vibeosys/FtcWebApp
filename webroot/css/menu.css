@@ -1,11 +1,6 @@
-/*@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700);
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,500,700);
-*/
+
 body{
     background-color: rgba(237, 236, 236, 0.29);
-}
-.wrapper {
-  margin-top: 145px;
 }
 #topnav {
   position: fixed;
@@ -30,11 +25,15 @@ body{
 #topnav .has-submenu.active a i {
   color: #F95A09;
 }
+.has-submenu img{
+    padding-right: 12px;
+}
 #topnav .has-submenu.active .submenu li.active a {
   color: #F95A09;
 }
 #topnav .topbar-main {
   background-color:white;
+    padding-top: 15px;
 }
 #topnav .topbar-main .logo {
   color: #ffffff !important;
@@ -42,14 +41,13 @@ body{
   font-weight: 700;
   letter-spacing: .05em;
   margin-top: 9px;
-  float: left;
 }
 #topnav .topbar-main .logo h1 {
   margin: 0px auto;
   text-align: center;
 }
 #topnav .topbar-main .logo i {
-  color: #ffffff;
+  color: #1F5689;
 }
 #topnav .topbar-main .badge {
   position: absolute;
@@ -66,6 +64,10 @@ body{
 }
 #topnav .topbar-main .nav > li > a i {
   font-size: 16px;
+        display: inline;
+    left: 10px;
+    margin-left: 6px;
+
 }
 #topnav .topbar-main .nav > li > a {
   padding: 9px 15px !important;
@@ -76,8 +78,8 @@ body{
 }
 #topnav .topbar-main .profile img {
   border: 2px solid #edf0f0;
-     height: 51px;
-    width: 50px;
+     height: 38px;
+    width: 38px;
     margin-top: 1em;
 }
 #topnav .topbar-main .dropdown-menu-lg {
@@ -241,15 +243,16 @@ body{
   padding: 0;
   margin: 0;
   cursor: pointer;
+  margin-top: -4.5em;
 }
 #topnav .navbar-toggle:hover {
   background-color: transparent;
 }
 #topnav .navbar-toggle:hover span {
-  background-color: #ffffff;
+  background-color: #1F5689;
 }
 #topnav .navbar-toggle:focus {
-  background-color: transparent;
+  background-color: #1F5689;
 }
 #topnav .navbar-toggle:focus span {
   background-color: #F95A09;
@@ -264,7 +267,7 @@ body{
 #topnav .navbar-toggle span {
   height: 2px;
   width: 100%;
-  background-color: #fff;
+  background-color: #1F5689;
   display: block;
   margin-bottom: 5px;
   -webkit-transition: -webkit-transform 0.5s ease;
@@ -334,6 +337,9 @@ body{
   font-size: 18px;
   margin-right: 5px;
   color: #98a6ad;
+}
+.active{
+    color: #F95A09!important;
 }
 #topnav .navigation-menu > li > a:hover,
 #topnav .navigation-menu > li > a:focus {
@@ -472,7 +478,7 @@ body{
   #topnav .navigation-menu > li > a {
     color: #797979;
     padding: 15px;
-	margin-left:2em;
+	margin-left:em;
   }
   .icon-text{
   top:16px!important;}
@@ -561,7 +567,7 @@ body{
     overflow-y: auto;
   }
      .page-section{
-        margin-top: 7em!important;
+        margin-top: 9em!important;
     }
 }
 @media (min-width: 768px) {
@@ -625,20 +631,11 @@ body{
 
 @media (max-width:480px){
 	.logo-img{
-		width:95px!important;
+		width:84px!important;
 		margin-top:-13px!important;
 	}
-	#topnav .topbar-main .profile img{
-		margin-top:0em!important;
-	}
     #navigation {
-        top:81px;
+        top:100px;
         }
    
-}
-
-p#change_password_msg{
-        padding: 5px;
-    border: 1px solid;
-    background: white;
 }

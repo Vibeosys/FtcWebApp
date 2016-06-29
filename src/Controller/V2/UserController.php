@@ -20,8 +20,17 @@ class UserController extends V1\UserController{
         return new V2\UserTable();
     }
     
+   
     public function getAdminClients($subscriberId) {
         $result = $this->getTableObj()->getUser($subscriberId);
         return $result;
+    }
+    // Web methods
+    public function adminWebLogin() {
+        
+    }
+    
+    public function userManagement() {
+        
     }
 }

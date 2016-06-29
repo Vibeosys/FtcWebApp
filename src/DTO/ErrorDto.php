@@ -62,7 +62,7 @@ class ErrorDto {
        ];
     protected $SuccessDictionary = [
         1 => 'Signals found.',
-        2 => 'Congrats..!You are register with us.',
+        2 => 'Congrats..!You have been registered with us.',
         3 => 'Login successful..!',
         4 => 'Username available.',
         5 => 'Please check your mailbox and follow instruction.',

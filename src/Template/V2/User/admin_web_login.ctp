@@ -10,6 +10,7 @@ use Cake\Cache\Cache;
     use Cake\View\Helper\UrlHelper;
   
     $this->layout = FALSE;
+   // $this->assign('title', 'Admin Login');
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +21,7 @@ use Cake\Cache\Cache;
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>FTC Solutions</title>
+        <title>FTC Solutions | Admin Login</title>
         <?= $this->Html->css('bootstrap.min.css') ?>
         <?= $this->Html->css('menu.css') ?>
         <?= $this->Html->css('responsive.css') ?>
@@ -33,7 +34,7 @@ use Cake\Cache\Cache;
    <body class="login-page">
        <section class="login">
         <div  class="company-logo"></div>  
-        <form name="loginform" id="loginform" action="" method="post">
+        <form name="loginform" id="loginform" action="/" method="post">
             <p>
 		<label for="user_login">Username<br />
 		<input type="text" name="username" id="user_login" aria-describedby="login_error" class="input" value="" size="20" /></label>
@@ -55,13 +56,6 @@ use Cake\Cache\Cache;
         </form>
        
        </section>
-       
-       
-       
-       
-       
-       
-       
         <!-- jQuery  -->
          <?= $this->Html->script('jquery.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>

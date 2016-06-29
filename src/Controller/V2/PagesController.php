@@ -62,4 +62,14 @@ class PagesController extends Controller\ApiController{
         return FALSE;
     }
     
+    // website methods
+    
+    public function pageList() {
+        
+    }
+    
+    public function page() {
+        
+    }
+    
 }
