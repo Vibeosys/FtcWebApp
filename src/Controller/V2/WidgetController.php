@@ -25,4 +25,9 @@ class WidgetController extends Controller\ApiController{
         return $result;
     }
     
+    public function getAllWidgets() {
+        $result = $this->getTableObj()->getWidgets();
+        return $result;
+    }
+    
 }

@@ -57,6 +57,7 @@ class ApiController extends AppController{
          $this->dumy['password'] = $config->pwd;   
          $this->dumy['database'] = $config->dbName;   
         }  else {
+            Log::debug('Invalid subscription Id used for request. config value :'.$config);
             return $config;
         }
        ConnectionManager::config('local',$this->dumy);

@@ -17,12 +17,14 @@ class WidgetDto {
     public $widgetTitle;
     public $position;
     public $data;
+    public $active;
 
     public function __construct($id = null, $title = null, $position = null, 
-            $data = null) {
+            $data = null, $active = null) {
         $this->widgetId = $id;
         $this->widgetTitle = $title;
         $this->position = $position;
         $this->data = $data;
+        $this->active = $active;
     }
 }

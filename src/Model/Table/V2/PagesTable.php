@@ -22,7 +22,7 @@ class PagesTable extends Table{
      use Mtrait\DateConvertorTrait;
      
      public function connect() {
-         return TableRegistry::get('pages');
+         return TableRegistry::get('mobile_pages');
      }
      
      public function getPages() {
@@ -34,15 +34,15 @@ class PagesTable extends Table{
              'U' => [
                  'table' => 'users',
                  'type' => 'INNER',
-                 'conditions' => 'pages.Author = U.userid'
+                 'conditions' => 'mobile_pages.Author = U.userid'
              ]
          ];
          $fields = [
-             'PageId' => 'pages.PageId',
-             'PageTitle' => 'pages.PageTitle',
-             'Status' => 'pages.Status',
-             'PageTypeId' => 'pages.PageTypeId',
-             'Author' => 'U.fullname'
+             'PageId' => 'mobile_pages.PageId',
+             'PageTitle' => 'mobile_pages.PageTitle',
+             'Status' => 'mobile_pages.Status',
+             'PageTypeId' => 'mobile_pages.PageTypeId',
+             'Active' => 'mobile_pages.Active'
          ];
         $pages = [];
         $counter = 0;
@@ -55,7 +55,7 @@ class PagesTable extends Table{
                     $row->PageTitle, 
                     $row->Status, 
                     $row->PageTypeId,
-                    $row->Author);
+                    $row->Active);
      return $pages;  
      }
 }

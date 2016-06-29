@@ -91,6 +91,7 @@ Router::scope('/v2/', function (RouteBuilder $routes) {
     $routes->connect('updateUserProfile', ['controller' => $version.'User', 'action' => 'updateUserProfile']);
     $routes->connect('gettradehistory', ['controller' => $version.'TradeBackup', 'action' => 'getTradeBackup']);
     $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
+    $routes->connect('getpageupdates', ['controller' => $version.'Sync', 'action' => 'getPageUpdates']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 }); 

@@ -26,15 +26,14 @@ class WidgetTable extends Table{
         return TableRegistry::get('widget');
     }
     
-    public function getWidgets($pageId) {
-        $conditions = [
-            'PageId =' => $pageId
-        ];
-        
+    public function getWidgets($pageId = false) {
         $widgets = [];
         $counter = 0;
         $order = 'Position';
-        $rows = $this->connect()->find()->where($conditions)->orderAsc($order);
+         if($pageId)
+             $rows = $this->connect()->find()->where(['PageId =' => $pageId])->orderAsc($order);
+        else
+        $rows = $this->connect()->find()->orderAsc($order);
         if($rows->count())
             foreach ($rows as $row)    
             $widgets[$counter++] = new DTO\WidgetDto (
