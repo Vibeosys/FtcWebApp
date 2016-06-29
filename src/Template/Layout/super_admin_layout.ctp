@@ -98,8 +98,8 @@ use Cake\Cache\Cache;
                                   <li><a href="../user/assignsubscription" <?php if($this->fetch('AS')){ echo 'class="active"'; }?>>Assign Subscription</a></li>
                             </ul>
                         </li>
-                         <li class="has-submenu <?php if($this->fetch('gallary')){ echo 'active'; }?>">
-                            <a href="gallery.html" <?php if($this->fetch('gallary')){ echo 'class="active-menu"'; }?> >
+                         <li class="has-submenu <?php if($this->fetch('gallery')){ echo 'active'; }?>">
+                            <a href="../gallery" <?php if($this->fetch('gallery')){ echo 'class="active-menu"'; }?> >
                                 <img src="../img/menu-icon/Gallery-25.png">Gallery
                             </a>
                         </li>
@@ -113,7 +113,7 @@ use Cake\Cache\Cache;
                         </li>
 
                         <li class="has-submenu <?php if($this->fetch('database')){ echo 'active'; }?>">
-                            <a href="database.html" <?php if($this->fetch('database')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Database-25.png">Databases</a>
+                            <a href="../database" <?php if($this->fetch('database')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Database-25.png">Databases</a>
                         </li>
                     </ul>
                     <!-- End navigation menu -->

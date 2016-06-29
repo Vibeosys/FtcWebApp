@@ -21,4 +21,13 @@ class HomeController extends Controller\ApiController{
         if($this->request->is('get') and !isset($query))
             $this->redirect ('admin/login');
     }
+    
+    public function gallery() {
+        
+    }
+    
+    public function database() {
+        
+    }
+    
 }

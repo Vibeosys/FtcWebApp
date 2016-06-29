@@ -77,6 +77,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);    
     $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
     $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
+    $routes->connect('gallery', ['controller' => $version.'Home', 'action' => 'gallery']);    
+    $routes->connect('database', ['controller' => $version.'Home', 'action' => 'database']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
     $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
