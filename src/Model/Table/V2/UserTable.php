@@ -8,6 +8,7 @@
 
 namespace App\Model\Table\V2;
 use App\Model\Table\V1;
+
 /**
  * Description of UserTable
  *
@@ -23,9 +24,9 @@ class UserTable extends V1\UserTable{
         
         $join = [
             'US' => [
-                'table' => 'user_subsctiption',
+                'table' => 'user_subscription',
                 'type' => 'INNER',
-                'conditions' => 'users.userid and US.subscriberId ='.$subscriberId
+                'conditions' => 'users.userid = US.UserId and US.SubscriberId ='.$subscriberId
             ]
         ];
         $fields = [
@@ -34,6 +35,7 @@ class UserTable extends V1\UserTable{
         $users = [];
         $counter = 0;
         $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
+        \Cake\Log\Log::debug($rows->sql());
         if($rows->count())
             foreach ($rows as $row)
             $users[$counter++] = $row->UserId;

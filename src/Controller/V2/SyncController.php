@@ -31,7 +31,14 @@ class SyncController extends Controller\ApiController{
         $clients = $userController->getAdminClients($syncEntry->subscriberId);
         $this->reliseConnection();
         $this->conncetionCreator();
-        $result = $this->getTableObj()->newEntry($clients, $syncEntry);
+        if(is_array($syncEntry->json)){
+            foreach ($syncEntry->json as $json){
+                 $result = $this->getTableObj()->newEntry($clients, $syncEntry->tableName, $syncEntry->tableOperation, $json);
+            }
+        }else{
+            $result = $this->getTableObj()->newEntry($clients, $syncEntry->tableName, $syncEntry->tableOperation, $syncEntry->json);
+        }
+        
         return $result;
     }
     
@@ -39,18 +46,18 @@ class SyncController extends Controller\ApiController{
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user);
-        if(!$this->conncetionCreator($requestUser->subscriberId)){
+        if(!$this->conncetionCreator()){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;
         }   
         $updates = $this->getTableObj()->getUpdates($requestUser->userId);
         if(!empty($updates))
-            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage (11), $updates);
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage (11), json_encode ($updates));
         else
             $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(116));
         
-        $this->response->body($response);
+        $this->response->body(json_encode($response));
     }
     
     

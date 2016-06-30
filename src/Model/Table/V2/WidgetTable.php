@@ -51,11 +51,11 @@ class WidgetTable extends Table{
         foreach ($widgets as $widget){
             $newEntity = $tableObj->newEntity();
             $newEntity->WidgetTitle = $widget->title;
-            $newEntity->position = $widget->position;
+            $newEntity->Position = $widget->position;
             $newEntity->WidgetData = $widget->data;
             $newEntity->PageId = $widget->pageId;
             if($tableObj->save($newEntity))
-                $result = $newEntity->pageId;
+                $result = $newEntity->PageId;
         }
         return $result;
     }

@@ -18,13 +18,13 @@ class SyncUpdateResponse {
     public $syncId;
     public $tableName;
     public $tableOperation;
-    public $pageJson;
+    public $jsonData;
     
     public function __construct($syncId = null, $tableName = null, 
             $tableOperation = null, $pageJson = null) {
         $this->syncId = $syncId;
         $this->tableName = $tableName;
         $this->tableOperation = $tableOperation;
-        $this->pageJson = $pageJson;
+        $this->jsonData = $pageJson;
     }
 }

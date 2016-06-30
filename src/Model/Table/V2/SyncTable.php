@@ -24,15 +24,15 @@ class SyncTable extends Table{
         return TableRegistry::get('sync');
     }
     
-    public function newEntry($users, $entry) {
+    public function newEntry($users, $table, $operation, $json) {
        $result = FALSE;
         foreach ($users as $key => $value){
         $tableObj = $this->connect();
         $newEntity = $tableObj->newEntity();
         $newEntity->UserId = $value;
-        $newEntity->TableName = $entry->table;
-        $newEntity->TableOperation = $entry->operation;
-        $newEntity->Json = json_encode($entry->json);
+        $newEntity->TableName = $table;
+        $newEntity->TableOperation = $operation;
+        $newEntity->Json = json_encode($json);
         $newEntity->CreatedDate = date(DATE_TIME_FORMAT);
         if($tableObj->save($newEntity))
             $result = TRUE;
@@ -53,7 +53,7 @@ class SyncTable extends Table{
                         $row->SyncId, 
                         $row->TableName, 
                         $row->TableOperation, 
-                        $row->PageJson); 
+                        $row->Json); 
         return $updates;
     }
 }

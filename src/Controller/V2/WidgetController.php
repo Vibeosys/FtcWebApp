@@ -9,6 +9,7 @@
 namespace App\Controller\V2;
 use App\Controller;
 use App\Model\Table\V2;
+use App\DTO;
 /**
  * Description of WidgetController
  *
@@ -41,6 +42,7 @@ class WidgetController extends Controller\ApiController{
                     $this->getPageWidgets($result), $subscriberId);
             $syncController = new SyncController();
             $syncController->makeSyncEntry($syncEntry);
+            return $result;
         }
         return FALSE;
     }
