@@ -79,6 +79,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
     $routes->connect('gallery', ['controller' => $version.'Home', 'action' => 'gallery']);    
     $routes->connect('database', ['controller' => $version.'Home', 'action' => 'database']);    
+    $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'editDatabase']);    
+    $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
+    $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
+    $routes->connect('appnotification', ['controller' => $version.'Home', 'action' => 'appNotification']);    
+    $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
     $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    

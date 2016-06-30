@@ -13,6 +13,9 @@ use Cake\Cache\Cache;
     $this->assign('gallery','1');
     
 ?>
+<?php $this->start('css');?>
+   <?= $this->Html->css('simplelightbox.min.css') ?>
+<?php $this->end('css');?>
 
  <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
         <div class="container">

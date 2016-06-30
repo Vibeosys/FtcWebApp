@@ -107,8 +107,8 @@ use Cake\Cache\Cache;
                             <a href="#" <?php if($this->fetch('notes')){ echo 'class="active-menu"'; }?>>
                                 <img src="../img/menu-icon/Notification-25.png">Notifications</a>
                             <ul class="submenu">
-                                <li><a href="email-template-list.html" <?php if($this->fetch('EN')){ echo 'class="active"'; }?>>Email Notification</a></li>
-                                <li><a href="app-notify.html" <?php if($this->fetch('AN')){ echo 'class="active"'; }?>>APP Notification</a></li>
+                                <li><a href="../emailnotification" <?php if($this->fetch('EN')){ echo 'class="active"'; }?>>Email Notification</a></li>
+                                <li><a href="../appnotification" <?php if($this->fetch('AN')){ echo 'class="active"'; }?>>APP Notification</a></li>
                             </ul>
                         </li>
 

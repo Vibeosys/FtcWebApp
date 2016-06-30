@@ -30,4 +30,24 @@ class HomeController extends Controller\ApiController{
         
     }
     
+    public function editDatabase() {
+        
+    }
+    
+    public function emailNotification() {
+        
+    }
+    
+    public function editTemplate() {
+        
+    }
+    
+    public function appNotification() {
+        
+    }
+    
+     public function addTemplate() {
+        
+    }
+    
 }
