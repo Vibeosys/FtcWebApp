@@ -21,9 +21,10 @@ use Cake\Routing\Router;
  *
  * @author niteen
  */
+define('DOMAIN',  'http://'.$_SERVER['SERVER_NAME'].Router::url('/'));
 class ApiController extends AppController{
   
-    
+      public $components = array('Cookie');
     public function initialize() {
         parent::initialize();
         if($this->request->contentType() == 'application/json')
@@ -151,6 +152,21 @@ class ApiController extends AppController{
         return $baseLink.CHANGE_PASSWORD_URL.$param;
         }
         return 'Our Change Password service not working. please contact to admin.';
+    }
+    
+    public function writeCookie($name, $value, $expires = '1 Day', $path = '/') {
+        $this->Cookie->configKey($name, ['expires' => $expires ,'path' => $path]);
+        $this->Cookie->write($name, $value);
+    }
+     
+    public function readCookie($name) {
+        return $this->Cookie->read($name);
+    }
+     
+    public function deleteCookie($name) {
+        
+        $this->Cookie->configKey($name, ['expires' => '-1 Day' ,'path' => '/']);
+        $this->Cookie->delete($name);
     }
     
    

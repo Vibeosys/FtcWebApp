@@ -53,7 +53,7 @@ use Cake\Cache\Cache;
                                 <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="../img/user.jpg" alt="user-img" class="img-circle"><span >Sanjoy<i class=" fa fa-angle-down"></i></span></a>
                                 <span class="email">abcdef@xyz.com</span>
                                 <ul class="dropdown-menu animated fadeInDown pull-right">
-                                    <li><a href=""><i class="fa fa-sign-out"></i> Logout</a></li>
+                                    <li><a href="../logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -60,7 +60,7 @@ class PagesTable extends Table{
      }
      
     public function getSingalPage($pageId) {
-          $conditions = [
+        $conditions = [
             'PageId =' => $pageId
         ];
         $pages = FALSE; 
@@ -89,8 +89,15 @@ class PagesTable extends Table{
          if($tableobj->save($newEntity))
              return $newEntity->PageId;
          return FALSE;
-         
-         
-         
+     }
+     
+     public function pageNameCheck($pageName) {
+        $conditions = [
+            'PageTitle =' => $pageName
+        ];  
+        $rows = $this->connect()->find()->where($conditions);
+        if($rows->count())
+            return TRUE;
+        return FALSE;
      }
 }

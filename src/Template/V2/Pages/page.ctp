@@ -18,7 +18,9 @@ use Cake\Cache\Cache;
                 <div class="col-lg-12 main-page-publish">
                     
                         <h2>Customisation : Page 1</h2>
-                   
+                        <?php if(isset($message)){ ?>
+                        <span style="text-align:center;background-color:white;color: <?= $color ?>;padding:10px"><strong>Page saved as draft.</strong></span>
+                        <?php } ?>
                     <div class="publish-btn">
                 <input type="button" value="Publish" class="btn btn-success">
                     <input type="button" value="Cancel" class="btn btn-danger">
@@ -53,7 +55,7 @@ use Cake\Cache\Cache;
                     </div>
                     <span class="title-text">
                     App Page Title</span>
-                    <input name="page" type="text" class="form-control title-input" value="News/blog">
+                    <input name="page" type="text" class="form-control title-input" id="page" placeholder="News/blog">
                     
                     </div>
                     <div ><span class="app-text">App Content</span></div>
@@ -268,7 +270,17 @@ myApp.directive("removeMe", function($rootScope) {
             }
       
 }); 
-          
+ $(document).ready(function(){  
+   $('#page').keydown(function(e) { 
+    if (e.which === 32) {
+        return false;
+    }
+});
+    $('#page').on('blur', function(){
+        $(this).css({'border':'1px solid red'});
+        $(this).append('<br><p style="color:red">page name not available<p>');
+    });
+})
        </script>  
 
 <?php $this->end('script')?>

@@ -62,7 +62,11 @@ class PagesController extends Controller\ApiController {
 
         $this->response->body(json_encode($response));
     }
-
+    
+    public function isPageNameAvailable() {
+        $this->autoRender = FALSE;
+        $data = $this->request->input();
+    }
     public function getAllPages() {
         $result = $this->getTableObj()->getPages();
         return $result;
@@ -148,7 +152,6 @@ class PagesController extends Controller\ApiController {
     public function page() {
         $data = $this->request->data;
         if ($this->request->is('post')) {
-            $this->autoRender = FALSE;
             $insert = [];
             $count = 0;
             foreach ($data as $key => $value) {
@@ -162,8 +165,9 @@ class PagesController extends Controller\ApiController {
             $this->conncetionCreator();
             $author = 14571;
             $subscriberId = 2;
-            $newPage = new DTO\PageInsertDto($data['page'], INACTIVE, 
-                    $this->getPageType($all), INACTIVE, $author, $subscriberId);
+            $pageName = str_replace(' ', '', $data['page']);
+            $newPage = new DTO\PageInsertDto($pageName, ACTIVE, 
+                    $this->getPageType($all), ACTIVE, $author, $subscriberId);
             $pageId = $this->insertNewPage($newPage);
             
             \Cake\Log\Log::debug('all array ');
@@ -173,9 +177,15 @@ class PagesController extends Controller\ApiController {
             $widgetController = new WidgetController();
             $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId);
             if($widgetResult){
-                echo '<h1>Page successfully saved<h2>';
+                $this->set([
+                    'message' => DTO\ErrorDto::getWebMessage(4),
+                    'color' => 'green'
+                ]);
             }  else {
-                    echo '<h1>Error to save page<h2>.';
+                $this->set([
+                    'message' => DTO\ErrorDto::getWebMessage(5),
+                    'color' => 'red'
+                ]);
             }
            
         }

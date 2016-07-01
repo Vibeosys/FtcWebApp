@@ -66,7 +66,7 @@ $routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 
 
 // website route for V1
 Router::scope('/', function (RouteBuilder $routes) {
-$routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 'changePassword','change_password']);    
+$routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 'changePassword','change_password']);
     
  $routes->fallbacks('DashedRoute');    
 });
@@ -87,7 +87,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
     $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
-    $routes->connect('user/assignsubscription', ['controller' => $version.'UserSubscription', 'action' => 'assignSubscription']);    
+    $routes->connect('user/assignsubscription', ['controller' => $version.'UserSubscription', 'action' => 'assignSubscription']);
+    $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);
+    $routes->connect('getcookie', ['controller' => $version.'Home', 'action' => 'getCookie']);
+    $routes->connect('logout', ['controller' => $version.'Home', 'action' => 'logout']);
+ 
     
  $routes->fallbacks('DashedRoute');    
 });
