@@ -12,6 +12,7 @@ use App\Model\Table\V2;
 use App\Controller;
 use App\Response\V1;
 use App\DTO;
+use Cake\Log\Log;
 
 /**
  * Description of PagesController
@@ -65,7 +66,12 @@ class PagesController extends Controller\ApiController {
     
     public function isPageNameAvailable() {
         $this->autoRender = FALSE;
-        $data = $this->request->input();
+        $pagename = $this->request->data['page'];
+        $this->conncetionCreator(parent::readCookie('sub_id'));
+        if($this->getTableObj()->pageNameCheck($pagename))
+        $this->response->body(0);
+        else
+        $this->response->body(1);    
     }
     public function getAllPages() {
         $result = $this->getTableObj()->getPages();
@@ -154,8 +160,9 @@ class PagesController extends Controller\ApiController {
         if ($this->request->is('post')) {
             $insert = [];
             $count = 0;
+          
             foreach ($data as $key => $value) {
-                if ($key != 'save' and $key != 'page') {
+                if ($key != 'save' and $key != 'page' and $key != 'publish') {
                     $widget = explode('-', $key);
                     $insert[$count] = new DTO\WidgetSaperatorDto(
                             $widget[0], $widget[1], $value);
@@ -166,13 +173,15 @@ class PagesController extends Controller\ApiController {
             $author = 14571;
             $subscriberId = 2;
             $pageName = str_replace(' ', '', $data['page']);
-            $newPage = new DTO\PageInsertDto($pageName, ACTIVE, 
-                    $this->getPageType($all), ACTIVE, $author, $subscriberId);
+            $pageStatus = INACTIVE;
+            $pageActive = INACTIVE;
+            if(isset($data['publish'])){
+              $pageStatus = ACTIVE;
+            $pageActive = ACTIVE;  
+            }
+            $newPage = new DTO\PageInsertDto($pageName, $pageStatus, 
+                    $this->getPageType($all), $pageActive, $author, $subscriberId);
             $pageId = $this->insertNewPage($newPage);
-            
-            \Cake\Log\Log::debug('all array ');
-            \Cake\Log\Log::debug($all);
-            \Cake\Log\Log::debug('PageId of new Page :'.$pageId);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
             $widgetController = new WidgetController();
             $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId);

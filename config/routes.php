@@ -90,6 +90,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('user/assignsubscription', ['controller' => $version.'UserSubscription', 'action' => 'assignSubscription']);
     $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);
     $routes->connect('getcookie', ['controller' => $version.'Home', 'action' => 'getCookie']);
+    $routes->connect('pagenameavailable', ['controller' => $version.'Pages', 'action' => 'isPageNameAvailable']);
     $routes->connect('logout', ['controller' => $version.'Home', 'action' => 'logout']);
  
     

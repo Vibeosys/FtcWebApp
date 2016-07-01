@@ -94,7 +94,8 @@ class PagesTable extends Table{
      public function pageNameCheck($pageName) {
         $conditions = [
             'PageTitle =' => $pageName
-        ];  
+        ]; 
+        Log::debug('Page name check for :'.$pageName);
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
             return TRUE;

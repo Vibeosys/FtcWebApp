@@ -169,5 +169,9 @@ class ApiController extends AppController{
         $this->Cookie->delete($name);
     }
     
+    public function uploadImage($file) {
+        
+    }
+    
    
 }

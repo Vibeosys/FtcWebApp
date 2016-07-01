@@ -15,6 +15,7 @@ use Cake\Cache\Cache;
  <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
         <div class="container">
             <div class="row">
+                <form action="../pages/page" method="post" enctype="multipart/form-data">  
                 <div class="col-lg-12 main-page-publish">
                     
                         <h2>Customisation : Page 1</h2>
@@ -22,7 +23,7 @@ use Cake\Cache\Cache;
                         <span style="text-align:center;background-color:white;color: <?= $color ?>;padding:10px"><strong>Page saved as draft.</strong></span>
                         <?php } ?>
                     <div class="publish-btn">
-                <input type="button" value="Publish" class="btn btn-success">
+                        <input type="submit" name="publish" value="Publish" class="btn btn-success">
                     <input type="button" value="Cancel" class="btn btn-danger">
                     </div>
                 </div>
@@ -45,7 +46,7 @@ use Cake\Cache\Cache;
                    
                 </div>
                <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
-                   <form action="../pages/page" method="post" enctype="multipart/form-data">     
+                      
                 <div class="heading">
                         
                         <div class="publish-btn">
@@ -55,8 +56,9 @@ use Cake\Cache\Cache;
                     </div>
                     <span class="title-text">
                     App Page Title</span>
-                    <input name="page" type="text" class="form-control title-input" id="page" placeholder="News/blog">
-                    
+                    <input name="page" type="text" class="form-control title-input" id="page" placeholder="News/blog" required>
+                    <img id="page_loader" style="width: 38px;margin: 2px 0px;display: none" src="../img/log_loader.gif" alt="Please Wait">
+                    <p id="page_name_check_msg" style="margin: 0 0 -8px;display: none"><p>
                     </div>
                     <div ><span class="app-text">App Content</span></div>
                 <div class="page-item" >
@@ -67,9 +69,9 @@ use Cake\Cache\Cache;
                 </div>
                     
                 </div>
-                   </form>
+                   
            </div>
-            
+            </form>
                  
                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
                    <div class="main-page main-page-hide">
@@ -271,16 +273,30 @@ myApp.directive("removeMe", function($rootScope) {
       
 }); 
  $(document).ready(function(){  
-   $('#page').keydown(function(e) { 
+  /* $('#page').keydown(function(e) { 
     if (e.which === 32) {
         return false;
     }
-});
-    $('#page').on('blur', function(){
-        $(this).css({'border':'1px solid red'});
-        $(this).append('<br><p style="color:red">page name not available<p>');
+});*/
+    $('#page').on('blur', function(e){
+        $('#page_loader').css('display','block');
+        var pagename = $(this).val();
+          $.post('/pagenameavailable',{page:pagename}, function(result){
+              if(result === '1'){
+                  $('#page_loader').css('display','none');
+                   $('#page_name_check_msg').css('display','block');
+                   $('#page_name_check_msg').html('<i style="color:green">Correct page name.<i>'); 
+              }else{
+                $('#page_loader').css('display','none');  
+                $('#page_name_check_msg').css('display','block');  
+                $('#page').css({'border':'1px solid red'});
+                $('#page_name_check_msg').html('<i style="color:red">Incorrect page name.Choose another.<i>'); 
+                //e.preventDefault();
+                return false;
+              }
+          });
     });
-})
+});
        </script>  
 
 <?php $this->end('script')?>
