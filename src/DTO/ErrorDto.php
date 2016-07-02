@@ -59,6 +59,7 @@ class ErrorDto {
         114 => 'Error while updating user profile.',
         115 => 'Trade history signal not found for given criteria.',
         116 => 'Pages not found for given criteria.',
+        117 => 'Error in acknowledgement.',
        ];
     protected $SuccessDictionary = [
         1 => 'Signals found.',
@@ -72,7 +73,8 @@ class ErrorDto {
         9 => 'Profile updated successfully.',
         10 => 'Trade history signal found.',
         11 => 'Pages found.',
-        12 => 'categories are found.',
+        12 => 'Acknowledgement success.',
+        
         13 => 'Types are found.',
         14 => 'Requested profile found.',
         15 => 'User radius settings changed.',

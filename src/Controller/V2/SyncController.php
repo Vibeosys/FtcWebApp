@@ -11,6 +11,7 @@ use App\Controller;
 use App\Model\Table\V2;
 use App\Request\V1;
 
+
 use App\DTO;
 
 /**
@@ -46,11 +47,16 @@ class SyncController extends Controller\ApiController{
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user);
+        $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
         if(!$this->conncetionCreator()){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;
         }   
+        $syncManagementController = new SyncManagementController();
+        $result = $syncManagementController->addSyncReference(
+                new DTO\SyncManagementDto($requestUser->userId, $requestUpdate->referenceId));
+        \Cake\Log\Log::debug('Reference entry result : '.$result);
         $updates = $this->getTableObj()->getUpdates($requestUser->userId);
         if(!empty($updates))
             $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage (11), json_encode ($updates));
@@ -58,6 +64,34 @@ class SyncController extends Controller\ApiController{
             $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(116));
         
         $this->response->body(json_encode($response));
+    }
+    
+    public function syncAcknowledgement() {
+        $this->autoRender = FALSE;
+        $request = $this->getRequest();
+        $requestUser = V1\UserRequest::Deserialize($request->user); 
+        $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
+        if(!$this->conncetionCreator()){
+            $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
+            $this->response->body($dbError);
+            return;
+        }   
+        $syncManagementController = new SyncManagementController();
+        $result = $syncManagementController->getSyncRefernce($requestUpdate->referenceId);
+        if($result){
+            $syncDeleteResult = $this->getTableObj()->deleteSyncEntry($result->userId, $result->lastSync);
+            $deleteResult = $syncManagementController->deleteSyncReference($result);
+        }
+        \Cake\Log\Log::debug($request);
+        \Cake\Log\Log::debug('Sync table Delete done . result:'.$syncDeleteResult);
+        \Cake\Log\Log::debug('Sync management table Delete done . result:'.$deleteResult);
+        if($syncDeleteResult)
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage (12));
+        else
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(117));
+        
+        $this->response->body(json_encode($response));
+        
     }
     
     

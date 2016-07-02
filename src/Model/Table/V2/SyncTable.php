@@ -56,4 +56,16 @@ class SyncTable extends Table{
                         $row->Json); 
         return $updates;
     }
+    
+     public function deleteSyncEntry($userId, $lastSync) {
+        $conditions = [
+            'UserId =' => $userId,
+            'CreatedDate <' => $lastSync
+        ];
+        $delete = $this->connect()->query()->delete();
+        $delete->where($conditions);
+        if($delete->execute())
+            return TRUE;
+        return FALSE;
+    }
 }

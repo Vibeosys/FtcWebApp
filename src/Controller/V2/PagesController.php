@@ -172,7 +172,7 @@ class PagesController extends Controller\ApiController {
             $this->conncetionCreator();
             $author = 14571;
             $subscriberId = 2;
-            $pageName = str_replace(' ', '', $data['page']);
+            $pageName = $data['page'];
             $pageStatus = INACTIVE;
             $pageActive = INACTIVE;
             if(isset($data['publish'])){
@@ -198,6 +198,10 @@ class PagesController extends Controller\ApiController {
             }
            
         }
+    }
+    
+    public function editPage() {
+        
     }
 
 }

@@ -86,6 +86,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
+    $routes->connect('pages/edit', ['controller' => $version.'Pages', 'action' => 'editPage']);    
     $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
     $routes->connect('user/assignsubscription', ['controller' => $version.'UserSubscription', 'action' => 'assignSubscription']);
     $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);
@@ -111,6 +112,7 @@ Router::scope('/v2/', function (RouteBuilder $routes) {
     $routes->connect('gettradehistory', ['controller' => $version.'TradeBackup', 'action' => 'getTradeBackup']);
     $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
     $routes->connect('getpageupdates', ['controller' => $version.'Sync', 'action' => 'getPageUpdates']);
+    $routes->connect('syncacknowledgement', ['controller' => $version.'Sync', 'action' => 'syncAcknowledgement']);
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
     $routes->fallbacks('DashedRoute');
 }); 
