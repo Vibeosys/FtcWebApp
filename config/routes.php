@@ -82,7 +82,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'editDatabase']);    
     $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
     $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
-    $routes->connect('appnotification', ['controller' => $version.'Home', 'action' => 'appNotification']);    
+    $routes->connect('appnotification', ['controller' => $version.'AppNotification', 'action' => 'appNotification']);    
     $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
@@ -93,6 +93,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('getcookie', ['controller' => $version.'Home', 'action' => 'getCookie']);
     $routes->connect('pagenameavailable', ['controller' => $version.'Pages', 'action' => 'isPageNameAvailable']);
     $routes->connect('logout', ['controller' => $version.'Home', 'action' => 'logout']);
+    $routes->connect('getuserlist', ['controller' => $version.'User', 'action' => 'getUserList']);
  
     
  $routes->fallbacks('DashedRoute');    
@@ -113,7 +114,7 @@ Router::scope('/v2/', function (RouteBuilder $routes) {
     $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
     $routes->connect('getpageupdates', ['controller' => $version.'Sync', 'action' => 'getPageUpdates']);
     $routes->connect('syncacknowledgement', ['controller' => $version.'Sync', 'action' => 'syncAcknowledgement']);
-    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->connect('notes', ['controller' => $version.'AppNotification', 'action' => 'createNotification']);
     $routes->fallbacks('DashedRoute');
 }); 
 

@@ -1,0 +1,37 @@
+<?php
+
+namespace Http\Discovery;
+
+use Http\Discovery\Exception\DiscoveryFailedException;
+use Http\Discovery\Exception\NotFoundException;
+use Http\Message\MessageFactory;
+
+/**
+ * Finds a Message Factory.
+ *
+ * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
+ */
+final class MessageFactoryDiscovery extends ClassDiscovery
+{
+    /**
+     * Finds a Message Factory.
+     *
+     * @return MessageFactory
+     *
+     * @throws NotFoundException
+     */
+    public static function find()
+    {
+        try {
+            $messageFactory = static::findOneByType(MessageFactory::class);
+
+            return new $messageFactory();
+        } catch (DiscoveryFailedException $e) {
+            throw new NotFoundException(
+                'No message factories found. To use Guzzle or Diactoros factories install php-http/message and the chosen message implementation.',
+                0,
+                $e
+            );
+        }
+    }
+}

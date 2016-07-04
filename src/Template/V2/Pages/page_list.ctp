@@ -20,13 +20,15 @@ use Cake\Cache\Cache;
                <div class="col-lg-12 main-page">
                      <div class="heading">
                         <h2>Draft Pages</h2>
-                    
+                     <ul class="nav navbar-right panel_toolbox">
+                    <li><a href="/pages/page"><i class="fa fa-plus-circle"></i> Add New Page</a>
+                    </li>
+                  </ul>
                     </div>
                  <table id="menu" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>Draft No</th>
-                              <th>Custom Page Name</th>
                               <th>Title</th>
                               <th>Last Updated</th>
                             <th>Status</th>
@@ -36,52 +38,48 @@ use Cake\Cache\Cache;
                           <tbody>
                             <tr>
                               <td>1</td>
-                              <td><a href="../pages/page">Page 1</a></td>
                               <td>News/Blog</td>
                               <td>5/17/2016</td>
                                 <td>Published</td>
                              <td>
-                                    <button type="button" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </button>
+                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                            </a>
                                 </td>
                              
                             </tr>
                           
 <tr>
                               <td>2</td>
-                               <td><a href="../pages/page">Page 2</a></td>
                               <td>About Us</td>
                               <td>6/11/2016</td>
                                 <td>Published</td>
                              <td>
-                                    <button type="button" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </button>
+                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                            </a>
                                 </td>
                              
                             </tr>
                           
 <tr>
                               <td>3</td>
-                                <td><a href="../pages/page">Page 3</a></td>
                               <td>How it works?</td>
                               <td>6/17/2016</td>
                                 <td>Published</td>
                              <td>
-                                    <button type="button" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </button>
+                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                            </a>
                                 </td>
                              
                             </tr>
                           
 <tr>
                               <td>4</td>
-                              <td><a href="../pages/page">Page 4</a></td>
                               <td>No Name 01</td>
                               <td>6/17/2016</td>
                                 <td>Not Published</td>
                              <td>
-                                    <button type="button" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </button>
+                                 <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                            </a>
                                 </td>
                              
                             </tr>

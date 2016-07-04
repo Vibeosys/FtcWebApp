@@ -8,6 +8,7 @@
 
 namespace App\Controller\V2;
 use App\Controller\V1;
+use App\Model\Table\V2\SubscriptionTable;
 /**
  * Description of SubscriptionController
  *
@@ -17,8 +18,16 @@ class SubscriptionController extends V1\SubscriptionController{
     
     
     //website methods
+    public function getTableObj() {
+        return new SubscriptionTable();
+    }
     
     public function createSubscription() {
         
+    }
+    
+    public function getSubscriberSystem($subscriberId) {
+        $result = $this->getTableObj()->getsystem($subscriberId);
+        return $result;
     }
 }

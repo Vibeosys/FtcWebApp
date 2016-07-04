@@ -51,12 +51,8 @@ class HomeController extends Controller\ApiController{
     public function editTemplate() {
         
     }
-    
-    public function appNotification() {
-        
-    }
-    
-     public function addTemplate() {
+
+    public function addTemplate() {
         
     }
   

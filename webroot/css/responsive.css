@@ -246,9 +246,10 @@ textarea {
     background: white;
 
 }
-.email-inner textarea{
+.email-inner textarea, .app_title_width{
     width: 85%;
 }
+
 .push-top{
     position: relative;
     top: 20px;
@@ -817,4 +818,9 @@ display: inline;
 }
 .select-owner{
     width: 76%;
+}
+
+img#note_loader{
+    width: 19px;
+    display: none;
 }

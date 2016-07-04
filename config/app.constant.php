@@ -41,5 +41,11 @@ define('UPDATE', 'update');
 
 define('DELETE', 'delete');
 
+define('ONESIGANL_APP_ID', 'd7d678e9-7cd4-4e9d-b823-3f172572ef74');
+
+define('ONESIGANL_APP_AUTH_KEY', 'MDYyZjA1ZDItMmFkMS00NjBlLWI4YzMtYTRmNjEwNmM2OWM3');
+
+//define('ONESIGANL_APP_ID', 'd7d678e9-7cd4-4e9d-b823-3f172572ef74');
+
 
 
