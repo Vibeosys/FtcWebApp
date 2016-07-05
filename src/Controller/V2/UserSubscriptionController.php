@@ -8,15 +8,25 @@
 
 namespace App\Controller\V2;
 use App\Controller;
+use App\Model\Table\V2;
 /**
- * Description of UserSubscriptionController
+ * Description of UserNotificationController
  *
  * @author niteen
  */
 class UserSubscriptionController extends Controller\ApiController{
     
+    public function getTableObj() {
+        return new V2\UserSubscriptionTable();
+    }
     
-    public function assignSubscription() {
-        
+    public function addNotificationDetails($request) {
+        $result = $this->getTableObj()->insertEntry($request);
+        return $result;
+    }
+    
+    public function getNonsubscribedUser() {
+        $result = $this->getTableObj()->getNonSubscriber();
+        return $result;
     }
 }

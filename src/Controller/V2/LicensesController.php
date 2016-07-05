@@ -21,8 +21,8 @@ class LicensesController extends V1\LicensesController{
         return new LicensesTable();
     }
     
-    public function getSubscribedUser($subSystem) {
-        $result = $this->getTableobj()->getsubscribedUser($subSystem);
+    public function getSubscribedUser($subSystem, $expired = false) {
+        $result = $this->getTableobj()->getsubscribedUser($subSystem ,$expired);
         return $result;
     }
     

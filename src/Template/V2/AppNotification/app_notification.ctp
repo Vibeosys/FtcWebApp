@@ -22,7 +22,9 @@ use Cake\Cache\Cache;
                <div class="col-lg-12 main-page">
                      <div class="heading">
                         <h2>App Notification</h2>
-                    
+                    <?php if(isset($message)) {?>
+                        <span style="margin: 10px 7%;color:<?= $color ?>"><strong><?= $message ?></strong> </span>
+                    <?php } ?>
                     </div>
                     
                    <form action="appnotification" method="post"> 
@@ -37,26 +39,7 @@ use Cake\Cache\Cache;
                             
                             <lable class="push-top">Recipients
                                 <div class="margin10">
-                           <div class="contact-list-div">
-                               <div class="user-list-preview">User1
-                                   <input style="display: none" name="client-1" id="client-1" type="text" value="82308b7d-6d9e-4c32-b903-9fa35cfe090f">
-                                   <button class="remove">
-                                       <span class="fa fa-close">
-                                       </span>
-                                   </button>
-                               </div>        
-                               <div class="user-list-preview">User2 
-                                   <input style="display: none" name="client-2" id="client-2" type="text" value="af64deb6-99b1-4db4-9c8c-1e198342ab64">
-                                   <button class="remove">
-                                       <span class="fa fa-close">
-                                       </span>
-                                   </button>
-                               </div>        
-                               <div class="user-list-preview">User3 <button class="remove"><span class="fa fa-close"></span></button></div>        
-                               <div class="user-list-preview">User4 <button class="remove"><span class="fa fa-close"></span></button></div>        
-                            
-                               
-                            </div>
+                                    <div class="contact-list-div" id="contact_list"></div>
                             <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
                             
                                     </div>
@@ -79,7 +62,7 @@ use Cake\Cache\Cache;
            
        </section>
 
-<div id="myModal" class="modal animated zoomin" ng-app="myApp" >
+<div id="myModal" class="modal animated zoomin">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -123,33 +106,8 @@ use Cake\Cache\Cache;
                               
                             </tr>
                           </thead>
-                          <tbody>
-                            <tr>
-                                <td> <input type="checkbox" ng-model="item.Selected" /></td>
-                              <td>Sanjoy</td>
-                                <td>sanjoy@gmail.com</td>
-                              
-                            </tr>
-                          <tr>
-                                <td> <input type="checkbox" ng-model="item.Selected" /></td>
-                              <td>Sanjoy</td>
-                                <td>sanjoy@gmail.com</td>
-                              
-                            </tr>
-                          <tr>
-                                <td> <input type="checkbox" ng-model="item.Selected" /></td>
-                              <td>Sanjoy</td>
-                                <td>sanjoy@gmail.com</td>
-                              
-                            </tr>
-                          <tr>
-                                <td> <input type="checkbox" ng-model="item.Selected" /></td>
-                              <td>Sanjoy</td>
-                                <td>sanjoy@gmail.com</td>
-                              
-                            </tr>
-                          
-
+                          <tbody id="user_list">
+                        
                           </tbody>
                         </table>
                                     </ul>
@@ -159,7 +117,8 @@ use Cake\Cache\Cache;
                  
                     
                     <div class="modal-footer">
-                        
+                        <input type="text" style="display: none" id="count">
+                        <input type="button" data-dismiss="modal" aria-hidden="true" value="OK" class="btn btn-info" id="select">
                     </div>
                 </div>
                </div>
@@ -174,8 +133,14 @@ use Cake\Cache\Cache;
  <script type="text/javascript">
  $(document).ready(function(){
     
-    $('.remove').on('click',function(){
-        $(this).parent().remove();
+    $(':submit').on('click',function(e){
+        var text = $('#contact_list').text();
+        if(text.length === 0){
+            alert('Please add recipent.');
+           e.preventDefault();  
+        }
+            
+      
     });
      
      $('#find').on('click', function(){
@@ -194,9 +159,18 @@ use Cake\Cache\Cache;
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",  
                 success: function(data){
-                  var json = data;
-                  alert(json.sub);
-                  alert(json.non_sub);
+                    var i = 0;
+                    var html = '';
+                  $.each(data, function(key,json){
+                      html += '<tr><td>' + 
+                                '<input type="checkbox"  checked></td>'+
+                                '<input type="text" style="display:block" value="'+json.gcmId +'" id="user_gcm_'+i+'">'+
+                              '<td gcm ="'+json.gcmId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
+                                '<td>'+json.email +'</td></tr>';
+                     i = i + 1; 
+                  });
+                  $('#count').val(i);
+                $('#user_list').html(html);
                     
                 },
                 failure: function(errMsg) {
@@ -210,11 +184,32 @@ use Cake\Cache\Cache;
          
      });
      
+     $('#select').on('click', function(event){
+        var count = $('#count').val();
+        var user_list = '';
+        var i = 0;
+        for(i = 0; i < count; i++){
+            var name = $("#user_name_"+i).text();
+            var gcm = $("#user_name_"+i).attr('gcm');
+          //  var gcm = $("#user_gcm_"+i).val();
+            var client = i + 1;
+          user_list += '<div id="close_'+i+'" class="user-list-preview">'+name+
+               '<input style="display: none" name="client-'+ client +'" id="client-1" type="text" value="'+ gcm +'">' +
+               '<input type="button" class="remove" value="X"></div>';  
+        }
+       
+        $('#contact_list').html(user_list);
+        $('#myModel').css('display','none');
+     });
+     
+     
+  function remove(id){
+  $('#'+id).remove();
+ }
      
      
      
-     
-     
- });      
+ });  
+ 
  </script>
 <?php $this->end('script');?>

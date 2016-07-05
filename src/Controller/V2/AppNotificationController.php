@@ -74,30 +74,40 @@ class AppNotificationController extends Controller\ApiController {
     
     public function appNotification() {
         $request = $this->request->data;
-        
+       
         if(isset($request['send'])){
             $counter = 0;
-            $i = 1;
+            $i = 0;
             $device = [];
             $message = [];
             $contents = [];
+            for ($i; $i < count($request); $i++)
             foreach ($request as $key => $value){
+                
                 if($key === 'client-'.$i){
                    $device[$counter++] = $value; 
                 }
+                
             }
             Log::debug($device);
             if(!is_array($device) or empty($device)){
                 $this->set([
-                    'message' => 'Recipents list is empty.'
+                    'message' => 'Recipents list is empty.',
+                    'color' => 'red'
                 ]);
             }else{
                $message['title'] = $request['title'];
                $contents['en'] = $request['msg']; 
                if($this->sendNotification($device, $message, $contents))
-              echo 'notification was send.';
+               $this->set([
+                    'message' => 'Notification was send.',
+                    'color' => 'green'
+                ]);
                 else
-              echo 'Error in notification.';
+                  $this->set([
+                    'message' => 'Error in notification.',
+                    'color' => 'red'
+                ]);     
             }
             
         }

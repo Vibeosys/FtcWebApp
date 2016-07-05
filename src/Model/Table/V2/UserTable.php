@@ -42,4 +42,8 @@ class UserTable extends V1\UserTable{
     return $users;
         
     }
+    
+    public function getNonSubscribedUser() {
+        
+    }
 }

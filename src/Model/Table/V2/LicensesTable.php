@@ -19,20 +19,24 @@ use App\DTO\UserGcmIdDto;
 class LicensesTable extends V1\LicensesTable{
     
     
-    public function getsubscribedUser(SubscriberSystemDto $subSystem) {
-        
+    public function getsubscribedUser(SubscriberSystemDto $subSystem, $expired) {
+        $conditions = '';
+        if($expired){
+            $conditions = 'licenses.date_expired < "'.date(DATE_TIME_FORMAT).'" and licenses.systemid = '.$subSystem->systemId;
+        }else 
+             $conditions = 'licenses.date_expired > "'.date(DATE_TIME_FORMAT).'" and licenses.systemid = '.$subSystem->systemId;
         $join = [
             'US' => [
                 'table' => 'user_subscription',
                 'type' => 'INNER',
-                'conditions' => 'licenses.userid = US.UserId and licenses.date_expired > "'.
-                date(DATE_TIME_FORMAT) .'" and licenses.systemid = '.$subSystem->systemId
+                'conditions' => 'licenses.userid = US.UserId and '.$conditions
             ],
         ];
         
         $fields = [
             'UserId' => 'US.UserId',
-            'GcmId' => 'US.GcmId'
+            'GcmId' => 'US.GcmId',
+            'ApnId' => 'US.ApnId'
         ];
         $users = [];
         $count = 0;
@@ -40,7 +44,7 @@ class LicensesTable extends V1\LicensesTable{
         \Cake\Log\Log::debug($rows->sql());
         if($rows->count()){
             foreach ($rows as $row)
-            $users[$count++] = new UserGcmIdDto($row->UserId, $row->GcmId);
+            $users[$count++] = new UserGcmIdDto($row->UserId, $row->GcmId, $row->ApnId);
         }
         return $users;
     }
