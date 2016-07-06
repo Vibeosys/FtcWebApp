@@ -77,7 +77,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);    
     $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
     $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
-    $routes->connect('gallery', ['controller' => $version.'Home', 'action' => 'gallery']);    
+    $routes->connect('gallery', ['controller' => $version.'Gallery', 'action' => 'gallery']);    
     $routes->connect('database', ['controller' => $version.'Home', 'action' => 'database']);    
     $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'editDatabase']);    
     $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
@@ -94,6 +94,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('pagenameavailable', ['controller' => $version.'Pages', 'action' => 'isPageNameAvailable']);
     $routes->connect('logout', ['controller' => $version.'Home', 'action' => 'logout']);
     $routes->connect('getuserlist', ['controller' => $version.'User', 'action' => 'getUserList']);
+    $routes->connect('getgalleryitems', ['controller' => $version.'Gallery', 'action' => 'getAllGallery']);
+    $routes->connect('galleryitemupload', ['controller' => $version.'Gallery', 'action' => 'galleryItemUpload']);
  
     
  $routes->fallbacks('DashedRoute');    

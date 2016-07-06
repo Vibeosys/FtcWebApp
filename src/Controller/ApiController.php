@@ -14,6 +14,7 @@ use Cake\Log\Log;
 use App\DTO;
 use Cake\Mailer\Email;
 use Cake\Routing\Router;
+use Cake\Filesystem\Folder;
 //use \V1;
 
 /**
@@ -25,7 +26,12 @@ define('DOMAIN',  'http://'.$_SERVER['SERVER_NAME'].Router::url('/'));
 class ApiController extends AppController{
   
       public $components = array('Cookie');
-    public function initialize() {
+      public  $galleryItem_ext = [
+          'jpeg','jpg','JPEG','JPG','GIF','gif','PNG','png','MP4','mp4','3GP','3gp'
+      ];
+
+
+      public function initialize() {
         parent::initialize();
         if($this->request->contentType() == 'application/json')
         $this->response->type('json');
@@ -169,7 +175,37 @@ class ApiController extends AppController{
         $this->Cookie->delete($name);
     }
     
-    public function uploadImage($file) {
+    public function uploadItem($file) {
+        if(!is_array($file)){
+            $this->writeCookie('up_msg', 'File not found.');
+            $this->writeCookie('up_error', 1);
+            return FALSE;
+        }
+        $type = explode('/', $file['type']);
+        Log::debug($type);
+        if(!in_array($type[1], $this->galleryItem_ext)){
+               $this->writeCookie('up_msg', 'File do no have valid extension.');
+            $this->writeCookie('up_error', 1);
+            return false;
+            
+        }else{
+            $filename = $file['name'];
+            $tempName = $file['tmp_name'];
+            $folder = new Folder(GALLERY_ITEM_UPLOAD_DIR, TRUE);
+            $url = 'upload/'.$filename;
+            $destination = $folder->path.DS.$filename;
+            $response ['url'] = $url; 
+            $response ['type'] = $type[0];
+            if(move_uploaded_file($tempName, $destination)){
+                    $this->writeCookie('up_msg', 'File uploaded successfully.');
+                    $this->writeCookie('up_error', 1);
+            return $response;
+            }else{
+                $this->writeCookie('up_msg', 'File fails to upload.');
+                $this->writeCookie('up_error', 1);
+                return FALSE;
+            }
+        }
         
     }
     
