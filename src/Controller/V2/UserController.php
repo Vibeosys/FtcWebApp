@@ -68,7 +68,7 @@ class UserController extends V1\UserController{
             $info->subscriberId = $loginRequest->subscriberId;
             $userSubscriptionController = new UserSubscriptionController();
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
-                    new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $loginRequest->subsciberId));
+                    new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $loginRequest->subscriberId));
             $response = new \App\Response\V1\BaseResponse(
                     DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
         } else
@@ -110,6 +110,10 @@ class UserController extends V1\UserController{
             $allUserList = $licensesController->getSubscribedUser($allSubSystem);
             $expiredUserList = $licensesController->getSubscribedUser($allSubSystem, true);
             $nonUserList = $userSubscriptionController->getNonsubscribedUser();
+            /*$inditectUserList = $licensesController->getIndirectUser($allSubSystem, TRUE);
+            foreach ($inditectUserList as $user){
+                $userList[$counter++] = $user; 
+            }*/
             foreach ($allUserList as $user){
                 $userList[$counter++] = $user; 
             }
@@ -139,6 +143,11 @@ class UserController extends V1\UserController{
            
            $expiredUserList = $licensesController->getSubscribedUser($nonSubSystem, true);
            $nonUserList = $userSubscriptionController->getNonsubscribedUser();
+            /*$inditectUserList = $licensesController->getIndirectUser($nonSubSystem, TRUE);
+            
+            foreach ($inditectUserList as $user){
+                $userList[$counter++] = $user; 
+            }*/
             foreach ($expiredUserList as $user){
                 $userList[$counter++] = $user; 
             } 
@@ -150,7 +159,7 @@ class UserController extends V1\UserController{
        
        if($status and key_exists('indirect', $condition)){
            $inditectSubSystem = $subscriberController->getSubscriberSystem($subscriberId);
-           $inditectUserList = $licensesController->getSubscribedUser($inditectSubSystem);
+           $inditectUserList = $licensesController->getIndirectUser($inditectSubSystem);
             foreach ($inditectUserList as $user){
                 $userList[$counter++] = $user; 
             }

@@ -26,6 +26,11 @@ class LicensesController extends V1\LicensesController{
         return $result;
     }
     
+    public function getIndirectUser($subSystem, $expired = false) {
+        $result = $this->getTableobj()->getIndirectClients($subSystem ,$expired);
+        return $result;
+    }
+    
     
     
 }

@@ -58,6 +58,7 @@ class UserSubscriptionTable extends Table {
         ];
         $count = 0;
         $rows = $this->connect()->find()->where($conditions);
+        Log::debug('Non Subscriber query');
         Log::debug($rows->sql());
         if($rows->count()){
             foreach ($rows as $row)

@@ -139,7 +139,6 @@ use Cake\Cache\Cache;
             alert('Please add recipent.');
            e.preventDefault();  
         }
-            
       
     });
      
@@ -195,21 +194,19 @@ use Cake\Cache\Cache;
             var client = i + 1;
           user_list += '<div id="close_'+i+'" class="user-list-preview">'+name+
                '<input style="display: none" name="client-'+ client +'" id="client-1" type="text" value="'+ gcm +'">' +
-               '<input type="button" class="remove" value="X"></div>';  
+               '<a onclick="removeME(this)" class="remove-user"><span class="fa fa-close"></span></a></div>';  
         }
        
         $('#contact_list').html(user_list);
         $('#myModel').css('display','none');
      });
      
-     
-  function remove(id){
-  $('#'+id).remove();
- }
-     
-     
+    
      
  });  
+ function removeME(self){ 
+    $(self).parent().remove();
+ }
  
  </script>
 <?php $this->end('script');?>

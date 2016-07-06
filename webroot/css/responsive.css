@@ -640,9 +640,20 @@ display: inline;
     
 }
 #fileLoader{
-    display: none;
-    
-}
+    position: relative;
+    top: 2.1em;
+    display: inline;
+    width: 14em;
+    }
+    .upload-content{
+    display: inline;
+    float: right;
+    }
+    @media (max-width:440px){
+            .upload-content{
+        padding-bottom: 37px;
+            }
+    }
 #btnOpenFileDialog{
     float:right;
     top:25px;
@@ -823,4 +834,16 @@ display: inline;
 img#note_loader{
     width: 19px;
     display: none;
+}
+
+.text-wrapper button{
+    background: 0 0 ;
+    border: 0;
+}
+.remove-user{
+    cursor: pointer;
+    position: relative;
+    top: -4px;
+    padding-left: 5px;
+    padding-right: 6px;
 }
