@@ -127,6 +127,253 @@ use Cake\Cache\Cache;
            </div>
            
        </section>
+
+<div id="myModal" class="modal animated zoomin">
+    <div class="modal-dialog img-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close cancel-dialog" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Media</h4>
+
+            </div>
+            <div class="modal-body">
+                <div id="tab-menu" class="container-fluid">	
+                    <ul  class="nav nav-pills">
+			             <li class="active">
+                                <a  href="#image" data-toggle="tab">Images</a>
+                        </li>
+			             <li><a href="#video" data-toggle="tab">Videos</a>
+			             </li>
+                    </ul>
+                    <div class="tab-content clearfix">
+			             <div class="tab-pane active" id="image">
+                             <input type="file" id="fileLoader" name="files" title="Load File" />
+                    <input type="button" id="btnmediaFileDialog" value = "Image Upload" class="btn btn-info" onclick="openfileDialog();" />
+                        
+                <div class="container-fluid">
+                    <div class="row row-wrap">
+                        
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                               <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                              <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                 <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                               <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                            <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                <input type="image" class="img-responsive" src="../img/logo.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                              <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                <input type="image" class="img-responsive" src="../img/download.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                             <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                                <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-xs-6 thumb">
+                            <a class="thumbnail" href="#">
+                               <input type="image" class="img-responsive" src="../img/bg.png" alt="">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                        </div>
+                        <div class="tab-pane" id="video">
+                                <input type="file" id="fileLoader" name="video-files" title="Load File" />
+                    <input type="button" id="btnmediaFileDialog" value = "Video Upload" class="btn btn-info" onclick="openfileDialog();" />
+                         <div class="container-fluid">
+                    <div class="row row-wrap">
+                        
+                        <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="video.mp4" type="video/mp4">
+                                      <source src="video.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                         <div class="col-lg-2 col-md-3 col-xs-12 thumb">
+                            <a class="thumbnail-video" href="#">
+                         
+                                    <video class="video" controls>
+                                      <source src="../img/mov_bbb.mp4" type="video/mp4">
+                                      <source src="mov_bbb.ogg" type="video/ogg">
+                                      Your browser does not support HTML5 video.
+                                    </video>
+                           <!--
+                                 <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
+                                
+                                </iframe>-->
+                                <div class="video-select"><i class="fa fa-check select-icon"></i></div>
+                            </a>
+                        </div>
+                             </div>
+                            </div>
+				        </div>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <div class="btn-wrap">
+                            <input type="Submit" class="btn btn-primary" name="submit" value="Set Media">
+                            <input type="button" class="btn btn-danger cancel-dialog" data-dismiss="modal" aria-hidden="true" name="cancel" value="Cancel">
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
 <?php $this->start('script')?>
 <?= $this->Html->script('angular.js') ?>
  <script type='text/javascript'>
@@ -192,10 +439,10 @@ myApp.directive("addrssfeed", function(){
 myApp.directive("addbuttons", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+           
             scope.count++;
 			scope.countfile++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><input type='file' class='form-control' ng-model=myFile"+scope.countfile+" file id=file-input-"+scope.countfile+" accept='image/*' name='image-"+ scope.count +"'><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-                        
+			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin' type='vbcustom'><div style='display:flex'><input type='text' class='form-control' file id=file-input-"+scope.countfile+"'><a name='image-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Image </a></div><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 		});
 	};
 });
@@ -255,12 +502,15 @@ myApp.directive("addrssfeedtext", function($compile){
 		element.bind("click", function(){
             scope.count++;
 			scope.countrssfeed++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><input name='rss-"+scope.count+"' type='text'  placeholder='Rss Feed Link' class='form-control'  id=text-input-rssfeed-"+scope.countrssfeed+" ng-model=rssfeed"+scope.countrssfeed+"><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin id='vbrss'><input type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-"+scope.countrssfeed+" ng-model=rssfeed"+scope.countrssfeed+"><div class='desc'> Description tags to read feed</div><div style='display:flex'><input type='text'  placeholder='Parent' class='form-control link-input' name='rss_parent'  id=text-parent-"+scope.countrssfeed+"></div><div style='display:flex'><input type='text' placeholder='Title' class='form-control link-input' name='rss_title' id=text-title-"+scope.countrssfeed+"><input type='text'  placeholder='Link' class='form-control link-input' name='rss_link'  id=text-link-"+scope.countrssfeed+"></div><div style='display:flex'><input type='text' placeholder='Date' class='form-control link-input' name='rss_date' id=text-date-"+scope.countrssfeed+"><input type='text'  placeholder='Description' class='form-control link-input' name='rss_desc'  id=text-desc-"+scope.countrssfeed+"></div><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+        
             
 		});
 	};
 });
           
+
+
 myApp.directive("removeMe", function($rootScope) {
       return function(scope,element,attrs)
             {
@@ -271,7 +521,64 @@ myApp.directive("removeMe", function($rootScope) {
                 });
             }
       
-}); 
+});  
+          $(document).ready(function(){
+              
+          $(':radio').change(function(e) { 
+              
+            /*  var text=$('#space-for-tool').text();
+              if(text){
+                  alert('hello');
+                  e.preventDefault();
+                  return false;
+              }*/
+              
+              var value=$(this).val();
+              if(value == "1"){
+                $('.linkrss').attr("disabled","disabled");
+                $('.linkrss').addClass("not-active");
+                $('.linkweb').attr("disabled","disabled");  
+               $('.linkweb').addClass("not-active");
+                   $('.linkcustom').removeAttr("disabled");  
+               $('.linkcustom').removeClass("not-active");
+              }
+              else if(value == "2"){
+                   $('.linkrss').attr("disabled","disabled");
+                $('.linkrss').addClass("not-active");
+                $('.linkcustom').attr("disabled","disabled");  
+               $('.linkcustom').addClass("not-active");
+               $('.linkweb').removeAttr("disabled");  
+               $('.linkweb').removeClass("not-active");
+              }
+               else{
+                   $('.linkweb').attr("disabled","disabled");
+                $('.linkweb').addClass("not-active");
+                $('.linkcustom').attr("disabled","disabled");  
+               $('.linkcustom').addClass("not-active");
+               $('.linkrss').removeAttr("disabled");  
+               $('.linkrss').removeClass("not-active");
+              }
+            });
+    });
+          
+    $(":image").click(function () {
+        $(":image").parent().addClass("not-select");
+        $(this).parent().addClass("selected");
+        $(this).parent().removeClass("not-select");
+    });
+            function openfileDialog() {
+    $("#fileLoader").click();
+}
+          $(".cancel-dialog").click(function(){ 
+           $(":image").parent().removeClass("selected");
+               $(".video-select").removeClass("video-selected");
+          });
+          
+             $(".video-select").click(function () {
+        $(".video-select").removeClass("video-selected");
+        $(this).addClass("video-selected");
+        $(this).removeClass("video-not-select");
+    });
  $(document).ready(function(){  
   /* $('#page').keydown(function(e) { 
     if (e.which === 32) {

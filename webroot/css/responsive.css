@@ -167,7 +167,7 @@
 }
 /****************** Page *******************/
 .logo-img{
-    width:78px; 
+    width:97px; 
     margin-top: -13px;
     margin-bottom: 17px;
 }
@@ -246,10 +246,9 @@ textarea {
     background: white;
 
 }
-.email-inner textarea, .app_title_width{
+.email-inner textarea, .app-title-width{
     width: 85%;
 }
-
 .push-top{
     position: relative;
     top: 20px;
@@ -329,7 +328,7 @@ textarea {
     padding-right: 15px;
     padding-left: 11px;
 }
-.tool-list a, .tool-list-mobile a, .tool-list-home a{ 
+.tool-list a, .tool-list-mobile a, .tool-list-home a, .tool-list button{ 
     text-decoration: none;
     color: black;
     padding: 10px;
@@ -337,7 +336,9 @@ textarea {
     width: 100%;
     position: relative;
     display: block;
-    
+    background: transparent;
+    text-align: left;
+    border: none;
 }
 .canvas-text{
         font-size: 36px;
@@ -357,8 +358,11 @@ textarea {
     overflow-y: auto;
     width: 100%;
     border: 1px solid rgba(128, 128, 128, 0.26);
+        top: -63px;
+    padding-top: 50px;
+    position: relative;
 }
-.tool-list li:hover a, .tool-list li:hover span{
+.tool-list li:hover a, .tool-list li:hover span, .tool-list li:hover button{
     color:darkorange;
 }
 .tool-list li:hover{
@@ -367,6 +371,7 @@ textarea {
 .link-input{
         margin-left: 10px;
     margin-right: 10px;
+        margin: 5px 5px;
 }
 .btn-remove{
     text-align: right;
@@ -391,7 +396,7 @@ textarea {
 }
 
 .bg-img{
-    background-image: url(../img/bg.png);
+    background-image: url(../images/bg.png);
     background-size: auto auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
@@ -427,7 +432,7 @@ width: 320px;
     margin: auto;
 }
 .login .company-logo{
-    background-image: url(../img/logo.png);
+    background-image: url(../images/logo.png);
     background-size: 110px;
     background-position: center top;
     background-repeat: no-repeat;
@@ -484,10 +489,10 @@ width: 320px;
     background: #0085ba;
     border-color: #0073aa #006799 #006799;
     -webkit-box-shadow: 0 1px 0 #006799;
-    box-shadow: 0 1px 0 #006799;
     color: #fff;
     text-decoration: none;
     text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;
+         box-shadow: 2px 3px 4px rgba(128, 128, 128, 0.56);
 }
 .ftc-admin{
         margin: 10px 10px 10px 15px!important;
@@ -624,9 +629,10 @@ input[type=search]{
 display: inline;
 }
 .btn-contact{
-    display: inline-block;
+        display: inline-block;
     position: relative;
-    background: url(../img/menu-icon/Address%20Book-48.png) no-repeat scroll 0 0 transparent;
+    
+    background: url(../images/menu-icon/Address%20Book-48.png) no-repeat scroll 0 0 transparent;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -640,20 +646,9 @@ display: inline;
     
 }
 #fileLoader{
-    position: relative;
-    top: 2.1em;
-    display: inline;
-    width: 14em;
-    }
-    .upload-content{
-    display: inline;
-    float: right;
-    }
-    @media (max-width:440px){
-            .upload-content{
-        padding-bottom: 37px;
-            }
-    }
+    display: none;
+    
+}
 #btnOpenFileDialog{
     float:right;
     top:25px;
@@ -830,20 +825,132 @@ display: inline;
 .select-owner{
     width: 76%;
 }
-
-img#note_loader{
-    width: 19px;
-    display: none;
-}
-
-.text-wrapper button{
-    background: 0 0 ;
-    border: 0;
-}
-.remove-user{
-    cursor: pointer;
+.type{
+width: 19px;
+    height: 19px;
+    top: 5px;
     position: relative;
-    top: -4px;
-    padding-left: 5px;
-    padding-right: 6px;
+    left: 0px;
+}
+
+.type-radio{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.not-active, .not-active span {
+   cursor: not-allowed!important;
+   color:gray!important;
+    
+}
+.type-radio span{
+    padding-right: 10px;
+}
+
+
+.desc{
+        font-size: 18px;
+    padding-top: 10px;
+}
+.img-btn{
+    width: 140px;
+    margin-left: 10px;
+    background: rgba(209, 209, 209, 0.26);
+    border-radius: 5px;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+}
+.img-dialog{
+        margin: 30px 30px;
+    width: auto;
+}
+.thumb {
+    margin-bottom:5px;
+}
+.thumbnail {
+    padding: 0;
+}
+input[type=image]{
+    padding: 8px;
+    margin-right: auto;
+    margin-left: auto;
+        
+}
+.video{
+    width: 100%;
+        position: relative;
+}
+.thumbnail-video{
+    position: relative;
+}
+.video-select{
+        font-size: 2em;
+    color: white;
+    background-color: rgba(0,0,0,0.6);
+    text-align: center;
+    margin-top: -1.6em;
+    transition: all .6s ease;
+    z-index: -1;
+        position: relative;
+}
+.video-not-select i{
+   color:white;
+}
+.video-selected i{
+     color:#F95A09;
+}
+.thumb:hover .video-select{
+   z-index: 0;
+}
+.video-selected{
+     z-index: 0;
+}   
+.select-icon{
+        position: relative;
+    bottom: 5px;
+}
+.selected{
+    border: 5px solid #F95A09;
+}
+a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
+    border-color: #F95A09;
+}
+.not-select{
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+*{
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -ms-box-sizing:border-box;
+  box-sizing:border-box;
+}
+.row-wrap{
+    flex-wrap: wrap;
+    display: flex;
+    padding-top: 50px;
+}
+#btnmediaFileDialog{
+    top:4.7em;
+        right: 50px;
+        float: right;
+        position: absolute;
+}
+.btn-wrap .btn-primary{
+    padding: 10px 15px;
+}
+
+#tab-menu .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#tab-menu .tab-content {
+  color : white;
+  background-color: rgba(220, 220, 220, 0.31);
+  padding : 5px 15px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #000;
+    background-color: gainsboro;
+    font-weight: 600;
 }
