@@ -31,7 +31,7 @@ use Cake\Cache\Cache;
                    <div class="email-outer">
                         <div class="email-inner">
                              <lable>Title
-                                 <input type="text" name="title"  class='app_title_width form-control margin10'  id="title" required>
+                                 <input type="text" name="title"  class='app-title-width form-control margin10'  id="title" required>
                             </lable>
                             <lable>Message 
                                 <textarea rows='15' name="msg"  class='form-control margin10'  id="html-template"></textarea>
@@ -158,6 +158,8 @@ use Cake\Cache\Cache;
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",  
                 success: function(data){
+                    $('#note_loader').css('display','none');
+                    $('#find').val('Find');
                     var i = 0;
                     var html = '';
                   $.each(data, function(key,json){
@@ -173,13 +175,15 @@ use Cake\Cache\Cache;
                     
                 },
                 failure: function(errMsg) {
-                   alert(errMsg);    
+                   alert(errMsg); 
+                   $('#note_loader').css('display','none');
+                   $('#find').val('Find');
                 }
         });
          
          
-           $(this).val('Find');
-           $('#note_loader').css('display','none');
+           
+           
          
      });
      

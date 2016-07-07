@@ -396,7 +396,7 @@ textarea {
 }
 
 .bg-img{
-    background-image: url(../images/bg.png);
+    background-image: url(../img/bg.png);
     background-size: auto auto;
     background-repeat: no-repeat;
     background-attachment:fixed;
@@ -432,7 +432,7 @@ width: 320px;
     margin: auto;
 }
 .login .company-logo{
-    background-image: url(../images/logo.png);
+    background-image: url(../img/logo.png);
     background-size: 110px;
     background-position: center top;
     background-repeat: no-repeat;
@@ -531,7 +531,7 @@ width: 320px;
 /*********** User Page **********/
 input[type=search]{
     border-radius: 20px;
-    background: url(../images/search-white.png) no-repeat 11px 7px rgba(247, 247, 247, 0.31);
+    background: url(../img/search-white.png) no-repeat 11px 7px rgba(247, 247, 247, 0.31);
     padding-left: 32px;
 }
  .btn-success{
@@ -632,7 +632,7 @@ display: inline;
         display: inline-block;
     position: relative;
     
-    background: url(../images/menu-icon/Address%20Book-48.png) no-repeat scroll 0 0 transparent;
+    background: url(../img/menu-icon/Address%20Book-48.png) no-repeat scroll 0 0 transparent;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -952,7 +952,10 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 }
 
 /************************************************** Own Changes *******************************************/
-
+#note_loader{
+    display: none;
+    width: 19px; 
+}
 #fileLoader{
     position: absolute;
     right: 80px;
