@@ -152,6 +152,7 @@ class PagesController extends Controller\ApiController {
         foreach ($rssWidgets as $outerObj) {
             if ($outerObj->widget === 'rss') {
                 $json = [];
+                $json[$this->rssJson] = $outerObj->value;
                 foreach ($rssWidgets as $innerObj) {
                     if ($innerObj->widget === 'parent' and $outerObj->position === $innerObj->position) {
                        $json[$this->rssParentJson] = $innerObj->value;
@@ -205,7 +206,7 @@ class PagesController extends Controller\ApiController {
             }
             $this->conncetionCreator();
             $author = 14571;
-            $subscriberId = 2;
+            $subscriberId = parent::readCookie('sub_id');
             $pageName = $data['page'];
             $pageStatus = INACTIVE;
             $pageActive = INACTIVE;
