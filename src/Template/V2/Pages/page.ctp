@@ -62,11 +62,8 @@ use Cake\Cache\Cache;
                     </div>
                     <div ><span class="app-text">App Content</span></div>
                 <div class="page-item" >
-                <div class="inner-page" id="space-for-tool">
-                <div class="canvas center-block"><span class="canvas-text center-block">Canvas</span></div>
-                    
-                    
-                </div>
+                 <div class="canvas center-block"><span class="canvas-text center-block">Canvas</span></div>    
+                <div type="0" class="inner-page" id="space-for-tool"></div>
                     
                 </div>
                    
@@ -78,6 +75,10 @@ use Cake\Cache\Cache;
                     <div class="heading">
                         <h2>Toolbox</h2>
                     </div>
+                         <div class="type-radio">
+                           <span><input type="radio" name="type" class="type" id="custom" checked value="1"> Custom </span>
+                           <span><input type="radio" name="type" class="type" id="web" value="2"> Web View</span>
+                           <span><input type="radio" name="type" class="type" id="rss" value="3"> RSS</span></div>
                    <div class="tool-list">
                         <ul>
                             <li><addimage></addimage></li>
@@ -377,7 +378,21 @@ use Cake\Cache\Cache;
 <?php $this->start('script')?>
 <?= $this->Html->script('angular.js') ?>
  <script type='text/javascript'>
-
+     var allowed = 1;
+ 
+  function checkME(e,self){
+    var selected_type = $(self).attr('vbtype');
+    var sft_type = $('#space-for-tool').attr('type');
+    if(sft_type == '0'){
+     $('#space-for-tool').attr('type',selected_type);
+    }else if(sft_type != selected_type || sft_type === 'web' ||sft_type === 'rss'){
+       allowed = 0;
+    }else{
+        allowed = 1;
+    }
+  
+ }   
+ // alert(allowed);
 var myApp = angular.module('myApp', []);
 
 function MainCtrl($scope) {
@@ -395,60 +410,68 @@ function MainCtrl($scope) {
 myApp.directive("addimage", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addbuttons><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addbuttons  class='btn-type linkcustom'><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
 myApp.directive("addtext", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addtextdiv><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addtextdiv  class='btn-type linkcustom'><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
 myApp.directive("addlink", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addlinktext><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
 myApp.directive("addvideo", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addvideolink><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
 	}
 });
 myApp.directive("addheading", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addheadinglink><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addheadinglink  class='btn-type linkcustom'><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
 myApp.directive("addweblink", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer'  addweblinktext><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='web' onclick='checkME(event,this);' style='cursor:pointer' addweblinktext  class='btn-type not-active linkweb' disabled='disabled'><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
 myApp.directive("addrssfeed", function(){
 	return {
 		restrict: "E",
-		template: "<a style='cursor:pointer' addrssfeedtext ><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></a>"
+		template: "<button vbtype='rss' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
 	}
 });
-
 //Directive for adding buttons on click that show an alert on click
 myApp.directive("addbuttons", function($compile){
 	return function(scope, element, attrs){
+            
 		element.bind("click", function(){
-           
+                        if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countfile++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin' type='vbcustom'><div style='display:flex'><input type='text' class='form-control' file id=file-input-"+scope.countfile+"'><a name='image-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Image </a></div><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 		});
 	};
 });
+
 myApp.directive("addtextdiv", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                     if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.counttext++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><textarea rows='4' placeholder='Text' class='form-control'  id=text-input-"+scope.counttext+" ng-model=textfile"+scope.count+" name='text-"+scope.count+"'></textarea><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
@@ -456,9 +479,14 @@ myApp.directive("addtextdiv", function($compile){
 		});
 	};
 });
+
 myApp.directive("addlinktext", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                     if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countlinktext++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><div style='display:flex'>Link<input name='link-"+scope.count+"' type='text'  placeholder='Link' class='form-control link-input'  id=text-input-link-"+scope.countlinktext+" ng-model=linkfile"+scope.countlinktext+"> Link Caption<input name='link_caption-"+scope.count+"' type='text' placeholder='Link Caption' class='form-control link-input'  id=text-input-cap-link-"+scope.countlinktext+" ng-model=capfile"+scope.countlinktext+"></div> <button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
@@ -466,13 +494,18 @@ myApp.directive("addlinktext", function($compile){
 		});
 	};
 });
+
 myApp.directive("addvideolink", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                    if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countvideolink++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><div style='display:flex'>Video Link<input name='video-"+scope.count+"' type='text'  placeholder='Video Link' class='form-control'  id=text-input-video-"+scope.countvideolink+" ng-model=videolinkfile"+scope.countvideolink+"></div> <button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
+                        
 		});
 	};
 });
@@ -480,6 +513,10 @@ myApp.directive("addvideolink", function($compile){
 myApp.directive("addheadinglink", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                     if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countheading++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><input name='heading-"+scope.count+"' type='text'  placeholder='Heading' class='form-control'  id=text-input-head-"+scope.countheading+" ng-model=headingfile"+scope.countheading+"><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
@@ -487,9 +524,15 @@ myApp.directive("addheadinglink", function($compile){
 		});
 	};
 });
+
+
 myApp.directive("addweblinktext", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                     if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countweblink++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin'><input name='web-"+scope.count+"' type='text'  placeholder='Web Link' class='form-control'  id=text-input-wenlink-"+scope.countweblink+" ng-model=weblink"+scope.countweblink+"><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
@@ -497,9 +540,14 @@ myApp.directive("addweblinktext", function($compile){
 		});
 	};
 });
+
 myApp.directive("addrssfeedtext", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
+                     if(allowed === 0){
+                        alert('Please remove existing widget,to add this widget.');
+                        return;
+                    }
             scope.count++;
 			scope.countrssfeed++;
 			angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-"+scope.count+" push-margin id='vbrss'><input type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-"+scope.countrssfeed+" ng-model=rssfeed"+scope.countrssfeed+"><div class='desc'> Description tags to read feed</div><div style='display:flex'><input type='text'  placeholder='Parent' class='form-control link-input' name='rss_parent'  id=text-parent-"+scope.countrssfeed+"></div><div style='display:flex'><input type='text' placeholder='Title' class='form-control link-input' name='rss_title' id=text-title-"+scope.countrssfeed+"><input type='text'  placeholder='Link' class='form-control link-input' name='rss_link'  id=text-link-"+scope.countrssfeed+"></div><div style='display:flex'><input type='text' placeholder='Date' class='form-control link-input' name='rss_date' id=text-date-"+scope.countrssfeed+"><input type='text'  placeholder='Description' class='form-control link-input' name='rss_desc'  id=text-desc-"+scope.countrssfeed+"></div><button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
@@ -515,14 +563,20 @@ myApp.directive("removeMe", function($rootScope) {
       return function(scope,element,attrs)
             {
                 element.bind("click",function() {
+                     
                     var id= attrs['id'];
                    
                    $("."+id).remove();
+                   var text = $('#space-for-tool').text();
+                    if(text === ''){
+                        allowed = 1;
+                        $('#space-for-tool').attr('type','0');  
+                    }
                 });
             }
       
 });  
-          $(document).ready(function(){
+$(document).ready(function(){
               
           $(':radio').change(function(e) { 
               
@@ -603,7 +657,14 @@ myApp.directive("removeMe", function($rootScope) {
               }
           });
     });
+    
+    $('.btn-remove').on('click',function(){
+       
+    
+    });
 });
+
+
        </script>  
 
 <?php $this->end('script')?>
