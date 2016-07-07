@@ -31,7 +31,12 @@ class PagesController extends Controller\ApiController {
     private $videoJson = 'url';
     private $headingJson = 'head';
     private $webViewjson = 'view';
-    private $rssjson = 'view';
+    private $rssJson = 'feed';
+    private $rssParentJson = 'feedParent';
+    private $rssTitleJson = 'feedTitle';
+    private $rssLinkJson = 'feedLink';
+    private $rssDateJson = 'feedDate';
+    private $rssDescriptionJson = 'feedDescription';
     //widget titles variables
 
     private $linkTitle = 'Link';
@@ -98,14 +103,21 @@ class PagesController extends Controller\ApiController {
 
     public function getWidgets($insert, $pageId, $subscriberId) {
         $counter2 = 0;
+        $counter3 = 0;
         $counter1 = 0;
         $linkWidgets = [];
         $otherWidgets = [];
+        $rssWidgets = [];
         $completeWidget = [];
         foreach ($insert as $obj) {
             if ($obj->widget === 'link' or $obj->widget === 'link_caption') {
                 $linkWidgets[$counter2++] = $obj;
-            } else
+            } if($obj->widget === 'rss' or $obj->widget === 'title' or $obj->widget === 'parent' or 
+                    $obj->widget === 'rss_link' or $obj->widget === 'date' or $obj->widget === 'description'){
+               $rssWidgets[$counter3++] = $obj; 
+               Log::debug('rss Link Objs'); 
+               Log::debug($rssWidgets); 
+            }else
                 $otherWidgets[$counter1++] = $obj;
         }
         $counter = 0;
@@ -136,6 +148,26 @@ class PagesController extends Controller\ApiController {
                 }
             }
         }
+        
+        foreach ($rssWidgets as $outerObj) {
+            if ($outerObj->widget === 'rss') {
+                $json = [];
+                foreach ($rssWidgets as $innerObj) {
+                    if ($innerObj->widget === 'parent' and $outerObj->position === $innerObj->position) {
+                       $json[$this->rssParentJson] = $innerObj->value;
+                    }else if ($innerObj->widget === 'title' and $outerObj->position === $innerObj->position){
+                        $json[$this->rssTitleJson] = $innerObj->value;
+                    }else if ($innerObj->widget === 'rss_link' and $outerObj->position === $innerObj->position){
+                        $json[$this->rssLinkJson] = $innerObj->value;
+                    }else if ($innerObj->widget === 'date' and $outerObj->position === $innerObj->position){
+                        $json[$this->rssDateJson] = $innerObj->value;
+                    }else if ($innerObj->widget === 'description' and $outerObj->position === $innerObj->position){
+                        $json[$this->rssDescriptionJson] = $innerObj->value;
+                    }
+                }
+                 $completeWidget[$counter++] = new DTO\WidgetInsertDto($this->rssTitle, $outerObj->position, json_encode($json), $pageId, $subscriberId);
+            }
+        }
         return $completeWidget;
     }
 
@@ -161,7 +193,7 @@ class PagesController extends Controller\ApiController {
            // $this->autoRender = FALSE;
             $insert = [];
             $count = 0;
-            //print_r($data);
+           // print_r($data);
             //return;
             foreach ($data as $key => $value) {
                 if ($key != 'save' and $key != 'page' and $key != 'publish') {

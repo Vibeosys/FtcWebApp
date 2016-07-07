@@ -19,7 +19,7 @@ use Cake\Cache\Cache;
             <form action="../pages/page" method="post" enctype="multipart/form-data">  
                 <div class="col-lg-12 main-page-publish">
 
-                    <h2>Customisation : Page 1</h2>
+                    <h2>Customisation :New Page</h2>
                         <?php if(isset($message)){ ?>
                     <span style="text-align:center;background-color:white;color: <?= $color ?>;padding:10px"><strong>Page saved as draft.</strong></span>
                         <?php } ?>
@@ -556,7 +556,7 @@ use Cake\Cache\Cache;
                 }
                 scope.count++;
                 scope.countrssfeed++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input type='text'  placeholder='Parent' class='form-control link-input' name='rss_parent'  id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input type='text' placeholder='Title' class='form-control link-input' name='rss_title' id=text-title-" + scope.countrssfeed + "><input type='text'  placeholder='Link' class='form-control link-input' name='rss_link'  id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input type='text' placeholder='Date' class='form-control link-input' name='rss_date' id=text-date-" + scope.countrssfeed + "><input type='text'  placeholder='Description' class='form-control link-input' name='rss_desc'  id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input name='rss-"+ scope.count +"' type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input name='parent-"+scope.count+"' type='text'  placeholder='Parent' class='form-control link-input' id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input name='title-"+scope.count+"' type='text' placeholder='Title' class='form-control link-input' id=text-title-" + scope.countrssfeed + "><input name='rss_link-"+scope.count+"' type='text'  placeholder='Link' class='form-control link-input' id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input name='date-"+scope.count+"' type='text' placeholder='Date' class='form-control link-input'  id=text-date-" + scope.countrssfeed + "><input name='description-"+scope.count+"' type='text'  placeholder='Description' class='form-control link-input' id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
 
             });
