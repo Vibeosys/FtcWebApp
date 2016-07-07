@@ -26,7 +26,7 @@ use Cake\Cache\Cache;
                         <h2>Media</h2>
                         <div class="upload-content">
                             <form action="galleryitemupload" method="post" enctype="multipart/form-data">      
-                                <input type="file" id="fileLoader" name="file" title="Load File" />
+                                <input type="file" id="fileLoader" name="file" title="Load File" required>
                                 <input type="submit" id="btnOpenFileDialog" value = "Media Upload" class="btn btn-info" />
                             </form>
                         </div>
