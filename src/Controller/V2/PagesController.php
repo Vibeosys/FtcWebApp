@@ -158,9 +158,11 @@ class PagesController extends Controller\ApiController {
     public function page() {
         $data = $this->request->data;
         if ($this->request->is('post')) {
+           // $this->autoRender = FALSE;
             $insert = [];
             $count = 0;
-          
+            //print_r($data);
+            //return;
             foreach ($data as $key => $value) {
                 if ($key != 'save' and $key != 'page' and $key != 'publish') {
                     $widget = explode('-', $key);

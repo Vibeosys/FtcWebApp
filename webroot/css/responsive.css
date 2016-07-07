@@ -201,7 +201,7 @@
     margin: 10px;
 }
 .page-section{
-    margin-top: 12em;
+    margin-top: 14em;
 }
 .heading h2{
     text-align: left;
@@ -210,7 +210,7 @@
 }
 .heading{
      border-bottom: 1px solid rgba(128, 128, 128, 0.34);
-    padding-bottom: 15px;
+    /*padding-bottom: 15px;*/
 }
 .btn-privew{
     text-align: right;
@@ -645,10 +645,6 @@ display: inline;
     min-height: 300px;
     
 }
-#fileLoader{
-    display: none;
-    
-}
 #btnOpenFileDialog{
     float:right;
     top:25px;
@@ -953,4 +949,15 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
     color: #000;
     background-color: gainsboro;
     font-weight: 600;
+}
+
+/************************************************** Own Changes *******************************************/
+
+#fileLoader{
+    position: absolute;
+    right: 80px;
+    top: 29px;
+}
+.upload-content{
+    float: right;
 }
