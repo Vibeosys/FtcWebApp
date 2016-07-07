@@ -30,4 +30,7 @@ class SubscriptionController extends V1\SubscriptionController{
         $result = $this->getTableObj()->getsystem($subscriberId);
         return $result;
     }
+    public function pageUnderConstruction() {
+        
+    }
 }

@@ -29,4 +29,6 @@ class UserSubscriptionController extends Controller\ApiController{
         $result = $this->getTableObj()->getNonSubscriber();
         return $result;
     }
+    
+    
 }

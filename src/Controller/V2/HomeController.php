@@ -36,6 +36,10 @@ class HomeController extends Controller\ApiController{
         
     }
     
+    public function pageUnderConstruction() {
+        
+    }
+    
     public function database() {
         
     }

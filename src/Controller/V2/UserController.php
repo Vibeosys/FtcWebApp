@@ -182,4 +182,8 @@ class UserController extends V1\UserController{
        $this->response->body(json_encode($userList));
         
     }
+    
+    public function pageUnderConstruction() {
+        
+    }
 }
