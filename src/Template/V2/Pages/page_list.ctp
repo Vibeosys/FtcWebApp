@@ -25,68 +25,41 @@ use Cake\Cache\Cache;
                     </li>
                   </ul>
                     </div>
+                   <?php if(isset($pages)){ $i = 1; ?>
                  <table id="menu" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                               <th>Draft No</th>
                               <th>Title</th>
                               <th>Last Updated</th>
+                              <th>Page Type</th>
                             <th>Status</th>
                             <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td>1</td>
-                              <td>News/Blog</td>
-                              <td>5/17/2016</td>
-                                <td>Published</td>
-                             <td>
-                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </a>
-                                </td>
-                             
+                           <?php  foreach ($pages as $page){ ?>   
+                          <form action="../pages/edit" method="post">
+                              <tr>
+                                  <td><?= $i++ ?><input type="hidden" value="<?= $page->pageId ?>" name="pageId" ></td>
+                              <td><?= $page->pageTitle ?></td>
+                              <td><?= $page->updatedDate ?><input type="hidden" value="<?= $page->status ?>" name="pageStatus" ></td>
+                              <td><?php $key = $page->pageType; echo $type->$key; ?><input type="hidden" value="<?= $page->pageType ?>" name="pageStatus" ></td>
+                              <?php if($page->status) {?>
+                              <td>Published</td>
+                              <?php }else {?>
+                              <td>UnPublished</td>
+                              <?php } ?>
+                              <td>
+                                  <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" name="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                              </button>
+                              </td>
                             </tr>
-                          
-<tr>
-                              <td>2</td>
-                              <td>About Us</td>
-                              <td>6/11/2016</td>
-                                <td>Published</td>
-                             <td>
-                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </a>
-                                </td>
-                             
-                            </tr>
-                          
-<tr>
-                              <td>3</td>
-                              <td>How it works?</td>
-                              <td>6/17/2016</td>
-                                <td>Published</td>
-                             <td>
-                                    <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </a>
-                                </td>
-                             
-                            </tr>
-                          
-<tr>
-                              <td>4</td>
-                              <td>No Name 01</td>
-                              <td>6/17/2016</td>
-                                <td>Not Published</td>
-                             <td>
-                                 <a href="../pages/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </a>
-                                </td>
-                             
-                            </tr>
-                          
-
+                          </form>
+                           <?php  } ?>   
                           </tbody>
                         </table>
+                   <?php  } ?>   
                 </div>
                
             

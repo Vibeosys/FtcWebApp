@@ -47,6 +47,7 @@ class SyncTable extends Table{
         $updates = [];
         $counter = 0;
         $rows = $this->connect()->find()->where($conditions);
+        Log::debug($rows->sql());
         if($rows->count())
             foreach ($rows as $row)
                 $updates[$counter++] = new V2\SyncUpdateResponse (

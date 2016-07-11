@@ -88,8 +88,9 @@ class ErrorDto {
         3 => 'Sorry..! Your password not changed.',
         4 => 'Page saved as draft.',
         5 => 'Error to save page. Please try again.',
-        6 => 'Error to Place order',
-        7 => 'Orders Not FulFilled for requested customer',
+        6 => 'Page Successfully updated.',
+        7 => 'Error to save page. Please try again.',
+        
         8 => 'Configurations saved successfully',
         9 => 'Your ad posted successfully.',
         10 => 'Your ad set as Favourite successfully.',

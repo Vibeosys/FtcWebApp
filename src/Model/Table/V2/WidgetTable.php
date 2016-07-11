@@ -26,14 +26,15 @@ class WidgetTable extends Table{
         return TableRegistry::get('widget');
     }
     
-    public function getWidgets($pageId = false) {
+    public function getWidgets($pageId) {
+        if(is_array($pageId))
+            $op = ' IN ';
+        else
+            $op = ' = ';
         $widgets = [];
         $counter = 0;
         $order = 'Position';
-         if($pageId)
-             $rows = $this->connect()->find()->where(['PageId =' => $pageId])->orderAsc($order);
-        else
-        $rows = $this->connect()->find()->orderAsc($order);
+        $rows = $this->connect()->find()->where(['PageId'.$op => $pageId])->orderAsc($order);
         if($rows->count())
             foreach ($rows as $row)    
             $widgets[$counter++] = new DTO\WidgetDto (
@@ -59,4 +60,22 @@ class WidgetTable extends Table{
         }
         return $result;
     }
+    
+    public function deleteWidgets($pageId) {
+        $conditions = [
+            'PageId =' => $pageId
+        ];
+        try {
+            $delete = $this->connect()->query()->delete();
+            $delete->where($conditions);
+            if($delete->execute())
+                return TRUE;
+            return FALSE;
+        } catch (Exception $ex) {
+            return FALSE;
+        }
+        
+    }
+    
+   
 }

@@ -87,7 +87,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
-    $routes->connect('pages/edit', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
+    $routes->connect('pages/edit', ['controller' => $version.'Pages', 'action' => 'editPage']);    
     $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'pageUnderConstruction']);    
     $routes->connect('user/assignsubscription', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);
     $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);

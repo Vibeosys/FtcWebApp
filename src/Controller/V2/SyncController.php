@@ -40,7 +40,7 @@ class SyncController extends Controller\ApiController{
             $result = $this->getTableObj()->newEntry($clients, $syncEntry->tableName, $syncEntry->tableOperation, $syncEntry->json);
         }
         
-        return $result;
+        return $result;//tableOperation
     }
     
     public function getPageUpdates() {

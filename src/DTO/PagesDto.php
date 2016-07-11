@@ -20,15 +20,21 @@ class PagesDto {
     public $status;
     public $pageType;
     public $active;
-   
-    
+    public $author;
+    public $updatedDate;
+
+
+
+
     public function __construct($pageId = null, $pageTitle = null, 
-            $status = null, $pageType = null, $active = null) {
+            $status = null, $pageType = null, $active = null, $author = null, $updatedDate = null) {
         $this->pageId = $pageId;
         $this->pageTitle = $pageTitle;
         $this->status = $status;
         $this->pageType = $pageType;
         $this->active= $active;
+        $this->author = $author;
+        $this->updatedDate = $updatedDate;
     }
     
 }

@@ -25,16 +25,19 @@ class PagesTable extends Table{
          return TableRegistry::get('mobile_pages');
      }
      
-     public function getPages() {
+     public function getPages($author = null) {
         /* $conditions = [
             'PageId =' => $pageId
         ];
-        */  
+        */ 
+         $condition = '';
+         if(!is_null($author))
+             $condition .= 'and mobile_pages.Author ='.$author;
          $joins = [
              'U' => [
                  'table' => 'users',
                  'type' => 'INNER',
-                 'conditions' => 'mobile_pages.Author = U.userid'
+                 'conditions' => 'mobile_pages.Author = U.userid '.$condition
              ]
          ];
          $fields = [
@@ -42,7 +45,8 @@ class PagesTable extends Table{
              'PageTitle' => 'mobile_pages.PageTitle',
              'Status' => 'mobile_pages.Status',
              'PageTypeId' => 'mobile_pages.PageTypeId',
-             'Active' => 'mobile_pages.Active'
+             'Active' => 'mobile_pages.Active',
+             'UpdatedDate' => 'mobile_pages.UpdatedDate'
          ];
         $pages = [];
         $counter = 0;
@@ -55,7 +59,9 @@ class PagesTable extends Table{
                     $row->PageTitle, 
                     $row->Status, 
                     $row->PageTypeId,
-                    $row->Active);
+                    $row->Active,
+                    $row->Author,
+                    $row->UpdatedDate);
      return $pages;  
      }
      
@@ -72,7 +78,8 @@ class PagesTable extends Table{
                     $row->PageTitle, 
                     $row->Status, 
                     $row->PageTypeId,
-                    $row->Active);
+                    $row->Active,
+                    $row->Author);
         return $pages;
     }
      
@@ -101,4 +108,17 @@ class PagesTable extends Table{
             return TRUE;
         return FALSE;
      }
+     
+      public function updatePage(DTO\PageUpdateDto $page) {
+        
+        $tableObj = $this->connect();
+        $oldPage = $tableObj->get($page->pageId);
+        $oldPage->PageName = $page->pageName; 
+        $oldPage->Status = $page->pageStatus; 
+        $oldPage->PageTypeId = $page->pageType; 
+        $oldPage->UpdatedDate = date(DATE_TIME_FORMAT);
+        if($tableObj->save($oldPage))
+            return TRUE;
+        return FALSE;
+   }
 }

@@ -27,8 +27,8 @@ class WidgetController extends Controller\ApiController{
         return $result;
     }
     
-    public function getAllWidgets() {
-        $result = $this->getTableObj()->getWidgets();
+    public function getAllWidgets($pageId) {
+        $result = $this->getTableObj()->getWidgets($pageId);
         return $result;
     }
     
@@ -45,6 +45,19 @@ class WidgetController extends Controller\ApiController{
             return $result;
         }
         return FALSE;
+    }
+    
+    public function updatePageWidgets($widgets, $authorId, $subscriberId, $pageId) {
+        if($this->deletePageWidgets($pageId)){
+            $result = $this->insertNewWidget($widgets, $authorId, $subscriberId);
+            return $result;
+        }
+        return FALSE;
+    }
+    
+    public function deletePageWidgets($pageId) {
+        $result = $this->getTableObj()->deleteWidgets($pageId);
+        return $result;
     }
     
 }

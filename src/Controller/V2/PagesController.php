@@ -53,11 +53,19 @@ class PagesController extends Controller\ApiController {
 
     public function getPages() {
         $this->autoRender = false;
-        $this->conncetionCreator();
-        $pages = $this->getAllPages();
+        
+        $getPagesRequest = $this->getRequest();
+        $requestUser = \App\Request\V1\UserRequest::Deserialize($getPagesRequest->user);
+        $this->conncetionCreator($requestUser->subscriberId);
+        $pages = $this->getAllPages($requestUser->userId);
+        $pageId = [];
+        if(count($pages))
+        foreach ($pages as $page){
+            array_push($pageId, $page->pageId);
+        }
         $widgetController = new WidgetController();
         $pageTypeController = new PageTypeController();
-        $widgets = $widgetController->getAllWidgets();
+        $widgets = $widgetController->getAllWidgets($pageId);
         $pageType = $pageTypeController->getAllPageType();
         if (!empty($pages)) {
             $pagesCustomization = new \App\Response\V2\PageCustomizationResponse(
@@ -78,8 +86,8 @@ class PagesController extends Controller\ApiController {
         else
         $this->response->body(1);    
     }
-    public function getAllPages() {
-        $result = $this->getTableObj()->getPages();
+    public function getAllPages($userId) {
+        $result = $this->getTableObj()->getPages($userId);
         return $result;
     }
 
@@ -94,10 +102,33 @@ class PagesController extends Controller\ApiController {
         }
         return FALSE;
     }
+    
+   
 
     // website methods
-
+    public function getPageTypesList() {
+         $pageTypeController = new PageTypeController();
+        $pageType = $pageTypeController->getAllPageType();
+        $type = new \stdClass();
+        foreach ($pageType as $t){
+            $key = $t->pageTypeId;
+            $type->$key = $t->pageTypeDesc;
+        }
+        return $type;
+    }
+    
     public function pageList() {
+        $this->conncetionCreator(parent::readCookie('sub_id'));
+        $userController = new UserController();
+        $userId = $userController->getTableObj()->validateCredential(parent::readCookie('uname'));
+      
+        
+        $pages = $this->getAllPages($userId);
+          Log::debug($pages);
+        $this->set([
+            'pages' => $pages,
+            'type' => $this->getPageTypesList()
+                ]);
         
     }
 
@@ -236,7 +267,94 @@ class PagesController extends Controller\ApiController {
     }
     
     public function editPage() {
-        
+        $request = $this->request->data;
+        $widgetController = new WidgetController();
+        $this->conncetionCreator(parent::readCookie('sub_id'));
+        if($this->request->is('post') and isset($request['Edit'])){
+            $pageId = $request['pageId'];
+            $pageInfo = $this->getTableObj()->getSingalPage($pageId);
+            $widgets = $widgetController->getAllWidgets($pageId);
+            Log::debug($widgets);
+            Log::debug($pageInfo);
+            $this->set([
+                'page' => $pageInfo,
+                'widgets' => $widgets,
+                'scopeCount' => count($widgets)
+            ]);
+        }else if($this->request->is('post') and (isset ($request['save'])
+                or isset ($request['publish']))){
+            $insert = [];
+            $count = 0;
+            foreach ($request as $key => $value) {
+                if ($key != 'save' and $key != 'page' and $key != 'publish' and 
+                        $key != 'pageId' and $key != 'pageType' 
+                        and $key != 'status' and $key != 'active' and $key != 'author') {
+                    $widget = explode('-', $key);
+                    $insert[$count] = new DTO\WidgetSaperatorDto(
+                            $widget[0], $widget[1], $value);
+                    $all[$count++] = $widget[0];
+                }
+            }
+            $subscriberId = parent::readCookie('sub_id');
+            $authorId = $request['author'];
+            $pageName = $request['page'];
+            $pageId = $request['pageId'];
+            $pageStatus = $request['status'];
+            $pageActive = $request['active'];
+            $pageType = $this->getPageType($all);
+            if(isset($request['publish'])){
+              $pageStatus = ACTIVE;
+            $pageActive = ACTIVE;  
+            }
+            $result = $this->updatePage(
+                    new DTO\PageUpdateDto($pageId, $pageName, $pageType, 
+                            $pageStatus, $pageActive), $subscriberId, $authorId);
+            $pageInfo = $this->getTableObj()->getSingalPage($pageId);
+            $widgets = $widgetController->getAllWidgets($pageId);
+            if($result){
+                $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
+                $updateResult = $widgetController->updatePageWidgets(
+                        $completeWidget, $authorId, $subscriberId, $pageId);
+                if($updateResult){
+                     $pageInfo = $this->getTableObj()->getSingalPage($pageId);
+                     $widgets = $widgetController->getAllWidgets($pageId);
+                       $this->set([
+                    'message' => DTO\ErrorDto::getWebMessage(6),
+                    'color' => 'green',
+                    'page' => $pageInfo,
+                    'widgets' => $widgets,
+                    'scopeCount' => count($widgets)       
+                  ]); 
+                }else{
+                $this->set([
+                    'message' => DTO\ErrorDto::getWebMessage(7),
+                    'color' => 'red',
+                    'page' => $pageInfo,
+                    'widgets' => $widgets,
+                    'scopeCount' => count($widgets)
+            ]);}
+            }else{
+                   $this->set([
+                    'message' => DTO\ErrorDto::getWebMessage(7),
+                    'color' => 'red',
+                    'page' => $pageInfo,
+                    'widgets' => $widgets,
+                    'scopeCount' => count($widgets)   
+                ]);
+            }
+        } 
+    }
+    
+     public function updatePage($page, $subscriberId, $authorId) {
+        $result = $this->getTableObj()->updatePage($page);
+        if ($result) {
+            $syncEntry = new DTO\SyncInsertDto(
+                    $authorId, $this->tableName, UPDATE, $this->getTableObj()->getSingalPage($result), $subscriberId);
+            $syncController = new SyncController();
+            $syncController->makeSyncEntry($syncEntry);
+            return $result;
+        }
+        return FALSE;
     }
 
 }
