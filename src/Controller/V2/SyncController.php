@@ -48,7 +48,7 @@ class SyncController extends Controller\ApiController{
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user);
         $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
-        if(!$this->conncetionCreator()){
+        if(!$this->conncetionCreator($requestUser->subscriberId)){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;
@@ -71,7 +71,7 @@ class SyncController extends Controller\ApiController{
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user); 
         $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
-        if(!$this->conncetionCreator()){
+        if(!$this->conncetionCreator($requestUser->subscriberId)){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;

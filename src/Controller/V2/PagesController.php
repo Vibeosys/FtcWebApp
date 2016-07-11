@@ -349,7 +349,7 @@ class PagesController extends Controller\ApiController {
         $result = $this->getTableObj()->updatePage($page);
         if ($result) {
             $syncEntry = new DTO\SyncInsertDto(
-                    $authorId, $this->tableName, UPDATE, $this->getTableObj()->getSingalPage($result), $subscriberId);
+                    $authorId, $this->tableName, UPDATE, $this->getTableObj()->getSingalPage($page->pageId), $subscriberId);
             $syncController = new SyncController();
             $syncController->makeSyncEntry($syncEntry);
             return $result;

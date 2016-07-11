@@ -1,0 +1,277 @@
+2016-07-11 13:37:38 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:37:39 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:39:25 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:39:26 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:24 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:24 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:28 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:28 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:30 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 13:40:30 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:11:02 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:11:02 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://localhost/pages/page
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:16:16 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Request URL: /pages
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\vendor\cakephp\cakephp\src\Database\Statement\MysqlStatement.php(36): PDOStatement->execute(NULL)
+#1 D:\FtcWebApp\vendor\cakephp\cakephp\src\Database\Connection.php(272): Cake\Database\Statement\MysqlStatement->execute()
+#2 D:\FtcWebApp\vendor\cakephp\cakephp\src\Database\Query.php(188): Cake\Database\Connection->run(Object(Cake\ORM\Query))
+#3 D:\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(788): Cake\Database\Query->execute()
+#4 D:\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(739): Cake\ORM\Query->_performCount()
+#5 D:\FtcWebApp\src\Model\Table\V2\PagesTable.php(55): Cake\ORM\Query->count()
+#6 D:\FtcWebApp\src\Controller\V2\PagesController.php(90): App\Model\Table\V2\PagesTable->getPages(false)
+#7 D:\FtcWebApp\src\Controller\V2\PagesController.php(126): App\Controller\V2\PagesController->getAllPages(false)
+#8 [internal function]: App\Controller\V2\PagesController->pageList()
+#9 D:\FtcWebApp\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#10 D:\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#11 D:\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\V2\PagesController))
+#12 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#13 {main}
+
+
+2016-07-11 14:16:18 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Img could not be found.
+Request URL: /img/cake.power.gif
+Referer URL: http://192.168.1.142/pages
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:16:37 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Getpages could not be found.
+Request URL: /getpages
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:16:38 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Img could not be found.
+Request URL: /img/cake.power.gif
+Referer URL: http://192.168.1.142/getpages
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:17:23 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:17:25 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:19:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Upload could not be found.
+Request URL: /upload/screenshot-4.jpg
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:19:12 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Upload could not be found.
+Request URL: /upload/screenshot-4.jpg
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:19:17 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Upload could not be found.
+Request URL: /upload/screenshot-4.jpg
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:19:35 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:19:36 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/page
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:20:20 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:20:21 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:20:58 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:20:59 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:22:40 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:22:43 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:24:01 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.mp4
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-11 14:24:02 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Pages could not be found.
+Request URL: /pages/video.ogg
+Referer URL: http://192.168.1.142/pages/edit
+Client IP: 192.168.1.25
+Stack Trace:
+#0 D:\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+

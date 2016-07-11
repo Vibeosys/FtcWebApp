@@ -25,16 +25,13 @@ use Cake\Cache\Cache;
                         <?php } ?>
                     <div class="publish-btn">
                         <input type="submit" name="publish" value="Publish" class="btn btn-success">
-                        <input type="button" value="Cancel" class="btn btn-danger">
+                        <input type="button" value="Cancel" class="btn btn-danger cancel_page">
                     </div>
                 </div>
                 <div class="col-lg-12 mobile-show">
                     <div class="heading">
                         <h2>Toolbox</h2>
-
                     </div>
-
-
                     <ul class="tool-list-mobile">
                         <li><addimage></addimage></li>
                         <li><addlink></addlink></li>
@@ -44,7 +41,6 @@ use Cake\Cache\Cache;
                         <li><addweblink></addweblink></li>
                         <li><addrssfeed></addrssfeed></li>
                     </ul>
-
                 </div>
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
 
@@ -53,7 +49,8 @@ use Cake\Cache\Cache;
                         <div class="publish-btn">
                             <input type="button" value="Preview" class="btn btn-warning">
                             <input type="submit" name="save" value="Save as Draft" class="btn btn-info">
-                            <input type="button" value="Cancel" class="btn cancel-btn">
+                            <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
+                            <input type="hidden" id="page_viewer" value="" name="for">
                         </div>
                         <span class="title-text">
                             App Page Title</span>
@@ -583,6 +580,9 @@ use Cake\Cache\Cache;
 
     });
     $(document).ready(function () {
+        
+        
+        
 
         var url = '/getgalleryitems';
         $.ajax({
@@ -708,7 +708,10 @@ use Cake\Cache\Cache;
                 }
             });
         });
-
+        
+        $('.cancel_page').on('click', function(){
+            document.location.replace('/pages');
+        });
 
     });
 

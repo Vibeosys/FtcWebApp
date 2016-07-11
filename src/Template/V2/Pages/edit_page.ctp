@@ -196,7 +196,7 @@ use Cake\Cache\Cache;
                     </div>
 
                     <div class="page-item" id="privew-for-tool">
-
+                       <!--
                         <div class="image-preview push-space">
                             <img src="../img/download.jpg" class="img-responsive" width="200" height="200">
                         </div>
@@ -209,19 +209,13 @@ use Cake\Cache\Cache;
                         <div class="video-preview push-space">
                             <!--<video src="https://www.youtube.com/watch?v=0WyjWF1nZCM" controls>
                                         Your browser does not support the <code>video</code> element.
-                            </video>-->
+                            </video>
                             <iframe width="300" height="200" src="https://www.youtube.com/embed/fgExvIUYg5w"></iframe>
-                        </div>
+                               
+                        </div>--> 
                     </div>
                 </div>
             </div>
-
-            <!--   <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page mobile-size">
-                  
-              
-             
-          </div>-->
-
         </div>
     </div>
 
