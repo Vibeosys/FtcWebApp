@@ -20,13 +20,16 @@ class UserTable extends V1\UserTable{
         
     }
     
-    public function getUser($subscriberId) {
+    public function getUser($subscriberId, $pageFor = null) {
+        $conditions = '';
+        if(is_null($pageFor) or $pageFor == 1)
+            $conditions .= 'and US.SubscriberId ='.$subscriberId;
         
         $join = [
             'US' => [
                 'table' => 'user_subscription',
                 'type' => 'INNER',
-                'conditions' => 'users.userid = US.UserId and US.SubscriberId ='.$subscriberId
+                'conditions' => 'users.userid = US.UserId '.$conditions
             ]
         ];
         $fields = [

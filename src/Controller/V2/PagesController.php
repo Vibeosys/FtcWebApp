@@ -100,10 +100,11 @@ class PagesController extends Controller\ApiController {
     public function insertNewPage($newPage) {
         $result = $this->getTableObj()->insert($newPage);
         if ($result) {
+            $page = $this->getTableObj()->getSingalPage($result);
             $syncEntry = new DTO\SyncInsertDto(
-                    $newPage->author, $this->tableName, INSERT, $this->getTableObj()->getSingalPage($result), $newPage->subscriberId);
+                    $newPage->author, $this->tableName, INSERT, $page, $newPage->subscriberId);
             $syncController = new SyncController();
-            $syncController->makeSyncEntry($syncEntry);
+            $syncController->makeSyncEntry($syncEntry, $page->pageFor);
             return $result;
         }
         return FALSE;
@@ -258,7 +259,7 @@ class PagesController extends Controller\ApiController {
             $pageId = $this->insertNewPage($newPage);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
             $widgetController = new WidgetController();
-            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId);
+            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageFor);
             if($widgetResult){
                 $this->set([
                     'message' => DTO\ErrorDto::getWebMessage(4),

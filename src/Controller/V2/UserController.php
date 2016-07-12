@@ -77,8 +77,8 @@ class UserController extends V1\UserController{
     }
     
    
-    public function getAdminClients($subscriberId) {
-        $result = $this->getTableObj()->getUser($subscriberId);
+    public function getAdminClients($subscriberId, $pageFor = null) {
+        $result = $this->getTableObj()->getUser($subscriberId, $pageFor);
         return $result;
     }
     // Web methods

@@ -25,11 +25,11 @@ class SyncController extends Controller\ApiController{
         return new V2\SyncTable();
     }
     
-    public function makeSyncEntry(DTO\SyncInsertDto $syncEntry) {
+    public function makeSyncEntry(DTO\SyncInsertDto $syncEntry, $pageFor = null) {
         $this->reliseConnection();
         $this->conncetionCreator($syncEntry->subscriberId);
         $userController = new UserController();
-        $clients = $userController->getAdminClients($syncEntry->subscriberId);
+        $clients = $userController->getAdminClients($syncEntry->subscriberId, $pageFor);
         $this->reliseConnection();
         $this->conncetionCreator();
         if(is_array($syncEntry->json)){

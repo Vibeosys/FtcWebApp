@@ -22,12 +22,14 @@ class PagesDto {
     public $active;
     public $author;
     public $updatedDate;
+    public $pageFor;
 
 
 
 
     public function __construct($pageId = null, $pageTitle = null, 
-            $status = null, $pageType = null, $active = null, $author = null, $updatedDate = null) {
+            $status = null, $pageType = null, $active = null, $author = null, 
+            $updatedDate = null, $pageFor = null) {
         $this->pageId = $pageId;
         $this->pageTitle = $pageTitle;
         $this->status = $status;
@@ -35,6 +37,7 @@ class PagesDto {
         $this->active= $active;
         $this->author = $author;
         $this->updatedDate = $updatedDate;
+        $this->pageFor = $pageFor;
     }
     
 }
