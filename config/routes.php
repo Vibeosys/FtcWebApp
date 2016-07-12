@@ -76,19 +76,19 @@ Router::scope('/', function (RouteBuilder $routes) {
     $version = 'V2/';
     $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);
     
-    $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'pageUnderConstruction']);    
+    $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
     $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
     $routes->connect('gallery', ['controller' => $version.'Gallery', 'action' => 'gallery']);    
-    $routes->connect('database', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
-    $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
-    $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
-    $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
+    $routes->connect('database', ['controller' => $version.'Home', 'action' => 'database']);    
+    $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'editDatabase']);    
+    $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
+    $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
     $routes->connect('appnotification', ['controller' => $version.'AppNotification', 'action' => 'appNotification']);    
-    $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);    
+    $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
     $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
     $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
     $routes->connect('pages/edit', ['controller' => $version.'Pages', 'action' => 'editPage']);    
-    $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'pageUnderConstruction']);    
+    $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
     $routes->connect('user/assignsubscription', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);
     $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);
     $routes->connect('getcookie', ['controller' => $version.'Home', 'action' => 'getCookie']);
