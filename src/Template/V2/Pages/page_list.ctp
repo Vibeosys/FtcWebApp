@@ -47,8 +47,9 @@ use Cake\Cache\Cache;
                           </thead>
                           <tbody>
                            <?php  foreach ($pages as $page){ ?>   
-                          <form action="../pages/edit" method="post">
+                          
                               <tr>
+                            <form action="../pages/edit" method="post">      
                                   <td><?= $i++ ?><input type="hidden" value="<?= $page->pageId ?>" name="pageId" ></td>
                               <td><?= $page->pageTitle ?></td>
                               <td><?= $page->updatedDate ?><input type="hidden" value="<?= $page->status ?>" name="pageStatus" ></td>
@@ -62,8 +63,8 @@ use Cake\Cache\Cache;
                                   <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" name="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
                               </button>
                               </td>
+                               </form>
                             </tr>
-                          </form>
                            <?php  } ?>   
                           </tbody>
                         </table>

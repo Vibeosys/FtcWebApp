@@ -19,6 +19,9 @@ class HomeController extends Controller\ApiController{
     
     public function index() {
         $username = parent::readCookie('uname');
+        $userController = new UserController();
+        $userId = $userController->checkUserCredential($username);
+        parent::writeCookie('cur_ad_id', $userId);
         $subscriberId = parent::readCookie('sub_id');
         if(!isset($subscriberId) and !isset($username)){
               $this->redirect ('admin/login');

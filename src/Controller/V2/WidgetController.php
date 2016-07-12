@@ -47,9 +47,9 @@ class WidgetController extends Controller\ApiController{
         return FALSE;
     }
     
-    public function updatePageWidgets($widgets, $authorId, $subscriberId, $pageId) {
+    public function updatePageWidgets($widgets, $authorId, $subscriberId, $pageId, $pageFor) {
         if($this->deletePageWidgets($pageId)){
-            $result = $this->insertNewWidget($widgets, $authorId, $subscriberId);
+            $result = $this->insertNewWidget($widgets, $authorId, $subscriberId, $pageFor);
             return $result;
         }
         return FALSE;

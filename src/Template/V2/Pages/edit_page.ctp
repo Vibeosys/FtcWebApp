@@ -62,6 +62,7 @@ use Cake\Cache\Cache;
                         <input type="hidden" name="status" value="<?= $page->status ?>">
                         <input type="hidden" name="active" value="<?= $page->active ?>">
                         <input type="hidden" name="author" value="<?= $page->author ?>">
+                        <input type="hidden" name="for" value="<?= $page->pageFor ?>">
                         <img id="page_loader" style="width: 38px;margin: 2px 0px;display: none" src="../img/log_loader.gif" alt="Please Wait">
                         <p id="page_name_check_msg" style="margin: 0 0 -8px;display: none"><p>
                     </div>

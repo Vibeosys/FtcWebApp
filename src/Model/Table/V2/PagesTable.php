@@ -120,7 +120,7 @@ class PagesTable extends Table{
         
         $tableObj = $this->connect();
         $oldPage = $tableObj->get($page->pageId);
-        $oldPage->PageName = $page->pageName; 
+        $oldPage->PageTitle = $page->pageName; 
         $oldPage->Status = $page->pageStatus; 
         $oldPage->PageTypeId = $page->pageType; 
         $oldPage->UpdatedDate = date(DATE_TIME_FORMAT);

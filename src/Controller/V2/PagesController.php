@@ -244,7 +244,8 @@ class PagesController extends Controller\ApiController {
                 }
             }
            // $this->conncetionCreator();
-            $author = 14571;
+            // get current login admin user id
+            $author = parent::readCookie('cur_ad_id');
             $subscriberId = parent::readCookie('sub_id');
             $pageName = $data['page'];
             $pageStatus = INACTIVE;
@@ -302,7 +303,8 @@ class PagesController extends Controller\ApiController {
             foreach ($request as $key => $value) {
                 if ($key != 'save' and $key != 'page' and $key != 'publish' and 
                         $key != 'pageId' and $key != 'pageType' 
-                        and $key != 'status' and $key != 'active' and $key != 'author') {
+                        and $key != 'status' and $key != 'active' and $key != 'author'
+                        and $key != 'for') {
                     $widget = explode('-', $key);
                     $insert[$count] = new DTO\WidgetSaperatorDto(
                             $widget[0], $widget[1], $value);
@@ -315,6 +317,7 @@ class PagesController extends Controller\ApiController {
             $pageId = $request['pageId'];
             $pageStatus = $request['status'];
             $pageActive = $request['active'];
+            $pageFor = $request['for'];
             $pageType = $this->getPageType($all);
             if(isset($request['publish'])){
               $pageStatus = ACTIVE;
@@ -322,13 +325,13 @@ class PagesController extends Controller\ApiController {
             }
             $result = $this->updatePage(
                     new DTO\PageUpdateDto($pageId, $pageName, $pageType, 
-                            $pageStatus, $pageActive), $subscriberId, $authorId);
+                            $pageStatus, $pageActive, $pageFor), $subscriberId, $authorId);
             $pageInfo = $this->getTableObj()->getSingalPage($pageId);
             $widgets = $widgetController->getAllWidgets($pageId);
             if($result){
                 $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
                 $updateResult = $widgetController->updatePageWidgets(
-                        $completeWidget, $authorId, $subscriberId, $pageId);
+                        $completeWidget, $authorId, $subscriberId, $pageId, $pageFor);
                 if($updateResult){
                      $pageInfo = $this->getTableObj()->getSingalPage($pageId);
                      $widgets = $widgetController->getAllWidgets($pageId);
@@ -365,7 +368,7 @@ class PagesController extends Controller\ApiController {
             $syncEntry = new DTO\SyncInsertDto(
                     $authorId, $this->tableName, UPDATE, $this->getTableObj()->getSingalPage($page->pageId), $subscriberId);
             $syncController = new SyncController();
-            $syncController->makeSyncEntry($syncEntry);
+            $syncController->makeSyncEntry($syncEntry, $page->pageFor);
             return $result;
         }
         return FALSE;

@@ -19,14 +19,16 @@ class PageUpdateDto {
     public $pageType;
     public $pageStatus;
     public $active;
+    public $pageFor;
 
 
     public function __construct($pageId = null, $pageName = null, 
-            $pageType = null, $pageStatus = null, $active = null) {
+            $pageType = null, $pageStatus = null, $active = null, $pageFor = null) {
         $this->pageId = $pageId;
         $this->pageName = $pageName;
         $this->pageType = $pageType;
         $this->pageStatus = $pageStatus;
         $this->active = $active;
+        $this->pageFor = $pageFor;
     }
 }
