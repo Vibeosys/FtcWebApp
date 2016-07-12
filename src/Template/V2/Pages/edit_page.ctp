@@ -411,6 +411,7 @@ use Cake\Cache\Cache;
 <?= $this->Html->script('angular.js') ?>
 <script type='text/javascript'>
      var allowed = 1;
+     var pre_page_name = '<?= $page->pageTitle ?>';
 
     function checkME(e, self) {
         var selected_type = $(self).attr('vbtype');
@@ -605,8 +606,8 @@ use Cake\Cache\Cache;
                 var id = attrs['id'];
 
                 $("." + id).remove();
-                var text = $('#space-for-tool').text();
-                if (text === '') {
+                var len = $('#space-for-tool').children().length;
+                if (  len === 0 ) {
                     allowed = 1;
                     $('#space-for-tool').attr('type', '0');
                 }
@@ -725,6 +726,11 @@ use Cake\Cache\Cache;
         $('#page').on('blur', function (e) {
             $('#page_loader').css('display', 'block');
             var pagename = $(this).val();
+            if(pagename === pre_page_name){
+                 $('#page_loader').css('display', 'none');
+                e.preventDefault();
+                return false;
+            }
             $.post('/pagenameavailable', {page: pagename}, function (result) {
                 if (result === '1') {
                     $('#page_loader').css('display', 'none');
