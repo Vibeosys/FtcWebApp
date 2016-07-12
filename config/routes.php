@@ -97,6 +97,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('getuserlist', ['controller' => $version.'User', 'action' => 'getUserList']);
     $routes->connect('getgalleryitems', ['controller' => $version.'Gallery', 'action' => 'getAllGallery']);
     $routes->connect('galleryitemupload', ['controller' => $version.'Gallery', 'action' => 'galleryItemUpload']);
+    $routes->connect('readvideo', ['controller' => $version.'Gallery', 'action' => 'readVideo']);
  
     
  $routes->fallbacks('DashedRoute');    

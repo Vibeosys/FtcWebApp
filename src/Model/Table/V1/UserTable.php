@@ -130,6 +130,18 @@ class UserTable extends Table{
          return $user;
     }
     
+    
+    public function isGroup($uname, $group) {
+        $conditions = [
+                'groupid =' => $group,
+                'username =' => $uname
+            ];  
+         $rows = $this->connect()->find()->where($conditions);
+         if($rows->count())
+             return 1;
+         return 0;
+    }
+    
     public function updateProfile($userId, V1\UpdateUserProfileRequest $update) {
         $tableObj = $this->connect();
         $entity = $tableObj->get($userId);

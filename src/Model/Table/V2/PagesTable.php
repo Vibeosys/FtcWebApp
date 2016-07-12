@@ -25,7 +25,7 @@ class PagesTable extends Table{
          return TableRegistry::get('mobile_pages');
      }
      
-     public function getPages($author = null) {
+     public function getPages($author = null, $for = null) {
         /* $conditions = [
             'PageId =' => $pageId
         ];
@@ -33,6 +33,9 @@ class PagesTable extends Table{
          $condition = '';
          if(!is_null($author))
              $condition .= 'and mobile_pages.Author ='.$author;
+         if(!is_null($for))
+             $condition .= ' and mobile_pages.PageFor = '.$for;
+         
          $joins = [
              'U' => [
                  'table' => 'users',
@@ -94,6 +97,8 @@ class PagesTable extends Table{
          $newEntity->UpdatedDate = date(DATE_TIME_FORMAT);
          $newEntity->Active = $pageInsertDto->active;
          $newEntity->Author = $pageInsertDto->author;
+         $newEntity->PageFor = $pageInsertDto->pageFor;
+         Log::debug('This page for :'.$pageInsertDto->pageFor);
          if($tableobj->save($newEntity))
              return $newEntity->PageId;
          return FALSE;

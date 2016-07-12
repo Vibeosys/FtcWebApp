@@ -47,5 +47,10 @@ define('ONESIGANL_APP_AUTH_KEY', 'MDYyZjA1ZDItMmFkMS00NjBlLWI4YzMtYTRmNjEwNmM2OW
 
 define('GALLERY_ITEM_UPLOAD_DIR', WWW_ROOT.'upload');
 
+define('SUBSCRIBER_PAGE','1');
+
+define('NON_SUBSCRIBER_PAGE', '0');
+
+
 
 

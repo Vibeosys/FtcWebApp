@@ -23,6 +23,7 @@ use Cake\Cache\Cache;
         <?= $this->Html->css('icons.css') ?>
         <?= $this->Html->css('animate.min.css') ?>
         <?= $this->Html->css('font-awesome.css') ?>
+   
         <?php if($this->fetch('css')){
            echo $this->fetch('css');   
         }?>
@@ -132,6 +133,7 @@ use Cake\Cache\Cache;
         <?= $this->Html->script('jquery.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
         <?= $this->Html->script('jquery.app.js') ?>
+       
         
        
        

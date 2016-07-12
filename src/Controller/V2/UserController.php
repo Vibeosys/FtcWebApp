@@ -186,4 +186,9 @@ class UserController extends V1\UserController{
     public function pageUnderConstruction() {
         
     }
+    
+    public function userGroupCheck($uname, $group) {
+        $result = $this->getTableObj()->isGroup($uname, $group);
+        return $result;
+    }
 }

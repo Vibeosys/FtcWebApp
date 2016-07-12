@@ -13,6 +13,9 @@ use Cake\Cache\Cache;
     $this->assign('title', 'Page Customization');
     $this->assign('page_list','1');
 ?>
+<?php $this->start('css'); ?>
+     <?= $this->Html->css('popup.css') ?>
+<?php $this->end('css'); ?>
 <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
     <div class="container">
         <div class="row">
@@ -126,6 +129,18 @@ use Cake\Cache\Cache;
     </div>
 
 </section>
+ <div class='popup'>
+<div class='popup-inner'>
+<!--<img src='images/close.png' alt='quit' class='x' id='x' />-->
+    <h3 class="text-center">
+This page for
+
+</h3>
+    <div class="center-block text-center ">
+        <button id="sub" value="1" class="btn btn-primary subscriber-btn close-btn popup_sub">Subscriber</button><br>
+        <button id="non_sub" value="0" class="btn btn-primary non-subscriber-btn close-btn popup_sub">Non Subscriber</button></div>
+</div>
+</div>
 
 <div id="myModal" class="modal animated zoomin">
     <div class="modal-dialog img-dialog">
@@ -226,8 +241,8 @@ use Cake\Cache\Cache;
                                         <a class="thumbnail-video" href="#">
 
                                             <video class="video" controls>
-                                                <source src="video.mp4" type="video/mp4">
-                                                <source src="video.ogg" type="video/ogg">
+                                                <source src="" type="video/mp4">
+                                             <!--   <source src="video.ogg" type="video/ogg"> -->
                                                 Your browser does not support HTML5 video.
                                             </video>
                                             <!--
@@ -374,6 +389,7 @@ use Cake\Cache\Cache;
     </div>
 </div>
 <?php $this->start('script')?>
+
 <?= $this->Html->script('angular.js') ?>
 <script type='text/javascript'>
     var allowed = 1;
@@ -714,8 +730,10 @@ use Cake\Cache\Cache;
         });
 
     });
-
-
+var is_admin = <?= $is_admin ?>;
+<?php if(isset($color)){?>
+    is_admin = 0;
+<?php } ?>
 </script>  
-
+ <?= $this->Html->script('popup.js') ?>
 <?php $this->end('script')?>

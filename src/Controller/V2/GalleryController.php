@@ -56,4 +56,16 @@ class GalleryController extends Controller\ApiController {
     public function gallery() {
      
     }
+    
+    public function readVideo() {
+        $this->autoRender = FALSE;
+        $local_file = 'http://localhost/upload/video.mp4';
+        $size = filesize($local_file);
+        
+        header("Content-Type: video/mp4");
+        header("Content-Length: ".$size);
+      //  $this->response->type('html');
+        //$this->response->body();
+        readfile($local_file);
+    }
 }

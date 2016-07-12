@@ -73,13 +73,12 @@ use Cake\Cache\Cache;
                             '<div><button><span id="'+ json.itemId+'" class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
                             '</div></div></div>';
                     }else{
-                   // html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
+                    html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
                           
-                       //     '<video class="video" controls>'+
-                            //          '<source src="../'+ json.itemUrl+'" type="video/mp4">'+
-                                      //'<source src="http://localhost/upload/video.ogg" type="video/ogg">'+
-                           //           'Your browser does not support HTML5 video.'+
-                       //             '</video></div>';    
+                            '<video class="video" controls>'+
+                                      '<source src="/readvideo" type="video/mp4">'+
+                                      'Your browser does not support HTML5 video.'+
+                             '</video></div>';    
                         
                     }
                   });

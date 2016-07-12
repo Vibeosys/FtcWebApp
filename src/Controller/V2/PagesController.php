@@ -57,7 +57,13 @@ class PagesController extends Controller\ApiController {
         $getPagesRequest = $this->getRequest();
         $requestUser = \App\Request\V1\UserRequest::Deserialize($getPagesRequest->user);
         $this->conncetionCreator($requestUser->subscriberId);
-        $pages = $this->getAllPages($requestUser->userId);
+        $licenceController = new LicensesController();
+        $licenceCheck = $licenceController->isLicenseValid($requestUser->userId);
+        $for = null;
+        if(!is_bool($licenceCheck))
+            $for = NON_SUBSCRIBER_PAGE;
+        
+        $pages = $this->getAllPages(null, $for);
         $pageId = [];
         if(count($pages))
         foreach ($pages as $page){
@@ -86,8 +92,8 @@ class PagesController extends Controller\ApiController {
         else
         $this->response->body(1);    
     }
-    public function getAllPages($userId) {
-        $result = $this->getTableObj()->getPages($userId);
+    public function getAllPages($userId, $for = null) {
+        $result = $this->getTableObj()->getPages($userId, $for);
         return $result;
     }
 
@@ -221,32 +227,34 @@ class PagesController extends Controller\ApiController {
     }
     public function page() {
         $data = $this->request->data;
+        $this->conncetionCreator(parent::readCookie('sub_id'));
         if ($this->request->is('post')) {
-           // $this->autoRender = FALSE;
+           //$this->autoRender = FALSE;
             $insert = [];
             $count = 0;
-           // print_r($data);
+            //print_r($data);
             //return;
             foreach ($data as $key => $value) {
-                if ($key != 'save' and $key != 'page' and $key != 'publish') {
+                if ($key != 'save' and $key != 'page' and $key != 'publish' and $key != 'for') {
                     $widget = explode('-', $key);
                     $insert[$count] = new DTO\WidgetSaperatorDto(
                             $widget[0], $widget[1], $value);
                     $all[$count++] = $widget[0];
                 }
             }
-            $this->conncetionCreator();
+           // $this->conncetionCreator();
             $author = 14571;
             $subscriberId = parent::readCookie('sub_id');
             $pageName = $data['page'];
             $pageStatus = INACTIVE;
             $pageActive = INACTIVE;
+            $pageFor = $data['for'];
             if(isset($data['publish'])){
               $pageStatus = ACTIVE;
             $pageActive = ACTIVE;  
             }
             $newPage = new DTO\PageInsertDto($pageName, $pageStatus, 
-                    $this->getPageType($all), $pageActive, $author, $subscriberId);
+                    $this->getPageType($all), $pageActive, $author, $subscriberId, $pageFor);
             $pageId = $this->insertNewPage($newPage);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
             $widgetController = new WidgetController();
@@ -264,6 +272,11 @@ class PagesController extends Controller\ApiController {
             }
            
         }
+        $userController = new UserController();
+        if($userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP))
+            $this->set (['is_admin' => 1]);
+        else
+            $this->set (['is_admin' => 0]);
     }
     
     public function editPage() {
