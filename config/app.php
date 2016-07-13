@@ -9,7 +9,7 @@ return [
      * Development Mode:
      * true: Errors and warnings shown.
      */
-    'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
+    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
 
     /**
      * Configure basic information about the application.
@@ -177,7 +177,7 @@ return [
      * 'YourTransport.php', where 'Your' is the name of the transport.
      */
     'EmailTransport' => [
-        'default' => [
+        'dfault' => [
             'className' => 'Mail',
             // The following keys are used in SMTP transports
             'host' => 'localhost',
@@ -188,6 +188,18 @@ return [
             'client' => null,
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
+        'default' => [
+            'className' => 'Smtp',
+            // The following keys are used in SMTP transports
+            'host' => 'smtp.office365.com',
+            'port' => 587,
+            'timeout' => 30,
+            'username' => 'hr@vibeosys.com',
+            'password' => 'Buka3736',
+            'client' => null,
+            'tls' => true,
+
         ],
     ],
 
@@ -222,16 +234,16 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => 'localhost',
+            'host' => '192.168.1.6',
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
-            'database' => 'my_app',
+            'username' => 'dev',
+            'password' => 'dev',
+            'database' => 'forex_trade_copier',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -246,7 +258,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => false,
+            'quoteIdentifiers' => true,
 
             /**
              * During development, if using MySQL < 5.6, uncommenting the

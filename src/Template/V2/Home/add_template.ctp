@@ -14,6 +14,9 @@ use Cake\Cache\Cache;
     $this->assign('notes','1');
     
 ?>
+<?php $this->start('css');?>
+   <?= $this->Html->css('editor.css') ?>
+<?php $this->end('css');?>
 
  <section class="page-section" >
         <div class="container">
@@ -23,7 +26,7 @@ use Cake\Cache\Cache;
                     <div class="email-outer">
                         <div class="email-inner">
                             <lable>Template Name
-                            <input type="text" class="form-control template-name" value="Template">
+                            <input type="text" class="form-control" value="Template">
                             </lable>
                         </div>
                    </div>
@@ -31,7 +34,7 @@ use Cake\Cache\Cache;
                    <div class="email-outer">
                         <div class="email-inner">
                             <lable>Template   
-                            <textarea rows='15'  class='form-control margin10 template'  id="html-template" ></textarea>
+                           <textarea id="txtEditor"></textarea> 
                             </lable>
                             
                         </div>
@@ -47,3 +50,13 @@ use Cake\Cache\Cache;
            </div>
            
        </section>
+
+<?php $this->start('script');?>
+   <?= $this->Html->script('editor.js') ?>
+
+<script type="text/javascript">
+			$(document).ready(function() {
+				$("#txtEditor").Editor();
+			});
+		</script>
+<?php $this->end('script');?>

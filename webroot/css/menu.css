@@ -48,6 +48,8 @@ body{
 }
 #topnav .topbar-main .logo i {
   color: #1F5689;
+     top: 22px;
+  position: relative;
 }
 #topnav .topbar-main .badge {
   position: absolute;

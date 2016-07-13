@@ -469,7 +469,7 @@ width: 320px;
    
 }
 .login form .input, .login input[type=text], input[type=password] {
-    font-size: 24px;
+    font-size: 22px;
     width: 100%;
     padding: 3px;
     margin: 2px 6px 16px 0;
@@ -477,8 +477,9 @@ width: 320px;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.07);
     outline: 0;
     transition: 50ms border-color ease-in-out;
-    color: #32373c;
+   color: #6d6f71;
     border: 1px solid #ddd;
+    font-weight: 100;
 }
 .btn-large {
     height: 30px;
@@ -518,6 +519,7 @@ width: 320px;
     position: absolute;
     top: 19px;
     left: 63px;
+    display: inline-flex;
 }
 .heading-top{
     font-size: 40px;
@@ -592,6 +594,7 @@ input[type=search]{
     margin-top: 40px;
     font-size: 20px;
     padding: 10px 20px 10px 20px ;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
 }
 .cancel{
     margin-left: 20px; 
@@ -620,13 +623,18 @@ input[type=search]{
     top: 17px;
     right: 12px;
     font-size: 16px;
+    display: inline-flex;
 }
 .panel_toolbox>li>a:hover {
     background: #F95A09;
     color: white;
 }
 .panel_toolbox>li>a>i {
-display: inline;
+    display: inline;
+    position: relative;
+    top: 1px;
+    right: 5px;
+    font-size: 21px;
 }
 .btn-contact{
         display: inline-block;

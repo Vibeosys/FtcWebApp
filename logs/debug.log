@@ -1,0 +1,880 @@
+2016-07-12 12:17:52 Debug: connection create for subscriber :2
+2016-07-12 12:18:25 Debug: Subscriber Id of user :- 
+2016-07-12 12:18:25 Debug: Array
+(
+    [username =] => 
+    [password =] => d41d8cd98f00b204e9800998ecf8427e
+)
+
+2016-07-12 12:20:31 Debug: connection create for subscriber :2
+2016-07-12 12:20:32 Debug: Subscriber Id of user :- 2
+2016-07-12 12:20:32 Debug: Array
+(
+    [username =] => nsveer
+    [password =] => d3251d15b5aee80b504ac57e48a64685
+)
+
+2016-07-12 12:20:32 Debug: Is present license for user:- 14571
+2016-07-12 12:20:32 Debug: Is valid license for user:- 14571 condition for license is
+2016-07-12 12:20:32 Debug: Array
+(
+    [userid =] => 14571
+    [date_expired >] => 2016-07-12 12:20:32
+)
+
+2016-07-12 12:20:33 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:20:33 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:20:33 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:20:33 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:26:28 Debug: connection create for subscriber :2
+2016-07-12 12:26:29 Debug: Subscriber Id of user :- 2
+2016-07-12 12:26:29 Debug: Array
+(
+    [username =] => nsveer
+    [password =] => d3251d15b5aee80b504ac57e48a64685
+)
+
+2016-07-12 12:26:29 Debug: Is present license for user:- 14571
+2016-07-12 12:26:29 Debug: Is valid license for user:- 14571 condition for license is
+2016-07-12 12:26:29 Debug: Array
+(
+    [userid =] => 14571
+    [date_expired >] => 2016-07-12 12:26:29
+)
+
+2016-07-12 12:26:30 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:26:30 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:26:30 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:26:30 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:26:41 Debug: connection create for subscriber :2
+2016-07-12 12:26:42 Debug: Subscriber Id of user :- 2
+2016-07-12 12:26:42 Debug: Array
+(
+    [username =] => nsveer
+    [password =] => d3251d15b5aee80b504ac57e48a64685
+)
+
+2016-07-12 12:26:42 Debug: Is present license for user:- 14571
+2016-07-12 12:26:42 Debug: Is valid license for user:- 14571 condition for license is
+2016-07-12 12:26:42 Debug: Array
+(
+    [userid =] => 14571
+    [date_expired >] => 2016-07-12 12:26:42
+)
+
+2016-07-12 12:26:43 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:26:43 Debug: name of cookie: unameand value is :nsveer
+2016-07-12 12:26:43 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:26:44 Debug: name of cookie: sub_idand value is :2
+2016-07-12 12:37:41 Debug: connection create for subscriber :2
+2016-07-12 12:37:41 Debug: Array
+(
+    [username =] => nsveer
+)
+
+2016-07-12 12:37:41 Debug: Array
+(
+    [0] => App\DTO\PagesDto Object
+        (
+            [pageId] => 1
+            [pageTitle] => Custom
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-11T12:39:48+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [1] => App\DTO\PagesDto Object
+        (
+            [pageId] => 2
+            [pageTitle] => Web view
+            [status] => 1
+            [pageType] => 2
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [2] => App\DTO\PagesDto Object
+        (
+            [pageId] => 3
+            [pageTitle] => Rss  feed
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [3] => App\DTO\PagesDto Object
+        (
+            [pageId] => 4
+            [pageTitle] => Trade News
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [4] => App\DTO\PagesDto Object
+        (
+            [pageId] => 16
+            [pageTitle] => 
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T06:22:35+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [5] => App\DTO\PagesDto Object
+        (
+            [pageId] => 17
+            [pageTitle] => Page 1
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-02T08:22:52+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [6] => App\DTO\PagesDto Object
+        (
+            [pageId] => 18
+            [pageTitle] => One Signal
+            [status] => 1
+            [pageType] => 2
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T07:43:46+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [7] => App\DTO\PagesDto Object
+        (
+            [pageId] => 19
+            [pageTitle] => Web app test
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-02T10:10:32+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [8] => App\DTO\PagesDto Object
+        (
+            [pageId] => 20
+            [pageTitle] => nh
+            [status] => 0
+            [pageType] => 1
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-06T14:02:09+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [9] => App\DTO\PagesDto Object
+        (
+            [pageId] => 21
+            [pageTitle] => Test 
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T11:31:33+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [10] => App\DTO\PagesDto Object
+        (
+            [pageId] => 22
+            [pageTitle] => test rss
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T12:39:51+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [11] => App\DTO\PagesDto Object
+        (
+            [pageId] => 23
+            [pageTitle] => Test22
+            [status] => 0
+            [pageType] => 3
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T12:47:08+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [12] => App\DTO\PagesDto Object
+        (
+            [pageId] => 26
+            [pageTitle] => New Test Rss
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T13:06:49+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [13] => App\DTO\PagesDto Object
+        (
+            [pageId] => 27
+            [pageTitle] => new chages
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T16:09:46+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [14] => App\DTO\PagesDto Object
+        (
+            [pageId] => 28
+            [pageTitle] => Test For update and insert
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T06:19:22+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [15] => App\DTO\PagesDto Object
+        (
+            [pageId] => 29
+            [pageTitle] => News for all
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T08:35:55+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [16] => App\DTO\PagesDto Object
+        (
+            [pageId] => 32
+            [pageTitle] => Web view all
+            [status] => 1
+            [pageType] => 2
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:08:58+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [17] => App\DTO\PagesDto Object
+        (
+            [pageId] => 34
+            [pageTitle] => New service
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:14:07+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [18] => App\DTO\PagesDto Object
+        (
+            [pageId] => 35
+            [pageTitle] => Payment discount
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:19:39+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [19] => App\DTO\PagesDto Object
+        (
+            [pageId] => 36
+            [pageTitle] => non sub test page
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T11:51:13+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [20] => App\DTO\PagesDto Object
+        (
+            [pageId] => 37
+            [pageTitle] => Page For All
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T12:07:40+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [21] => App\DTO\PagesDto Object
+        (
+            [pageId] => 38
+            [pageTitle] => Test Page For All
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T12:23:09+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+)
+
+2016-07-12 12:38:28 Debug: connection create for subscriber :2
+2016-07-12 12:38:28 Debug: Array
+(
+    [username =] => nsveer
+)
+
+2016-07-12 12:38:28 Debug: Array
+(
+    [0] => App\DTO\PagesDto Object
+        (
+            [pageId] => 1
+            [pageTitle] => Custom
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-11T12:39:48+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [1] => App\DTO\PagesDto Object
+        (
+            [pageId] => 2
+            [pageTitle] => Web view
+            [status] => 1
+            [pageType] => 2
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [2] => App\DTO\PagesDto Object
+        (
+            [pageId] => 3
+            [pageTitle] => Rss  feed
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [3] => App\DTO\PagesDto Object
+        (
+            [pageId] => 4
+            [pageTitle] => Trade News
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-06-22T19:16:26+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [4] => App\DTO\PagesDto Object
+        (
+            [pageId] => 16
+            [pageTitle] => 
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T06:22:35+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [5] => App\DTO\PagesDto Object
+        (
+            [pageId] => 17
+            [pageTitle] => Page 1
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-02T08:22:52+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [6] => App\DTO\PagesDto Object
+        (
+            [pageId] => 18
+            [pageTitle] => One Signal
+            [status] => 1
+            [pageType] => 2
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T07:43:46+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [7] => App\DTO\PagesDto Object
+        (
+            [pageId] => 19
+            [pageTitle] => Web app test
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-02T10:10:32+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [8] => App\DTO\PagesDto Object
+        (
+            [pageId] => 20
+            [pageTitle] => nh
+            [status] => 0
+            [pageType] => 1
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-06T14:02:09+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [9] => App\DTO\PagesDto Object
+        (
+            [pageId] => 21
+            [pageTitle] => Test 
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T11:31:33+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [10] => App\DTO\PagesDto Object
+        (
+            [pageId] => 22
+            [pageTitle] => test rss
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T12:39:51+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [11] => App\DTO\PagesDto Object
+        (
+            [pageId] => 23
+            [pageTitle] => Test22
+            [status] => 0
+            [pageType] => 3
+            [active] => 0
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T12:47:08+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [12] => App\DTO\PagesDto Object
+        (
+            [pageId] => 26
+            [pageTitle] => New Test Rss
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T13:06:49+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [13] => App\DTO\PagesDto Object
+        (
+            [pageId] => 27
+            [pageTitle] => new chages
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-07T16:09:46+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [14] => App\DTO\PagesDto Object
+        (
+            [pageId] => 28
+            [pageTitle] => Test For update and insert
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T06:19:22+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [15] => App\DTO\PagesDto Object
+        (
+            [pageId] => 29
+            [pageTitle] => News for all
+            [status] => 1
+            [pageType] => 3
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T08:35:55+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [16] => App\DTO\PagesDto Object
+        (
+            [pageId] => 32
+            [pageTitle] => Web view all
+            [status] => 1
+            [pageType] => 2
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:08:58+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [17] => App\DTO\PagesDto Object
+        (
+            [pageId] => 34
+            [pageTitle] => New service
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:14:07+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [18] => App\DTO\PagesDto Object
+        (
+            [pageId] => 35
+            [pageTitle] => Payment discount
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T10:19:39+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [19] => App\DTO\PagesDto Object
+        (
+            [pageId] => 36
+            [pageTitle] => non sub test page
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T11:51:13+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [20] => App\DTO\PagesDto Object
+        (
+            [pageId] => 37
+            [pageTitle] => Page For All
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T12:07:40+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+    [21] => App\DTO\PagesDto Object
+        (
+            [pageId] => 38
+            [pageTitle] => Test Page For All
+            [status] => 1
+            [pageType] => 1
+            [active] => 1
+            [author] => 
+            [updatedDate] => Cake\I18n\FrozenTime Object
+                (
+                    [time] => 2016-07-12T12:23:09+00:00
+                    [timezone] => UTC
+                    [fixedNowTime] => 
+                )
+
+            [pageFor] => 
+        )
+
+)
+

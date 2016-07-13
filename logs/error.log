@@ -275,3 +275,359 @@ Stack Trace:
 #1 {main}
 
 
+2016-07-12 12:17:56 Error: [PDOException] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+Request URL: /v2/userSubLogin
+Referer URL: http://localhost/admin/login
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=loca...', 'my_app', 'secret', Array)
+#1 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(90): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(43): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Connection.php(317): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(438): Cake\Database\Connection->schemaCollection()
+#8 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(211): Cake\ORM\Table->schema()
+#9 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(169): Cake\ORM\Query->addDefaultTypes(Object(Cake\ORM\Table))
+#10 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(1252): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(Cake\ORM\Table))
+#11 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(955): Cake\ORM\Table->query()
+#12 E:\Pragnesh\client Project\FtcWebApp\src\Model\Table\V1\SubscriptionTable.php(29): Cake\ORM\Table->find()
+#13 E:\Pragnesh\client Project\FtcWebApp\src\Controller\V1\SubscriptionController.php(24): App\Model\Table\V1\SubscriptionTable->getConnection(2)
+#14 E:\Pragnesh\client Project\FtcWebApp\src\Controller\ApiController.php(58): App\Controller\V1\SubscriptionController->getCustomerConnection(2)
+#15 E:\Pragnesh\client Project\FtcWebApp\src\Controller\V2\UserController.php(56): App\Controller\ApiController->conncetionCreator(2)
+#16 [internal function]: App\Controller\V2\UserController->userSubLogin()
+#17 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#18 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#19 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\V2\UserController))
+#20 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#21 {main}
+
+
+2016-07-12 12:18:11 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Exception Attributes: array (
+  'class' => 'Css',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:18:25 Warning: Warning (2): Invalid argument supplied for foreach() in [E:\Pragnesh\client Project\FtcWebApp\src\Request\JsonDeserializer.php, line 27]
+Request URL: /v2/userSubLogin
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+App\Request\JsonDeserializer::Deserialize() - APP/Request\JsonDeserializer.php, line 27
+App\Controller\ApiController::getRequest() - APP/Controller\ApiController.php, line 42
+App\Controller\V2\UserController::userSubLogin() - APP/Controller\V2\UserController.php, line 52
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 429
+Cake\Routing\Dispatcher::_invoke() - CORE\src\Routing\Dispatcher.php, line 114
+Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2016-07-12 12:18:25 Warning: Warning (2): Invalid argument supplied for foreach() in [E:\Pragnesh\client Project\FtcWebApp\src\Request\JsonDeserializer.php, line 27]
+Request URL: /v2/userSubLogin
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+App\Request\JsonDeserializer::Deserialize() - APP/Request\JsonDeserializer.php, line 27
+App\Controller\V2\UserController::userSubLogin() - APP/Controller\V2\UserController.php, line 54
+Cake\Controller\Controller::invokeAction() - CORE\src\Controller\Controller.php, line 429
+Cake\Routing\Dispatcher::_invoke() - CORE\src\Routing\Dispatcher.php, line 114
+Cake\Routing\Dispatcher::dispatch() - CORE\src\Routing\Dispatcher.php, line 87
+[main] - ROOT\webroot\index.php, line 37
+
+
+
+2016-07-12 12:18:29 Error: [PDOException] SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+Request URL: /v2/userSubLogin
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Driver\PDODriverTrait.php(48): PDO->__construct('mysql:host=loca...', 'my_app', 'secret', Array)
+#1 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Driver\Mysql.php(90): Cake\Database\Driver\Mysql->_connect('mysql:host=loca...', Array)
+#2 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\BaseSchema.php(45): Cake\Database\Driver\Mysql->connect()
+#3 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Dialect\MysqlDialectTrait.php(63): Cake\Database\Schema\BaseSchema->__construct(Object(Cake\Database\Driver\Mysql))
+#4 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\Collection.php(52): Cake\Database\Driver\Mysql->schemaDialect()
+#5 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Schema\CachedCollection.php(43): Cake\Database\Schema\Collection->__construct(Object(Cake\Database\Connection))
+#6 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Database\Connection.php(317): Cake\Database\Schema\CachedCollection->__construct(Object(Cake\Database\Connection), true)
+#7 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(438): Cake\Database\Connection->schemaCollection()
+#8 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(211): Cake\ORM\Table->schema()
+#9 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Query.php(169): Cake\ORM\Query->addDefaultTypes(Object(Cake\ORM\Table))
+#10 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(1252): Cake\ORM\Query->__construct(Object(Cake\Database\Connection), Object(Cake\ORM\Table))
+#11 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\ORM\Table.php(955): Cake\ORM\Table->query()
+#12 E:\Pragnesh\client Project\FtcWebApp\src\Model\Table\V1\UserTable.php(72): Cake\ORM\Table->find()
+#13 E:\Pragnesh\client Project\FtcWebApp\src\Controller\V1\UserController.php(108): App\Model\Table\V1\UserTable->validateCredential(NULL, 'd41d8cd98f00b20...')
+#14 E:\Pragnesh\client Project\FtcWebApp\src\Controller\ApiController.php(102): App\Controller\V1\UserController->checkUserCredential(NULL, 'd41d8cd98f00b20...')
+#15 E:\Pragnesh\client Project\FtcWebApp\src\Controller\V2\UserController.php(65): App\Controller\ApiController->userValidation(Object(App\Request\V1\UserSubLoginRequest))
+#16 [internal function]: App\Controller\V2\UserController->userSubLogin()
+#17 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Controller\Controller.php(429): call_user_func_array(Array, Array)
+#18 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(114): Cake\Controller\Controller->invokeAction()
+#19 E:\Pragnesh\client Project\FtcWebApp\vendor\cakephp\cakephp\src\Routing\Dispatcher.php(87): Cake\Routing\Dispatcher->_invoke(Object(App\Controller\V2\UserController))
+#20 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#21 {main}
+
+
+2016-07-12 12:18:47 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Exception Attributes: array (
+  'class' => 'Css',
+  'plugin' => NULL,
+  'prefix' => NULL,
+  '_ext' => NULL,
+)
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:20:21 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:20:36 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:22:17 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:22:56 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:24:14 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:24:18 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:24:49 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:24:51 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:25:51 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:26:55 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:28:50 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:34:06 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:34:17 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:40:26 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:41:02 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:41:20 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:44:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/sales-inquiry/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:44:23 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/sales-inquiry/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:45:10 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/mobile-development/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:45:25 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:47:14 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 12:47:27 Error: [Cake\Routing\Exception\MissingControllerException] Controller class WpContent could not be found.
+Request URL: /wp-content/uploads/2015/12/png-logo.png
+Referer URL: http://www.vibeosys.com/
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/team3.png
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/testimonial1.jpg
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/ti-logo.png
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/team4.png
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/team2.png
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/testimonial2.jpg
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/themes/zerif-lite/images/testimonial3.jpg
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/uploads/2015/12/web-dev.png
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-12 13:29:22 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Wordpress could not be found.
+Request URL: /wordpress/wp-content/uploads/2015/12/mob-dev.jpg
+Referer URL: http://www.vibeosys.com/wp-admin/widgets.php
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-13 06:58:48 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
+2016-07-13 06:59:47 Error: [Cake\Routing\Exception\MissingControllerException] Controller class Css could not be found.
+Request URL: /css/bootstrap.min.css.map
+Stack Trace:
+#0 E:\Pragnesh\client Project\FtcWebApp\webroot\index.php(37): Cake\Routing\Dispatcher->dispatch(Object(Cake\Network\Request), Object(Cake\Network\Response))
+#1 {main}
+
+
