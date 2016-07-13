@@ -290,11 +290,13 @@ class PagesController extends Controller\ApiController {
         $widgetController = new WidgetController();
         $this->conncetionCreator(parent::readCookie('sub_id'));
         if($this->request->is('post') and isset($request['Edit'])){
+            //$this->autoRender = FALSE;
             $pageId = $request['pageId'];
             $pageInfo = $this->getTableObj()->getSingalPage($pageId);
             $widgets = $widgetController->getAllWidgets($pageId);
             Log::debug($widgets);
             Log::debug($pageInfo);
+            //print_r($widgets);
             $this->set([
                 'page' => $pageInfo,
                 'widgets' => $widgets,

@@ -54,7 +54,7 @@ use Cake\Cache\Cache;
                             <input type="button" value="Preview" class="btn btn-warning">
                             <input type="submit" name="save" value="Save as Draft" class="btn btn-info">
                             <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
-                            <input type="hidden" id="page_viewer" value="" name="for">
+                            <input type="hidden" id="page_viewer" value="1" name="for">
                         </div>
                         <span class="title-text">
                             App Page Title</span>
@@ -97,7 +97,7 @@ use Cake\Cache\Cache;
                 <div class="main-page mobile-size">
                     <div class="heading">
                         <h2>Mobile Preview</h2>
-                        <a href="#"> <span class="fa fa-refresh refresh-link"></span></a>
+                        <a href> <span class="fa fa-refresh refresh-link"></span></a>
                     </div>
 
                     <div class="page-item" id="privew-for-tool">

@@ -79,14 +79,14 @@ use Cake\Cache\Cache;
                                $type = 'rss';
                         }?>
                         <div type="<?= $type?>" class="inner-page" id="space-for-tool">
-                    <?php if(isset($widgets)) { $i = 1;
+                    <?php if(isset($widgets)) { $i = 1; 
                       foreach ($widgets as $widget){ $data = json_decode($widget->data);
                       if($widget->widgetTitle == 'Image'){    
                     ?>
                             <div class="remove-<?= $i ?> push-margin ng-scope" type="vbcustom">
                                 <div style="display:flex">
-                                    <input name="image-<?= $i ?>" type="text" value="<?= $data->url ?>" class="form-control" id="file-input-<?= $i ?>">
-                                    <a onclick="relect_for_me( & quot; file - input - 2 & quot; );" name="image-select" class="img-btn" data-toggle="modal" data-target="#myModal"> Select Image </a>
+                                    <input name="image-<?= $i ?>" type="text" value="<?= $data->url ?>" class="form-control" id="file-img-<?= $i ?>">
+                                    <a onclick="relect_for_me('file-img-<?= $i ?>');" name="image-select" class="img-btn" data-toggle="modal" data-target="#myModal"> Select Image </a>
                                 </div>
                                 <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
                                 <div class="hr-line">
@@ -105,7 +105,7 @@ use Cake\Cache\Cache;
                                 </div>
                             </div>
 
-                      <?php }else if($widget->widgetTitle == 'Video'){?>
+                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
                             <div class="remove-<?= $i ?> push-margin ng-scope">
                                 <div style="display:flex">Video Link
                                     <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
@@ -115,7 +115,18 @@ use Cake\Cache\Cache;
                                     <hr>
                                 </div>
                             </div>
-
+                            
+                             <?php }else if($widget->widgetTitle == 'YouTube'){ ?>
+                            <div class="remove-<?= $i ?> push-margin ng-scope">
+                                <div style="display:flex">Video Link
+                                    <input name="youtube-<?= $i ?>" type="text" value="<?= $data->link ?>" placeholder="Youtube Video Link" class="form-control ng-pristine ng-valid">
+                                </div>
+                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
+                                <div class="hr-line">
+                                    <hr>
+                                </div>
+                            </div>
+                            
                       <?php }else if($widget->widgetTitle == 'Text'){?>
                             <div class="remove-<?= $i ?> push-margin ng-scope">
                                 <textarea rows="4" placeholder="Text"  class="form-control ng-pristine ng-valid" name="text-<?= $i ?>"><?= $data->text ?></textarea>
@@ -199,23 +210,57 @@ use Cake\Cache\Cache;
                     </div>
 
                     <div class="page-item" id="privew-for-tool">
-                       <!--
-                        <div class="image-preview push-space">
-                            <img src="../img/download.jpg" class="img-responsive" width="200" height="200">
+                     <?php if(isset($widgets)) { $i = 1;
+                      foreach ($widgets as $widget){ $data = json_decode($widget->data);
+                      if($widget->widgetTitle == 'Image'){    
+                    ?>
+                           <div class="image-preview push-space">
+                               <img src="<?= $data->url ?>" class="img-responsive" width="200" height="200">
+                           </div>
+                      <?php }else if($widget->widgetTitle == 'Link'){?>
+                           <div class="link-preview push-space">
+                               <a target="_blank" href="<?= $data->link ?>"><?= $data->caption ?></a>
+                            </div>
+
+                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
+                            <div class="remove-<?= $i ?> push-margin ng-scope">
+                                <div style="display:flex">Video Link
+                                    <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
+                                </div>
+                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
+                                <div class="hr-line">
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                        <?php }else if($widget->widgetTitle == 'YouTube'){ $video = explode('?v=', $data->link); ?>
+                            <div class="video-preview push-space">
+                                <iframe width="300" height="200" src="https://www.youtube.com/embed/<?= $video[1] ?>"></iframe>
+                            </div>
+                      <?php }else if($widget->widgetTitle == 'Text'){?>
+                         <div class="text-preview push-space">
+                            <P><?= $data->text ?></P>
                         </div>
-                        <div class="text-preview push-space">
-                            <P>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</P>
+                      <?php }else if($widget->widgetTitle == 'Heading'){?>
+                         <div class="heading-preview push-space">
+                            <h2><?= $data->head ?></h2>
                         </div>
-                        <div class="link-preview push-space">
-                            <a href="pahe.html">Read More</a>
+
+                      <?php }else if($widget->widgetTitle == 'WebView'){   ?>
+                            <div class="webview-preview push-space">
+                                <h3><a style="word-wrap: break-word" target="_blank" href="<?= $data->view ?>"><?= $data->view ?></a></h3>
+                            </div>
+
+                      <?php }else if($widget->widgetTitle == 'Rss'){ ?>
+                        <div class="rssfeed-preview push-space">
+                            <p><span>Rss Feed</span>: <?= $data->feed ?></p>
+                            <p><span>Rss Parent</span>: <?= $data->feedParent ?></p>
+                            <p><span>Rss Title</span>: <?= $data->feedTitle ?></p>
+                            <p><span>Rss Link</span>: <?= $data->feedLink ?></p>
+                            <p><span>Rss Date</span>: <?= $data->feedDate ?></p>
+                            <p><span>Rss Description</span>: <?= $data->feedDescription ?></p>
                         </div>
-                        <div class="video-preview push-space">
-                            <!--<video src="https://www.youtube.com/watch?v=0WyjWF1nZCM" controls>
-                                        Your browser does not support the <code>video</code> element.
-                            </video>
-                            <iframe width="300" height="200" src="https://www.youtube.com/embed/fgExvIUYg5w"></iframe>
-                               
-                        </div>--> 
+                    <?php }}} ?>
                     </div>
                 </div>
             </div>
