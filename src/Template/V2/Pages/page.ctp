@@ -56,9 +56,6 @@ use Cake\Cache\Cache;
                             <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
                             <input type="hidden" id="page_viewer" value="1" name="for">
                         </div>
-                        <span class="title-text">
-                            App Page Title</span>
-                        
                         <span class="input input--hoshi">
 					<input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
 					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
