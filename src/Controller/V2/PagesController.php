@@ -37,6 +37,7 @@ class PagesController extends Controller\ApiController {
     private $rssLinkJson = 'feedLink';
     private $rssDateJson = 'feedDate';
     private $rssDescriptionJson = 'feedDescription';
+    private $youtubeJson = 'link';
     //widget titles variables
 
     private $linkTitle = 'Link';
@@ -46,6 +47,7 @@ class PagesController extends Controller\ApiController {
     private $videoTitle = 'Video';
     private $webViewTitle = 'WebView';
     private $rssTitle = 'Rss';
+    private $youtubeTitle = 'YouTube';
 
     public function getTableObj() {
         return new V2\PagesTable();
@@ -172,6 +174,8 @@ class PagesController extends Controller\ApiController {
                 $completeWidget[$counter++] = $this->bindWidget($this->webViewTitle, $this->webViewjson, $single, $pageId, $subscriberId);
             } elseif ($single->widget === 'rss') {
                 $completeWidget[$counter++] = $this->bindWidget($this->rssTitle, $this->rssjson, $single, $pageId, $subscriberId);
+            } elseif ($single->widget === 'youtube') {
+                $completeWidget[$counter++] = $this->bindWidget($this->youtubeTitle, $this->youtubeJson, $single, $pageId, $subscriberId);
             }
         }
         foreach ($linkWidgets as $obj) {
