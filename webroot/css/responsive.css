@@ -357,7 +357,7 @@ textarea {
     width: 99.6%;
     background: white;
     position: relative;
-    top: 10px;
+    top: 0px;
     z-index: 1;
 }
 

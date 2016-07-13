@@ -58,7 +58,13 @@ use Cake\Cache\Cache;
                         </div>
                         <span class="title-text">
                             App Page Title</span>
-                        <input name="page" type="text" class="form-control title-input" id="page" placeholder="News/blog" required>
+                        
+                        <span class="input input--hoshi">
+					<input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
+					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+						<span class="input__label-content input__label-content--hoshi"> App Page Title</span>
+					</label>
+				</span>
                         <img id="page_loader" style="width: 38px;margin: 2px 0px;display: none" src="../img/log_loader.gif" alt="Please Wait">
                         <p id="page_name_check_msg" style="margin: 0 0 -8px;display: none"><p>
                     </div>
