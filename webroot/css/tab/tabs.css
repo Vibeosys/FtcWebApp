@@ -1,0 +1,382 @@
+/*
+*  Table of Contents:
+*
+*  1. CSS Inits
+*  2. PRELOADER
+*  3. Horizontal Tabs
+*  4. VerticalTab Tabs
+*  4. VerticalTab Tabs
+*  5. Tabs Responsive
+*  6. Footer
+*/
+
+
+
+/*
+===============================================
+--------------- 1. CSS Inits ------------------
+===============================================
+*/
+
+body {
+	line-height: 26px;
+	font-size: 14px;
+	color: #949491;;
+}
+
+.page_wrapper {
+    width: 100%;
+    position: relative;
+}
+
+/*
+===============================================
+--------------- CSS Demo ------------------
+===============================================
+*/
+h3.h3_title {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    line-height: 33px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.header-top h2 {
+	font-family: "Oswald", sans-serif;
+	font-size: 30px;
+	line-height: 33px;
+	font-weight: normal;
+	margin: 0;
+	text-align: center;
+}
+.header-bottom {
+	background-color: #fff;
+}
+
+.btn-pursache {
+	color: #fff;
+	display: block;
+	font-family: "Oswald", sans-serif;
+	font-size: 30px;
+	height: 95px;
+	line-height: 95px;
+	padding: 0 30px;
+	position: relative;
+	z-index: 1;
+	text-decoration: none !important;
+	-webkit-transition: all 0s ease-in-out 0s;
+	-moz-transition: all 0s ease-in-out 0s;
+	-o-transition: all 0s ease-in-out 0s;
+	transition: all 0s ease-in-out 0s;
+}
+.btn-pursache:before {
+	content: "";
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+	-webkit-transform: skewX(-15deg);
+	-moz-transform: skewX(-15deg);
+	-ms-transform: skewX(-15deg);
+	-o-transform: skewX(-15deg);
+	transform: skewX(-15deg);
+}
+.btn-pursache:after {
+	background-color: rgba(0, 0, 0, 0.1);
+	content: "";
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 0;
+	z-index: -1;
+	-webkit-transform: skewX(-15deg);
+	-moz-transform: skewX(-15deg);
+	-ms-transform: skewX(-15deg);
+	-o-transform: skewX(-15deg);
+	transform: skewX(-15deg);
+	-webkit-transition: all 350ms cubic-bezier(0.77, 0, 0.175, 1) 0s;
+	-moz-transition: all 350ms cubic-bezier(0.77, 0, 0.175, 1) 0s;
+	-ms-transition: all 350ms cubic-bezier(0.77, 0, 0.175, 1) 0s;
+	-o-transition: all 350ms cubic-bezier(0.77, 0, 0.175, 1) 0s;
+}
+
+
+
+
+.effect-tabs {
+	text-align: center;
+	margin-bottom: 35px;
+	font-family: "Roboto", sans-serif;
+}
+.effect-tabs h3 {
+	font-family: "Roboto", sans-serif;
+    color: #fff;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.effect-tabs .dropdown-select {
+    position: relative;
+    width: 200px;
+    margin: 0;
+    padding: 6px 20px;
+    height: 40px;
+    line-height: 14px;
+    font-size: 13px;
+    color: #fff;
+    background: #3C3E40;
+    border: 0;
+    border-radius: 0;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.demo-header {
+	text-align: center;
+	padding: 30px;
+}
+.demo-header a {
+	color: #fff;
+	background: #333;
+	text-decoration: none;
+	padding: 10px;
+}
+.demo-header a:hover {
+	color: #fff;
+	background-color: rgba(0,0,0,0.6);
+	text-decoration: none;
+}
+.demo-header a.current-demo {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/*
+=====================================================
+--------------- 4. VerticalTab Tabs -----------------
+=====================================================
+*/
+
+
+/*
+--------------- Demo 1 ------------------
+*/
+
+.VerticalTab.tabs_ver_1.resp-vtabs ul.resp-tabs-list {
+    float: left;
+    width: 25%;
+	margin-top: 0 !important;
+        height: 744px;
+    background: rgb(245, 245, 245);
+    overflow-y: auto;
+}
+.VerticalTab.tabs_ver_1.resp-vtabs .resp-tabs-container {
+    padding: 0px;
+    background-color: #fff;
+    border: 0;
+    float: left;
+    width: 73%;
+    min-height: 250px;
+    border-radius: 4px;
+    clear: none;
+    border-radius: 0;
+}
+.VerticalTab.tabs_ver_1 .resp-tabs-list li {
+	display: block;
+	margin:  0;
+	list-style: none;
+	cursor: pointer;
+	float: none;
+	color: #000;
+	border: none;
+	padding: 8px !important;
+	font-size: 16px;
+	font-weight: 600;
+	margin-right: 0;
+	line-height: 24px;
+	border-radius: 0;
+	margin-bottom: 0 !important;
+	margin:  0 !important;
+	border-bottom: 1px solid rgba(179, 170, 170, 0.43) !important;
+}
+.VerticalTab.tabs_ver_1 .resp-tabs-list li:last-child {
+	/*border-bottom: 0 !important;*/
+}
+.VerticalTab.tabs_ver_1 .resp-tabs-list .resp-tab-active {
+	border: 0 !important;
+    margin-bottom: 0px !important;
+    padding: 8px !important;
+    background-color: #1F5689 !important;
+    color:#fff!important;
+}
+.VerticalTab.tabs_ver_1 .resp-tabs-list li:hover {
+	color: #1F5689;
+	padding-left: 14px !important;
+    font-weight: 600;
+    -moz-transition: padding-left 0.7s ease;
+    -o-transition: padding-left 0.7s ease;
+    -webkit-transition: padding-left 0.7s ease;
+    
+    transition: padding-left 0.7s ease;
+    
+}
+
+.VerticalTab.tabs_ver_1 .resp-tabs-list li:hover .fc_icons{
+    background-color: #1F5689!important;
+    color: white!important;
+}
+.VerticalTab.tabs_ver_1 .resp-tabs-list .resp-tab-active:hover .fc_icons{
+        background-color: white!important;
+    color: #1F5689!important;
+}
+
+.VerticalTab.tabs_ver_1 .resp-tabs-list li i {
+    font-size: 17px;
+    margin-right: 8px;
+}
+
+.VerticalTab.tabs_ver_1  h2.title_contanier {
+	font-family: "Roboto", sans-serif;
+	font-size: 28px;
+	font-weight: 300;
+	color: #999;
+	text-transform: inherit;
+	margin-top: 0px;
+	margin-bottom: 25px;
+	padding-bottom: 25px;
+	padding-top: 12px;
+	line-height: 3px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.VerticalTab.tabs_ver_1 .resp-tab-content {
+    border: 0 !important;
+    padding: 33px 30px;
+   /* -webkit-box-shadow: 9px 9px 0px rgba(50, 50, 50, 0.31);
+    -moz-box-shadow: 9px 9px 0px rgba(50, 50, 50, 0.31);
+    box-shadow: 9px 9px 0px rgba(50, 50, 50, 0.31);*/
+}
+
+
+.VerticalTab.tabs_ver_1 p {
+	color: #999;
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+	margin-bottom: 15px;
+}
+
+
+/*
+=====================================================
+--------------- 5. Tabs Responsive ------------------
+=====================================================
+*/
+
+
+h2.resp-accordion {
+	font-size: 17px;
+	text-transform: uppercase;
+	color: #000;
+	padding: 0.32em 0em 0.32em 0.70em;
+	margin: 0;
+	list-style: none;
+	cursor: pointer;
+	background: #303030;
+	border: 0;
+	border-bottom: 3px solid white !important;
+	line-height: 0px;
+	cursor: pointer;
+	padding: 10px 15px;
+	border-left: 0 !important;
+	border-right: 0 !important;
+    font-weight: 600;
+}
+h2.resp-tab-active {
+	border: 0 !important;
+	border-bottom: 1px solid #ccc !important;
+	margin-bottom: 0 !important;
+	padding: 10px 15px !important;
+	background: rgba(59, 89, 152, 0.8) !important;
+	border-left: 0 !important;
+	border-right: 0 !important;
+}
+h2.resp-accordion:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+h2.resp-accordion .tabs-text {
+    position: relative;
+    top: -3px;
+    left: 10px;
+	font-size: 14px;
+}
+
+.arrow-tabs {
+    float: right;
+    margin-top: 10px;
+    font-size: 18px !important;
+}
+
+h2.resp-accordion .fc_icons, .fc_icons {
+	font-size: 22px;
+	-webkit-transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+	-moz-transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+	transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+	display: inline-block;
+	cursor: pointer;
+	margin: 0;
+	width: 35px !important;
+	height: 35px !important;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+	border-radius: 50%;
+	-o-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	line-height: 35px;
+	background: #fff !important;
+    color:#1F5689!important;
+}
+
+
+
+
+@media only screen and (max-width: 768px){
+	.resp-vtabs .resp-tabs-container {
+		border: none !important;
+		float: none !important;
+		width: 100% !important;
+		min-height: 250px !important;
+		clear: none !important;
+	}
+	.VerticalTab.tabs_ver_2.resp-vtabs .resp-tabs-container,
+	.VerticalTab.tabs_ver_3.resp-vtabs .resp-tabs-container,
+	.VerticalTab.tabs_ver_4.resp-vtabs .resp-tabs-container,
+	.VerticalTab.tabs_ver_5.resp-vtabs .resp-tabs-container,
+	.VerticalTab.tabs_ver_6.resp-vtabs .resp-tabs-container	{
+		margin-left: 0;
+	}
+}
+
+.main-content{
+        box-shadow: 2px 1px 11px 1px rgba(0, 0, 0, 0.1);
+    padding: 0 0px 0px 0px;
+    margin-bottom: 20px;
+    background: white;
+}
+
+
+

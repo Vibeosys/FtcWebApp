@@ -46,11 +46,16 @@ body{
   margin: 0px auto;
   text-align: center;
 }
+.fa-logout{
+    position: relative;
+    top:0px!important;
+}
 #topnav .topbar-main .logo i {
   color: #1F5689;
      top: 22px;
   position: relative;
 }
+
 #topnav .topbar-main .badge {
   position: absolute;
   top: 12px;

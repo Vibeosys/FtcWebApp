@@ -16,123 +16,251 @@ use Cake\Cache\Cache;
 ?>
 
 <?php $this->start('css');?>
-   <?= $this->Html->css('datatables/jquery.dataTables.min.css') ?>
-   <?= $this->Html->css('datatables/buttons.bootstrap.min.css') ?>
-   <?= $this->Html->css('datatables/responsive.bootstrap.min.css') ?>
-
+   <?= $this->Html->css('tab/tabs.css') ?>
+   <?= $this->Html->css('tab/easy-responsive-tabs.css') ?>
 
 <?php $this->end('css');?>
 
-<section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
-        <div class="container">
-            <div class="row">
-                
-               <div class="col-lg-12 main-page">
-                     <div class="heading">
-                        <h2>Email Templates</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="../emailnotification/add"><i class="fa fa-plus-circle"></i> Add New Template</a>
-                    </li>
-                  </ul>
-                    </div>
-                 <table id="menu" class="table table-striped table-bordered dt-responsive nowrap email-template" cellspacing="0" width="100%">
-                          <thead>
-                            <tr>
-                            <th>Template Id</th>
-                              <th>Template Name</th>
-                            <th>Action</th>
-                               
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                                <td>1234</td>
-                              <td><a href="emailnotification/edit">Welcome message for subscribers</a></td>
-                             <td>
-                                    <a href="emailnotification/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size" ></i>
-                            </a>
-                                  <button type="button" class="btn btn-danger btn-circle btn-lg" data-toggle="tooltip" data-placement="right" title="Cancel"><i class="fa fa-close fa-size"></i>
-                            </button>
-                                </td>
+
+
+		<!-- Begin HorizontalTab style 1 -->
+		<section class="page-section">
+
+			<div class="container">
+
+				<div class="row">
+
+					<div class="col-md-12 main-content">
+						
+						<!-- Begin .HorizontalTab -->
+						<div class="VerticalTab fc_VerticalTab VerticalTab_1 tabs_ver_1">
+						      
+							<ul class="resp-tabs-list hor_1">
+                                <h2 class="text-center">Templates</h2>
+								<li class="tabs-1"><i class="fc_icons fa fa-envelope "></i> <span class="tabs-text">Invitation message for new users</span></li>
+								<li class="tabs-2"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text">Welcome message for subscribers</span></li>
+								<li class="tabs-3"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text">Template 3</span></li>  
+								<li class="tabs-4"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text">Template 4</span></li>
+								<li class="tabs-5"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text">Template 5</span></li>
+							</ul>
+							
+							<div class="resp-tabs-container hor_1 ">
+								
+								<div class="fc-tab-1">
+								
+									<h2 class="title_contanier">Invitation message for new users</h2>
+                                   
+									<a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+                                     <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>
+									 <div class="email-inner">
+                            <lable>Template Name
+                            <input type="text" class="form-control template-name" value="Template">
+                            </lable>
+                        </div>
+                                     <div class="email-outer">
+                        <div class="email-inner">
+                            <div class="template-view">
+                            <lable>Template   
+                            <div class="template-code template"> 
+                                <h2>Hello,</h2>
+                                <p>hi how r u?</p>
+                            </div>
+                            </lable>
+                                </div>
+                             
+                      
                             
-                            </tr>
-                               <tr>
-                                <td>123</td>
-                              <td><a href="emailnotification/edit">Invitation message for new users</a></td>
-                             <td>
-                                    <a href="emailnotification/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size" ></i>
-                            </a>
-                                  <button type="button" class="btn btn-danger btn-circle btn-lg" data-toggle="tooltip" data-placement="right" title="Cancel"><i class="fa fa-close fa-size"></i>
-                            </button>
-                                </td>
                             
-                            </tr>
-                               <tr>
-                                <td>123456</td>
-                              <td><a href="emailnotification/edit">Template 3</a></td>
-                             <td>
-                                    <a href="emailnotification/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size" ></i>
-                            </a>
-                                  <button type="button" class="btn btn-danger btn-circle btn-lg" data-toggle="tooltip" data-placement="right" title="Cancel"><i class="fa fa-close fa-size"></i>
-                            </button>
-                                </td>
                             
-                            </tr>
+                            
+                            <lable class="push-top">Recipients
+                                <div class="margin10">
+                           <div class="contact-list-div">
+                                <div class="user-list-preview">User1 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User2 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User3 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User4 <button><span class="fa fa-close"></span></button></div>        
                           
-
-                          </tbody>
-                        </table>
+                               
+                            </div>
+                                    <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                    </div>
+                            </lable>
+                        </div>
+                   </div>
+                   <div class="btn-email-send">
+                    <input type="button" value="Send" class="btn btn-info"><input type="button" value="Cancel" class="btn cancel">
                 </div>
-               
-            
-                 
-               
-                
-            
-            </div>
-           </div>
-           
-       </section>
-<?php $this->start('script');?>
-   <?= $this->Html->script('datatables/jquery.dataTables.min.js') ?>
-   <?= $this->Html->script('datatables/dataTables.bootstrap.js') ?>
-   <?= $this->Html->script('datatables/dataTables.responsive.min.js') ?>
-   <?= $this->Html->script('datatables/responsive.bootstrap.min.js') ?>
+								</div>
+								
+								<div class="fc-tab-2">
+								
+									<h2 class="title_contanier">Welcome message for subscribers</h2>
+									<a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+									 <div class="email-inner">
+                            <lable>Template Name
+                            <input type="text" class="form-control template-name" value="Template">
+                            </lable>
+                        </div>
+                                     <div class="email-outer">
+                        <div class="email-inner">
+                            <lable>Template   
+                            <textarea rows='15'  class='form-control margin10 template'  id="html-template" disabled>
+                              
+                                
+                                
+                                </textarea>
+                            </lable>
+                            
+                            <lable class="push-top">Recipients
+                                <div class="margin10">
+                           <div class="contact-list-div">
+                                <div class="user-list-preview">User1 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User2 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User3 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User4 <button><span class="fa fa-close"></span></button></div>        
+                          
+                               
+                            </div>
+                                    <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                    </div>
+                            </lable>
+                        </div>
+                   </div>
+                   <div class="btn-email-send">
+                    <input type="button" value="Send" class="btn btn-info"><input type="button" value="Cancel" class="btn cancel">
+                </div>
+								</div>
+								
+								<div class="fc-tab-3">
+								
+									<h2 class="title_contanier">Template 3</h2>
+									<a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+									 <div class="email-inner">
+                            <lable>Template Name
+                            <input type="text" class="form-control template-name" value="Template">
+                            </lable>
+                        </div>
+                                     <div class="email-outer">
+                        <div class="email-inner">
+                            <lable>Template   
+                            <textarea rows='15'  class='form-control margin10 template'  id="html-template" disabled></textarea>
+                            </lable>
+                            
+                            <lable class="push-top">Recipients
+                                <div class="margin10">
+                           <div class="contact-list-div">
+                                <div class="user-list-preview">User1 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User2 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User3 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User4 <button><span class="fa fa-close"></span></button></div>        
+                          
+                               
+                            </div>
+                                    <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                    </div>
+                            </lable>
+                        </div>
+                   </div>
+                   <div class="btn-email-send">
+                    <input type="button" value="Send" class="btn btn-info"><input type="button" value="Cancel" class="btn cancel">
+                </div>
+								</div>
+								
+								<div class="fc-tab-4">
+								
+									<h2 class="title_contanier">Template 4</h2>
+									<a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+									 <div class="email-inner">
+                            <lable>Template Name
+                            <input type="text" class="form-control template-name" value="Template">
+                            </lable>
+                        </div>
+                                     <div class="email-outer">
+                        <div class="email-inner">
+                            <lable>Template   
+                            <textarea rows='15'  class='form-control margin10 template'  id="html-template" disabled></textarea>
+                            </lable>
+                            
+                            <lable class="push-top">Recipients
+                                <div class="margin10">
+                           <div class="contact-list-div">
+                                <div class="user-list-preview">User1 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User2 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User3 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User4 <button><span class="fa fa-close"></span></button></div>        
+                          
+                               
+                            </div>
+                                    <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                    </div>
+                            </lable>
+                        </div>
+                   </div>
+                   <div class="btn-email-send">
+                    <input type="button" value="Send" class="btn btn-info"><input type="button" value="Cancel" class="btn cancel">
+                </div>
+								</div>
+								
+								
+								<div class="fc-tab-5">
+								
+									
+									<h2 class="title_contanier">Template 5</h2>
+									<a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+									 <div class="email-inner">
+                            <lable>Template Name
+                            <input type="text" class="form-control template-name" value="Template">
+                            </lable>
+                        </div>
+                                     <div class="email-outer">
+                        <div class="email-inner">
+                            <lable>Template   
+                            <textarea rows='15'  class='form-control margin10 template'  id="html-template" disabled></textarea>
+                            </lable>
+                            
+                            <lable class="push-top">Recipients
+                                <div class="margin10">
+                           <div class="contact-list-div">
+                                <div class="user-list-preview">User1 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User2 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User3 <button><span class="fa fa-close"></span></button></div>        
+                               <div class="user-list-preview">User4 <button><span class="fa fa-close"></span></button></div>        
+                          
+                               
+                            </div>
+                                    <a class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                    </div>
+                            </lable>
+                        </div>
+                   </div>
+                   <div class="btn-email-send">
+                    <input type="button" value="Send" class="btn btn-info"><input type="button" value="Cancel" class="btn cancel">
+                </div>
+								</div>
+								
+								
+							</div>
+						</div>
+						<!-- End .HorizontalTab -->
+					
+					</div>
+					
+				</div>
+				
+			</div>
 
- <script type="text/javascript">
-   $(document).ready(function() {
-            $('#datatable').dataTable();
-            $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#menu').DataTable();
-            $('#datatable-scroller').DataTable({
-              //ajax: "js/datatables/json/scroller-demo.json",
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#datatable-fixed-header').DataTable({
-              fixedHeader: true
-            });
-          });
-      
-$(document).ready(function(){
-    var heading_last=$('table.table-bordered th:last-child').text();
-    if(heading_last == 'Action'){
-        $('th:last-child').removeClass('sorting');
-        $('th:last-child').addClass('action-width');
-    }
-});
-$(document).ready(function(){
-    var heading_last=$('table.table-bordered th:first-child').text();
-    if(heading_last == 'Template Id'){
-        $('th:first-child').addClass('template-width');
-    }
-});
-    $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})     
- </script>
+		</section>
+		<!-- End HorizontalTab style 1 -->
+
+
+
+
+
+<?php $this->start('script');?>
+
+                            
+ <?= $this->Html->script('tab/easyResponsiveTabs.js') ?>
+   <?= $this->Html->script('tab/tabs.js') ?>
+
 <?php $this->end('script');?>
