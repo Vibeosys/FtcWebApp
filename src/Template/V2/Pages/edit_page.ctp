@@ -39,6 +39,7 @@ use Cake\Cache\Cache;
                         <li><addimage></addimage></li>
                         <li><addlink></addlink></li>
                         <li><addvideo></addvideo></li>
+                          <li><addyoutubevideo></addyoutubevideo></li>
                         <li><addtext></addtext></li>
                         <li><addheading></addheading></li>
                         <li><addweblink></addweblink></li>
@@ -183,6 +184,7 @@ use Cake\Cache\Cache;
                             <li><addimage></addimage></li>
                             <li><addlink></addlink></li>
                             <li><addvideo></addvideo></li>
+                              <li><addyoutubevideo></addyoutubevideo></li>
                             <li><addtext></addtext></li>
                             <li><addheading></addheading></li>
                             <li><addweblink></addweblink></li>
@@ -440,6 +442,7 @@ use Cake\Cache\Cache;
         $scope.counttext = 0;
         $scope.countlinktext = 0;
         $scope.countvideolink = 0;
+         $scope.countyoutube = 0;
         $scope.countheading = 0;
         $scope.countwebllink = 0;
         $scope.countrssfeed = 0;
@@ -464,10 +467,16 @@ use Cake\Cache\Cache;
             template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
-    myApp.directive("addvideo", function () {
+     myApp.directive("addvideo", function () {
         return {
             restrict: "E",
             template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
+        }
+    });
+       myApp.directive("addyoutubevideo", function () {
+        return {
+            restrict: "E",
+            template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></a>"
         }
     });
     myApp.directive("addheading", function () {
@@ -534,8 +543,7 @@ use Cake\Cache\Cache;
             });
         };
     });
-
-    myApp.directive("addvideolink", function ($compile) {
+     myApp.directive("addvideolink", function ($compile) {
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
@@ -544,7 +552,21 @@ use Cake\Cache\Cache;
                 }
                 scope.count++;
                 scope.countvideolink++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='video-" + scope.count + "' type='text'  placeholder='Video Link' class='form-control'  id=text-input-video-" + scope.countvideolink + " ng-model=videolinkfile" + scope.countvideolink + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'><input name='video-" + scope.count + "' type='text' class='form-control' file id='text-input-video" + scope.countvideolink + "'><a onclick = 'relect_for_me(\"file-input-" + scope.countvideolink + "\");' name='video-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Video </a></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+
+            });
+        };
+    });
+  myApp.directive("addyoutubevideolink", function ($compile) {
+        return function (scope, element, attrs) {
+            element.bind("click", function () {
+                if (allowed === 0) {
+                    alert('Please remove existing widget,to add this widget.');
+                    return;
+                }
+                scope.count++;
+                scope.countyoutube++;
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='youtube-" + scope.countyoutube + "' type='text'  placeholder='Youtube Video Link' class='form-control'  id=text-input-youtube-video-" + scope.countyoutube + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };

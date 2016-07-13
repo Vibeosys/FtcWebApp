@@ -39,6 +39,7 @@ use Cake\Cache\Cache;
                         <li><addimage></addimage></li>
                         <li><addlink></addlink></li>
                         <li><addvideo></addvideo></li>
+                        <li><addyoutubevideo></addyoutubevideo></li>
                         <li><addtext></addtext></li>
                         <li><addheading></addheading></li>
                         <li><addweblink></addweblink></li>
@@ -85,6 +86,7 @@ use Cake\Cache\Cache;
                             <li><addimage></addimage></li>
                             <li><addlink></addlink></li>
                             <li><addvideo></addvideo></li>
+                            <li><addyoutubevideo></addyoutubevideo></li>
                             <li><addtext></addtext></li>
                             <li><addheading></addheading></li>
                             <li><addweblink></addweblink></li>
@@ -106,6 +108,9 @@ use Cake\Cache\Cache;
                         <div class="text-preview push-space">
                             <P>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here'</P>
                         </div>
+                        <div class="heading-preview push-space">
+                        <h2>Heading Text</h2>
+                        </div>
                         <div class="link-preview push-space">
                             <a href="pahe.html">Read More</a>
                         </div>
@@ -114,6 +119,17 @@ use Cake\Cache\Cache;
                                         Your browser does not support the <code>video</code> element.
                             </video>-->
                             <iframe width="300" height="200" src="https://www.youtube.com/embed/fgExvIUYg5w"></iframe>
+                        </div>
+                           <div class="webview-preview push-space">
+                           <h3><a href="www.google.com"> www.google.com</a></h3>
+                        </div>
+                        <div class="rssfeed-preview push-space">
+                            <p><span>Rss Feed</span>: asdajnsdjnsdnka</p>
+                             <p><span>Rss Parent</span>: asdsdasdasd</p>
+                             <p><span>Rss Title</span>: sdasdasdasd</p>
+                             <p><span>Rss Link</span>: www.google.com</p>
+                             <p><span>Rss Date</span>: 7/13/2016</p>
+                             <p><span>Rss Description</span>: aasdasdasdasdas da sd asdasdasdasd asd</p>
                         </div>
                     </div>
                 </div>
@@ -419,6 +435,7 @@ This page for
         $scope.countfile = 0;
         $scope.counttext = 0;
         $scope.countlinktext = 0;
+        $scope.countyoutube = 0;
         $scope.countvideolink = 0;
         $scope.countheading = 0;
         $scope.countwebllink = 0;
@@ -448,6 +465,12 @@ This page for
         return {
             restrict: "E",
             template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
+        }
+    });
+     myApp.directive("addyoutubevideo", function () {
+        return {
+            restrict: "E",
+            template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></a>"
         }
     });
     myApp.directive("addheading", function () {
@@ -493,7 +516,7 @@ This page for
                 }
                 scope.count++;
                 scope.counttext++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><textarea rows='4' placeholder='Text' class='form-control'  id=text-input-" + scope.counttext + " ng-model=textfile" + scope.count + " name='text-" + scope.count + "'></textarea><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><textarea rows='4' placeholder='Text' class='form-control'  id=text-input-" + scope.counttext + " name='text-" + scope.count + "'></textarea><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -508,7 +531,7 @@ This page for
                 }
                 scope.count++;
                 scope.countlinktext++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Link<input name='link-" + scope.count + "' type='text'  placeholder='Link' class='form-control link-input'  id=text-input-link-" + scope.countlinktext + " ng-model=linkfile" + scope.countlinktext + "> Link Caption<input name='link_caption-" + scope.count + "' type='text' placeholder='Link Caption' class='form-control link-input'  id=text-input-cap-link-" + scope.countlinktext + " ng-model=capfile" + scope.countlinktext + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Link<input name='link-" + scope.count + "' type='text'  placeholder='Link' class='form-control link-input'  id=text-input-link-" + scope.countlinktext + " > Link Caption<input name='link_caption-" + scope.count + "' type='text' placeholder='Link Caption' class='form-control link-input'  id=text-input-cap-link-" + scope.countlinktext + " ></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -523,7 +546,21 @@ This page for
                 }
                 scope.count++;
                 scope.countvideolink++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='video-" + scope.count + "' type='text'  placeholder='Video Link' class='form-control'  id=text-input-video-" + scope.countvideolink + " ng-model=videolinkfile" + scope.countvideolink + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin' type='vbcustom'><div style='display:flex'><input name='video-" + scope.count + "' type='text' class='form-control' file id='file-video-" + scope.countvideolink + "'><a onclick = 'relect_for_me(\"file-input-" + scope.countvideolink + "\");' name='video-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Video </a></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+
+            });
+        };
+    });
+     myApp.directive("addyoutubevideolink", function ($compile) {
+        return function (scope, element, attrs) {
+            element.bind("click", function () {
+                if (allowed === 0) {
+                    alert('Please remove existing widget,to add this widget.');
+                    return;
+                }
+                scope.count++;
+                scope.countyoutube++;
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='youtube-" + scope.countyoutube + "' type='text'  placeholder='Youtube Video Link' class='form-control'  id=text-input-youtube-video-" + scope.countyoutube + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -538,7 +575,7 @@ This page for
                 }
                 scope.count++;
                 scope.countheading++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='heading-" + scope.count + "' type='text'  placeholder='Heading' class='form-control'  id=text-input-head-" + scope.countheading + " ng-model=headingfile" + scope.countheading + "><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='heading-" + scope.count + "' type='text'  placeholder='Heading' class='form-control'  id=text-input-head-" + scope.countheading + "><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -554,7 +591,7 @@ This page for
                 }
                 scope.count++;
                 scope.countweblink++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='web-" + scope.count + "' type='text'  placeholder='Web Link' class='form-control'  id=text-input-wenlink-" + scope.countweblink + " ng-model=weblink" + scope.countweblink + "><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='web-" + scope.count + "' type='text'  placeholder='Web Link' class='form-control'  id=text-input-wenlink-" + scope.countweblink + " ><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };

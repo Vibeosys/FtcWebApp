@@ -980,3 +980,15 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 .upload-content{
     float: right;
 }
+
+.rssfeed-preview span{
+    font-size: 18px;
+display: inline-block;
+    padding-right: 4px;
+}
+.rssfeed-preview{
+    font-size: 16px;
+}
+.rssfeed-preview p{
+margin: 0;
+}
