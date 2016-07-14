@@ -51,6 +51,42 @@ use Cake\Cache\Cache;
                 </div>
                    </form>
                 </div>
+                
+                <div class="col-lg-12 main-page">
+                 
+                <div class="template-history">
+                    <div class="heading">
+                        <h2>Template History</h2>
+                    
+                    </div>
+                   
+                    <table id="history" class="table table-striped table-bordered dt-responsive nowrap history-table" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                            <th>Date sent</th>
+                              <th>Notification Title</th>
+                                <th>No of recipients</th>
+                            </tr>
+                          </thead>
+                          
+                          <tbody>
+                              <?php if(isset($notes) and !empty($notes)){  
+                            foreach ($notes as $note){              
+                                ?>
+                            <tr>
+                                <td><?= $note->date ?></td>
+                              <td><?= $note->noteTitle ?></td>
+                                <td><?= $note->recipients ?></td>
+                            </tr>
+                              <?php } }else{ ?>
+                              <tr>
+                                  <td style="color:red" colspan="3">Notofication List Empty. Please send notification to your client.</td>
+                            </tr>
+                              <?php } ?>
+                          </tbody>
+                        </table>
+                   </div>
+                </div>
                
             
                  

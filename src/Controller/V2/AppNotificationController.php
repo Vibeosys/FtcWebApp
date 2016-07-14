@@ -14,6 +14,8 @@ use OneSignal\Config;
 use OneSignal\OneSignal;
 use App\Controller;
 use Cake\Log\Log;
+use App\Model\Table\V2;
+use App\DTO;
 
 /**
  * Description of AppNotificationController
@@ -29,8 +31,12 @@ class AppNotificationController extends Controller\ApiController {
         'af64deb6-99b1-4db4-9c8c-1e198342ab64'
     ];
     public $api;
-
+    
+    public function getTableObj() {
+        return new V2\AppNotificationTable();
+    }
     public function initialize() {
+        parent::initialize();
         $config = new Config();
         $config->setApplicationId(ONESIGANL_APP_ID);
         $config->setApplicationAuthKey(ONESIGANL_APP_AUTH_KEY);
@@ -50,7 +56,11 @@ class AppNotificationController extends Controller\ApiController {
         if (is_array($result)) {
             Log::debug('One signal notidication add result array : ');
             Log::debug($result);
+            try{
             $resultOpen = $this->api->notifications->open($result['id']);
+            }  catch (OneSignal\Exception\OneSignalException $e){
+                return FALSE;
+            }
             if (is_array($resultOpen)) {
                 Log::debug('One signal notofication open result array: ');
                 Log::debug($resultOpen);
@@ -71,11 +81,19 @@ class AppNotificationController extends Controller\ApiController {
           else
               echo 'Error in notification.';
     }
-    
+    /*
+     * new Entry of notification in database
+     * 
+     */
+    public function addNewEntry($notification) {
+        $result = $this->getTableObj()->insert($notification);
+        return $result;
+    }
     public function appNotification() {
         $request = $this->request->data;
-       
-        if(isset($request['send'])){
+       $sendBy = parent::readCookie('cur_ad_id');
+       $this->conncetionCreator();
+        if(isset($request['send']) and $this->request->is('post')){
             $counter = 0;
             $i = 0;
             $device = [];
@@ -97,20 +115,27 @@ class AppNotificationController extends Controller\ApiController {
                 ]);
             }else{
                $message['title'] = $request['title'];
-               $contents['en'] = $request['msg']; 
-               if($this->sendNotification($device, $message, $contents))
-               $this->set([
+               $contents['en'] = $request['msg'];
+               if($this->sendNotification($device, $message, $contents)){
+                   $this->addNewEntry(new DTO\AppNotificationInsertDto(
+                          $sendBy , 
+                           $message['title'], $contents['en'], count($device)));
+                   $this->set([
                     'message' => 'Notification was send.',
                     'color' => 'green'
                 ]);
-                else
+               }else
                   $this->set([
                     'message' => 'Error in notification.',
                     'color' => 'red'
                 ]);     
             }
-            
         }
+        
+        $notes = $this->getTableObj()->getNote($sendBy);
+        if(!empty($notes))
+            $this->set (['notes' => $notes]);
+        
     }
     
 

@@ -19,7 +19,7 @@ use Cake\Cache\Cache;
 <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
     <div class="container">
         <div class="row">
-            <form action="../pages/page" method="post" enctype="multipart/form-data">  
+            <form id="page_form" action="../pages/page" method="post" enctype="multipart/form-data">  
                 <div class="col-lg-12 main-page-publish">
 
                     <h2>Customisation :New Page</h2>
@@ -51,17 +51,19 @@ use Cake\Cache\Cache;
                     <div class="heading">
 
                         <div class="publish-btn">
-                            <input type="button" value="Preview" class="btn btn-warning">
+                            <input type="button" value="Preview" class="btn btn-warning preview_page">
                             <input type="submit" name="save" value="Save as Draft" class="btn btn-info">
                             <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
                             <input type="hidden" id="page_viewer" value="1" name="for">
                         </div>
+                        
+                        
                         <span class="input input--hoshi">
-					<input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
-					<label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
-						<span class="input__label-content input__label-content--hoshi"> App Page Title</span>
-					</label>
-				</span>
+                    <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> App Page Title</span>
+                    </label>
+                </span> 
                         <img id="page_loader" style="width: 38px;margin: 2px 0px;display: none" src="../img/log_loader.gif" alt="Please Wait">
                         <p id="page_name_check_msg" style="margin: 0 0 -8px;display: none"><p>
                     </div>
@@ -173,9 +175,9 @@ This page for
                 <div id="tab-menu" class="container-fluid">	
                     <ul  class="nav nav-pills">
                         <li class="active">
-                            <a  href="#image" data-toggle="tab">Images</a>
+                            <a class="tab_btn" d_type="img" href="#image" data-toggle="tab">Images</a>
                         </li>
-                        <li><a href="#video" data-toggle="tab">Videos</a>
+                        <li><a class="tab_btn" d_type="vid" href="#video" data-toggle="tab">Videos</a>
                         </li>
                     </ul>
                     <div class="tab-content clearfix">
@@ -398,7 +400,7 @@ This page for
                 </div>
                 <div class="modal-footer">
                     <div class="btn-wrap">
-                        <input type="button" id="select_item_btn" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="submit" value="Set Media">
+                        <input type="button" id="select_item_btn" d_type="img" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="submit" value="Set Media">
                         <input type="button" class="btn btn-danger cancel-dialog" data-dismiss="modal" aria-hidden="true" name="cancel" value="Cancel">
                     </div>
                 </div>
@@ -549,7 +551,7 @@ This page for
                 }
                 scope.count++;
                 scope.countvideolink++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin' type='vbcustom'><div style='display:flex'><input name='video-" + scope.count + "' type='text' class='form-control' file id='file-video-" + scope.countvideolink + "'><a onclick = 'relect_for_me(\"file-input-" + scope.countvideolink + "\");' name='video-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Video </a></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin' type='vbcustom'><div style='display:flex'><input name='video-" + scope.count + "' type='text' class='form-control' file id='file-video-" + scope.countvideolink + "'><a onclick = 'relect_for_me(\"file-video-" + scope.countvideolink + "\");' name='video-select' class='img-btn' data-toggle='modal' data-target='#myModal'> Select Video </a></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -638,7 +640,7 @@ This page for
     $(document).ready(function () {
         
         
-        
+      
 
         var url = '/getgalleryitems';
         $.ajax({
@@ -680,13 +682,21 @@ This page for
                 alert(errMsg);
             }
         });
-        
+        $('.tab_btn').on('click', function(){
+            $('#select_item_btn').attr('d_type', $(this).attr('d_type'));
+        });
         $('#select_item_btn').on('click',function(){
+            if($(this).attr('d_type') === 'img'){
             var src = $('.selected').attr('value');
             $('.requested_me').val(src);
             var id = $('.requested_me').attr('id');
             $('#'+id).removeClass('requested_me');
-            
+            }else{
+                var src = $('.video-selected').attr('src'); 
+                 $('.requested_me').val(src);
+              var id = $('.requested_me').attr('id');
+            $('#'+id).removeClass('requested_me');
+            }
         });
 
         $(':radio').change(function (e) {

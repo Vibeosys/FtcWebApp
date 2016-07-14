@@ -189,7 +189,7 @@ class ApiController extends AppController{
             return false;
             
         }else{
-            $filename = $file['name'];
+            $filename = str_replace(" ","_",$file['name']);
             $tempName = $file['tmp_name'];
             $folder = new Folder(GALLERY_ITEM_UPLOAD_DIR, TRUE);
             $url = 'upload/'.$filename;

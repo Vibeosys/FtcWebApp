@@ -233,8 +233,8 @@ class PagesController extends Controller\ApiController {
     public function page() {
         $data = $this->request->data;
         $this->conncetionCreator(parent::readCookie('sub_id'));
-        if ($this->request->is('post')) {
-           //$this->autoRender = FALSE;
+        if ($this->request->is('post') and !isset($data['preview'])) {
+          // $this->autoRender = FALSE;
             $insert = [];
             $count = 0;
             //print_r($data);
@@ -277,6 +277,9 @@ class PagesController extends Controller\ApiController {
                 ]);
             }
            
+        }  else if($this->request->is('post') and isset ($data['preview'])) {
+            //$this->autoRender = false;
+            //print_r($data);
         }
         $userController = new UserController();
         if($userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP))
