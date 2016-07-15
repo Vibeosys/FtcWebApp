@@ -440,16 +440,16 @@ width: 320px;
     margin: auto;
 }
 .login .company-logo{
-    background-image: url(../img/logo.png);
-    background-size: 110px;
+    background-image: url(../img/login-logo.png);
+    background-size: 300px;
     background-position: center top;
     background-repeat: no-repeat;
-    height: 110px;
+    height: 91px;
     line-height: 1.3em;
     margin: 0 auto 25px;
     padding: 0;
     text-decoration: none;
-    width: 119px;
+    width: 320px;
     text-indent: -9999px;
     outline: 0;
     display: block;
