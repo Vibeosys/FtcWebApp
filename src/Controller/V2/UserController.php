@@ -191,4 +191,17 @@ class UserController extends V1\UserController{
         $result = $this->getTableObj()->isGroup($uname, $group);
         return $result;
     }
+    
+    public function getOwnerClient() {
+        $this->autoRender = FALSE;
+        if($this->request->is('post')){
+            $suscriberId = parent::readCookie('sub_id');
+            $this->conncetionCreator($suscriberId);
+            $users = $this->getTableObj()->getAdminUser();
+            if(empty($users))
+                $this->response->body (0);
+            else
+                $this->response->body (json_encode($users));
+        }
+    }
 }

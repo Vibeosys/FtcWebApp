@@ -79,8 +79,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
     $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
     $routes->connect('gallery', ['controller' => $version.'Gallery', 'action' => 'gallery']);    
-    $routes->connect('database', ['controller' => $version.'Home', 'action' => 'database']);    
-    $routes->connect('database/edit', ['controller' => $version.'Home', 'action' => 'editDatabase']);    
+    $routes->connect('database', ['controller' => $version.'Subscription', 'action' => 'database']);    
+    $routes->connect('database/add', ['controller' => $version.'Subscription', 'action' => 'addDatabase']);    
+    $routes->connect('database/edit', ['controller' => $version.'Subscription', 'action' => 'editDatabase']);    
+    $routes->connect('testdb', ['controller' => $version.'Subscription', 'action' => 'TestDatabaseConnection']);    
     $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
     $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
     $routes->connect('appnotification', ['controller' => $version.'AppNotification', 'action' => 'appNotification']);    
@@ -98,6 +100,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('getgalleryitems', ['controller' => $version.'Gallery', 'action' => 'getAllGallery']);
     $routes->connect('galleryitemupload', ['controller' => $version.'Gallery', 'action' => 'galleryItemUpload']);
     $routes->connect('readvideo', ['controller' => $version.'Gallery', 'action' => 'readVideo']);
+    $routes->connect('getadminclient', ['controller' => $version.'User', 'action' => 'getOwnerClient']);
  
     
  $routes->fallbacks('DashedRoute');    

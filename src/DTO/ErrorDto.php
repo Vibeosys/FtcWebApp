@@ -60,6 +60,8 @@ class ErrorDto {
         115 => 'Trade history signal not found for given criteria.',
         116 => 'Pages not found for given criteria.',
         117 => 'Error in acknowledgement.',
+        118 => 'Fail to connect database.',
+        119 => 'User list empty.',
        ];
     protected $SuccessDictionary = [
         1 => 'Signals found.',
@@ -75,7 +77,7 @@ class ErrorDto {
         11 => 'Pages found.',
         12 => 'Acknowledgement success.',
         
-        13 => 'Types are found.',
+        13 => 'Database connected successfully.',
         14 => 'Requested profile found.',
         15 => 'User radius settings changed.',
         16 => 'User profile updated.',
@@ -90,11 +92,11 @@ class ErrorDto {
         5 => 'Error to save page. Please try again.',
         6 => 'Page Successfully updated.',
         7 => 'Error to save page. Please try again.',
-        
-        8 => 'Configurations saved successfully',
-        9 => 'Your ad posted successfully.',
-        10 => 'Your ad set as Favourite successfully.',
-        11 => 'Ad found.',
+        8 => 'Database saved Successfully.',
+        9 => 'Error to save database. Please try again.',
+        10 => 'Database updated Successfully.',
+        11 => 'Error to update database. Please try again.',
+
         12 => 'categories are found.',
         13 => 'Types are found.',
         14 => 'Requested profile found.',

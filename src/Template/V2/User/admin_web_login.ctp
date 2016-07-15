@@ -124,7 +124,7 @@ use Cake\Cache\Cache;
                                         
                                         $('#log_loader').css('display','none');
                                         $('#log_msg').css('display','block');
-                                        $('#log_msg').text('Incorrect username or password');
+                                        $('#log_msg').text(obj.message);
                                     }else{
                                         $.when(
                                         $.post('/setcookie',{name:'uname',value:uname}),

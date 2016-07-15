@@ -51,7 +51,7 @@ use Cake\Cache\Cache;
                     <div class="heading">
 
                         <div class="publish-btn">
-                            <input type="button" value="Preview" class="btn btn-warning">
+                            <a  href="#preview_div" class="btn btn-warning">Preview</a>
                             <input type="submit" name="save" value="Save as Draft" class="btn btn-info">
                             <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
                         </div>
@@ -203,10 +203,10 @@ use Cake\Cache\Cache;
                         </ul>
                     </div>
                 </div>
-                <div class="main-page mobile-size">
+                <div id="preview_div" class="main-page mobile-size">
                     <div class="heading">
                         <h2>Mobile Preview</h2>
-                        <a href="#"> <span class="fa fa-refresh refresh-link"></span></a>
+                        <a href="#preview_div"> <span class="fa fa-refresh refresh-link"></span></a>
                     </div>
 
                     <div class="page-item" id="privew-for-tool">

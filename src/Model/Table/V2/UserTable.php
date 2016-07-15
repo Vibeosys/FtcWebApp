@@ -8,6 +8,7 @@
 
 namespace App\Model\Table\V2;
 use App\Model\Table\V1;
+use App\DTO;
 
 /**
  * Description of UserTable
@@ -48,5 +49,20 @@ class UserTable extends V1\UserTable{
     
     public function getNonSubscribedUser() {
         
+    }
+    
+    public function getAdminUser($adminId = null) {
+        $users = [];
+        $counter = 0;
+        $conditions = [
+            'groupid =' => ADMIN_GROUP
+        ];
+        
+        $rows = $this->connect()->find()->where($conditions);
+        \Cake\Log\Log::debug($rows->sql());
+        if($rows->count())
+            foreach ($rows as $row)
+                $users[$counter++] = new DTO\UserListDto ($row->userid, $row->email);
+        return $users;
     }
 }

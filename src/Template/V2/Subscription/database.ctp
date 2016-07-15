@@ -30,7 +30,7 @@ use Cake\Cache\Cache;
                      <div class="heading">
                         <h2>Client Databases</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="adddatabase.html"><i class="fa fa-plus-circle"></i> Add New Database</a>
+                    <li><a href="database/add"><i class="fa fa-plus-circle"></i> Add New Database</a>
                     </li>
                   </ul>
                     </div>
@@ -49,23 +49,35 @@ use Cake\Cache\Cache;
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td>1234</td>
-                              <td>ABC</td>
-                                <td>news</td>
-                              <td>8080</td>
-                              <td>ABCDEF</td>
-                              <td>abc</td>
-                                 <td>ABCD</td>
+                          <?php if (isset($dbs)) { ?>    
+                          <?php foreach ($dbs as $db){ ?>    
+                        
+                              <tr>
+                                 <form action="../database/edit" method="post"> 
+                                <td><?= $db->subscriberId ?><input type="hidden" name="subscriberId" value="<?= $db->subscriberId ?>"></td>
+                                <td><?= $db->hostname ?>
+                                <input type="hidden" name="hostname" value="<?= $db->hostname ?>"></td>
+                              <td><?= $db->dbname ?>
+                              <input type="hidden" name="dbname" value="<?= $db->dbname ?>"></td>
+                               
+                              <td><?= $db->port ?>
+                              <input type="hidden" name="port" value="<?= $db->port ?>"></td>
+                              <td><?= $db->dbuname ?>
+                              <input type="hidden" name="dbuname" value="<?= $db->dbuname ?>"></td>
+                              <td><?= $db->pwd ?>
+                              <input type="hidden" name="pwd" value="<?= $db->pwd ?>"></td>
+                                 <td><?= $db->owner ?>
+                                 <input type="hidden" name="owner" value="<?= $db->owner ?>"></td>
                              <td>
-                                    <a href="../database/edit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
-                            </a>
+                                 <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
+                            </button>
                                   <button type="button" class="btn btn-danger btn-circle btn-lg" data-toggle="tooltip" data-placement="right" title="Cancel"><i class="fa fa-close fa-size"></i>
                             </button>
                                 </td>
-                            
+                               </form>  
                             </tr>
-                          
+                       
+                          <?php } } ?>
 
                           </tbody>
                         </table>

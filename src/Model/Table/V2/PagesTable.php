@@ -53,8 +53,8 @@ class PagesTable extends Table{
          ];
         $pages = [];
         $counter = 0;
-        $rows = $this->connect()->find('all',['fields' => $fields])->join($joins);
-       // Log::debug($rows->sql());
+        $rows = $this->connect()->find('all',['fields' => $fields])->join($joins)->orderDesc('mobile_pages.PageId');
+        Log::debug($rows->sql());
         if($rows->count())
             foreach ($rows as $row)    
             $pages[$counter++] = new DTO\PagesDto(

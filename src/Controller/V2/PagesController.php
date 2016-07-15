@@ -270,6 +270,7 @@ class PagesController extends Controller\ApiController {
                     'message' => DTO\ErrorDto::getWebMessage(4),
                     'color' => 'green'
                 ]);
+                $this->redirect('pages');
             }  else {
                 $this->set([
                     'message' => DTO\ErrorDto::getWebMessage(5),

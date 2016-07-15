@@ -778,6 +778,10 @@ This page for
         $('.cancel_page').on('click', function(){
             document.location.replace('/pages');
         });
+        
+        $('.preview_page').on('click',function(){
+            alert('Please save or publish this page before preview.');
+        });
 
     });
 var is_admin = <?= $is_admin ?>;

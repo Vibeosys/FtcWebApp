@@ -44,15 +44,7 @@ class HomeController extends Controller\ApiController{
     public function pageUnderConstruction() {
         
     }
-    
-    public function database() {
-        
-    }
-    
-    public function editDatabase() {
-        
-    }
-    
+      
     public function emailNotification() {
         
     }
