@@ -83,7 +83,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('database/add', ['controller' => $version.'Subscription', 'action' => 'addDatabase']);    
     $routes->connect('database/edit', ['controller' => $version.'Subscription', 'action' => 'editDatabase']);    
     $routes->connect('testdb', ['controller' => $version.'Subscription', 'action' => 'TestDatabaseConnection']);    
-    $routes->connect('emailnotification', ['controller' => $version.'Home', 'action' => 'emailNotification']);    
+    $routes->connect('emailnotification', ['controller' => $version.'EmailTemplates', 'action' => 'emailNotification']);    
     $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
     $routes->connect('appnotification', ['controller' => $version.'AppNotification', 'action' => 'appNotification']);    
     $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
@@ -105,6 +105,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     
  $routes->fallbacks('DashedRoute');    
 });
+
+// V2 api 
 Router::scope('/v2/', function (RouteBuilder $routes) {
     $version = 'V2/';
     $routes->connect('getSignal', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);

@@ -9,6 +9,7 @@
 namespace App\Controller\V2;
 use App\Controller;
 use Cake\Log\Log;
+use App\DTO;
 /**
  * Description of HomeController
  *
@@ -45,9 +46,7 @@ class HomeController extends Controller\ApiController{
         
     }
       
-    public function emailNotification() {
-        
-    }
+   
     
     public function editTemplate() {
         
