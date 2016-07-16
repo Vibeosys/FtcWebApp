@@ -18,6 +18,7 @@ use Cake\Cache\Cache;
 <?php $this->start('css');?>
    <?= $this->Html->css('tab/tabs.css') ?>
    <?= $this->Html->css('tab/easy-responsive-tabs.css') ?>
+   <?= $this->Html->css('editor.css') ?>
 
 <?php $this->end('css');?>
 
@@ -67,10 +68,15 @@ use Cake\Cache\Cache;
                             </div>
                             </lable>
                                 </div>
-                             
-                      
                             
                             
+                             <lable>Template  
+                            <div id="editor">
+                              <div id='edit'>
+                              </div>
+                            </div>
+                            </lable>
+                    
                             
                             
                             <lable class="push-top">Recipients
@@ -263,4 +269,34 @@ use Cake\Cache\Cache;
  <?= $this->Html->script('tab/easyResponsiveTabs.js') ?>
    <?= $this->Html->script('tab/tabs.js') ?>
 
+   <?= $this->Html->script('editor.js') ?>
+
+   <?= $this->Html->script('editor/align.min.js') ?>
+   <?= $this->Html->script('editor/char_counter.min.js') ?>
+   <?= $this->Html->script('editor/code_beautifier.min.js') ?>
+   <?= $this->Html->script('editor/code_view.min.js') ?>
+   <?= $this->Html->script('editor/colors.min.js') ?>
+   <?= $this->Html->script('editor/entities.min.js') ?>
+   <?= $this->Html->script('editor/font_family.min.js') ?>
+   <?= $this->Html->script('editor/font_size.min.js') ?>
+   <?= $this->Html->script('editor/line_breaker.min.js') ?>
+   <?= $this->Html->script('editor/link.min.js') ?>
+   <?= $this->Html->script('editor/lists.min.js') ?>
+   <?= $this->Html->script('editor/paragraph_format.min.js') ?>
+   <?= $this->Html->script('editor/paragraph_style.min.js') ?>
+   <?= $this->Html->script('editor/table.min.js') ?>
+   <?= $this->Html->script('editor/url.min.js') ?>
+
+
+  <script type="text/javascript">
+    jQuery(document).ready(function(){
+    
+        
+       jQuery('#edit').froalaEditor({
+        iframe: true
+      })
+    });
+
+    
+  </script>
 <?php $this->end('script');?>
