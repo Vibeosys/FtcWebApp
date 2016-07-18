@@ -57,4 +57,14 @@ class EmailTemplatesTable extends Table{
         
         return $templates;
     }
+    
+    public function updateTemplate(DTO\EmailTemplateInsertDto $request) {
+        $tableObj = $this->connect();
+        $template = $tableObj->get($request->templateId);
+        $template->TemplateName = $request->name;
+        $template->TemplateBody = $request->template;
+        if($tableObj->save($template))
+            return true;
+        return FALSE;
+    }
 }

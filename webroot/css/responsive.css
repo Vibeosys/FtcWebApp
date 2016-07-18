@@ -257,6 +257,7 @@ textarea {
 }
 .margin10{
     margin-top: 10px;
+        margin-bottom: 10px;
 }
 .main-page-publish h2{
     display: inline-block;
@@ -985,6 +986,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
     font-size: 30px;
     right: 1em;
         margin: 0px 10px 10px 10px;
+            z-index: 1;
 }
 /************************************************** Own Changes *******************************************/
 #note_loader{

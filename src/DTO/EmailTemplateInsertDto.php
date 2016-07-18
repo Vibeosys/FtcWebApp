@@ -14,13 +14,14 @@ namespace App\DTO;
  * @author niteen
  */
 class EmailTemplateInsertDto {
-    
+    public $templateId;
     public $name;
     public $template;
     
     
-    public function __construct($name = null, $template = null) {
+    public function __construct($name = null, $template = null, $templateId = null) {
         $this->name = $name;
         $this->template = $template;
+        $this->templateId = $templateId;
     }
 }

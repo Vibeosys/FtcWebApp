@@ -42,21 +42,23 @@ use Cake\Cache\Cache;
                     </ul>
                     <div class="resp-tabs-container hor_1 ">
                         <div class="fc-tab-1">
-                            <h2 class="title_contanier">New Template
-                             <?php if(isset($message)){ ?>
+                               <form action="emailnotification" method="post">
+                          
+                            <span class="input input--hoshi">
+                    <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Template Name</span>
+                    </label>
+                     <?php if(isset($message)){ ?>
 
-                                <span class="fadeOut" style="font-size: 14px;border: 2px solid <?= $color ?>;padding: 10px;margin-left: 7%;color:<?= $color ?>"><?= $message ?> 
+                                <span class="fadeOut" style="font-size: 14px;border: 2px solid <?= $color ?>;padding: 0px 26px;position:absolute;top:1px;margin-left: 7%;color:<?= $color ?>"><?= $message ?> 
                                 </span>
                                 <!-- <a   style="border: 1px solid;padding: 10px;margin-left: 7%;text-decoration: none;" href="../database"> Back to List</a> -->
-                    <?php } ?></h2>
+                    <?php } ?>
+                </span> 
                             <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
                             <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>
-                            <form action="emailnotification" method="post">
-                                <div class="email-inner">
-                                    <lable>Template Name
-                                        <input name="name" type="text" class="form-control template-name" placeholder="Template Title">
-                                    </lable>
-                                </div>
+                         
                                 <div class="email-outer">
                                     <div class="email-inner">
                                         <div class="template-view" style="display: none">
@@ -87,55 +89,62 @@ use Cake\Cache\Cache;
                                     </div>
                                 </div>
                                 <div class="btn-email-send">
-                                    <input id="save" type="submit" value="Save" class="btn btn-info">
+                                    <input id="save" name="save" type="submit" value="Save" class="btn btn-info">
                                     <input type="button" value="Cancel" class="btn cancel">
                                 </div>
                             </form>
                         </div>
                         <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?> 
+                      
                         <div class="fc-tab-2">
-                            <h2 class="title_contanier"><?= $temp->name ?></h2>
+                         <form action="emailnotification" method="post">  
+                             <input type="hidden" name="id" value="<?= $temp->templateId ?>">
+                            <h2 id="title_h2_<?= $temp->templateId ?>" class="title_contanier"><?= $temp->name ?></h2>
+                            <span style="display:none" id="name_text_<?= $temp->templateId ?>"  class="input input--hoshi">
+                    <input class="input__field input__field--hoshi title-input" value="<?= $temp->name ?>" type="text" id="name_<?= $temp->templateId ?>" name="name" placeholder="" required/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Template Name</span>
+                    </label>
+                </span> 
                             <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <form >   
-                                <div class="email-inner" style="display: none" id="name_text_<?= $temp->templateId ?>">
-                                    <lable>Template Name
-                                        <input type="text" id="name_<?= $temp->templateId ?>" class="form-control template-name" value="<?= $temp->name ?>">
-                                    </lable>
-                                </div>
+                            
                                 <div class="email-outer">
                                     <div class="email-inner">
                                         <div class="template-view" id="temp_show_<?= $temp->templateId ?>">
-                                            <lable>Template   
-                                                <div  class="template-code template"> 
+                                            <lable class="push-top">Template Body
+                                                <div  class="template-code template margin10"> 
                                              <?= $temp->body ?>
                                                 </div>
                                             </lable>
                                         </div>
-                                        <lable style="display: none" id='editor_<?= $temp->templateId ?>' >Template  
-                                            <div >
+                                        <lable class="push-top" style="display: none" id='editor_<?= $temp->templateId ?>' >Template Body 
+                                            <div class="margin10" >
                                                 <textarea name="template" id='edit_<?= $temp->templateId ?>'>
                                              <?= $temp->body ?>
                                                 </textarea>
                                             </div>
                                         </lable>
-                                        <lable class="push-top">Recipients
+                                        <lable id='recip_<?= $temp->templateId ?>' class="push-top">Recipients
                                             <div class="margin10">
-                                                <div class="contact-list-div">
-                                                    <div class="user-list-preview">User1 <button class="user_btn_<?= $temp->templateId ?>" disabled><span class="fa fa-close"></span></button></div>        
-                                                    <div class="user-list-preview">User2 <button class="user_btn_<?= $temp->templateId ?>" disabled><span class="fa fa-close"></span></button></div>        
-                                                    <div class="user-list-preview">User3 <button class="user_btn_<?= $temp->templateId ?>" disabled><span class="fa fa-close"></span></button></div>        
-                                                    <div class="user-list-preview">User4 <button class="user_btn_<?= $temp->templateId ?>" disabled><span class="fa fa-close"></span></button></div>        
+                                                <div id="contact_list_<?= $temp->templateId ?>" class="contact-list-div">
+                                                 
                                                 </div>
-                                                <a id="add_<?= $temp->templateId ?>" style="display:none" class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                                <a id="<?= $temp->templateId ?>" class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
                                             </div>
                                         </lable>
                                     </div>
                                 </div>
-                                <div id="button_<?= $temp->templateId ?>" style="display:none" class="btn-email-send">
-                                    <input type="button" value="Send" class="btn btn-info">
+                                <div id="button_send_<?= $temp->templateId ?>" class="btn-email-send">
+                                    <input name="send" type="submit" value="Send" class="btn btn-info">
                                     <input type="button" value="Cancel" class="btn cancel">
                                 </div>
+                            <div style="display:none" id="button_save_<?= $temp->templateId ?>" class="btn-email-send">
+                                <input name="edit" type="submit" value="Save" class="btn btn-info">
+                                    <input type="button" value="Cancel" class="btn cancel">
+                                </div>
+                             </form>
                         </div>
+                     
                        <?php $i++; }} ?>      
                     </div>
                 </div>
@@ -145,6 +154,70 @@ use Cake\Cache\Cache;
     </div>
 </section>
 <input type="hidden" id="pre_act" value="">
+<div id="myModal" class="modal animated zoomin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Customers</h4>
+
+            </div>
+            <div class="scrollbar" id="style-1">
+            <div class="modal-body">
+               <div class="row">
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                           <div class="user-list">
+                                    <ul ng-controller="MainCtrl">
+                                        <li class="check-all user-main">
+                                            <input type="checkbox" name="all" id="all"/>
+                                            All
+                                        </li>
+                                         <li class="check-all user-main">
+                                            <input type="checkbox" name="subscribers" id="sub" />
+                                            Subscribers
+                                        </li>
+                                         <li class="check-all user-main">
+                                             <input type="checkbox" name="non_subscribers" id="non_sub" />
+                                            Non Subscribers
+                                        </li>
+                                         <li class="check-all user-main">
+                                             <input type="checkbox" name="direct_client" id="indirect" />
+                                          Indirect Clients
+                                        </li>
+                                          <li class="check-all user-main">
+                                              <input type="button"  value="Find" id="find" class="btn btn-info"/>
+                                              <img id="note_loader" src="../img/log_loader.gif" alt="Please Wait">
+                                        </li>
+                                        <div><hr></div>
+                <table id="menu" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                          <thead>
+                            <tr>
+                            <th>Select</th>
+                              <th>Name</th>
+                                <th>Email Id</th>
+                              
+                            </tr>
+                          </thead>
+                          <tbody id="user_list">
+                        
+                          </tbody>
+                        </table>
+                                    </ul>
+
+                                </div>               
+                      </div>
+                 
+                    
+                    <div class="modal-footer">
+                        <input type="text" style="display: none" id="count">
+                        <input type="button" data-dismiss="modal" aria-hidden="true" value="OK" class="btn btn-info" id="select">
+                    </div>
+                </div>
+               </div>
+            </div>
+         </div>
+        </div> 
+     </div> 
 
 <?php $this->start('script');?>
  <?= $this->Html->script('tab/easyResponsiveTabs.js') ?>
@@ -172,17 +245,24 @@ use Cake\Cache\Cache;
         jQuery('.edit-template').children().removeClass('fa-save');
         jQuery('.save-template').addClass('edit-template');
         jQuery('.save-template').removeClass('edit-template');
-        //to hide
+        //to show
         jQuery('#temp_show_' + id).css('display', 'block');
-        // to show
+        jQuery('#title_h2_' + id).css('display', 'block ');
+        jQuery('#button_send_' + id).css('display', 'block ');
+        jQuery('#recip_' + id).css('display', 'block');
+        // to hide
         jQuery('#name_text_' + id).css('display', 'none');
         jQuery('#editor_' + id).css('display', 'none');
-        jQuery('#button_' + id).css('display', 'none');
-        jQuery('#add_' + id).css('display', 'none');
-        jQuery('.user_btn_' + id).attr('disabled','disabled');
+        jQuery('#button_save_' + id).css('display', 'none');
+        
+        //jQuery('.user_btn_' + id).attr('disabled','disabled');
         jQuery('#pre_act').val('');
     }
-
+    function removeme(id, event){
+        jQuery(id).parent().remove();
+        event.preventDefault();
+        return false;
+    }
     jQuery(function () {
         jQuery('#edit_new').froalaEditor({toolbarInline: false})
      <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?>
@@ -202,20 +282,21 @@ use Cake\Cache\Cache;
            }  
             var id = jQuery('.resp-tab-active').attr('id');
             jQuery('#pre_act').val(id);
-            
-            //alert('temp_test_'+id);
             jQuery(this).children().removeClass('fa-pencil');
             jQuery(this).children().addClass('fa-save');
            // jQuery(this).addClass('save-template');
             //jQuery(this).removeClass('edit-template');
             //to hide
             jQuery('#temp_show_' + id).css('display', 'none');
+            jQuery('#title_h2_' + id).css('display', 'none');
+            jQuery('#button_send_' + id).css('display', 'none');
+            jQuery('#recip_' + id).css('display', 'none');
             // to show
             jQuery('#name_text_' + id).css('display', 'block');
             jQuery('#editor_' + id).css('display', 'block');
-            jQuery('#button_' + id).css('display', 'block');
-            jQuery('#add_' + id).css('display', 'inline-block');
-            jQuery('.user_btn_' + id).removeAttr('disabled');
+            jQuery('#button_save_' + id).css('display', 'block');
+            //jQuery('#add_' + id).css('display', 'inline-block');
+           // jQuery('.user_btn_' + id).removeAttr('disabled');
         });
         
         jQuery('.VerticalTab ul li').on('click',function(e){
@@ -224,11 +305,83 @@ use Cake\Cache\Cache;
             diable_prev(pre_id);
         }
         });
+        
+        jQuery('.remove_me').on('click', function(event){
+            var a = confirm('Are you sure?');
+            if(a){
+                jQuery(this).parent().remove();
+            }
+            event.preventDefault();
+            return false;
+        });
+        // user selection
+        
+        jQuery('#find').on('click', function(){
+            var cur_id = jQuery(this).attr('id');
+         jQuery(this).val('Wait');
+         jQuery('#note_loader').css('display','inline-block');
+         var check_all = jQuery('#all').is(':checked');
+         var check_sub = jQuery('#sub').is(':checked');
+         var check_non_sub = jQuery('#non_sub').is(':checked');
+         var check_indirect = jQuery('#indirect').is(':checked');
+         var url = 'getuserlist';
+         var param = '{"all":"'+ check_all +'","sub":"'+ check_sub +'","non_sub":"'+ check_non_sub +'","indirect":"'+ check_indirect +'"}';
+        jQuery.ajax({
+                type: "post",
+                url: url,
+                data: param,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",  
+                success: function(data){
+                    jQuery('#note_loader').css('display','none');
+                    jQuery('#find').val('Find');
+                    var i = 0;
+                    var html = '';
+                 jQuery.each(data, function(key,json){
+                      html += '<tr><td>' + 
+                                '<input id="select_'+ i +'" type="checkbox"></td>'+
+                               
+                              '<td id="user_name_'+ i +'" >'+json.fullName +'</td>' +
+                                '<td id="user_email_'+ i +'" >'+json.email +'</td></tr>';
+                     i = i + 1; 
+                    
+                  });
+                  jQuery('#count').val(i);
+                jQuery('#user_list').html(html);
+                    
+                },
+                failure: function(errMsg) {
+                   alert(errMsg); 
+                   jQuery('#note_loader').css('display','none');
+                   jQuery('#find').val('Find');
+                }
+        });
+     });
+     
+      jQuery('#select').on('click', function(event){
+        var count = jQuery('#count').val();
+        var user_list = '';
+        var i = 0;
+        for(i = 0; i < count; i++){
+            if(jQuery('#select_'+i).is(':checked')){
+            var name = jQuery("#user_name_"+i).text();
+            var email =jQuery("#user_email_"+i).text();
+          //  var gcm = $("#user_gcm_"+i).val();
+            var client = i + 1;
+          user_list += '<div class="user-list-preview">'+name +
+                        '<input type="hidden" name="email-'+ client +'" value="'+ email +'">'+
+                        '<button onclick="removeme(this, event);" class="remove_me" ><span class="fa fa-close"></span></button></div>';
+        }}
+      
+       var cur_id = jQuery('.resp-tab-active').attr('id');
+         //alert(cur_id);
+        jQuery('#contact_list_'+ cur_id).html(user_list);
+        jQuery('#myModel').css('display','none');
+     });
+     
 
         jQuery('.fadeOut').fadeOut(10000);
     });
-
-
-
+  
 </script>
 <?php $this->end('script');?>

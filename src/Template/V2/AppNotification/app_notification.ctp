@@ -167,6 +167,12 @@ use Cake\Cache\Cache;
 <?= $this->Html->script('datatables/responsive.bootstrap.min.js') ?>
 
  <script type="text/javascript">
+    function removeme(id, event){
+        $(id).parent().remove();
+        event.preventDefault();
+        return false;
+    }   
+     
  $(document).ready(function(){
     
     $(':submit').on('click',function(e){
@@ -200,7 +206,7 @@ use Cake\Cache\Cache;
                     var html = '';
                   $.each(data, function(key,json){
                       html += '<tr><td>' + 
-                                '<input type="checkbox"  checked></td>'+
+                                '<input id="select_'+ i +'" type="checkbox"  checked></td>'+
                                 '<input type="text" style="display:block" value="'+json.gcmId +'" id="user_gcm_'+i+'">'+
                               '<td gcm ="'+json.gcmId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
                                 '<td>'+json.email +'</td></tr>';
@@ -216,11 +222,6 @@ use Cake\Cache\Cache;
                    $('#find').val('Find');
                 }
         });
-         
-         
-           
-           
-         
      });
      
      $('#select').on('click', function(event){
@@ -228,14 +229,15 @@ use Cake\Cache\Cache;
         var user_list = '';
         var i = 0;
         for(i = 0; i < count; i++){
+            if(jQuery('#select_'+i).is(':checked')){
             var name = $("#user_name_"+i).text();
             var gcm = $("#user_name_"+i).attr('gcm');
           //  var gcm = $("#user_gcm_"+i).val();
             var client = i + 1;
           user_list += '<div id="close_'+i+'" class="user-list-preview">'+name+
                '<input style="display: none" name="client-'+ client +'" id="client-1" type="text" value="'+ gcm +'">' +
-               '<a onclick="removeME(this)" class="remove-user"><span class="fa fa-close"></span></a></div>';  
-        }
+               '<button onclick="removeme(this, event);" class="remove-user"><span class="fa fa-close"></span></button></div>';  
+        }}
        
         $('#contact_list').html(user_list);
         $('#myModel').css('display','none');
