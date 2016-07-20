@@ -35,7 +35,7 @@ use Cake\Cache\Cache;
 
                     <ul class="resp-tabs-list hor_1">
                         <h2 class="text-center">Templates</h2>
-                        <li class="tabs-1"><i class="fc_icons fa fa-envelope "></i> <span class="tabs-text">Add New</span></li>
+                        <li class="tabs-1"><i class="fc_icons fa fa-plus "></i> <span class="tabs-text">Add New</span></li>
                      <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?>
                         <li id="<?= $temp->templateId ?>"  class="tabs-<?= $i ?>"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text"><?= $temp->name ?></span></li>
                      <?php $i++; }} ?>
@@ -56,20 +56,20 @@ use Cake\Cache\Cache;
                                 <!-- <a   style="border: 1px solid;padding: 10px;margin-left: 7%;text-decoration: none;" href="../database"> Back to List</a> -->
                     <?php } ?>
                 </span> 
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>
+                        <!--    <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a> -->
                          
                                 <div class="email-outer">
                                     <div class="email-inner">
                                         <div class="template-view" style="display: none">
-                                            <lable>Template   
+                                            <lable>Template Body   
                                                 <div id="temp_show_new" class="template-code template"> 
                                                     <h2>Hello,</h2>
                                                     <p>hi how r u?</p>
                                                 </div>
                                             </lable>
                                         </div>
-                                        <lable>Template  
+                                        <lable>Template Body
                                             <div>
                                                 <textarea name="template" id='edit_new'>
                                                 </textarea>

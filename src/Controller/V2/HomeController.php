@@ -35,6 +35,8 @@ class HomeController extends Controller\ApiController{
     public function logout() {
         parent::deleteCookie('sub_id');
         parent::deleteCookie('uname');
+        parent::deleteCookie('cur_name');
+        parent::deleteCookie('cur_email');
         $this->redirect ('admin/login');
     }
     

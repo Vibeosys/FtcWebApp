@@ -30,8 +30,10 @@ use Cake\Cache\Cache;
                      <div class="heading">
                         <h2>Client Databases</h2>
                     <ul class="nav navbar-right panel_toolbox">
+                 <?php if($isOwner){ ?>       
                     <li><a href="database/add"><i class="fa fa-plus-circle"></i> Add New Database</a>
                     </li>
+                 <?php } ?>         
                   </ul>
                     </div>
                  <table id="menu" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">

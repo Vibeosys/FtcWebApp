@@ -137,14 +137,19 @@ use Cake\Cache\Cache;
         <?= $this->Html->script('jquery.app.js') ?>
         <?= $this->Html->script('classie.js') ?>
         <script type="text/javascript">
-            $(document).ready(function(){
-                 $.post('/getcookie',{name:'cur_name'}, function(value){
-                     $('#cur_name').html(value +'<i class=" fa fa-angle-down"></i>');
+            jQuery(document).ready(function(){
+                 jQuery.post('/getcookie',{name:'cur_name'}, function(value){
+                     if(value == 0){
+                         window.location.replace('../../admin/login');
+                     }
+                     jQuery('#cur_name').html(value +'<i class=" fa fa-angle-down"></i>');
                  });
-                 $.post('/getcookie',{name:'cur_email'}, function(val){
-                     $('#cur_email').text(val);
+                 jQuery.post('/getcookie',{name:'cur_email'}, function(val){
+                     jQuery('#cur_email').text(val);
+                     if(value == 0){
+                         window.location.replace('../../admin/login');
+                     }
                  });
-                
             });
         
         </script>

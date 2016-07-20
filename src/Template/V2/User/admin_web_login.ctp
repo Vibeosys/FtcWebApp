@@ -34,11 +34,12 @@ use Cake\Cache\Cache;
        
     </head>
    <body class="login-page">
-       <section class="login">
-        <div  class="company-logo"></div>  
+       
+     <section class="login">
+        <div class="logo-header"><div  class="company-logo"></div>  </div>
         <form name="loginform" id="loginform"  method="post">
             <p>
-		<label for="user_login">Username<br />
+		<label for="user_login">User Name<br />
                     <input type="text" name="username" id="user_login" onfocus ="removeb('user_login')" aria-describedby="login_error" class="input" value="" size="20" /></label>
 	</p>
 	<p>
@@ -47,18 +48,58 @@ use Cake\Cache\Cache;
 	</p>
     	<p>
 		<label for="subscribe_id">Subscription Id<br />
-		<input type="text" name="subscribeid" id="subscribe_id" onfocus="removeb('subscribe_id')" aria-describedby="login_error" class="input" value="" size="20" /></label>
+		<input type="text" name="subscribeid" id="subscribe_id" onfocus="removeb('subscribe_id')" aria-describedby="login_error" class="input" value="" size="20" ></label>
 	</p>
 		
-	<p class="submit">
-            <input type="button" id="ftc-submit" class="btn btn-primary btn-large" value="Login" name="login-btn" >
-            <a  id="forgot" style="float: right" class="text-right"> forgot password?</a>
-	</p>
-        <img id="log_loader" style="width: 27px;margin: 0px 114px;display: none" src="../img/log_loader.gif" alt="Please Wait">
+	<div class="submit">
+          <div class="check-style">
+	<input  type="checkbox" value="None" id="check_box" name="check" class="terms-check" />
+	<label for="check_box"></label>
+        </div>   
+        <span class="terms-cond">
+            <span class="terms-content">I agree to the <a href="" data-toggle="modal" data-target="#myModal" >Terms of use.</a></span>
+        </span>
+            
+        <span class="btn-login">
+            <input type="button" id="ftc-submit" class="btn btn-primary btn-large" value="Login" name="login-btn">
+         </span>
+           <!-- <span id="error_check" class="error-check">Please read terms & conditions.</span>    -->
+	</div>
+        <span style="display: none" id="check_er" class="error-check">Please select checkbox</span>    
+        <img id="log_loader" style="width: 27px;margin: 0px 114px;display: none;position:relative;top:20px;" src="../img/log_loader.gif" alt="Please Wait" />
         <p class="text-center" id="log_msg" style=" display: none;color: red;font-size: 15px"></p>  
+        
+       
         </form>
        
        </section>
+       
+       <div id="myModal" class="modal animated zoomin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Terms and Conditions</h4>
+
+            </div>
+            <div class="modal-body">
+               
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                     <p> <strong>What is Lorem Ipsum?</strong><br>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+</p>
+<p>
+<strong>Why do we use it?</strong><br>
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+    </p>
+                    </div>
+                <div class="modal-footer">
+
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- jQuery  -->
          <?= $this->Html->script('jquery.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
@@ -106,6 +147,9 @@ use Cake\Cache\Cache;
                    $('#subscribe_id').css('border','1px solid red');
                      $('#subscribe_id').effect( "shake" );
                      e.preventDefault();
+                  }else if(!$('#check_box').is(':checked')){
+                    $('#check_er').css('display', 'block'); 
+                    e.preventDefault();
                   }
                   $(this).val('Wait');
                   $('#log_loader').css('display','block');

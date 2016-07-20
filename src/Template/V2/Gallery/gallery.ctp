@@ -76,7 +76,8 @@ use Cake\Cache\Cache;
                     html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
                           
                             '<video class="video" controls>'+
-                                      '<source src="/readvideo" type="video/mp4">'+
+                                      '<source src="../'+ json.itemUrl+'" type="video/mp4">'+
+                                      '<source src="../upload/Video0016.ogg" type="video/ogg">'+
                                       'Your browser does not support HTML5 video.'+
                              '</video></div>';    
                         

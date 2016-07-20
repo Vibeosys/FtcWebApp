@@ -433,16 +433,20 @@ textarea {
 }
 /************ Login Page **************/
 .login-page{
-    background: #f1f1f1;
+    /*background: #f1f1f1;*/
+    background: url(../img/login-bg.jpg);
+    background-attachment : fixed;
+    background-position   : 50% 50%; 
+    background-size       : cover;   
 }
 .login{
-width: 320px;
+width: 363px;
     padding: 8% 0 0;
     margin: auto;
 }
 .login .company-logo{
     background-image: url(../img/login-logo.png);
-    background-size: 300px;
+    background-size: 196px;
     background-position: center top;
     background-repeat: no-repeat;
     height: 91px;
@@ -462,20 +466,19 @@ width: 320px;
     background: #fff;
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
     box-shadow: 0 1px 3px rgba(0,0,0,.13);
+    border-radius: 5px;
 }
+
 #loginform p {
     margin-bottom: 0;
 }
 #loginform span {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 18px;
-    
+    text-align: center;    
 }
 .login label {
     color: #72777c;
     font-size: 14px;
-   
+       width: 100%;
 }
 .login form .input, .login input[type=text], input[type=password] {
     font-size: 22px;
@@ -489,11 +492,131 @@ width: 320px;
    color: #6d6f71;
     border: 1px solid #ddd;
     font-weight: 100;
+    border-radius: 2px;
+}
+.terms-check{
+    position: relative;
+    left: 15px;
+}
+.terms-content{
+        position: relative;
+    top: -8px;
+    font-size: 13px;
+        left: 5px;
+}
+.btn-login{
+        position: relative;
+        float: right;
+}
+.terms-cond{
+    width: 177px;
+    position: relative;
+       top: 15px;
+    display: inline-block;
+}
+
+.check-style {
+	width: 20px;
+    position: relative;
+    display: inline-block;
+    left: -13px;
+        top: 8px;
+}
+
+.check-style label {
+	cursor: pointer;
+	position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 4px;
+	border-radius: 4px;
+    border: 2px solid #1f5689;
+    left: 13px;
+    background: white;
+}
+
+.check-style label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	opacity: 0;
+    content: '';
+    position: absolute;
+    width: 11px;
+    height: 7px;
+    background: transparent;
+    top: 3px;
+    left: 2px;
+    border: 3px solid #1f5689;
+    border-top: none;
+    border-right: none;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.check-style label:hover::after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+
+.check-style input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+
+.error-check{
+    color: red;
+}
+.terms-cond label:before {
+    border-color: #80dae5;
+}
+
+.terms-cond input[type=checkbox]:checked + label:after{
+    position: absolute;
+    font-family: "FontAwesome";
+    content: "\f00c";
+    font-size: 15px;
+    top: 3px;
+    left: 3px;
+    width: 0;
+    height: 0;
+    transform: rotate(-7deg);
+}
+.terms-cond label:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 21px;
+    background-color: #FFF;
+    border: 1px solid #666;
+    border-width: 2px;
+    border-radius: 2px;
+}
+
+.modal-footer{
+    border-top: 0;
+}
+#user_pass:hover,#user_login:hover,#subscribe_id:hover{
+    border:1px solid #1F5689!important;
+}
+#user_pass:focus,#user_login:focus,#subscribe_id:focus{
+    border : 1px solid #1F5689!important;
+     box-shadow : 0 0 2px #719ECE!important;
+}
+.logo-header{
+        background: white;
+    padding: 10px 0px 0px 0px;
+    border-radius: 5px;
 }
 .btn-large {
-    height: 30px;
-    line-height: 28px;
-    padding: 0 12px 2px;
+       line-height: 28px;
+    padding: 6px 15px 6px 15px;
+    font-size: 16px;
+    text-transform: uppercase;
 }
  .btn-primary {
     background: #0085ba;
@@ -509,6 +632,9 @@ width: 320px;
 }
 .ftc-user{
         margin: 10px 10px 10px 0px!important;
+}
+.submit{
+    padding-bottom: 18px;
 }
 .mobile-size{
     width: 360px;
@@ -660,11 +786,13 @@ input[type=search]{
     margin: 0px 10px 0px 10px;
 }
 .template-code{
-  min-height: 300px;
+    max-height: 350px;
+    min-height: 350px;
     border: 1px solid #ccc8c8;
     width: 85%;
     border-radius: 4px;
-padding: 10px;
+    padding: 10px;
+    overflow-y: auto;
 }
 #btnOpenFileDialog{
     float:right;

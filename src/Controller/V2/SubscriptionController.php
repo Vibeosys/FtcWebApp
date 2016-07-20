@@ -60,11 +60,14 @@ class SubscriptionController extends V1\SubscriptionController{
         $this->conncetionCreator();
         $adminId = parent::readCookie('cur_ad_id');
         $userController = new UserController();
-        if($userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP))
-                $adminId = null;
+        $isOwner = $userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP);
+        if($isOwner)
+         $adminId = null;
+        
         $result = $this->getTableObj()->getDatabaseList($adminId);
         $this->set([
-            'dbs' => $result
+            'dbs' => $result,
+            'isOwner' => $isOwner
         ]);
     }
     
