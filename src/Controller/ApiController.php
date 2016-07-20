@@ -29,6 +29,9 @@ class ApiController extends AppController{
       public  $galleryItem_ext = [
           'jpeg','jpg','JPEG','JPG','GIF','gif','PNG','png','MP4','mp4','3GP','3gp'
       ];
+      
+      protected $emailConfig = array();
+      protected $from_mail;
 
 
       public function initialize() {
@@ -127,15 +130,32 @@ class ApiController extends AppController{
             return new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError($errorCode));
     }
     
-    public function mail($to, $subject, $message) {
-      
-        $email = new Email('default');
-        $mainResult = $email->from([DEFAULT_EMAIL => 'FTC Admin'])
+    public function configureEmail($userId) {
+        if($userId){
+            $systemController = new V2\SystemsController();
+            $userEmail = $systemController->getOwnerEmailSettings($userId);
+        }else{
+            $userController = new V2\UserController();
+            $userEmail = $userController->getOwnerEmailSettings();
+        }
+        if(!isset($userEmail))
+            return FALSE;
+        $this->emailConfig = json_decode(json_encode($userEmail), true);
+        $this->from_mail = $userEmail->username;
+        $this->emailConfig['tls'] = true;
+       Email::configTransport('gmail', $this->emailConfig);
+       return TRUE;
+    }
+    
+    public function mail($to, $subject, $message, $userId = 0) {
+        if(!$this->configureEmail($userId))
+            return FALSE;
+        $email = new Email();
+        $mainResult = $email->transport('gmail')->from([$this->from_mail => 'FTC Admin'])
                 ->to($to)
                 ->subject($subject)
                 ->emailFormat('html')
                 ->send($message);
-        //Log::debug('Mail sending result :'. $mainResult);
         if($mainResult)
             return TRUE;
         else

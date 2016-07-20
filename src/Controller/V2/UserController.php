@@ -204,4 +204,9 @@ class UserController extends V1\UserController{
                 $this->response->body (json_encode($users));
         }
     }
+    
+    public function getOwnerEmailSettings() {
+        $result = $this->getTableObj()->getEmailSettings();
+        return $result;
+    }
 }

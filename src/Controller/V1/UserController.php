@@ -12,6 +12,8 @@ use App\Controller;
 use App\Model\Table\V1;
 use App\DTO;
 use Cake\Log\Log;
+use App\Controller\V2;
+
 
 //use App\Request\V1;
 /**
@@ -134,10 +136,17 @@ class UserController extends Controller\ApiController {
         Log::debug('Result of forgot password is : ' . $result);
         if ($result) {
             $link = $this->getChangePasswordLink($result);
-            $FpEmailTemplate = new FpEmailTemplateController();
-            $template = $FpEmailTemplate->getEmailTemplate();
+            $FpEmailTemplate = new V2\EmailTemplatesController();
+            $template = $FpEmailTemplate->getForgotPasswordTemplate();
+            if(!$template){
+                $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(108));
+            $this->response->body(json_encode($response));
+            return;
+            }
             $message = str_replace(TEMPLATE_NIDDLE, $link, $template);
-            if ($this->mail($forgotRequest->email, $this->email_subject, $message))
+            $message = str_replace('#user_name#', $forgotRequest->username, $message);
+            if ($this->mail($forgotRequest->email, $this->email_subject, $message) )
                 $response = new \App\Response\V1\BaseResponse(
                         DTO\ErrorDto::prepareSuccessMessage(5));
             else
@@ -163,14 +172,19 @@ class UserController extends Controller\ApiController {
         $result = $this->getTableObj()->getPassword(
                 $forgotRequest->username, $forgotRequest->email);
         if ($result) {
-            $this->reliseConnection();
-            $this->conncetionCreator();
             $sub = TRUE;
             $link = $this->getChangePasswordLink($result, $sub);
-            $FpEmailTemplate = new FpEmailTemplateController();
-            $template = $FpEmailTemplate->getEmailTemplate();
+             $FpEmailTemplate = new V2\EmailTemplatesController();
+            $template = $FpEmailTemplate->getForgotPasswordTemplate();
+            if(!$template){
+                $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(108));
+            $this->response->body(json_encode($response));
+            return;
+            }
             $message = str_replace(TEMPLATE_NIDDLE, $link, $template);
-            if ($this->mail($forgotRequest->email, $this->email_subject, $message))
+            $message = str_replace('#user_name#', $forgotRequest->username, $message);
+            if ($this->mail($forgotRequest->email, $this->email_subject, $message, $result))
                 $response = new \App\Response\V1\BaseResponse(
                         DTO\ErrorDto::prepareSuccessMessage(5));
             else

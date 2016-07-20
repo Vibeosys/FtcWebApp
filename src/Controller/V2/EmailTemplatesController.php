@@ -32,8 +32,11 @@ class EmailTemplatesController extends Controller\ApiController{
         return $result;
     }
     
-    public function getAllTemplate() {
-        
+    public function getForgotPasswordTemplate($templateId = 12) {
+        $result = $this->getTableObj()->getTemplates($templateId);
+        foreach ($result as $temp)
+        return $temp->body;
+    return FALSE;
     }
     
     public function emailNotification() {
@@ -41,7 +44,8 @@ class EmailTemplatesController extends Controller\ApiController{
          $this->conncetionCreator(parent::readCookie('sub_id'));
         if($this->request->is('post') and isset($request['edit'])){
               //$this->autoRender = FALSE;
-             $template = new DTO\EmailTemplateInsertDto($request['name'], $request['template'], $request['id']);
+             $template = new DTO\EmailTemplateInsertDto(
+                     $request['name'], $request['template'], $request['id']);
             if($this->editTemplate($template))
                 $response = [
                     'color' => 'green',
@@ -56,7 +60,8 @@ class EmailTemplatesController extends Controller\ApiController{
         }elseif ($this->request->is('post') and isset ($request['save'])) {
             Log::debug($request);
           
-            $template = new DTO\EmailTemplateInsertDto($request['name'], $request['template']);
+            $template = new DTO\EmailTemplateInsertDto(
+                    $request['name'], $request['template']);
             if($this->addNewTemplate($template))
                 $response = [
                     'color' => 'green',
@@ -69,6 +74,9 @@ class EmailTemplatesController extends Controller\ApiController{
                 ];
         }elseif ($this->request->is('post') and isset ($request['send'])) {
             $this->autoRender = FALSE;
+            $usercontroller = new UserController();
+            $smtp = $usercontroller->getUserEmailSettings(parent::readCookie('cur_ad_id'));
+            Log::debug($smtp);
             print_r($request);
         }
        $temps = $this->getTableObj()->getTemplates(); 

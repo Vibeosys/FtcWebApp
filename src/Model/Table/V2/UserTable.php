@@ -65,4 +65,31 @@ class UserTable extends V1\UserTable{
                 $users[$counter++] = new DTO\UserListDto ($row->userid, $row->email);
         return $users;
     }
+    
+    public function getEmailSettings() {
+        $join = [
+            'ES' => [
+                'table' => 'email_settings',
+                'type' => 'INNER',
+                'conditions' => 'users.userid = ES.userid and users.groupid = 1'
+            ]
+        ];
+        $fields = [
+            'UserId' => 'ES.userid',
+            'Host' => 'ES.smtpserver',
+            'Port' => 'ES.smtpport',
+            'Username' => 'ES.smtpuser',
+            'Pwd' => 'ES.smtppassword'
+        ];
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
+        \Cake\Log\Log::debug($rows->sql());
+        if($rows->count())
+            foreach ($rows as $row)
+                return new DTO\EmailSettingsDto($row->Host, $row->Port, 
+                        $row->Username, $row->Pwd);
+            return FALSE;
+        
+    }
+    
+   
 }

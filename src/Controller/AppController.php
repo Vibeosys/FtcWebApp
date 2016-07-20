@@ -58,6 +58,7 @@ class AppController extends Controller
     {
         parent::initialize();
         $this->config = $datasource = ConnectionManager::config('default');
+        //ConnectionManager::config('local',$this->config);
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
     }

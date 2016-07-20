@@ -46,7 +46,7 @@ class EmailTemplatesTable extends Table{
         }
         $templates = [];
         $counter = 0;
-        $rows = $this->connect()->find()->where($templates);
+        $rows = $this->connect()->find()->where($conditions);
         Log::debug('Get Template method query');
         Log::debug($rows->sql());
         if($rows->count())
