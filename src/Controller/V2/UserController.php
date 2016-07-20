@@ -37,6 +37,7 @@ class UserController extends V1\UserController{
                     DTO\ErrorDto::prepareError(103));
         else {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
+           
             $info->subscriberId = 0;
             $userSubscriptionController = new UserSubscriptionController();
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
@@ -65,6 +66,8 @@ class UserController extends V1\UserController{
         $result = $this->userValidation($loginRequest);
         if (is_bool($result)) {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
+             parent::writeCookie('cur_name', $info->fullName);
+            parent::writeCookie('cur_email', $info->email);
             $info->subscriberId = $loginRequest->subscriberId;
             $userSubscriptionController = new UserSubscriptionController();
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
