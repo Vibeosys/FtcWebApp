@@ -33,35 +33,62 @@ use Cake\Cache\Cache;
                 <?php if(isset($edit)) {?>
                 <form name="editDatabase" id="editDatabase" action="edit" method="post">
                     <p>
-                        <label for="user_login" class="sub-id">Subscription Id<br />
-                            <input type="text"  id="user_login" class="form-control"  size="100" value="<?= $edit->subscriberId ?>" disabled/>
-                            <input name="subscriberId" type="hidden" value="<?= $edit->subscriberId ?>">
-                        </label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text"  id="user_login_id" size="100" placeholder="" value="<?= $edit->subscriberId ?>" disabled/>
+                             <input name="subscriberId" type="hidden" value="<?= $edit->subscriberId ?>">
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Subscription Id</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="user_pass">Host Name<br />
-                            <input type="text" name="hostname" id="host" class="form-control change" size="100"  value="<?= $edit->hostname ?>"/></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="hostname" id="host" size="100" placeholder="" value="<?= $edit->hostname ?>"/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> Host Name</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="subscribe_id">Database Name<br />
-                            <input type="text" name="dbname" id="db_name" class="form-control change" size="100" value="<?= $edit->dbname ?>" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="dbname" id="db_name" size="100" placeholder="" value="<?= $edit->dbname ?>" />
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> Database Name</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="subscribe_id">Port<br />
-                            <input type="text" name="port" id="port" class="form-control change" size="100" value="<?= $edit->port ?>" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="port" id="port" size="100" placeholder="" value="<?= $edit->port ?>" />
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Port</span>
+                    </label>
+                </span> 
                     </p>                        
                     <p>
-                        <label for="subscribe_id">User Name<br />
-                            <input type="text" name="dbuname" id="db_uname" class="form-control change" size="100" value="<?= $edit->dbuname ?>" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="dbuname" id="db_uname" size="100" placeholder="" value="<?= $edit->dbuname ?>"/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> User Name</span>
+                    </label>
+                </span> 
                     </p>
 
                     <p>
-                        <label for="subscribe_id">Password<br />
-                            <input type="text" name="pwd" id="db_pass" class="form-control change" size="100" value="<?= $edit->pwd ?>" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text"  name="pwd" id="db_pass" size="100" placeholder="" value="<?= $edit->pwd ?>" />
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Password</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="subscribe_id">Owner<br />
-                            <input type="text" name="owner" id="subscribe_id" class="form-control" size="100" value="<?= $edit->owner ?>"  disabled/></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="owner" id="owner_subscribe_id" size="100" placeholder="" value="<?= $edit->owner ?>"  disabled/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Owner</span>
+                    </label>
+                </span> 
                     </p>
                     <div>
                         <div class="test-btn">
@@ -135,8 +162,9 @@ use Cake\Cache\Cache;
              e.preventDefault();
              return false;
          }
-     });  
-        $('#ftc-cancel').on('click', function(e){
+     });
+		
+	   $('#ftc-cancel').on('click', function(e){
        window.location.replace('../../database');
        e.preventDefault();
      });  

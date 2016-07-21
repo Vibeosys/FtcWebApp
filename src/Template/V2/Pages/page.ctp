@@ -58,7 +58,7 @@ use Cake\Cache\Cache;
                         </div>
                         
                         
-                        <span class="input input--hoshi">
+                        <span class="input input--hoshi input-100">
                     <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi"> App Page Title</span>
@@ -99,7 +99,7 @@ use Cake\Cache\Cache;
                         </ul>
                     </div>
                 </div>
-                <div class="main-page mobile-size">
+             <!--   <div class="main-page mobile-size">
                     <div class="heading">
                         <h2>Mobile Preview</h2>
                         <a href> <span class="fa fa-refresh refresh-link"></span></a>
@@ -122,7 +122,7 @@ use Cake\Cache\Cache;
                         <div class="video-preview push-space">
                             <!--<video src="https://www.youtube.com/watch?v=0WyjWF1nZCM" controls>
                                         Your browser does not support the <code>video</code> element.
-                            </video>-->
+                            </video>W
                             <iframe width="300" height="200" src="https://www.youtube.com/embed/fgExvIUYg5w"></iframe>
                         </div>
                            <div class="webview-preview push-space">
@@ -137,7 +137,7 @@ use Cake\Cache\Cache;
                              <p><span>Rss Description</span>: aasdasdasdasdas da sd asdasdasdasd asd</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!--   <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page mobile-size">

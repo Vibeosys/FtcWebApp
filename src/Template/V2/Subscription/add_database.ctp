@@ -14,6 +14,9 @@ use Cake\Cache\Cache;
     $this->assign('database','1');
     
 ?>
+<?php $this->start('css');?>
+   <?= $this->Html->css('dropdown-style.css') ?>
+<?php $this->end('css');?>
 
 <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
     <div class="container">
@@ -32,32 +35,53 @@ use Cake\Cache\Cache;
                 <form name="editDatabase" id="editDatabase" action="add" method="post">
                     <p>
                         <label class="sub-id owner-main">Select Owner<br />
-                            <select id="o_client" name="owner" class="form-control select-owner" >
-                                <option value="none" disabled>Select Client</option>
-                                
-
-                            </select></label>
+						<select class="turnintodropdown_demo2" id="o_client" name="owner">
+                                 <option value="none" disabled>Select Client</option>
+						</select>
+                        </label>
                     </p>
                     <p>
-                        <label for="user_pass">Host Name<br />
-                            <input type="text" name="hostname" id="host" class="form-control" size="100"  placeholder="hostname"/></label>
+                         <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="hostname" id="host" placeholder=""/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> Host Name</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="subscribe_id">Database Name<br />
-                            <input type="text" name="dbname" id="db_name" class="form-control" size="100" placeholder="database name" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="dbname" id="db_name" size="100" placeholder=""/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> Database Name</span>
+                    </label>
+                </span> 
                     </p>
                     <p>
-                        <label for="subscribe_id">Port<br />
-                            <input type="text" name="port" id="port" class="form-control" size="100" placeholder="port" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="port" id="port" size="100"  placeholder=""/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Port</span>
+                    </label>
+                </span> 
+                       
                     </p>                        
                     <p>
-                        <label for="subscribe_id">User Name<br />
-                            <input type="text" name="dbuname" id="db_uname" class="form-control" size="100" placeholder="username" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="dbuname" id="db_uname" size="100" placeholder=""/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> User Name</span>
+                    </label>
+                </span> 
                     </p>
 
                     <p>
-                        <label for="subscribe_id">Password<br />
-                            <input type="text" name="pwd" id="db_pass" class="form-control" size="100" placeholder="password" /></label>
+                        <span class="input input--hoshi input-76">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="pwd" id="db_pass" placeholder="" size="100"/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> Password</span>
+                    </label>
+                </span> 
+                      
                     </p>
                     <div>
                         <div class="test-btn">
@@ -68,7 +92,7 @@ use Cake\Cache\Cache;
                         </div>
                         <div class="edit-database-btn text-center center-block">
                             <button type="submit" id="ftc-save" class="btn btn-primary db" >Save</button>
-                            <button id="ftc-cancel" class="btn  db">Cancel</button>
+                            <button type="button" id="ftc-cancel" class="btn  db">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -81,7 +105,7 @@ use Cake\Cache\Cache;
 <script type="text/javascript">
     $(document).ready(function(){
         
-         $.ajax({
+        /* $.ajax({
             type: "POST",
             url: '/getadminclient',
             contentType: "application/json; charset=utf-8",
@@ -103,7 +127,7 @@ use Cake\Cache\Cache;
                 alert(errMsg);
             }
         });
-        
+        */
       
         $('#test_connect').on('click', function(){
 
@@ -149,8 +173,7 @@ use Cake\Cache\Cache;
              return false;
          }
      }); 
-     
-     $('#ftc-cancel').on('click', function(e){
+    $('#ftc-cancel').on('click', function(e){
        window.location.replace('../../database');
        e.preventDefault();
      });  
@@ -158,4 +181,5 @@ use Cake\Cache\Cache;
     
     
 </script>   
+   <?= $this->Html->script('dropdown-style.js') ?>
      <?= $this->end('script') ?>

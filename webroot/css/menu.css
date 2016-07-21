@@ -22,7 +22,8 @@
   color: #F95A09;
 }
 .has-submenu img{
-    padding-right: 12px;
+    padding-right: 10px;
+    width: 29px;
 }
 #topnav .has-submenu.active .submenu li.active a {
   color: #F95A09;
@@ -81,8 +82,8 @@
 }
 #topnav .topbar-main .profile img {
   border: 2px solid #edf0f0;
-     height: 38px;
-    width: 38px;
+     height: 34px;
+    width: 34px;
     margin-top: 1em;
 }
 #topnav .topbar-main .dropdown-menu-lg {
@@ -314,9 +315,9 @@
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
   line-height: 20px;
-  padding-left: 32px;
-  padding-right: 20px;
-    font-size: 18px;
+  padding-left: 15px;
+  padding-right: 15px;
+    font-size: 14px;
 }
 #topnav .navigation-menu > li > a:hover {
   color: #F95A09;
@@ -370,7 +371,7 @@
     margin-right: 10px;
   }
   #topnav .navigation-menu > li:first-of-type a {
-    padding-left: 5px;
+    padding-left: 0px;
   }
   #topnav .navigation-menu > li:hover a {
     color: #F95A09;

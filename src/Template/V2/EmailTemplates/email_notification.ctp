@@ -35,7 +35,7 @@ use Cake\Cache\Cache;
 
                     <ul class="resp-tabs-list hor_1">
                         <h2 class="text-center">Templates</h2>
-                        <li class="tabs-1"><i class="fc_icons fa fa-plus "></i> <span class="tabs-text">Add New</span></li>
+                        <li class="tabs-1"><i class="fc_icons fa fa-envelope "></i> <span class="tabs-text">Add New</span></li>
                      <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?>
                         <li id="<?= $temp->templateId ?>"  class="tabs-<?= $i ?>"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text"><?= $temp->name ?></span></li>
                      <?php $i++; }} ?>
@@ -44,7 +44,7 @@ use Cake\Cache\Cache;
                         <div class="fc-tab-1">
                                <form action="emailnotification" method="post">
                           
-                            <span class="input input--hoshi">
+                            <span class="input input--hoshi input-100">
                     <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Template Name</span>
@@ -56,23 +56,22 @@ use Cake\Cache\Cache;
                                 <!-- <a   style="border: 1px solid;padding: 10px;margin-left: 7%;text-decoration: none;" href="../database"> Back to List</a> -->
                     <?php } ?>
                 </span> 
-                        <!--    <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a> -->
+                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>
                          
                                 <div class="email-outer">
                                     <div class="email-inner">
-                                        <div class="template-view" style="display: none">
-                                            <lable>Template Body   
+                                        <div class="template-view" style="display:none">
+                                            <lable>Template   
                                                 <div id="temp_show_new" class="template-code template"> 
                                                     <h2>Hello,</h2>
                                                     <p>hi how r u?</p>
                                                 </div>
                                             </lable>
                                         </div>
-                                        <lable>Template Body
+                                        <lable>Template  
                                             <div>
-                                                <textarea name="template" id='edit_new'>
-                                                </textarea>
+                                                  <textarea id="edtextarea" name="template"></textarea>
                                             </div>
                                         </lable>
                                         <!--  <lable class="push-top">Recipients
@@ -94,7 +93,7 @@ use Cake\Cache\Cache;
                                 </div>
                             </form>
                         </div>
-                        <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  { ?> 
+                        <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?> 
                       
                         <div class="fc-tab-2">
                          <form action="emailnotification" method="post">  
@@ -119,7 +118,7 @@ use Cake\Cache\Cache;
                                         </div>
                                         <lable class="push-top" style="display: none" id='editor_<?= $temp->templateId ?>' >Template Body 
                                             <div class="margin10" >
-                                                <textarea name="template" id='edit_<?= $temp->templateId ?>'>
+                                                <textarea name="template" id='txtEditor_<?= $temp->templateId ?>'>
                                              <?= $temp->body ?>
                                                 </textarea>
                                             </div>
@@ -222,22 +221,7 @@ use Cake\Cache\Cache;
 <?php $this->start('script');?>
  <?= $this->Html->script('tab/easyResponsiveTabs.js') ?>
    <?= $this->Html->script('tab/tabs.js') ?>
-   <?= $this->Html->script('editor.js') ?>
-   <?= $this->Html->script('editor/align.min.js') ?>
-   <?= $this->Html->script('editor/char_counter.min.js') ?>
-   <?= $this->Html->script('editor/code_beautifier.min.js') ?>
-   <?= $this->Html->script('editor/code_view.min.js') ?>
-   <?= $this->Html->script('editor/colors.min.js') ?>
-   <?= $this->Html->script('editor/entities.min.js') ?>
-   <?= $this->Html->script('editor/font_family.min.js') ?>
-   <?= $this->Html->script('editor/font_size.min.js') ?>
-   <?= $this->Html->script('editor/line_breaker.min.js') ?>
-   <?= $this->Html->script('editor/link.min.js') ?>
-   <?= $this->Html->script('editor/lists.min.js') ?>
-   <?= $this->Html->script('editor/paragraph_format.min.js') ?>
-   <?= $this->Html->script('editor/paragraph_style.min.js') ?>
-   <?= $this->Html->script('editor/table.min.js') ?>
-   <?= $this->Html->script('editor/url.min.js') ?>
+   <?= $this->Html->script('//cdn.tinymce.com/4/tinymce.min.js') ?>
 <script type="text/javascript">
     function diable_prev(id) {
               
@@ -263,14 +247,12 @@ use Cake\Cache\Cache;
         event.preventDefault();
         return false;
     }
-    jQuery(function () {
-        jQuery('#edit_new').froalaEditor({toolbarInline: false})
-     <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?>
-        jQuery('#edit_<?= $temp->templateId ?>').froalaEditor({toolbarInline: false})
-      <?php $i++; }} ?>
-
-    });
-
+  
+jQuery(document).ready(function() {
+	tinymce.init({ selector:'#edtextarea' });
+});
+    
+    
     jQuery(document).ready(function () {    
 
         jQuery('.edit-template').on('click', function (e) {
@@ -298,7 +280,7 @@ use Cake\Cache\Cache;
             //jQuery('#add_' + id).css('display', 'inline-block');
            // jQuery('.user_btn_' + id).removeAttr('disabled');
         });
-        
+		
         jQuery('.save_cancel').on('click', function(e){
             var check =  jQuery('#pre_act').val();
             if(check > 0){

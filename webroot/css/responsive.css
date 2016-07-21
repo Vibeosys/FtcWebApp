@@ -167,7 +167,7 @@
 }
 /****************** Page *******************/
 .logo-img{
-    width:97px; 
+    width:85px; 
     margin-top: -13px;
     margin-bottom: 17px;
 }
@@ -249,6 +249,8 @@ textarea {
 }
 .email-inner textarea, .app-title-width{
     width: 85%;
+    border-left: 6px solid #1F5689;
+    background: rgba(247, 247, 247, 0.67);
 }
 .push-top{
     position: relative;
@@ -727,6 +729,10 @@ input[type=search]{
 .user-list{
     border: 1px solid rgba(128, 128, 128, 0.26);
 }
+.tabs-text{
+        position: relative;
+    top: -5px;
+}
 .btn-email-send .btn{
     float: left;
     margin-top: 40px;
@@ -1150,14 +1156,25 @@ margin: 0;
 	position: relative;
 	z-index: 1;
 	display: inline-block;
-	max-width: 100%;
-	width:100%;
 	vertical-align: top;
+}
+.input-76{
+    max-width: 76%;
+    width: 100%;
+}
+.input-100{
+    max-width: 100%;
+    width:100%;
+}
+.input-85{
+      max-width: 85%;
+    width:100%;
 }
 
 .input__field {
 	position: relative;
 	display: block;
+    top:-4px;
 	float: right;
 	padding: 0.8em;
 	width: 60%;
@@ -1165,7 +1182,6 @@ margin: 0;
 	border-radius: 0;
 	background: #f0f0f0;
 	color: #aaa;
-	font-weight: bold;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-appearance: none; /* for box shadows to show on iOS */
 }

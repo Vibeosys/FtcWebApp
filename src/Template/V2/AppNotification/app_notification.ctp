@@ -30,9 +30,14 @@ use Cake\Cache\Cache;
                    <form action="appnotification" method="post"> 
                    <div class="email-outer">
                         <div class="email-inner">
-                             <lable>Title
-                                 <input type="text" name="title"  class='app-title-width form-control margin10'  id="title" required>
-                            </lable>
+                            <p>
+                              <span class="input input--hoshi input-85">
+                    <input class="input__field input__field--hoshi title-input" type="text" name="title" id="title" required size="100"  placeholder=""/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi">Title</span>
+                    </label>
+                                </span> </p>
+                            
                             <lable>Message 
                                 <textarea rows='15' name="msg"  class='form-control margin10'  id="html-template"></textarea>
                             </lable>
@@ -47,8 +52,7 @@ use Cake\Cache\Cache;
                         </div>
                    </div>
                    <div class="btn-email-send">
-                       <input type="submit" name="send" value="Send" class="btn btn-info"> 
-                       <input type="button" value="Cancel" class="btn cancel send_cancel">
+                       <input type="submit" name="send" value="Send" class="btn btn-info"> <input type="button" value="Cancel" class="btn cancel send_cancel">
                 </div>
                    </form>
                 </div>
@@ -243,15 +247,13 @@ use Cake\Cache\Cache;
         $('#contact_list').html(user_list);
         $('#myModel').css('display','none');
      });
-     
-        $('.send_cancel').on('click', function(e){
+      $('.send_cancel').on('click', function(e){
             // jQuery('.VerticalTab ul li').removeClass('resp-tab-active');
              //jQuery('.VerticalTab ul li.tabs-1').addClass('resp-tab-active');
              window.location.replace('../../');
                e.preventDefault();
                return false;
         });
-     
     
      
  });  
