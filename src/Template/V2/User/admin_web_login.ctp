@@ -65,7 +65,7 @@ use Cake\Cache\Cache;
          </span>
            <!-- <span id="error_check" class="error-check">Please read terms & conditions.</span>    -->
 	</div>
-        <span style="display: none" id="check_er" class="error-check">Please select checkbox</span>    
+        <span style="display: none" id="check_er" class="error-check">Please agree with terms and conditions before login.</span>    
         <img id="log_loader" style="width: 27px;margin: 0px 114px;display: none;position:relative;top:20px;" src="../img/log_loader.gif" alt="Please Wait" />
         <p class="text-center" id="log_msg" style=" display: none;color: red;font-size: 15px"></p>  
         

@@ -146,7 +146,7 @@ use Cake\Cache\Cache;
                  });
                  jQuery.post('/getcookie',{name:'cur_email'}, function(val){
                      jQuery('#cur_email').text(val);
-                     if(value == 0){
+                     if(val == 0){
                          window.location.replace('../../admin/login');
                      }
                  });

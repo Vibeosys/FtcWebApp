@@ -47,7 +47,8 @@ use Cake\Cache\Cache;
                         </div>
                    </div>
                    <div class="btn-email-send">
-                       <input type="submit" name="send" value="Send" class="btn btn-info"> <input type="button" value="Cancel" class="btn cancel">
+                       <input type="submit" name="send" value="Send" class="btn btn-info"> 
+                       <input type="button" value="Cancel" class="btn cancel send_cancel">
                 </div>
                    </form>
                 </div>
@@ -242,6 +243,14 @@ use Cake\Cache\Cache;
         $('#contact_list').html(user_list);
         $('#myModel').css('display','none');
      });
+     
+        $('.send_cancel').on('click', function(e){
+            // jQuery('.VerticalTab ul li').removeClass('resp-tab-active');
+             //jQuery('.VerticalTab ul li.tabs-1').addClass('resp-tab-active');
+             window.location.replace('../../');
+               e.preventDefault();
+               return false;
+        });
      
     
      

@@ -136,6 +136,10 @@ use Cake\Cache\Cache;
              return false;
          }
      });  
+        $('#ftc-cancel').on('click', function(e){
+       window.location.replace('../../database');
+       e.preventDefault();
+     });  
     });
     
     

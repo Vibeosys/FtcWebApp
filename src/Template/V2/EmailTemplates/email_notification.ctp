@@ -90,11 +90,11 @@ use Cake\Cache\Cache;
                                 </div>
                                 <div class="btn-email-send">
                                     <input id="save" name="save" type="submit" value="Save" class="btn btn-info">
-                                    <input type="button" value="Cancel" class="btn cancel">
+                                    <input type="button" value="Cancel" class="btn cancel send_cancel">
                                 </div>
                             </form>
                         </div>
-                        <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?> 
+                        <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  { ?> 
                       
                         <div class="fc-tab-2">
                          <form action="emailnotification" method="post">  
@@ -136,11 +136,11 @@ use Cake\Cache\Cache;
                                 </div>
                                 <div id="button_send_<?= $temp->templateId ?>" class="btn-email-send">
                                     <input name="send" type="submit" value="Send" class="btn btn-info">
-                                    <input type="button" value="Cancel" class="btn cancel">
+                                    <input type="button" value="Cancel" class="btn cancel send_cancel">
                                 </div>
                             <div style="display:none" id="button_save_<?= $temp->templateId ?>" class="btn-email-send">
                                 <input name="edit" type="submit" value="Save" class="btn btn-info">
-                                    <input type="button" value="Cancel" class="btn cancel">
+                                    <input type="button" value="Cancel" class="btn cancel save_cancel">
                                 </div>
                              </form>
                         </div>
@@ -297,6 +297,22 @@ use Cake\Cache\Cache;
             jQuery('#button_save_' + id).css('display', 'block');
             //jQuery('#add_' + id).css('display', 'inline-block');
            // jQuery('.user_btn_' + id).removeAttr('disabled');
+        });
+        
+        jQuery('.save_cancel').on('click', function(e){
+            var check =  jQuery('#pre_act').val();
+            if(check > 0){
+               diable_prev(check);
+               e.preventDefault();
+               return false;
+           }  
+        });
+         jQuery('.send_cancel').on('click', function(e){
+            // jQuery('.VerticalTab ul li').removeClass('resp-tab-active');
+             //jQuery('.VerticalTab ul li.tabs-1').addClass('resp-tab-active');
+             window.location.replace('../../');
+               e.preventDefault();
+               return false;
         });
         
         jQuery('.VerticalTab ul li').on('click',function(e){
