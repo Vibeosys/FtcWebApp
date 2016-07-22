@@ -52,7 +52,8 @@ use Cake\Cache\Cache;
                         </div>
                    </div>
                    <div class="btn-email-send">
-                       <input type="submit" name="send" value="Send" class="btn btn-info"> <input type="button" value="Cancel" class="btn cancel send_cancel">
+                       <input type="submit" name="send" value="Send" class="btn btn-info"> 
+                       <input type="button" value="Cancel" class="btn cancel send_cancel">
                 </div>
                    </form>
                 </div>
@@ -118,27 +119,47 @@ use Cake\Cache\Cache;
                            <div class="user-list">
                                     <ul ng-controller="MainCtrl">
                                         <li class="check-all user-main">
-                                            <input type="checkbox" name="all" id="all"/>
-                                            All
+                                             <div class="check-style">
+                                                <input type="checkbox" value="None"  name="all" id="all" class="terms-check" />
+                                                <label for="all"> </label>
+                                            </div>
+                                           All
+                                           
                                         </li>
                                          <li class="check-all user-main">
-                                            <input type="checkbox" name="subscribers" id="sub" />
+                                               <div class="check-style">
+                                                <input type="checkbox" value="None"  name="subscribers" id="sub" class="terms-check" />
+                                                <label for="sub"> </label>
+                                            </div>
+                                            
                                             Subscribers
                                         </li>
                                          <li class="check-all user-main">
-                                             <input type="checkbox" name="non_subscribers" id="non_sub" />
+                                               <div class="check-style">
+                                                <input type="checkbox" value="None"  name="non_subscribers" id="non_sub" class="terms-check" />
+                                                <label for="non_sub"> </label>
+                                            </div>
+                                            
                                             Non Subscribers
                                         </li>
                                          <li class="check-all user-main">
-                                             <input type="checkbox" name="direct_client" id="indirect" />
+                                               <div class="check-style">
+                                                <input type="checkbox" value="None"  name="direct_client" id="indirect" class="terms-check" />
+                                                <label for="indirect"> </label>
+                                            </div>
+                                             
                                           Indirect Clients
                                         </li>
                                           <li class="check-all user-main">
-                                              <input type="button"  value="Find" id="find" class="btn btn-info"/>
+                                              <input type="button"  value="Find" id="find" class="btn btn-info find-btn"/>
                                               <img id="note_loader" src="../img/log_loader.gif" alt="Please Wait">
                                         </li>
-                                        <div><hr></div>
-                <table id="menu" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        
+                
+                                    </ul>
+
+                                </div>    
+                        <table id="menu" class="table table-striped table-bordered dt-responsive nowrap user-list-table" cellspacing="0" width="100%">
                           <thead>
                             <tr>
                             <th>Select</th>
@@ -151,9 +172,6 @@ use Cake\Cache\Cache;
                         
                           </tbody>
                         </table>
-                                    </ul>
-
-                                </div>               
                       </div>
                  
                     
@@ -211,7 +229,9 @@ use Cake\Cache\Cache;
                     var html = '';
                   $.each(data, function(key,json){
                       html += '<tr><td>' + 
-                                '<input id="select_'+ i +'" type="checkbox"  checked></td>'+
+                          
+                                  '<div class="check-style"><input type="checkbox" value="None"  name="subscribers" id="select_'+ i +'" class="terms-check" checked/><label for="select_'+ i +'"> </label></div></td>'+
+                               // '<input id="select_'+ i +'" type="checkbox"  checked></td>'+
                                 '<input type="text" style="display:block" value="'+json.gcmId +'" id="user_gcm_'+i+'">'+
                               '<td gcm ="'+json.gcmId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
                                 '<td>'+json.email +'</td></tr>';
@@ -253,7 +273,7 @@ use Cake\Cache\Cache;
              window.location.replace('../../');
                e.preventDefault();
                return false;
-        });
+        });  
     
      
  });  

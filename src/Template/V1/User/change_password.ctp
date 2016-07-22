@@ -34,10 +34,10 @@ use Cake\Cache\Cache;
         <div  class="company-logo"></div> 
         <?php if(isset($userId)){
         if(!$userId) {?>
-        <h2 class="text-center">
+        <p style="color: red" class="text-center change_password_msg">
             <?= $errorMessage ?>
-        </h2>
-        <a href="<?= $this->Url->webroot('/') ?>">Home</a>
+        </p>
+        <a class="change_password_msg" href="<?= $this->Url->webroot('/') ?>"><i class="fa fa-home fa-2x"></i>Home</a>
         <?php }else  {?>
         <form name="loginform" id="loginform" action="" method="post">
             <h3 class="text-center" style="margin: 0px 0px 10px 0px">Change Password</h3>

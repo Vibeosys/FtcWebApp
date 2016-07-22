@@ -174,6 +174,13 @@ class UserController extends Controller\ApiController {
         if ($result) {
             $sub = TRUE;
             $link = $this->getChangePasswordLink($result, $sub);
+            $this->reliseConnection();
+            if (!$this->conncetionCreator($forgotRequest->subscriberId)) {
+            $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(105));
+            $this->response->body(json_encode($response));
+            return;
+            }
              $FpEmailTemplate = new V2\EmailTemplatesController();
             $template = $FpEmailTemplate->getForgotPasswordTemplate();
             if(!$template){

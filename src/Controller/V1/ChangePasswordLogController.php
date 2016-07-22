@@ -22,6 +22,8 @@ class ChangePasswordLogController extends Controller\ApiController{
     }
     
     public function addNewEntry($entry) {
+        $this->reliseConnection();
+        $this->conncetionCreator();
         return $this->getTableObj()->addEntry($entry);
     }
     

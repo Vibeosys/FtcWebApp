@@ -58,8 +58,10 @@ class EmailTemplatesController extends Controller\ApiController{
                 ]; 
             
         }elseif ($this->request->is('post') and isset ($request['save'])) {
+           //$this->autoRender = FALSE;
             Log::debug($request);
-          
+            //print_r($request);
+            //return;
             $template = new DTO\EmailTemplateInsertDto(
                     $request['name'], $request['template']);
             if($this->addNewTemplate($template))

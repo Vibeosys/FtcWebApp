@@ -24,8 +24,8 @@ use Cake\Cache\Cache;
                     <span style="text-align:center;background-color:white;color: <?= $color ?>;padding:10px"><strong><?= $message ?>.</strong></span>
                         <?php } ?>
                     <div class="publish-btn">
-                        <input type="submit" name="publish" value="Publish" class="btn btn-success">
-                        <input type="button" value="Cancel" class="btn btn-danger cancel_page">
+                        <input type="submit" name="publish" value="Publish" class="btn btn-info btn-large">
+                        <input type="button" value="Cancel" class="btn cancel btn-large cancel_page">
                     </div>
                 </div>
                 <div class="col-lg-12 mobile-show">
@@ -34,12 +34,36 @@ use Cake\Cache\Cache;
 
                     </div>
 
+                     <div class="type-radio">
+                         <ul class="check-ul">
+                          <li>
+                            <input type="radio" id="custom" name="type" checked value="1">
+                            <label for="custom">Custom</label>
 
+                            <div class="check"></div>
+                          </li>
+
+                          <li>
+                            <input type="radio" id="web" name="type" value="2">
+                            <label for="web">Web View</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                          </li>
+
+                          <li>
+                            <input type="radio" id="rss" name="type" value="3">
+                            <label for="rss">RSS Feed</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                          </li>
+                        </ul>
+                      
+                    </div>
                     <ul class="tool-list-mobile">
                         <li><addimage></addimage></li>
                         <li><addlink></addlink></li>
                         <li><addvideo></addvideo></li>
-                          <li><addyoutubevideo></addyoutubevideo></li>
+                        <li><addyoutubevideo></addyoutubevideo></li>
                         <li><addtext></addtext></li>
                         <li><addheading></addheading></li>
                         <li><addweblink></addweblink></li>
@@ -48,16 +72,18 @@ use Cake\Cache\Cache;
 
                 </div>
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
-                    <div class="heading">
-
+    
                         <div class="publish-btn">
-                            <a  href="#preview_div" class="btn btn-warning">Preview</a>
-                            <input type="submit" name="save" value="Save as Draft" class="btn btn-info">
-                            <input type="button" value="Cancel" class="btn cancel-btn cancel_page">
+                            <a  href="#preview_div" class="btn btn-preview btn-large">Preview</a>
+                            <input type="submit" name="save" value="Save as Draft" class="btn btn-info btn-large">
+                            <input type="button" value="Cancel" class="btn cancel btn-large cancel_page">
                         </div>
-                        <span class="title-text">
-                            App Page Title</span>
-                        <input name="page" type="text" class="form-control title-input" id="page" value="<?= $page->pageTitle ?>" placeholder="News/blog" required>
+                         <span class="input input--hoshi input-32 push-51">
+                    <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" value="<?= $page->pageTitle ?>" required/>
+                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                        <span class="input__label-content input__label-content--hoshi"> App Page Title</span>
+                    </label>
+                </span> 
                         <input type="hidden" name="pageId" value="<?= $page->pageId ?>">
                         <input type="hidden" name="pageType" value="<?= $page->pageType ?>">
                         <input type="hidden" name="status" value="<?= $page->status ?>">
@@ -66,7 +92,7 @@ use Cake\Cache\Cache;
                         <input type="hidden" name="for" value="<?= $page->pageFor ?>">
                         <img id="page_loader" style="width: 38px;margin: 2px 0px;display: none" src="../img/log_loader.gif" alt="Please Wait">
                         <p id="page_name_check_msg" style="margin: 0 0 -8px;display: none"><p>
-                    </div>
+                       </p>
                     <div ><span class="app-text">App Content</span></div>
                     <div class="page-item" >
                         <div class="canvas center-block"><span class="canvas-text center-block">Canvas</span></div>
@@ -187,21 +213,45 @@ use Cake\Cache\Cache;
                         <h2>Toolbox</h2>
                     </div>
                      <div class="type-radio">
+                        <ul class="check-ul">
+                          <li>
+                            <input type="radio" id="custom" name="type" checked value="1">
+                            <label for="custom">Custom</label>
+
+                            <div class="check"></div>
+                          </li>
+
+                          <li>
+                            <input type="radio" id="web" name="type" value="2">
+                            <label for="web">Web View</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                          </li>
+
+                          <li>
+                            <input type="radio" id="rss" name="type" value="3">
+                            <label for="rss">RSS Feed</label>
+
+                            <div class="check"><div class="inside"></div></div>
+                          </li>
+                        </ul>
+                         <!--
                         <span><input type="radio" name="type" class="type" id="custom" checked value="1"> Custom </span>
                         <span><input type="radio" name="type" class="type" id="web" value="2"> Web View</span>
-                        <span><input type="radio" name="type" class="type" id="rss" value="3"> RSS</span></div>
+                        <span><input type="radio" name="type" class="type" id="rss" value="3"> RSS</span></div>-->
                     <div class="tool-list">
                         <ul>
                             <li><addimage></addimage></li>
                             <li><addlink></addlink></li>
                             <li><addvideo></addvideo></li>
-                              <li><addyoutubevideo></addyoutubevideo></li>
+                            <li><addyoutubevideo></addyoutubevideo></li>
                             <li><addtext></addtext></li>
                             <li><addheading></addheading></li>
                             <li><addweblink></addweblink></li>
                             <li><addrssfeed></addrssfeed></li>
                         </ul>
                     </div>
+                </div>
                 </div>
                 <div id="preview_div" class="main-page mobile-size">
                     <div class="heading">
@@ -266,7 +316,7 @@ use Cake\Cache\Cache;
             </div>
         </div>
     </div>
-
+    
 </section>
 <div id="myModal" class="modal animated zoomin">
     <div class="modal-dialog img-dialog">
@@ -287,9 +337,6 @@ use Cake\Cache\Cache;
                     </ul>
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="image">
-                            <input type="file" id="fileLoader" name="files" title="Load File" />
-                            <input type="button" id="btnmediaFileDialog" value = "Image Upload" class="btn btn-info" onclick="openfileDialog();" />
-
                             <div class="container-fluid">
                                 <div class="row row-wrap" id="img_list">
 
@@ -299,9 +346,7 @@ use Cake\Cache\Cache;
                             </div>
                         </div>
                         <div class="tab-pane" id="video">
-                            <input type="file" id="fileLoader" name="video-files" title="Load File" />
-                            <input type="button" id="btnmediaFileDialog" value = "Video Upload" class="btn btn-info" onclick="openfileDialog();" />
-                            <div class="container-fluid">
+                           <div class="container-fluid">
                                 <div class="row row-wrap">
 
                                     <div class="col-lg-2 col-md-3 col-xs-12 thumb">
@@ -446,8 +491,8 @@ use Cake\Cache\Cache;
                 </div>
                 <div class="modal-footer">
                     <div class="btn-wrap">
-                        <input type="button" id="select_item_btn" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" name="submit" value="Set Media">
-                        <input type="button" class="btn btn-danger cancel-dialog" data-dismiss="modal" aria-hidden="true" name="cancel" value="Cancel">
+                        <input type="button" id="select_item_btn" class="btn btn-info btn-large" data-dismiss="modal" aria-hidden="true" name="submit" value="Set Media">
+                        <input type="button" class="btn btn-large cancel cancel-dialog" data-dismiss="modal" aria-hidden="true" name="cancel" value="Cancel">
                     </div>
                 </div>
 
@@ -515,13 +560,13 @@ use Cake\Cache\Cache;
      myApp.directive("addvideo", function () {
         return {
             restrict: "E",
-            template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
+            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
        myApp.directive("addyoutubevideo", function () {
         return {
             restrict: "E",
-            template: "<a vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></a>"
+            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addheading", function () {

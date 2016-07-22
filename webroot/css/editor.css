@@ -100,7 +100,7 @@ h2.demo-text{font-family: 'Roboto', sans-serif!important; font-size:45px; font-w
 #menuBarDiv .dropdown-toggle .caret{margin-left:5px; border-top-color:#999;}
 #menuBarDiv a.btn{position:relative; margin-bottom:3px;}
 #paletteCntr{}
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:auto; margin-bottom:10px;}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{height:auto;}
   
 #statusbar{
   min-height:30px;

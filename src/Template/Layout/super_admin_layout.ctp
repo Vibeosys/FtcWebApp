@@ -23,7 +23,7 @@ use Cake\Cache\Cache;
         <?= $this->Html->css('icons.css') ?>
         <?= $this->Html->css('animate.min.css') ?>
         <?= $this->Html->css('font-awesome.css') ?>
-   
+          <?= $this->Html->css('dropdown-style.css') ?>
         <?php if($this->fetch('css')){
            echo $this->fetch('css');   
         }?>
@@ -51,10 +51,8 @@ use Cake\Cache\Cache;
                           
 
                             <li class="dropdown">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true">
-                                    <img src="../img/user.jpg" alt="user-img" class="img-circle">
-                                    <span id="cur_name" ></span></a>
-                                <span id="cur_email" class="email"></span>
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="../img/user.jpg" alt="user-img" class="img-circle"><span >Sanjoy<i class=" fa fa-angle-down"></i></span></a>
+                                <span class="email">abcdef@xyz.com</span>
                                 <ul class="dropdown-menu animated fadeInDown pull-right">
                                     <li><a href="../logout"><i class="fa fa-sign-out fa-logout"></i> Logout</a></li>
                                 </ul>
@@ -93,14 +91,14 @@ use Cake\Cache\Cache;
                         <li class="has-submenu  <?php if($this->fetch('page_list')){ echo 'active'; }?>">
                             <a href="../pages" <?php if($this->fetch('page_list')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Versions-25.png">Custom Pages</a>
                         </li>
-                        <li class="has-submenu <?php if($this->fetch('user_management')){ echo 'active'; }?>">
+                     <!--   <li class="has-submenu <?php if($this->fetch('user_management')){ echo 'active'; }?>">
                             <a href="../user/management" <?php if($this->fetch('user_management')){ echo 'class="active-menu"'; }?> ><img src="../img/menu-icon/UserGroups-25.png">User Management</a>
                             <ul class="submenu">
                                  <li><a href="../user/management" <?php if($this->fetch('VC')){ echo 'class="active"'; }?>>View Clients</a></li>
                                  <li><a href="../user/createsubscription" <?php if($this->fetch('CS')){ echo 'class="active"'; }?> >Create Subscription</a></li>
                                   <li><a href="../user/assignsubscription" <?php if($this->fetch('AS')){ echo 'class="active"'; }?>>Assign Subscription</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                          <li class="has-submenu <?php if($this->fetch('gallery')){ echo 'active'; }?>">
                             <a href="../gallery" <?php if($this->fetch('gallery')){ echo 'class="active-menu"'; }?> >
                                 <img src="../img/menu-icon/Gallery-25.png">Gallery
@@ -134,9 +132,10 @@ use Cake\Cache\Cache;
         <!-- jQuery  -->
         <?= $this->Html->script('jquery.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
-        <?= $this->Html->script('jquery.app.js') ?>
+       
         <?= $this->Html->script('classie.js') ?>
-        <script type="text/javascript">
+        <?= $this->Html->script('custom-file-input.js') ?>
+       <script type="text/javascript">
             jQuery(document).ready(function(){
                  jQuery.post('/getcookie',{name:'cur_name'}, function(value){
                      if(value == 0){
@@ -152,17 +151,12 @@ use Cake\Cache\Cache;
                  });
             });
         
-        </script>
-        
-  
-       
-       
-     
-   <?php if($this->fetch('script')){
+        </script>      
+		
+     <?php if($this->fetch('script')){
        echo $this->fetch('script');
        
    }?>
-        
 
     </body>
-</html>
+</html> 

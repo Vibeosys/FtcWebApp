@@ -111,9 +111,18 @@
 }
     .mobile-show{
         display: block!important;
+            position: relative;
+    padding-top: 12em;
     }
     .main-page-hide{
         display: none;
+    }
+    .main-page-publish{
+    position: absolute;
+    
+    }
+    .publish-btn{
+        position: relative;
     }
 }
 @media (max-width: 480px) {
@@ -209,8 +218,8 @@
     color: gray;
 }
 .heading{
-    /* border-bottom: 1px solid rgba(128, 128, 128, 0.34);*/
-    /*padding-bottom: 15px;*/
+ border-bottom: 1px solid rgba(128, 128, 128, 0.34);
+    padding-bottom: 15px;
 }
 .btn-privew{
     text-align: right;
@@ -245,12 +254,34 @@ textarea {
     margin-bottom: 20px;
     background: white;
     width: 98.8%;
-
+    z-index: 1;
 }
 .email-inner textarea, .app-title-width{
     width: 85%;
     border-left: 6px solid #1F5689;
     background: rgba(247, 247, 247, 0.67);
+}
+.text-icon{
+        font-size: 10px;
+    position: relative;
+    top: 24px;
+    left: -33px;
+    color: gray;
+    text-transform: uppercase;
+}
+@media (max-width:767px){
+    .email-inner textarea, .app-title-width {
+        width: 100%;
+    }
+    .input-85{
+        max-width: 100%!important;
+    }
+    .contact-list-div {
+        width: 91%!important;
+    min-width: 91%!important;
+    max-width: 91%!important;
+
+}
 }
 .push-top{
     position: relative;
@@ -498,7 +529,7 @@ width: 363px;
 }
 .terms-check{
     position: relative;
-    left: 15px;
+    left: 13px;/*13*/
 }
 .terms-content{
         position: relative;
@@ -530,7 +561,7 @@ width: 363px;
 	position: absolute;
     width: 18px;
     height: 18px;
-    top: 4px;
+    top: 0px;/*4*/
 	border-radius: 4px;
     border: 2px solid #1f5689;
     left: 13px;
@@ -618,9 +649,10 @@ width: 363px;
 }
 .btn-large {
        line-height: 28px;
-    padding: 6px 15px 6px 15px;
-    font-size: 16px;
-    text-transform: uppercase;
+    padding: 6px 15px 6px 15px!important;
+    font-size: 16px!important;
+    text-transform: capitalize;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
 }
  .btn-primary {
     background: #0085ba;
@@ -648,7 +680,7 @@ width: 363px;
 }
 .publish-btn{
         float: right;
-    padding: 20px;
+    margin: 20px;
 }
 .publish-btn .btn{
         font-size: 18px;
@@ -711,6 +743,86 @@ input[type=search]{
 .fa-size{
     font-size: 20px!important;
 }
+.push-51{
+        margin-top: -71px;
+}
+
+/********* REDIO BUTTON STYLE *********/
+.check-ul{
+        margin-left: -50px;
+}
+.check-ul li{
+     color: #000;
+    display: table-cell;
+    position: relative;
+}
+
+.check-ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+}
+
+.check-ul li label{
+       display: block;
+    position: relative;
+    font-weight: 300;
+    font-size: 15px;
+    padding: 14px 0px 0px 43px;
+    margin: 0px auto;
+    z-index: 9;
+    cursor: pointer;
+    -webkit-transition: all 0.25s linear;
+}
+
+.check-ul li:hover label{
+	color: #1F5689;
+}
+
+.check-ul li .check{
+ display: block;
+    position: absolute;
+    border: 2px solid #1F5689;
+    border-radius: 100%;
+    height: 18px;
+    width: 18px;
+    top: 16px;
+    left: 20px;
+    z-index: 5;
+    transition: border .25s linear;
+    -webkit-transition: border .25s linear;
+}
+
+.check-ul li:hover .check {
+  border: 2px solid #1F5689;
+}
+
+.check-ul li .check::before {
+     display: block;
+    position: absolute;
+    content: '';
+    border-radius: 100%;
+    height: 8px;
+    width: 8px;
+    top: 3px;
+    left: 3px;
+    margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+input[type=radio]:checked ~ .check {
+      border: 2px solid #1F5689;
+}
+
+input[type=radio]:checked ~ .check::before{
+  background: #1F5689;
+}
+
+input[type=radio]:checked ~ label{
+  color: #1F5689;
+}
+
+
 
 /************ Email ****************/
 .template-name{
@@ -739,15 +851,47 @@ input[type=search]{
     font-size: 20px;
     padding: 10px 20px 10px 20px ;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
+        margin-right: 20px;
+}
+.modal-footer .btn{
+        float: right;
+    margin-top: 5px;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
+        margin-left: 15px;
+}
+.find-btn{
+    padding: 6px 15px 6px 15px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.btn-info{
+        background: #1F5689;
 }
 .cancel{
-    margin-left: 20px; 
-    margin-top: 40px;
+    color:darkgray;
+    
+}
+.cancel:hover{
+    color:black;
+    
+}
+.btn-preview:hover, .btn-preview:active, .btn-preview:focus {
+    color: #fff;
+    background: #1F5689;
+     border-color: #3184b1;
+}
+.btn-preview {
+    color: #fff;
+    background-color: #3184b1;
+    border-color: #3184b1;
 }
 .user-list ul li input[type=checkbox]{
     width: 19px;
     height: 19px;
-    top: 5px;
+    top: -4px;/*5*/
     position: relative;
 }
 .user-list ul{
@@ -813,52 +957,55 @@ input[type=search]{
   border: 1px solid #ccc;
   overflow-y: auto;
   resize: vertical;
-  width: 85%;
+  width: 80.5%;
   height: 50px;
-  min-width: 85%;
+  min-width: 80.5%;
   min-height: 50px;
-  max-width: 85%;
+  max-width: 80.5%;
   max-height: 120px;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 .user-list-preview{
-   display: inline-block;
-    padding: 4px 0px 0px 7px;
+     display: inline-block;
+    padding: 4px 0px 0px 11px;
     position: relative;
     background: rgba(128, 128, 128, 0.25);
     margin: 8px;
-   
+    border-radius: 14px;
 }
 
 .user-list-preview button{
-    border-radius: 25px;
+   border-radius: 25px;
     width: 21px;
     height: 21px;
     position: relative;
-    background: rgba(194, 189, 189, 0.71);
-    border-color: #c2bdbd;
+    background: rgb(240, 88, 12);
+    border-color: rgb(240, 88, 12);
     top: -12px;
     box-shadow: none;
     right: -8px;
-      outline:none;
+    outline: none;
     border-bottom-color: transparent;
     border-right-color: transparent;
 }
 .user-list-preview button:hover{
-     background: rgba(194, 189, 189, 0.91);
+      background: rgb(240, 88, 12);
     box-shadow:  0 1px 1px rgba(0,0,0,.075);
 }
 .user-list-preview button:focus, .user-list-preview button:active{
  border-color: transparent;
 
 }
+.user-list-table{
+       margin-top: 13px;
+}
 .user-list-preview button span{
-    position: absolute;
-    top: 0px;
-    left: 2px;
-    color: rgba(128, 128, 128, 0.81);
+      position: absolute;
+    top: -1px;
+    left: 3px;
+    color: #fff;
     font-size: 16px;
 }
 
@@ -930,8 +1077,11 @@ input[type=search]{
      margin-top: 10px;  
     height: 44px;
 }
-#editDatabase .sub-id{
+#editDatabase  .owner-name{
    padding-top: 10px;
+   color: #6a7989;
+        font-size: 16px;
+        font-weight: 600;
 }
 .edit-database-btn .db{
     padding: 10px 20px 10px 20px ;
@@ -1124,6 +1274,119 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
         margin: 0px 10px 10px 10px;
             z-index: 1;
 }
+
+/************* file upload button ********************/
+.box-input{
+    display: inline-block;
+    margin-top: 26px;
+    margin-right: 12px;
+}
+strong .fa-upload{
+    font-size: 1.5em;
+    padding-right: 5px;
+}
+ .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 100%;
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.no-js .inputfile + label {
+    display: none;
+}
+
+.inputfile:focus + label,
+.inputfile.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile + label * {
+    /* pointer-events: none; */
+    /* in case of FastClick lib use */
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    /* 4px */
+    margin-right: 0.25em;
+    /* 4px */
+}
+
+.inputfile-6 + label {
+    color:#0a405a;
+}
+
+.inputfile-6 + label {
+    border: 1px solid #0c5173;
+    background-color: #fff;
+    padding: 0;
+}
+
+.inputfile-6:focus + label,
+.inputfile-6.has-focus + label,
+.inputfile-6 + label:hover {
+    border-color: #0a405a;
+}
+
+.inputfile-6 + label span,
+.inputfile-6 + label strong {
+    padding: 0.625rem 1.25rem;
+    /* 10px 20px */
+}
+
+.inputfile-6 + label span {
+    width: 220px;
+    min-height: 2em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.inputfile-6 + label strong {
+    height: 100%;
+    color: #fff;
+    background-color: #0c5173;
+    display: inline-block;
+}
+
+.inputfile-6:focus + label strong,
+.inputfile-6.has-focus + label strong,
+.inputfile-6 + label:hover strong {
+    background-color: #0a405a;
+}
+
+@media screen and (max-width: 50em) {
+	.inputfile-6 + label strong {
+		display: block;
+	}
+}
+
+
+
 /************************************************** Own Changes *******************************************/
 #note_loader{
     display: none;
@@ -1170,11 +1433,20 @@ margin: 0;
       max-width: 85%;
     width:100%;
 }
-
+.input-32{
+    width:40%;
+        margin-top: 0em;
+}
+@media (max-width:740px){
+    .input-32{
+    width:100%;
+        margin-top: 0em;
+}
+}
 .input__field {
 	position: relative;
 	display: block;
-    top:-4px;
+    top:-5px;
 	float: right;
 	padding: 0.8em;
 	width: 60%;
@@ -1258,7 +1530,7 @@ margin: 0;
 
 .input__label--hoshi::after {
 	margin-top: 2px;
-	border-bottom: 4px solid red;
+	border-bottom: 2px solid #000;
 	-webkit-transform: translate3d(-100%, 0, 0);
 	transform: translate3d(-100%, 0, 0);
 	-webkit-transition: -webkit-transform 0.3s;
@@ -1266,7 +1538,7 @@ margin: 0;
 }
 
 .input__label--hoshi-color-1::after {
-	border-color: #006799;
+	border-color: #000;
 }
 .input__field--hoshi:focus + .input__label--hoshi::after,
 .input--filled .input__label--hoshi::after {

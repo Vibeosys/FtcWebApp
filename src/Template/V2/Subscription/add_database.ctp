@@ -14,9 +14,6 @@ use Cake\Cache\Cache;
     $this->assign('database','1');
     
 ?>
-<?php $this->start('css');?>
-   <?= $this->Html->css('dropdown-style.css') ?>
-<?php $this->end('css');?>
 
 <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
     <div class="container">
@@ -34,8 +31,8 @@ use Cake\Cache\Cache;
 
                 <form name="editDatabase" id="editDatabase" action="add" method="post">
                     <p>
-                        <label class="sub-id owner-main">Select Owner<br />
-						<select class="turnintodropdown_demo2" id="o_client" name="owner">
+                        <label class="sub-id owner-main"><p class="owner-name">Select Owner</p>
+						<select class="turnintodropdown_demo2 input-76" id="o_client" name="owner">
                                  <option value="none" disabled>Select Client</option>
 						</select>
                         </label>
@@ -91,8 +88,8 @@ use Cake\Cache\Cache;
                           <input type="hidden" id="flag" value="0" >
                         </div>
                         <div class="edit-database-btn text-center center-block">
-                            <button type="submit" id="ftc-save" class="btn btn-primary db" >Save</button>
-                            <button type="button" id="ftc-cancel" class="btn  db">Cancel</button>
+                            <button type="submit" id="ftc-save" class="btn btn-info btn-large db" >Save</button>
+                            <button id="ftc-cancel" type="button" class="btn btn-large cancel db">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -172,8 +169,8 @@ use Cake\Cache\Cache;
              e.preventDefault();
              return false;
          }
-     }); 
-    $('#ftc-cancel').on('click', function(e){
+     });  
+   $('#ftc-cancel').on('click', function(e){
        window.location.replace('../../database');
        e.preventDefault();
      });  

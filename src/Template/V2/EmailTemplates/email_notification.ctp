@@ -35,7 +35,7 @@ use Cake\Cache\Cache;
 
                     <ul class="resp-tabs-list hor_1">
                         <h2 class="text-center">Templates</h2>
-                        <li class="tabs-1"><i class="fc_icons fa fa-envelope "></i> <span class="tabs-text">Add New</span></li>
+                        <li class="tabs-1"><i class="fc_icons fa fa-plus "></i> <span class="tabs-text">Add New</span></li>
                      <?php if(isset($temps)) {$i = 2; foreach ($temps as $temp)  {?>
                         <li id="<?= $temp->templateId ?>"  class="tabs-<?= $i ?>"><i class="fc_icons fa fa-envelope"></i> <span class="tabs-text"><?= $temp->name ?></span></li>
                      <?php $i++; }} ?>
@@ -44,7 +44,7 @@ use Cake\Cache\Cache;
                         <div class="fc-tab-1">
                                <form action="emailnotification" method="post">
                           
-                            <span class="input input--hoshi input-100">
+                            <span class="input input--hoshi input-76">
                     <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Template Name</span>
@@ -56,12 +56,12 @@ use Cake\Cache\Cache;
                                 <!-- <a   style="border: 1px solid;padding: 10px;margin-left: 7%;text-decoration: none;" href="../database"> Back to List</a> -->
                     <?php } ?>
                 </span> 
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>
+                          <!--  <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Add"><i class="fa fa-plus"></i></a>-->
                          
                                 <div class="email-outer">
                                     <div class="email-inner">
-                                        <div class="template-view" style="display:none">
+                                        <div class="template-view" style="display: none">
                                             <lable>Template   
                                                 <div id="temp_show_new" class="template-code template"> 
                                                     <h2>Hello,</h2>
@@ -71,7 +71,7 @@ use Cake\Cache\Cache;
                                         </div>
                                         <lable>Template  
                                             <div>
-                                                  <textarea id="edtextarea" name="template"></textarea>
+                                                 <textarea style="height:250px" id="edtextarea" name="template"></textarea>
                                             </div>
                                         </lable>
                                         <!--  <lable class="push-top">Recipients
@@ -99,13 +99,14 @@ use Cake\Cache\Cache;
                          <form action="emailnotification" method="post">  
                              <input type="hidden" name="id" value="<?= $temp->templateId ?>">
                             <h2 id="title_h2_<?= $temp->templateId ?>" class="title_contanier"><?= $temp->name ?></h2>
-                            <span style="display:none" id="name_text_<?= $temp->templateId ?>"  class="input input--hoshi">
+                            <span style="display:none" id="name_text_<?= $temp->templateId ?>"  class="input input--hoshi input-76">
                     <input class="input__field input__field--hoshi title-input" value="<?= $temp->name ?>" type="text" id="name_<?= $temp->templateId ?>" name="name" placeholder="" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Template Name</span>
                     </label>
                 </span> 
-                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i></a>
+                            <a href="#"  class="edit-template" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil"></i>
+                                <span id="op_show_<?= $temp->templateId ?>" class="text-icon">Edit</span></a>
                             
                                 <div class="email-outer">
                                     <div class="email-inner">
@@ -118,7 +119,7 @@ use Cake\Cache\Cache;
                                         </div>
                                         <lable class="push-top" style="display: none" id='editor_<?= $temp->templateId ?>' >Template Body 
                                             <div class="margin10" >
-                                                <textarea name="template" id='txtEditor_<?= $temp->templateId ?>'>
+                                                <textarea style="height:250px" name="template" id='txtEditor_<?= $temp->templateId ?>'>
                                              <?= $temp->body ?>
                                                 </textarea>
                                             </div>
@@ -128,7 +129,7 @@ use Cake\Cache\Cache;
                                                 <div id="contact_list_<?= $temp->templateId ?>" class="contact-list-div">
                                                  
                                                 </div>
-                                                <a id="<?= $temp->templateId ?>" class="btn-contact" data-toggle="modal" data-target="#myModal"></a>
+                                                
                                             </div>
                                         </lable>
                                     </div>
@@ -221,14 +222,15 @@ use Cake\Cache\Cache;
 <?php $this->start('script');?>
  <?= $this->Html->script('tab/easyResponsiveTabs.js') ?>
    <?= $this->Html->script('tab/tabs.js') ?>
-   <?= $this->Html->script('//cdn.tinymce.com/4/tinymce.min.js') ?>
+<?= $this->Html->script('//cdn.tinymce.com/4/tinymce.min.js') ?>
 <script type="text/javascript">
     function diable_prev(id) {
               
-        jQuery('.edit-template').children().addClass('fa-pencil');
-        jQuery('.edit-template').children().removeClass('fa-save');
+        jQuery('.edit-template i.fa').addClass('fa-pencil');
+        jQuery('.edit-template i.fa').removeClass('fa-close');
         jQuery('.save-template').addClass('edit-template');
         jQuery('.save-template').removeClass('edit-template');
+             jQuery('#op_show_' + id).text('Edit');
         //to show
         jQuery('#temp_show_' + id).css('display', 'block');
         jQuery('#title_h2_' + id).css('display', 'block ');
@@ -267,11 +269,12 @@ jQuery(document).ready(function() {
            }  
             var id = jQuery('.resp-tab-active').attr('id');
             jQuery('#pre_act').val(id);
-            jQuery(this).children().removeClass('fa-pencil');
-            jQuery(this).children().addClass('fa-save');
+            jQuery('.edit-template i.fa').removeClass('fa-pencil');
+            jQuery('.edit-template i.fa').addClass('fa-close');
            // jQuery(this).addClass('save-template');
             //jQuery(this).removeClass('edit-template');
             //to hide
+            jQuery('#op_show_' + id).text('Cancel');
             jQuery('#temp_show_' + id).css('display', 'none');
             jQuery('#title_h2_' + id).css('display', 'none');
             jQuery('#button_send_' + id).css('display', 'none');

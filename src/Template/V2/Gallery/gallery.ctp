@@ -25,9 +25,13 @@ use Cake\Cache\Cache;
                      <div class="heading">
                         <h2>Media</h2>
                         <div class="upload-content">
-                            <form action="galleryitemupload" method="post" enctype="multipart/form-data">      
-                                <input type="file" id="fileLoader" name="file" title="Load File" required>
-                                <input type="submit" id="btnOpenFileDialog" value = "Media Upload" class="btn btn-info" />
+                            <form action="galleryitemupload" method="post" enctype="multipart/form-data"> 
+                                <div class="box-input">
+                                    <input type="file" name="file" id="fileLoader" class="inputfile inputfile-6" required/>
+                                    <label for="fileLoader"><span></span> <strong><i class="fa fa-upload"></i> Choose File</strong></label>
+                                </div>
+                                <!--<input type="file" id="fileLoader" name="file" title="Load File" required>-->
+                                <input type="submit" id="btnOpenFileDialog" value = "Upload" class="btn btn-primary" />
                             </form>
                         </div>
                     </div>
@@ -76,8 +80,7 @@ use Cake\Cache\Cache;
                     html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
                           
                             '<video class="video" controls>'+
-                                      '<source src="../'+ json.itemUrl+'" type="video/mp4">'+
-                                      '<source src="../upload/Video0016.ogg" type="video/ogg">'+
+                                      '<source src="/readvideo" type="video/mp4">'+
                                       'Your browser does not support HTML5 video.'+
                              '</video></div>';    
                         
@@ -141,5 +144,5 @@ use Cake\Cache\Cache;
 		});
 	});  }  
        </script>
-       
+       <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 <?php $this->end('script');?>
