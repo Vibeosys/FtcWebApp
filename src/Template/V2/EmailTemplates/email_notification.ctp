@@ -250,6 +250,9 @@ use Cake\Cache\Cache;
   
 jQuery(document).ready(function() {
 	tinymce.init({ selector:'#edtextarea' });
+      <?php if(isset($temps)) { foreach ($temps as $temp)  { ?>
+        tinymce.init({ selector:'#txtEditor_<?= $temp->templateId ?>' });      
+      <?php }} ?>    
 });
     
     
