@@ -23,7 +23,8 @@ use Cake\Cache\Cache;
                 
                <div class="col-lg-12 main-page">
                      <div class="heading">
-                        <h2>Media</h2>
+                        <h2>Gallery</h2>
+                        <span id="up_error" style="margin-left: 28%;display: none" class="error-check error fadeOut">Please select media to upload.</span>
                         <div class="upload-content">
                             <form action="galleryitemupload" method="post" enctype="multipart/form-data"> 
                                 <div class="box-input">
@@ -92,7 +93,17 @@ use Cake\Cache\Cache;
                 failure: function(errMsg) {
                    alert(errMsg);    
                 }
-        });
+                
+                  });
+                $('#btnOpenFileDialog').on('click',function(e){
+                    var file = $('#fileLoader').val();
+                    if(file.length <= 0){
+                       $('#up_error').css('display','inline-block');
+                       e.preventDefault();
+                    }
+                    
+                });
+      
         
        
   }); 
