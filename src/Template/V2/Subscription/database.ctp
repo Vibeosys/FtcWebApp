@@ -41,10 +41,7 @@ use Cake\Cache\Cache;
                             <tr>
                             <th>Subscription Id</th>
                               <th>Host Name</th>
-                                <th>Database Name</th>
-                              <th>Port</th>
-                              <th>User Name</th>
-                              <th>Password</th>
+                                <th>Database</th>
                                  <th>Owner</th>
                             <th>Action</th>
                                
@@ -60,15 +57,12 @@ use Cake\Cache\Cache;
                                 <td><?= $db->hostname ?>
                                 <input type="hidden" name="hostname" value="<?= $db->hostname ?>"></td>
                               <td><?= $db->dbname ?>
-                              <input type="hidden" name="dbname" value="<?= $db->dbname ?>"></td>
-                               
-                              <td><?= $db->port ?>
-                              <input type="hidden" name="port" value="<?= $db->port ?>"></td>
-                              <td><?= $db->dbuname ?>
-                              <input type="hidden" name="dbuname" value="<?= $db->dbuname ?>"></td>
-                              <td><?= $db->pwd ?>
-                              <input type="hidden" name="pwd" value="<?= $db->pwd ?>"></td>
-                                 <td><?= $db->owner ?>
+                              <input type="hidden" name="dbname" value="<?= $db->dbname ?>">
+                              <input type="hidden" name="port" value="<?= $db->port ?>">
+                              <input type="hidden" name="dbuname" value="<?= $db->dbuname ?>">
+                              <input type="hidden" name="pwd" value="<?= $db->pwd ?>">
+                              </td>
+                              <td><?= $db->owner ?>
                                  <input type="hidden" name="owner" value="<?= $db->owner ?>"></td>
                              <td>
                                  <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" title="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
