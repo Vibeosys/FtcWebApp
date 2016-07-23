@@ -23,13 +23,15 @@ use Cake\Cache\Cache;
                 <div class="col-lg-12 main-page-publish">
 
                     <h2>Customisation :New Page</h2>
+                    
                         <?php if(isset($message)){ ?>
                     <span style="text-align:center;background-color:white;color: <?= $color ?>;padding:10px"><strong>Page saved as draft.</strong></span>
                         <?php } ?>
                     <div class="publish-btn">
                         <input type="submit" name="publish" value="Publish" class="btn btn-info btn-large">
                         <input type="button" value="Cancel" class="btn cancel btn-large cancel_page">
-                    </div>
+                    </div><br>
+                    <span id="page_view_info" class="show_user_page_info"></span>
                 </div>
                 <div class="col-lg-12 mobile-show">
                     <div class="heading">
@@ -41,21 +43,21 @@ use Cake\Cache\Cache;
                             <input type="radio" id="custom" name="type" checked value="1">
                             <label for="custom">Custom</label>
 
-                            <div class="check"></div>
+                            <div id="custom_red" class="check custom" ></div>
                           </li>
 
                           <li>
                             <input type="radio" id="web" name="type" value="2">
                             <label for="web">Web View</label>
 
-                            <div class="check"><div class="inside"></div></div>
+                            <div id="web_red" class="check web"></div>
                           </li>
 
                           <li>
                             <input type="radio" id="rss" name="type" value="3">
                             <label for="rss">RSS Feed</label>
 
-                            <div class="check"><div class="inside"></div></div>
+                            <div id="rss_red" class="check rss"></div>
                           </li>
                         </ul>
                       
@@ -108,21 +110,21 @@ use Cake\Cache\Cache;
                             <input type="radio" id="custom" name="type" checked value="1">
                             <label for="custom">Custom</label>
 
-                            <div class="check"></div>
+                            <div id="custom_red" class="check custom"></div>
                           </li>
 
                           <li>
                             <input type="radio" id="web" name="type" value="2">
                             <label for="web">Web View</label>
 
-                            <div class="check"><div class="inside"></div></div>
+                            <div id="web_red" class="check web"></div>
                           </li>
 
                           <li>
                             <input type="radio" id="rss" name="type" value="3">
                             <label for="rss">RSS Feed</label>
 
-                            <div class="check"><div class="inside"></div></div>
+                            <div id="rss_red" class="check rss"></div>
                           </li>
                         </ul>
                         <!--<span><input type="radio" name="type" class="type" id="custom" checked value="1"> Custom </span>
@@ -447,21 +449,52 @@ This page for
         </div>
     </div>
 </div>
+<div  id="notify" class="ui-pnotify stack_top_right" style="display: none;">
+    
+</div>
 <?php $this->start('script')?>
 
 <?= $this->Html->script('angular.js') ?>
 <script type='text/javascript'>
+    var globle = 0;
     var allowed = 1;
-
+    function create_note(added){
+    var notification = '<div id="notify" class="ui-pnotify stack_top_right">'+
+    '<div class="alert ui-pnotify-container alert-warning" style="min-height: 16px; overflow: hidden;">'+
+        '<div class="ui-pnotify-closer" style="cursor: pointer;"><span class="glyphicon glyphicon-remove" title="Close"></span>'+
+        '</div>'+
+        '<div class="ui-pnotify-icon"><span class="glyphicon glyphicon-ok-sign"></span>'+
+        '</div>'+
+        '<h4 class="ui-pnotify-title"></h4>'+
+        '<div class="ui-pnotify-text">'+ added +' Added.</div>'+
+        '<div style="margin-top: 5px; clear: both; text-align: right; display: none;"></div></div></div>';
+        return notification;
+    }
     function checkME(e, self) {
+        
+        var yes = 0;
         var selected_type = $(self).attr('vbtype');
         var sft_type = $('#space-for-tool').attr('type');
         if (sft_type == '0') {
             $('#space-for-tool').attr('type', selected_type);
+            yes = 1;
         } else if (sft_type != selected_type || sft_type === 'web' || sft_type === 'rss') {
             allowed = 0;
         } else {
             allowed = 1;
+            yes = 1;
+        }
+        if(yes == 1){
+          $('#notify').css('display','block');
+         var new_note = '<div id="new_note_'+globle+'" class="alert ui-pnotify-container" style="background-color:#fa8143;min-height: 16px; overflow: hidden;">'+
+                        '<div class="ui-pnotify-closer" style="display:none;cursor: pointer;">'+
+                        '<span class="glyphicon glyphicon-remove" title="Close"></span></div>'+
+                        '<div class="ui-pnotify-icon"><span class="glyphicon glyphicon-info-sign"></span></div>'+
+                        '<div style="padding-top:10px" class="ui-pnotify-text notef_text">New '+$(self).attr('iam')+ ' Added.</div>'+
+                        '<div style="margin-top: 5px; clear: both; text-align: right; display: none;"></div></div>';
+          $('#notify').append(new_note);
+           $('#new_note_'+globle).fadeOut(2000);
+           globle++;
         }
 
     }
@@ -489,49 +522,49 @@ This page for
     myApp.directive("addimage", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addbuttons  class='btn-type linkcustom'><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Image' onclick='checkME(event,this);' style='cursor:pointer' addbuttons  class='btn-type linkcustom'><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addtext", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addtextdiv  class='btn-type linkcustom'><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Text' onclick='checkME(event,this);' style='cursor:pointer' addtextdiv  class='btn-type linkcustom'><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addlink", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Link' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addvideo", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Custom video' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
      myApp.directive("addyoutubevideo", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='YouTube video' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addheading", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addheadinglink  class='btn-type linkcustom'><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Heading' onclick='checkME(event,this);' style='cursor:pointer' addheadinglink  class='btn-type linkcustom'><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addweblink", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='web' onclick='checkME(event,this);' style='cursor:pointer' addweblinktext  class='btn-type not-active linkweb' disabled='disabled'><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='web' iam='Web View' onclick='checkME(event,this);' style='cursor:pointer' addweblinktext  class='btn-type not-active linkweb' disabled='disabled'><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addrssfeed", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='rss' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='rss' iam='Rss Feed' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
 //Directive for adding buttons on click that show an alert on click
@@ -740,6 +773,7 @@ This page for
         $(':radio').change(function (e) {
 
             var value = $(this).val();
+           
             if (value == "1") {
                 $('.linkrss').attr("disabled", "disabled");
                 $('.linkrss').addClass("not-active");
@@ -747,6 +781,9 @@ This page for
                 $('.linkweb').addClass("not-active");
                 $('.linkcustom').removeAttr("disabled");
                 $('.linkcustom').removeClass("not-active");
+                $('.web').before().css('background', 'none');
+                $('.rss').before().css('background', 'none');
+                $('.custom').before().css('background', '#1F5689');
             }
             else if (value == "2") {
                 $('.linkrss').attr("disabled", "disabled");
@@ -755,6 +792,9 @@ This page for
                 $('.linkcustom').addClass("not-active");
                 $('.linkweb').removeAttr("disabled");
                 $('.linkweb').removeClass("not-active");
+                $('.web').before().css('background', '#1F5689');
+                $('.rss').before().css('background', 'none');
+                $('.custom').before().css('background', 'none');
             }
             else {
                 $('.linkweb').attr("disabled", "disabled");
@@ -763,6 +803,9 @@ This page for
                 $('.linkcustom').addClass("not-active");
                 $('.linkrss').removeAttr("disabled");
                 $('.linkrss').removeClass("not-active");
+                $('.web').before().css('background', 'none');
+                $('.rss').before().css('background', '#1F5689');
+                $('.custom').before().css('background', 'none');
             }
         });
     });
@@ -811,6 +854,20 @@ This page for
                     return false;
                 }
             });
+        });
+        $('.popup_sub').on('click', function(){
+            $('#page_viewer').val($(this).val());
+            if($(this).val() == 1){
+             $('#page_view_info').text('This page is for subscriber');    
+            }else{
+              $('#page_view_info').text('This page is for non-subscriber');   
+            }    
+            
+        });
+        
+       
+        $('.ui-pnotify-closer').on('click', function(){
+            $(this).parent().remove(); 
         });
         
         $('.cancel_page').on('click', function(){

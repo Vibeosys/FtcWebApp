@@ -51,8 +51,9 @@ use Cake\Cache\Cache;
                           
 
                             <li class="dropdown">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="../img/user.jpg" alt="user-img" class="img-circle"><span >Sanjoy<i class=" fa fa-angle-down"></i></span></a>
-                                <span class="email">abcdef@xyz.com</span>
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="../img/user.jpg" alt="user-img" class="img-circle">
+                                    <span id="cur_name" ></span></a>
+                                <span id="cur_email" class="email"></span>
                                 <ul class="dropdown-menu animated fadeInDown pull-right">
                                     <li><a href="../logout"><i class="fa fa-sign-out fa-logout"></i> Logout</a></li>
                                 </ul>
