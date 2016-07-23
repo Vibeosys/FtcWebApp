@@ -25,6 +25,7 @@ use Cake\Cache\Cache;
                     <?php if(isset($message)) {?>
                         <span style="margin: 10px 7%;color:<?= $color ?>"><strong><?= $message ?></strong> </span>
                     <?php } ?>
+                        <span id="limit_show" style="margin-left:5%;">Note :Max. character limit : 3800</span>   
                     </div>
                     
                    <form action="appnotification" method="post"> 
@@ -39,7 +40,7 @@ use Cake\Cache\Cache;
                                 </span> </p>
                             
                             <lable>Message 
-                                <textarea rows='15' name="msg"  class='form-control margin10'  id="html-template"></textarea>
+                                <textarea rows='7' name="msg" maxlength="3800"  class='form-control margin10'  id="html-template"></textarea>
                             </lable>
                             
                             <lable class="push-top">Recipients
@@ -205,6 +206,16 @@ use Cake\Cache\Cache;
            e.preventDefault();  
         }
       
+    });
+    
+    $('#html-template').keydown(function(e){
+        
+        if($(this).val().length == 3800 && e.keyCode != 8){
+            $('#limit_show').css('color','red');
+            e.preventDefault();
+        }else{
+            $('#limit_show').css('color','black');
+        }
     });
      
      $('#find').on('click', function(){

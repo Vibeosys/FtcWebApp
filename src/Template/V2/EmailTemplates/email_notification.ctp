@@ -69,7 +69,7 @@ use Cake\Cache\Cache;
                                                 </div>
                                             </lable>
                                         </div>
-                                        <lable>Template  
+                                        <lable>Template Body 
                                             <div>
                                                  <textarea style="height:250px" id="edtextarea" name="template"></textarea>
                                             </div>
@@ -98,7 +98,7 @@ use Cake\Cache\Cache;
                         <div class="fc-tab-2">
                          <form action="emailnotification" method="post">  
                              <input type="hidden" name="id" value="<?= $temp->templateId ?>">
-                            <h2 id="title_h2_<?= $temp->templateId ?>" class="title_contanier"><?= $temp->name ?></h2>
+                             <h2 style="width:673px" id="title_h2_<?= $temp->templateId ?>" class="title_contanier"><?= $temp->name ?></h2>
                             <span style="display:none" id="name_text_<?= $temp->templateId ?>"  class="input input--hoshi input-76">
                     <input class="input__field input__field--hoshi title-input" value="<?= $temp->name ?>" type="text" id="name_<?= $temp->templateId ?>" name="name" placeholder="" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1"  for="input-4">
@@ -124,20 +124,10 @@ use Cake\Cache\Cache;
                                                 </textarea>
                                             </div>
                                         </lable>
-                                        <lable id='recip_<?= $temp->templateId ?>' class="push-top">Recipients
-                                            <div class="margin10">
-                                                <div id="contact_list_<?= $temp->templateId ?>" class="contact-list-div">
-                                                 
-                                                </div>
-                                                
-                                            </div>
-                                        </lable>
+                                      
                                     </div>
                                 </div>
-                                <div id="button_send_<?= $temp->templateId ?>" class="btn-email-send">
-                                    <input name="send" type="submit" value="Send" class="btn btn-info">
-                                    <input type="button" value="Cancel" class="btn cancel send_cancel">
-                                </div>
+                          
                             <div style="display:none" id="button_save_<?= $temp->templateId ?>" class="btn-email-send">
                                 <input name="edit" type="submit" value="Save" class="btn btn-info">
                                     <input type="button" value="Cancel" class="btn cancel save_cancel">
@@ -227,7 +217,7 @@ use Cake\Cache\Cache;
     function diable_prev(id) {
               
         jQuery('.edit-template i.fa').addClass('fa-pencil');
-        jQuery('.edit-template i.fa').removeClass('fa-close');
+        jQuery('.edit-template i.fa').removeClass('fa-trash');
         jQuery('.save-template').addClass('edit-template');
         jQuery('.save-template').removeClass('edit-template');
              jQuery('#op_show_' + id).text('Edit');
@@ -270,7 +260,7 @@ jQuery(document).ready(function() {
             var id = jQuery('.resp-tab-active').attr('id');
             jQuery('#pre_act').val(id);
             jQuery('.edit-template i.fa').removeClass('fa-pencil');
-            jQuery('.edit-template i.fa').addClass('fa-close');
+            jQuery('.edit-template i.fa').addClass('fa-trash');
            // jQuery(this).addClass('save-template');
             //jQuery(this).removeClass('edit-template');
             //to hide
