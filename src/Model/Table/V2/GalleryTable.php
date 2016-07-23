@@ -44,4 +44,15 @@ class GalleryTable extends Table{
         else
             return FALSE;
     }
+    
+    public function deleteme($id) {
+        $conditions = [
+            'ItemId =' => $id
+        ];
+        $delete = $this->connect()->query()->delete();
+        $delete->where($conditions);
+        if($delete->execute())
+            return TRUE;
+        return FALSE;
+    }
 }

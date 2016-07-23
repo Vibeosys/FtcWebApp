@@ -69,20 +69,20 @@ use Cake\Cache\Cache;
                     var html = '';
                   $.each(data, function(key,json){
                    if(json.itemType === 1){   
-                  html +='<div class="col-lg-15 col-md-15 col-sm-3 col-xs-12"><div class="wrapper center-block">' +
+                  html +='<div id="me_'+ json.itemId+'" class="col-lg-15 col-md-15 col-sm-3 col-xs-12"><div class="wrapper center-block">' +
                         '<div class="img-wrapper center-block">'+
                                 '<img src="../'+ json.itemUrl+'" alt=""  class="img-responsive center-block"/>'+
                         '</div><div class="text-wrapper"><div class="preview">'+
                         '<a href="../'+ json.itemUrl+'" ><span class="fa fa-eye icon-hover"></span> Preview</a></div>'+   
-                            '<div><button><span id="'+ json.itemId+'" class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
+                            '<div><button onclick="deleteme('+ json.itemId+');" class="alert-danger deleteme"><span class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
                             '</div></div></div>';
                     }else{
-                    html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
+                    //html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
                           
-                            '<video class="video" controls>'+
-                                      '<source src="/readvideo" type="video/mp4">'+
-                                      'Your browser does not support HTML5 video.'+
-                             '</video></div>';    
+                      //      '<video class="video" controls>'+
+                        //              '<source src="/readvideo" type="video/mp4">'+
+                          //            'Your browser does not support HTML5 video.'+
+                            // '</video></div>';    
                         
                     }
                   });
@@ -93,7 +93,20 @@ use Cake\Cache\Cache;
                    alert(errMsg);    
                 }
         });
-  });   
+        
+       
+  }); 
+   function deleteme(id){
+            if(confirm('Are you sure?') == true){
+            $.post('/deleteimage',{imageId:id},function(data){
+                var json = $.parseJSON(data);
+                if(json.id === 1){
+                    $('#me_'+id).remove();
+                }else{ alert('Error to delete gallery item.');
+                }
+            });
+        }
+        }
 </script>
 <?= $this->Html->script('simple-lightbox.js') ?>
        <script type="text/javascript">

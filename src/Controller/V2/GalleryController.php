@@ -42,7 +42,7 @@ class GalleryController extends Controller\ApiController {
             $result = $this->uploadItem($request['file']);
             if($result){
                 $itemUrl = $result['url'];
-                $itemType = 1; if($result['type'] == 'video')$itemType = 2;;
+                $itemType = 1; if($result['type'] == 'video')$itemType = 2;
                 $this->conncetionCreator();
                 $addRresult = $this->getTableObj()->addItem(
                         new DTO\GalleryDto(null, $itemUrl, $itemType));
@@ -67,5 +67,20 @@ class GalleryController extends Controller\ApiController {
       //  $this->response->type('html');
         //$this->response->body();
         readfile($local_file);
+    }
+    
+    public function deleteImage() {
+        $this->autoRender = false;
+        $id = $this->request->data['imageId'];
+        \Cake\Log\Log::debug('Image deleted foe Id: '.$id);
+        $this->conncetionCreator(parent::readCookie('sub_id'));
+        if($this->getTableObj()->deleteme($id)){
+        $response['id'] = 1;
+        $response['msg'] = 'Gallery item deleted.';
+        }  else {
+        $response['id'] = 1;
+        $response['msg'] = 'Error to Delete gallery item.';    
+        }
+        $this->response->body(json_encode($response));
     }
 }
