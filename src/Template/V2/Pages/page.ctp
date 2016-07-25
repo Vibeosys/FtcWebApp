@@ -33,7 +33,7 @@ use Cake\Cache\Cache;
                     </div><br>
                     <span id="page_view_info" class="show_user_page_info"></span>
                 </div>
-                <div class="col-lg-12 mobile-show">
+          <!--      <div class="col-lg-12 mobile-show">
                     <div class="heading">
                         <h2>Toolbox</h2>
                     </div>
@@ -72,7 +72,7 @@ use Cake\Cache\Cache;
                         <li><addweblink></addweblink></li>
                         <li><addrssfeed></addrssfeed></li>
                     </ul>
-                </div>
+                </div>  -->
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
                         <div class="publish-btn">
                             <input type="button" value="Preview" class="btn btn-preview btn-larg preview_page">
@@ -449,27 +449,20 @@ This page for
         </div>
     </div>
 </div>
-<div  id="notify" class="ui-pnotify stack_top_right" style="display: none;">
+<div  id="notify" class="ui-pnotify stack_top_right" style="display: none;width: 100%">
+    <ul>
+        
+    </ul>
     
 </div>
 <?php $this->start('script')?>
 
 <?= $this->Html->script('angular.js') ?>
+<?= $this->Html->script('notify.js') ?>
 <script type='text/javascript'>
     var globle = 0;
     var allowed = 1;
-    function create_note(added){
-    var notification = '<div id="notify" class="ui-pnotify stack_top_right">'+
-    '<div class="alert ui-pnotify-container alert-warning" style="min-height: 16px; overflow: hidden;">'+
-        '<div class="ui-pnotify-closer" style="cursor: pointer;"><span class="glyphicon glyphicon-remove" title="Close"></span>'+
-        '</div>'+
-        '<div class="ui-pnotify-icon"><span class="glyphicon glyphicon-ok-sign"></span>'+
-        '</div>'+
-        '<h4 class="ui-pnotify-title"></h4>'+
-        '<div class="ui-pnotify-text">'+ added +' Added.</div>'+
-        '<div style="margin-top: 5px; clear: both; text-align: right; display: none;"></div></div></div>';
-        return notification;
-    }
+  
     function checkME(e, self) {
         
         var yes = 0;
@@ -485,16 +478,10 @@ This page for
             yes = 1;
         }
         if(yes == 1){
-          $('#notify').css('display','block');
-         var new_note = '<div id="new_note_'+globle+'" class="alert ui-pnotify-container" style="background-color:#fa8143;min-height: 16px; overflow: hidden;">'+
-                        '<div class="ui-pnotify-closer" style="display:none;cursor: pointer;">'+
-                        '<span class="glyphicon glyphicon-remove" title="Close"></span></div>'+
-                        '<div class="ui-pnotify-icon"><span class="glyphicon glyphicon-info-sign"></span></div>'+
-                        '<div style="padding-top:10px" class="ui-pnotify-text notef_text">New '+$(self).attr('iam')+ ' Added.</div>'+
-                        '<div style="margin-top: 5px; clear: both; text-align: right; display: none;"></div></div>';
-          $('#notify').append(new_note);
-           $('#new_note_'+globle).fadeOut(2000);
-           globle++;
+          var msg = 'New '+$(self).attr('iam')+ ' Added';
+          var bg = '#fa8143';
+          var type = 'info';
+            create_note(msg,bg,type);
         }
 
     }
@@ -567,13 +554,14 @@ This page for
             template: "<button vbtype='rss' iam='Rss Feed' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
+    
 //Directive for adding buttons on click that show an alert on click
     myApp.directive("addbuttons", function ($compile) {
         return function (scope, element, attrs) {
 
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                    create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -587,7 +575,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                     create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -602,7 +590,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -617,7 +605,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                    create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -631,7 +619,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                    create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -646,7 +634,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -662,7 +650,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                     create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -677,7 +665,7 @@ This page for
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                    create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -781,10 +769,7 @@ This page for
                 $('.linkweb').addClass("not-active");
                 $('.linkcustom').removeAttr("disabled");
                 $('.linkcustom').removeClass("not-active");
-                $('.web').before().css('background', 'none');
-                $('.rss').before().css('background', 'none');
-                $('.custom').before().css('background', '#1F5689');
-            }
+                }
             else if (value == "2") {
                 $('.linkrss').attr("disabled", "disabled");
                 $('.linkrss').addClass("not-active");
@@ -792,10 +777,7 @@ This page for
                 $('.linkcustom').addClass("not-active");
                 $('.linkweb').removeAttr("disabled");
                 $('.linkweb').removeClass("not-active");
-                $('.web').before().css('background', '#1F5689');
-                $('.rss').before().css('background', 'none');
-                $('.custom').before().css('background', 'none');
-            }
+               }
             else {
                 $('.linkweb').attr("disabled", "disabled");
                 $('.linkweb').addClass("not-active");
@@ -803,10 +785,7 @@ This page for
                 $('.linkcustom').addClass("not-active");
                 $('.linkrss').removeAttr("disabled");
                 $('.linkrss').removeClass("not-active");
-                $('.web').before().css('background', 'none');
-                $('.rss').before().css('background', '#1F5689');
-                $('.custom').before().css('background', 'none');
-            }
+                }
         });
     });
 

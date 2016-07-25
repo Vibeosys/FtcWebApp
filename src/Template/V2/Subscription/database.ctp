@@ -14,10 +14,10 @@ use Cake\Cache\Cache;
     
 ?>
 
-<?php $this->start('css');?>
-   <?= $this->Html->css('datatables/jquery.dataTables.min.css') ?>
-   <?= $this->Html->css('datatables/buttons.bootstrap.min.css') ?>
-   <?= $this->Html->css('datatables/responsive.bootstrap.min.css') ?>
+<?php $this->start('css');  $options = ['rel' => 'stylesheet', 'type' => 'text/css'];?>
+   <?= $this->Html->css('datatables/jquery.dataTables.min.css', $options) ?>
+   <?= $this->Html->css('datatables/buttons.bootstrap.min.css', $options) ?>
+   <?= $this->Html->css('datatables/responsive.bootstrap.min.css', $options) ?>
 
 
 <?php $this->end('css');?>
@@ -83,11 +83,11 @@ use Cake\Cache\Cache;
            
        </section>
 
-<?php $this->start('script');?>
-   <?= $this->Html->script('datatables/jquery.dataTables.min.js') ?>
-   <?= $this->Html->script('datatables/dataTables.bootstrap.js') ?>
-   <?= $this->Html->script('datatables/dataTables.responsive.min.js') ?>
-   <?= $this->Html->script('datatables/responsive.bootstrap.min.js') ?>
+<?php $this->start('script'); $options = ['type' => 'text/javascript'];?>
+   <?= $this->Html->script('datatables/jquery.dataTables.min.js', $options) ?>
+   <?= $this->Html->script('datatables/dataTables.bootstrap.js', $options) ?>
+   <?= $this->Html->script('datatables/dataTables.responsive.min.js', $options) ?>
+   <?= $this->Html->script('datatables/responsive.bootstrap.min.js', $options) ?>
 
  <script type="text/javascript">
       $(document).ready(function() {

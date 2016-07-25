@@ -109,14 +109,14 @@
    .left-pannel{
     left: 0px!important;
 }
-    .mobile-show{
+   /* .mobile-show{
         display: block!important;
             position: relative;
     padding-top: 12em;
     }
     .main-page-hide{
         display: none;
-    }
+    }*/
     .main-page-publish{
     position: absolute;
     
@@ -1448,6 +1448,13 @@ strong .fa-upload{
     display: block;
     margin-bottom: .4em;
     margin-top: 0;
+}
+.ui-pnotify ul li{
+    display: block;
+    
+}
+.ui-pnotify ul{
+    list-style: none;
 }
 #note_loader{
     display: none;

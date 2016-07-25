@@ -28,7 +28,7 @@ use Cake\Cache\Cache;
                         <input type="button" value="Cancel" class="btn cancel btn-large cancel_page">
                     </div>
                 </div>
-                <div class="col-lg-12 mobile-show">
+               <!-- <div class="col-lg-12 mobile-show">
                     <div class="heading">
                         <h2>Toolbox</h2>
 
@@ -70,7 +70,7 @@ use Cake\Cache\Cache;
                         <li><addrssfeed></addrssfeed></li>
                     </ul>
 
-                </div>
+                </div> -->
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
     
                         <div class="publish-btn">
@@ -500,21 +500,38 @@ use Cake\Cache\Cache;
         </div>
     </div>
 </div>
+<div  id="notify" class="ui-pnotify stack_top_right" style="display: none;width: 100%">
+    <ul>
+        
+    </ul>
+    
+</div>
 <?php $this->start('script')?>
 <?= $this->Html->script('angular.js') ?>
+<?= $this->Html->script('notify.js') ?>
 <script type='text/javascript'>
      var allowed = 1;
      var pre_page_name = '<?= $page->pageTitle ?>';
-
+ 
     function checkME(e, self) {
+            var yes = 0;
         var selected_type = $(self).attr('vbtype');
         var sft_type = $('#space-for-tool').attr('type');
         if (sft_type == '0') {
+             yes = 1;
             $('#space-for-tool').attr('type', selected_type);
         } else if (sft_type != selected_type || sft_type === 'web' || sft_type === 'rss') {
             allowed = 0;
+            
         } else {
             allowed = 1;
+             yes = 1;
+        }
+         if(yes === 1){
+          var msg = 'New '+$(self).attr('iam')+ ' Added';
+          var bg = '#fa8143';
+          var type = 'info';
+            create_note(msg,bg,type);
         }
 
     }
@@ -594,7 +611,7 @@ use Cake\Cache\Cache;
 
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -608,7 +625,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -623,7 +640,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                  create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -637,7 +654,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                  create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -651,7 +668,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                  create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -666,7 +683,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -682,7 +699,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                    create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
@@ -697,7 +714,7 @@ use Cake\Cache\Cache;
         return function (scope, element, attrs) {
             element.bind("click", function () {
                 if (allowed === 0) {
-                    alert('Please remove existing widget,to add this widget.');
+                   create_note(n_msg, n_bg, n_type);
                     return;
                 }
                 scope.count++;
