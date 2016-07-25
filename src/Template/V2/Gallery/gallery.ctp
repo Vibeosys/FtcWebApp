@@ -44,10 +44,36 @@ use Cake\Cache\Cache;
                 </div>
               </div>
            </div>
-           
        </section>
+<input type="hidden" id="cur_delete">
+<div id="myModal" class="modal animated zoomin">
+    <div class="modal-dialog" style="width: 480px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Are you Sure?</h4>
+                
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                    <div class="modal-footer">
+                        
+                        <input type="button" id="yes" data-dismiss="modal" aria-hidden="true" value="confirm" class="btn btn-success btn-large decide">
+                        <input type="button" id="no"  data-dismiss="modal" aria-hidden="true" value="no" class="btn btn-large cancel decide">
+                    </div>
+                </div>
+               </div>
+            </div>
+         </div>
+        </div> 
+   <div  id="notify" class="ui-pnotify stack_top_right" style="display: none;width: 100%">
+    <ul>
+        
+    </ul>
+    
+</div>   
 <?php $this->start('script');?>
-
+<?= $this->Html->script('notify.js') ?>
        
 <script>
   $(document).ready(function(){
@@ -75,7 +101,7 @@ use Cake\Cache\Cache;
                                 '<img src="../'+ json.itemUrl+'" alt=""  class="img-responsive center-block"/>'+
                         '</div><div class="text-wrapper"><div class="preview">'+
                         '<a href="../'+ json.itemUrl+'" ><span class="fa fa-eye icon-hover"></span> Preview</a></div>'+   
-                            '<div><button onclick="deleteme('+ json.itemId+');" class="alert-danger deleteme"><span class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
+                            '<div><button onclick="deleteme('+ json.itemId+');" data-toggle="modal" data-target="#myModal" class="alert-danger deleteme"><span class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
                             '</div></div></div>';
                     }else{
                     //html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
@@ -103,21 +129,25 @@ use Cake\Cache\Cache;
                     }
                     
                 });
-      
+                $('.decide').on('click',function(e){
+                    var id = $('#cur_delete').val();
+                    if($(this).attr('id') === 'yes'){
+                        $.post('/deleteimage',{imageId:id},function(data){
+                        var json = $.parseJSON(data);
+                        if(json.id === 1){
+                            $('#me_'+id).remove();
+                            create_note('Media item deleted.','green','info');
+                        }else{ create_note('Error to delete media item.','red','warning');
+                        }
+                        }); 
+                     }    
+                });
         
        
   }); 
    function deleteme(id){
-            if(confirm('Are you sure?') == true){
-            $.post('/deleteimage',{imageId:id},function(data){
-                var json = $.parseJSON(data);
-                if(json.id === 1){
-                    $('#me_'+id).remove();
-                }else{ alert('Error to delete gallery item.');
-                }
-            });
-        }
-        }
+                $('#cur_delete').val(id);
+   }
 </script>
 <?= $this->Html->script('simple-lightbox.js') ?>
        <script type="text/javascript">

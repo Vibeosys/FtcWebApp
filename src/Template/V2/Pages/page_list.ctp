@@ -42,6 +42,9 @@ use Cake\Cache\Cache;
                               <th>Last Updated</th>
                               <th>Page Type</th>
                             <th>Status</th>
+                            <?php if(isset($role) and $role){ ?>
+                            <th>Page For</th>
+                            <?php } ?>
                             <th>Action</th>
                             </tr>
                           </thead>
@@ -59,6 +62,11 @@ use Cake\Cache\Cache;
                               <?php }else {?>
                               <td>UnPublished</td>
                               <?php } ?>
+                              <?php if(isset($role) and $role and $page->pageFor){ ?>
+                                <th>Subscriber</th>
+                                <?php }else if(isset($role) and $role){ ?>
+                                  <th>Non Subscriber</th>
+                                <?php }?>
                               <td>
                                   <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" name="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
                               </button>

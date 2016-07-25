@@ -112,7 +112,13 @@ $(document).ready(function(){
     var heading_last=$('table.table-bordered th:last-child').text();
     if(heading_last == 'Action'){
         $('th:last-child').removeClass('sorting');
+        $('th:last-child').css('width','90px');
     }
+     $('table.table-bordered th:first-child').css('width','100px');
+      $('table.table-bordered th').on('click',function(){
+        $("table.table-bordered th:last-child").removeClass('sorting');
+        
+    });
 });
     $(function () {
     $('[data-toggle="tooltip"]').tooltip()

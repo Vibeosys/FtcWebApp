@@ -130,13 +130,14 @@ class PagesController extends Controller\ApiController {
         $this->conncetionCreator(parent::readCookie('sub_id'));
         $userController = new UserController();
         $userId = $userController->getTableObj()->validateCredential(parent::readCookie('uname'));
-      
-        
+        $role = $userController->getTableObj()->isGroup(parent::readCookie('uname'), OWNER_GROUP);
         $pages = $this->getAllPages($userId);
           Log::debug($pages);
+          
         $this->set([
             'pages' => $pages,
-            'type' => $this->getPageTypesList()
+            'type' => $this->getPageTypesList(),
+            'role' => $role
                 ]);
         
     }
@@ -234,11 +235,8 @@ class PagesController extends Controller\ApiController {
         $data = $this->request->data;
         $this->conncetionCreator(parent::readCookie('sub_id'));
         if ($this->request->is('post') and !isset($data['preview'])) {
-          // $this->autoRender = FALSE;
             $insert = [];
             $count = 0;
-            //print_r($data);
-            //return;
             foreach ($data as $key => $value) {
                 if ($key != 'save' and $key != 'page' and $key != 'publish' and $key != 'for') {
                     $widget = explode('-', $key);
@@ -247,7 +245,6 @@ class PagesController extends Controller\ApiController {
                     $all[$count++] = $widget[0];
                 }
             }
-           // $this->conncetionCreator();
             // get current login admin user id
             $author = parent::readCookie('cur_ad_id');
             $subscriberId = parent::readCookie('sub_id');
@@ -304,7 +301,8 @@ class PagesController extends Controller\ApiController {
             $this->set([
                 'page' => $pageInfo,
                 'widgets' => $widgets,
-                'scopeCount' => count($widgets)
+                'scopeCount' => count($widgets),
+                'role' => parent::readCookie('isAdmin')
             ]);
         }else if($this->request->is('post') and (isset ($request['save'])
                 or isset ($request['publish']))){
@@ -350,7 +348,8 @@ class PagesController extends Controller\ApiController {
                     'color' => 'green',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
-                    'scopeCount' => count($widgets)       
+                    'scopeCount' => count($widgets),
+                           'role' => parent::readCookie('isAdmin')
                   ]); 
                 }else{
                 $this->set([
@@ -358,7 +357,8 @@ class PagesController extends Controller\ApiController {
                     'color' => 'red',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
-                    'scopeCount' => count($widgets)
+                    'scopeCount' => count($widgets),
+                    'role' => parent::readCookie('isAdmin')
             ]);}
             }else{
                    $this->set([
@@ -366,7 +366,8 @@ class PagesController extends Controller\ApiController {
                     'color' => 'red',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
-                    'scopeCount' => count($widgets)   
+                    'scopeCount' => count($widgets),
+                       'role' => parent::readCookie('isAdmin')
                 ]);
             }
         } 

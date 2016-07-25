@@ -64,7 +64,8 @@ class PagesTable extends Table{
                     $row->PageTypeId,
                     $row->Active,
                     $row->Author,
-                    $row->UpdatedDate);
+                    $row->UpdatedDate,
+                    $row->pageFor);
      return $pages;  
      }
      

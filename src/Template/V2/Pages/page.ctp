@@ -837,9 +837,9 @@ This page for
         $('.popup_sub').on('click', function(){
             $('#page_viewer').val($(this).val());
             if($(this).val() == 1){
-             $('#page_view_info').text('This page is for subscriber');    
+             $('#page_view_info').text('For subscriber only.');    
             }else{
-              $('#page_view_info').text('This page is for non-subscriber');   
+              $('#page_view_info').text('For subscriber & non-subscriber.');   
             }    
             
         });

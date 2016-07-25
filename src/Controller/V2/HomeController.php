@@ -25,7 +25,9 @@ class HomeController extends Controller\ApiController{
         $subscriberId = parent::readCookie('sub_id');
         $this->conncetionCreator($subscriberId);
         $userId = $userController->checkUserCredential($username);
+        $role = $userController->getTableObj()->isGroup($username, OWNER_GROUP);
         parent::writeCookie('cur_ad_id', $userId);
+        parent::writeCookie('isAdmin', $role);
         if(!isset($subscriberId) and !isset($username)){
               $this->redirect ('admin/login');
         }

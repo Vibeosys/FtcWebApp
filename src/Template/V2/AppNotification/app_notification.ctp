@@ -25,7 +25,7 @@ use Cake\Cache\Cache;
                     <?php if(isset($message)) {?>
                         <span style="margin: 10px 7%;color:<?= $color ?>"><strong><?= $message ?></strong> </span>
                     <?php } ?>
-                        <span id="limit_show" style="margin-left:5%;">Note :Max. character limit : 3800</span>   
+                         
                     </div>
                     
                    <form action="appnotification" method="post"> 
@@ -33,14 +33,15 @@ use Cake\Cache\Cache;
                         <div class="email-inner">
                             <p>
                               <span class="input input--hoshi input-85">
-                    <input class="input__field input__field--hoshi title-input" type="text" name="title" id="title" required size="100"  placeholder=""/>
+                               <input class="input__field input__field--hoshi title-input" type="text" maxlength="50" name="title" id="title" required size="100"  placeholder=""/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Title</span>
                     </label>
                                 </span> </p>
                             
-                            <lable>Message 
-                                <textarea rows='7' name="msg" maxlength="3800"  class='form-control margin10'  id="html-template"></textarea>
+                            <lable>Message   <span id="limit_show" style=" color: gray;">(Maximum character limit - 1700)</span> 
+                                <textarea rows='7' name="msg" maxlength="1700"  class='form-control margin10'  id="html-template"></textarea>
+                                
                             </lable>
                             
                             <lable class="push-top">Recipients
@@ -85,11 +86,8 @@ use Cake\Cache\Cache;
                               <td><?= $note->noteTitle ?></td>
                                 <td><?= $note->recipients ?></td>
                             </tr>
-                              <?php } }else{ ?>
-                              <tr>
-                                  <td style="color:red" colspan="3">Notofication List Empty. Please send notification to your client.</td>
-                            </tr>
-                              <?php } ?>
+                              <?php } } ?>
+                            
                           </tbody>
                         </table>
                    </div>
@@ -210,7 +208,7 @@ use Cake\Cache\Cache;
     
     $('#html-template').keydown(function(e){
         
-        if($(this).val().length == 3800 && e.keyCode != 8){
+        if($(this).val().length === 1700 && e.keyCode != 8){
             $('#limit_show').css('color','red');
             e.preventDefault();
         }else{

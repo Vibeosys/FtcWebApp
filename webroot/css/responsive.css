@@ -1392,9 +1392,10 @@ strong .fa-upload{
 /************************************************** Own Changes *******************************************/
 #page_view_info{
         font-family: inherit;
-    font-size: 16px;
+    font-size: 13px;
     padding: 5px;
     font-weight: bold;
+    color: grey;
 }
 .alert:not(.legend-item) {
     color: #fff;
@@ -1480,6 +1481,13 @@ display: inline-block;
 }
 .rssfeed-preview p{
 margin: 0;
+}
+
+#limit_show, #char_count{
+    margin-left: 5%;
+    font-size: 13px;
+   
+    font-style: italic;
 }
 
 

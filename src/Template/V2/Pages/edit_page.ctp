@@ -26,7 +26,12 @@ use Cake\Cache\Cache;
                     <div class="publish-btn">
                         <input type="submit" name="publish" value="Publish" class="btn btn-info btn-large">
                         <input type="button" value="Cancel" class="btn cancel btn-large cancel_page">
-                    </div>
+                    </div><br>
+                    <?php if(isset($role)){ if($role and $page->pageFor) {?>
+                     <span id="page_view_info" class="show_user_page_info">For subscriber only.</span>
+                    <?php }else if($role) {?>
+                     <span id="page_view_info" class="show_user_page_info">For subscriber & non-subscriber.</span>
+                    <?php } }?>
                 </div>
                <!-- <div class="col-lg-12 mobile-show">
                     <div class="heading">
@@ -559,49 +564,49 @@ use Cake\Cache\Cache;
    myApp.directive("addimage", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addbuttons  class='btn-type linkcustom'><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Image' onclick='checkME(event,this);' style='cursor:pointer' addbuttons  class='btn-type linkcustom'><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addtext", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addtextdiv  class='btn-type linkcustom'><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Text' onclick='checkME(event,this);' style='cursor:pointer' addtextdiv  class='btn-type linkcustom'><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addlink", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Link' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
      myApp.directive("addvideo", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Custom video' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
        myApp.directive("addyoutubevideo", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='YouTube video' onclick='checkME(event,this);' style='cursor:pointer' addyoutubevideolink  class='btn-type linkcustom'><span class='fa fa-youtube'></span>Add Youtube<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addheading", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='custom' onclick='checkME(event,this);' style='cursor:pointer' addheadinglink  class='btn-type linkcustom'><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='custom' iam='Heading' onclick='checkME(event,this);' style='cursor:pointer' addheadinglink  class='btn-type linkcustom'><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addweblink", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='web' onclick='checkME(event,this);' style='cursor:pointer' addweblinktext  class='btn-type not-active linkweb' disabled='disabled'><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='web' iam='Web View' onclick='checkME(event,this);' style='cursor:pointer' addweblinktext  class='btn-type not-active linkweb' disabled='disabled'><span class='fa fa-wpforms'></span>Add Web View<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
     myApp.directive("addrssfeed", function () {
         return {
             restrict: "E",
-            template: "<button vbtype='rss' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
+            template: "<button vbtype='rss' iam='Rss Feed' onclick='checkME(event,this);' style='cursor:pointer'  addrssfeedtext  class='btn-type not-active linkrss' disabled='disabled'><span class='fa fa-rss'></span>Add RSS Feed<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
 
