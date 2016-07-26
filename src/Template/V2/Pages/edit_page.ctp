@@ -33,49 +33,7 @@ use Cake\Cache\Cache;
                      <span id="page_view_info" class="show_user_page_info">For subscriber & non-subscriber.</span>
                     <?php } }?>
                 </div>
-               <!-- <div class="col-lg-12 mobile-show">
-                    <div class="heading">
-                        <h2>Toolbox</h2>
-
-                    </div>
-
-                     <div class="type-radio">
-                         <ul class="check-ul">
-                          <li>
-                            <input type="radio" id="custom" name="type" checked value="1">
-                            <label for="custom">Custom</label>
-
-                            <div class="check"></div>
-                          </li>
-
-                          <li>
-                            <input type="radio" id="web" name="type" value="2">
-                            <label for="web">Web View</label>
-
-                            <div class="check"><div class="inside"></div></div>
-                          </li>
-
-                          <li>
-                            <input type="radio" id="rss" name="type" value="3">
-                            <label for="rss">RSS Feed</label>
-
-                            <div class="check"><div class="inside"></div></div>
-                          </li>
-                        </ul>
-                      
-                    </div>
-                    <ul class="tool-list-mobile">
-                        <li><addimage></addimage></li>
-                        <li><addlink></addlink></li>
-                        <li><addvideo></addvideo></li>
-                        <li><addyoutubevideo></addyoutubevideo></li>
-                        <li><addtext></addtext></li>
-                        <li><addheading></addheading></li>
-                        <li><addweblink></addweblink></li>
-                        <li><addrssfeed></addrssfeed></li>
-                    </ul>
-
-                </div> -->
+              
                 <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 main-page">
     
                         <div class="publish-btn">
@@ -277,7 +235,7 @@ use Cake\Cache\Cache;
                                <a target="_blank" href="<?= $data->link ?>"><?= $data->caption ?></a>
                             </div>
 
-                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
+                      <?php }else if($widget->widgetTitle == 'Video5'){ ?>
                             <div class="remove-<?= $i ?> push-margin ng-scope">
                                 <div style="display:flex">Video Link
                                     <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
@@ -303,7 +261,9 @@ use Cake\Cache\Cache;
 
                       <?php }else if($widget->widgetTitle == 'WebView'){   ?>
                             <div class="webview-preview push-space">
-                                <h3><a style="word-wrap: break-word" target="_blank" href="<?= $data->view ?>"><?= $data->view ?></a></h3>
+                                 <iframe src="<?= $data->view ?>">
+                                    <p>Your browser does not support iframes.</p>
+                                </iframe>
                             </div>
 
                       <?php }else if($widget->widgetTitle == 'Rss'){ ?>

@@ -234,7 +234,10 @@ class PagesController extends Controller\ApiController {
     public function page() {
         $data = $this->request->data;
         $this->conncetionCreator(parent::readCookie('sub_id'));
-        if ($this->request->is('post') and !isset($data['preview'])) {
+        $widgetController = new WidgetController();
+        if ($this->request->is('post') and (isset($data['publish']) or isset($data['save']))) {
+            if(!isset($data['pageId'])){
+              Log::debug('This is for save or publish');
             $insert = [];
             $count = 0;
             foreach ($data as $key => $value) {
@@ -260,30 +263,42 @@ class PagesController extends Controller\ApiController {
                     $this->getPageType($all), $pageActive, $author, $subscriberId, $pageFor);
             $pageId = $this->insertNewPage($newPage);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
-            $widgetController = new WidgetController();
+            
             $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageFor);
             if($widgetResult){
-                $this->set([
+               $response = [
                     'message' => DTO\ErrorDto::getWebMessage(4),
                     'color' => 'green'
-                ]);
-                $this->redirect('pages');
+                ];
+               $success = $pageId;
+                //$this->redirect('pages');
             }  else {
-                $this->set([
+                $response = [
                     'message' => DTO\ErrorDto::getWebMessage(5),
                     'color' => 'red'
-                ]);
+                ];
+            }
+            }elseif (isset($data['pageId'])) {
+                $edit = true;
+                Log::debug('This is for Edit');
+                 $response = $this->pageEditOperation($data);
+            }
+            
+           if(isset($success) and !isset($edit)){
+            $pageInfo = $this->getTableObj()->getSingalPage($success);
+            $widgets = $widgetController->getAllWidgets($success);
+            $response['page'] = $pageInfo;
+            $response['widgets'] = $widgets;
             }
            
-        }  else if($this->request->is('post') and isset ($data['preview'])) {
-            //$this->autoRender = false;
-            //print_r($data);
         }
         $userController = new UserController();
         if($userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP))
-            $this->set (['is_admin' => 1]);
+            $response['is_admin'] = 1;
         else
-            $this->set (['is_admin' => 0]);
+            $response['is_admin'] = 0;
+        Log::debug($response);
+        $this->set($response);
     }
     
     public function editPage() {
@@ -306,7 +321,19 @@ class PagesController extends Controller\ApiController {
             ]);
         }else if($this->request->is('post') and (isset ($request['save'])
                 or isset ($request['publish']))){
-            $insert = [];
+          $response = $this->pageEditOperation($request);
+          $this->set($response);
+        }  else {
+            Log::debug('forced redorect to pages due to insufficient data.');
+            $this->redirect('pages');
+        } 
+        
+    }
+    
+    public function pageEditOperation($request) {
+       
+         $widgetController = new WidgetController();
+         $insert = [];
             $count = 0;
             foreach ($request as $key => $value) {
                 if ($key != 'save' and $key != 'page' and $key != 'publish' and 
@@ -343,34 +370,34 @@ class PagesController extends Controller\ApiController {
                 if($updateResult){
                      $pageInfo = $this->getTableObj()->getSingalPage($pageId);
                      $widgets = $widgetController->getAllWidgets($pageId);
-                       $this->set([
+                       $response = [
                     'message' => DTO\ErrorDto::getWebMessage(6),
                     'color' => 'green',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
                     'scopeCount' => count($widgets),
                            'role' => parent::readCookie('isAdmin')
-                  ]); 
+                  ]; 
                 }else{
-                $this->set([
+                 $response = [
                     'message' => DTO\ErrorDto::getWebMessage(7),
                     'color' => 'red',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
                     'scopeCount' => count($widgets),
                     'role' => parent::readCookie('isAdmin')
-            ]);}
+            ];}
             }else{
-                   $this->set([
+                 $response = [
                     'message' => DTO\ErrorDto::getWebMessage(7),
                     'color' => 'red',
                     'page' => $pageInfo,
                     'widgets' => $widgets,
                     'scopeCount' => count($widgets),
                        'role' => parent::readCookie('isAdmin')
-                ]);
+                ];
             }
-        } 
+            return $response;
     }
     
      public function updatePage($page, $subscriberId, $authorId) {

@@ -1489,7 +1489,16 @@ margin: 0;
    
     font-style: italic;
 }
-
+.webview-preview{
+    overflow: hidden;
+    height:500px;
+  
+}
+iframe {
+    height:100%;
+    border:none;
+    overflow-y: hidden;
+}
 
 /* Hoshi */
 .input {

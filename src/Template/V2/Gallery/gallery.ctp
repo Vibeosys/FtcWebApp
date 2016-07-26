@@ -49,17 +49,17 @@ use Cake\Cache\Cache;
 <div id="myModal" class="modal animated zoomin">
     <div class="modal-dialog" style="width: 480px">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="border-bottom:none">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Are you Sure?</h4>
+                <h4 class="modal-title">Do you want to delete selected media item?</h4>
                 
             </div>
             <div class="modal-body">
                <div class="row">
                     <div class="modal-footer">
                         
-                        <input type="button" id="yes" data-dismiss="modal" aria-hidden="true" value="confirm" class="btn btn-success btn-large decide">
-                        <input type="button" id="no"  data-dismiss="modal" aria-hidden="true" value="no" class="btn btn-large cancel decide">
+                        <input type="button" id="yes" data-dismiss="modal" aria-hidden="true" value="Yes" class="btn btn-success btn-large decide">
+                        <input type="button" id="no"  data-dismiss="modal" aria-hidden="true" value="No" class="btn btn-large cancel decide">
                     </div>
                 </div>
                </div>
