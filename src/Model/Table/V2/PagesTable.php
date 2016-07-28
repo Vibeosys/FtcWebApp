@@ -123,6 +123,7 @@ class PagesTable extends Table{
         $oldPage = $tableObj->get($page->pageId);
         $oldPage->PageTitle = $page->pageName; 
         $oldPage->Status = $page->pageStatus; 
+        $oldPage->Active = $page->active; 
         $oldPage->PageTypeId = $page->pageType; 
         $oldPage->UpdatedDate = date(DATE_TIME_FORMAT);
         if($tableObj->save($oldPage))

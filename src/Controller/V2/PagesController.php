@@ -67,7 +67,7 @@ class PagesController extends Controller\ApiController {
         
         $pages = $this->getAllPages(null, $for);
         $pageId = [];
-        if(count($pages))
+        if(count($pages)){
         foreach ($pages as $page){
             array_push($pageId, $page->pageId);
         }
@@ -75,6 +75,7 @@ class PagesController extends Controller\ApiController {
         $pageTypeController = new PageTypeController();
         $widgets = $widgetController->getAllWidgets($pageId);
         $pageType = $pageTypeController->getAllPageType();
+        }
         if (!empty($pages)) {
             $pagesCustomization = new \App\Response\V2\PageCustomizationResponse(
                     json_encode($pageType), json_encode($pages), json_encode($widgets));
@@ -324,7 +325,7 @@ class PagesController extends Controller\ApiController {
           $response = $this->pageEditOperation($request);
           $this->set($response);
         }  else {
-            Log::debug('forced redorect to pages due to insufficient data.');
+            Log::debug('forced redirect to pages due to insufficient data.');
             $this->redirect('pages');
         } 
         

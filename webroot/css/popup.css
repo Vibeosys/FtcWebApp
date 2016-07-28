@@ -24,8 +24,8 @@ z-index: 101;
 top: 18%;
 }
 .popup-inner{
-width: 320px;
-min-height: 250px;
+width: 360px;
+min-height: 210px;
 margin: 100px auto;
 background: #f3f3f3;
 position: relative;
@@ -34,10 +34,12 @@ padding: 10px;
 border-radius: 5px;
 box-shadow: 0 2px 5px #000;
 }
-.popup-inner p{
+.popup-inner h3{
 clear: both;
-color: #555555;
-text-align: justify;
+border-bottom: 1px solid  #555555;
+    padding-bottom: 5px;
+    position: relative;
+    top:-10px;
 }
 .popup-inner p a{
 color: #d91900;
@@ -63,4 +65,4 @@ cursor: pointer;
     text-transform: uppercase;
     font-weight:600;
     
-}
+} 

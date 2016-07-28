@@ -38,13 +38,14 @@ use Cake\Cache\Cache;
                         <div class="publish-btn">
                            <!-- <input type="button" value="Preview" class="btn btn-preview btn-larg preview_page"> -->
                             <a <?php if(isset($page)) echo 'href="#preview_div"';?> class="btn btn-preview btn-large preview_page">Preview</a>
-                            <input type="submit" name="save" value="Save" class="btn btn-info btn-large">
+                            <input type="submit" name="save" value="Save as draft" class="btn btn-info btn-large">
                             <input type="button" value="Cancel" class="btn  cancel btn-large cancel_page">
                             <input type="hidden" id="page_viewer" value="1" name="for">
                         </div>
                        
                      <span class="input input--hoshi input-32 push-51">
-                    <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" placeholder="" value="<?php if(isset($page)) echo $page->pageTitle; ?>" required/>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                    <input class="input__field input__field--hoshi title-input" type="text" id="page" name="page" value="<?php if(isset($page)){echo $page->pageTitle;} ?>" required/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi"> App Page Title</span>
                     </label>
@@ -149,7 +150,7 @@ use Cake\Cache\Cache;
 
                       <?php }else if($widget->widgetTitle == 'Rss'){ ?>
                             <div class="remove-<?= $i ?> push-margin id= ng-scope" vbrss="">
-                                <input name="rss-<?= $i ?>" value="<?= $data->feed ?>" type="text" placeholder="Rss Feed" class="form-control ng-pristine ng-valid" id="text-input-rssfeed-1" ng-model="rssfeed1">
+                                <input name="rss-<?= $i ?>" value="<?= $data->feed ?>" type="text" placeholder="Rss Feed" class="form-control ng-pristine ng-valid">
                                 <div class="desc"> Description tags to read feed</div>
                                 <div style="display:flex">
                                     <input name="parent-<?= $i ?>" value="<?= $data->feedParent ?>" type="text" placeholder="Parent" class="form-control link-input" id="text-parent-1">
@@ -296,16 +297,16 @@ use Cake\Cache\Cache;
     </div>
 
 </section>
- <div class='popup'>
+<div class='popup'>
 <div class='popup-inner'>
-<!--<img src='images/close.png' alt='quit' class='x' id='x' />-->
-    <h3 class="text-center">
-This page for
+<h3 class="text-left"> New Page </h3>
+    <h4 class="text-center text-h4">
+Page created for
 
-</h3>
-    <div class="center-block text-center ">
-        <button id="sub" value="1" class="btn btn-primary subscriber-btn close-btn popup_sub">Subscriber</button><br>
-        <button id="non_sub" value="0" class="btn btn-primary non-subscriber-btn close-btn popup_sub">Non Subscriber</button></div>
+</h4>
+    <div class="center-block text-center btn-sub">
+        <button id="sub" value="1" class="btn btn-large btn-preview subscriber-btn close-btn popup_sub">Subscriber Only</button>
+        <button id="non_sub" value="0" class="btn btn-info btn-large non-subscriber-btn close-btn popup_sub">For All</button></div>
 </div>
 </div>
 
@@ -576,7 +577,7 @@ This page for
                 }
                 scope.count++;
                 scope.countrssfeed++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input name='rss-"+ scope.count +"' type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input name='parent-"+scope.count+"' type='text'  placeholder='Parent' class='form-control link-input' id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input name='title-"+scope.count+"' type='text' placeholder='Title' class='form-control link-input' id=text-title-" + scope.countrssfeed + "><input name='rss_link-"+scope.count+"' type='text'  placeholder='Link' class='form-control link-input' id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input name='date-"+scope.count+"' type='text' placeholder='Date' class='form-control link-input'  id=text-date-" + scope.countrssfeed + "><input name='description-"+scope.count+"' type='text'  placeholder='Description' class='form-control link-input' id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input name='rss-"+ scope.count +"' type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input value='item' name='parent-"+scope.count+"' type='text'  placeholder='Parent' class='form-control link-input' id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input name='title-"+scope.count+"' value='title' type='text' placeholder='Title' class='form-control link-input' id=text-title-" + scope.countrssfeed + "><input name='rss_link-"+scope.count+"' type='text' value='link'  placeholder='Link' class='form-control link-input' id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input value='pubDate' name='date-"+scope.count+"' type='text' placeholder='Date' class='form-control link-input'  id=text-date-" + scope.countrssfeed + "><input value='description' name='description-"+scope.count+"' type='text'  placeholder='Description' class='form-control link-input' id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
 
             });
@@ -768,8 +769,8 @@ This page for
         });
         
         $('.preview_page').on('click',function(e){
-            if($(this).attr('href').length <= 0){
-            alert('Please save or publish this page before preview.');
+            if($(this).attr('href') === undefined){
+           create_note('Please save or publish before preview.', n_bg, n_type);
             e.preventDefault();
             }
         });

@@ -145,7 +145,7 @@ use Cake\Cache\Cache;
 
                       <?php }else if($widget->widgetTitle == 'Rss'){ ?>
                             <div class="remove-<?= $i ?> push-margin id= ng-scope" vbrss="">
-                                <input name="rss-<?= $i ?>" value="<?= $data->feed ?>" type="text" placeholder="Rss Feed" class="form-control ng-pristine ng-valid" id="text-input-rssfeed-1" ng-model="rssfeed1">
+                                <input name="rss-<?= $i ?>" value="<?= $data->feed ?>" type="text" placeholder="Rss Feed" class="form-control ng-pristine ng-valid">
                                 <div class="desc"> Description tags to read feed</div>
                                 <div style="display:flex">
                                     <input name="parent-<?= $i ?>" value="<?= $data->feedParent ?>" type="text" placeholder="Parent" class="form-control link-input" id="text-parent-1">
@@ -669,7 +669,7 @@ use Cake\Cache\Cache;
                 }
                 scope.count++;
                 scope.countweblink++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='web-" + scope.count + "' type='text'  placeholder='Web Link' class='form-control'  id=text-input-wenlink-" + scope.countweblink + " ng-model=weblink" + scope.countweblink + "><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><input name='web-" + scope.count + "' type='text'  placeholder='Web Link' class='form-control'  id=text-input-wenlink-" + scope.countweblink + " ><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };
@@ -684,7 +684,7 @@ use Cake\Cache\Cache;
                 }
                 scope.count++;
                 scope.countrssfeed++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input name='rss-"+ scope.count +"' type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input name='parent-"+scope.count+"' type='text'  placeholder='Parent' class='form-control link-input' id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input name='title-"+scope.count+"' type='text' placeholder='Title' class='form-control link-input' id=text-title-" + scope.countrssfeed + "><input name='rss_link-"+scope.count+"' type='text'  placeholder='Link' class='form-control link-input' id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input name='date-"+scope.count+"' type='text' placeholder='Date' class='form-control link-input'  id=text-date-" + scope.countrssfeed + "><input name='description-"+scope.count+"' type='text'  placeholder='Description' class='form-control link-input' id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin id='vbrss'><input name='rss-"+ scope.count +"' type='text'  placeholder='Rss Feed' class='form-control'  id=text-input-rssfeed-" + scope.countrssfeed + " ng-model=rssfeed" + scope.countrssfeed + "><div class='desc'> Description tags to read feed</div><div style='display:flex'><input value='item' name='parent-"+scope.count+"' type='text'  placeholder='Parent' class='form-control link-input' id=text-parent-" + scope.countrssfeed + "></div><div style='display:flex'><input name='title-"+scope.count+"' value='title' type='text' placeholder='Title' class='form-control link-input' id=text-title-" + scope.countrssfeed + "><input name='rss_link-"+scope.count+"' type='text' value='link'  placeholder='Link' class='form-control link-input' id=text-link-" + scope.countrssfeed + "></div><div style='display:flex'><input value='pubdate' name='date-"+scope.count+"' type='text' placeholder='Date' class='form-control link-input'  id=text-date-" + scope.countrssfeed + "><input value='description' name='description-"+scope.count+"' type='text'  placeholder='Description' class='form-control link-input' id=text-desc-" + scope.countrssfeed + "></div><button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
 
             });

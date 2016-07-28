@@ -9,7 +9,7 @@ use Cake\Cache\Cache;
     use Cake\View\Helper\UrlHelper;
   
     $this->layout = 'super_admin_layout';
-    $this->assign('title', 'App Notification');
+    $this->assign('title', 'App Notifications');
     $this->assign('notes','1');
     $this->assign('AN','1');
     
@@ -33,6 +33,7 @@ use Cake\Cache\Cache;
                         <div class="email-inner">
                             <p>
                               <span class="input input--hoshi input-85">
+                                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                                <input class="input__field input__field--hoshi title-input" type="text" maxlength="50" name="title" id="title" required size="100"  placeholder=""/>
                     <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Title</span>
@@ -237,6 +238,7 @@ use Cake\Cache\Cache;
                     var i = 0;
                     var html = '';
                   $.each(data, function(key,json){
+                      if(json.gcmId != null){
                       html += '<tr><td>' + 
                           
                                   '<div class="check-style"><input type="checkbox" value="None"  name="subscribers" id="select_'+ i +'" class="terms-check" checked/><label for="select_'+ i +'"> </label></div></td>'+
@@ -244,7 +246,7 @@ use Cake\Cache\Cache;
                                 '<input type="text" style="display:block" value="'+json.gcmId +'" id="user_gcm_'+i+'">'+
                               '<td gcm ="'+json.gcmId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
                                 '<td>'+json.email +'</td></tr>';
-                     i = i + 1; 
+                     i = i + 1; }
                   });
                   $('#count').val(i);
                 $('#user_list').html(html);

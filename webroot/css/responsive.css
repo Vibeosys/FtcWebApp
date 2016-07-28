@@ -1587,7 +1587,8 @@ iframe {
     font-size: 19px;
 }
 
-.input__label--hoshi {
+.input__label--hoshi,
+.input__label--hoshi_dis {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1604,7 +1605,9 @@ iframe {
 }
 
 .input__label--hoshi::before,
-.input__label--hoshi::after {
+.input__label--hoshi_dis::before,
+.input__label--hoshi::after,
+.input__label--hoshi_dis::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -1622,7 +1625,21 @@ iframe {
 	-webkit-transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 }
-
+.input__label--hoshi_dis::after {
+	margin-top: 2px;
+	border-bottom: 2px solid #9E9E9E;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+	-webkit-transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+}
+.input__label--hoshi-color-2::after {
+    border-color: #9E9E9E;
+}
+input[disabled] {
+    cursor: default;
+    color: gray;
+}
 .input__label--hoshi-color-1::after {
 	border-color: #000;
 }

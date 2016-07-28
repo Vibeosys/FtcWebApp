@@ -15,7 +15,7 @@ use Cake\Cache\Cache;
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>FTC Solutions | <?= $this->fetch('title')?></title>
+        <title><?= $this->fetch('title')?> | FTC Solutions </title>
         
         <?= $this->Html->css('bootstrap.min.css') ?>
         <?= $this->Html->css('menu.css') ?>
@@ -132,6 +132,7 @@ use Cake\Cache\Cache;
         ?>
         <!-- jQuery  -->
         <?= $this->Html->script('jquery.js') ?>
+        <?= $this->Html->script('jquery.app.js') ?>
         <?= $this->Html->script('bootstrap.min.js') ?>
        
         <?= $this->Html->script('classie.js') ?>

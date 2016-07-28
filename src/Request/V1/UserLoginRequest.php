@@ -19,5 +19,8 @@ class UserLoginRequest extends Request\JsonDeserializer{
     public $pwd;
     public $gcmId;
     public $apnId;
+    public $weblogin;
+    
+    
     
 }

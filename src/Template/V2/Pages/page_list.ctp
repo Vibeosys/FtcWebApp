@@ -9,7 +9,7 @@ use Cake\Cache\Cache;
     use Cake\View\Helper\UrlHelper;
   
     $this->layout = 'super_admin_layout';
-    $this->assign('title', 'page_list');
+    $this->assign('title', 'Custom Pages');
      $this->assign('page_list','1');
 ?>
 

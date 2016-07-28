@@ -36,7 +36,7 @@ use Cake\Cache\Cache;
                         <span class="input input--hoshi input-76">
                     <input class="input__field input__field--hoshi title-input" type="text"  id="user_login_id" size="100" placeholder="" value="<?= $edit->subscriberId ?>" disabled/>
                              <input name="subscriberId" type="hidden" value="<?= $edit->subscriberId ?>">
-                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                    <label class="input__label input__label--hoshi dis input__label--hoshi-color-2" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Subscription Id</span>
                     </label>
                 </span> 
@@ -85,7 +85,7 @@ use Cake\Cache\Cache;
                     <p>
                         <span class="input input--hoshi input-76">
                     <input class="input__field input__field--hoshi title-input" type="text" name="owner" id="owner_subscribe_id" size="100" placeholder="" value="<?= $edit->owner ?>"  disabled/>
-                    <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="input-4">
+                    <label class="input__label input__label--hoshi dis input__label--hoshi-color-2" for="input-4">
                         <span class="input__label-content input__label-content--hoshi">Owner</span>
                     </label>
                 </span> 

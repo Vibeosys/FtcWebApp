@@ -51,8 +51,11 @@ class UserController extends V1\UserController{
     public function userSubLogin() {
         $this->autoRender = FALSE;
         $request = $this->getRequest();
+        
         $loginRequest = \App\Request\V1\UserSubLoginRequest::Deserialize(
                 $request->data);
+         Log::debug("request data string: " . $request->data);
+        Log::debug($loginRequest);
         //connect to database using subscriberId
         if (!$this->conncetionCreator($loginRequest->subscriberId)) {
             $response = new \App\Response\V1\BaseResponse(
@@ -70,6 +73,7 @@ class UserController extends V1\UserController{
             parent::writeCookie('cur_email', $info->email);
             $info->subscriberId = $loginRequest->subscriberId;
             $userSubscriptionController = new UserSubscriptionController();
+            if($loginRequest->weblogin != 1)
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
                     new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $loginRequest->subscriberId));
             $response = new \App\Response\V1\BaseResponse(
