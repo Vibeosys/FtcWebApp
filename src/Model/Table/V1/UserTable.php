@@ -70,6 +70,7 @@ class UserTable extends Table{
         //print_r($conditions);
         Log::debug($conditions);
         $rows = $this->connect()->find()->where($conditions);
+        Log::debug($rows->sql());
         if($rows->count())
             foreach ($rows as $row)
             return $row->userid;

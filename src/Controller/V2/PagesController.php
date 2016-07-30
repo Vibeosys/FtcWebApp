@@ -62,10 +62,16 @@ class PagesController extends Controller\ApiController {
         $licenceController = new LicensesController();
         $licenceCheck = $licenceController->isLicenseValid($requestUser->userId);
         $for = null;
+        $ownerId = null;
         if(!is_bool($licenceCheck))
             $for = NON_SUBSCRIBER_PAGE;
+        else {
+            $subscriberController = new SubscriptionController();
+          $ownerSystem =  $subscriberController->getSubscriberSystem($subscriberId);
+          $ownerId = $ownerSystem->ownerId;
+        }
         
-        $pages = $this->getAllPages(null, $for);
+        $pages = $this->getAllPages($ownerId, $for);
         $pageId = [];
         if(count($pages)){
         foreach ($pages as $page){

@@ -842,6 +842,7 @@ input[type=radio]:checked ~ label{
 }
 .user-list{
     border: 1px solid rgba(128, 128, 128, 0.26);
+    padding: 10px 0px;
 }
 .tabs-text{
         position: relative;
@@ -868,6 +869,8 @@ input[type=radio]:checked ~ label{
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.19);
     margin-bottom: 10px;
     font-size: 18px;
+    float: right;
+    margin-right: 10px;
 }
 .btn-info{
         background: #1F5689;
@@ -902,7 +905,7 @@ input[type=radio]:checked ~ label{
 }
 
 .check-all{
-        top: 10px;
+        top: 5px;
     position: relative;
 }
 .panel_toolbox>li>a {
@@ -1481,6 +1484,7 @@ display: inline-block;
 }
 .rssfeed-preview p{
 margin: 0;
+word-wrap: break-word;
 }
 
 #limit_show, #char_count{
@@ -1696,4 +1700,3 @@ input[disabled] {
 
 
 // css requuired
-

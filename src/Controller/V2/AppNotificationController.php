@@ -134,7 +134,7 @@ class AppNotificationController extends Controller\ApiController {
         
         $notes = $this->getTableObj()->getNote($sendBy);
         if(!empty($notes))
-            $this->set (['notes' => $notes]);
+            $this->set (['notes' => $notes,'isAdmin' => parent::readCookie('isAdmin')]);
         
     }
     

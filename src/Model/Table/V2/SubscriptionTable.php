@@ -25,7 +25,7 @@ class SubscriptionTable extends V1\SubscriptionTable {
             'S' => [
                 'table' => 'systems',
                 'type' => 'INNER',
-                'conditions' => 'subscription.OwnerId = S.ownerid and subscription.SubscriberId'
+                'conditions' => 'subscription.OwnerId = S.ownerid and subscription.SubscriberId = '.$subscriberId
             ]
         ];
         $fields = [

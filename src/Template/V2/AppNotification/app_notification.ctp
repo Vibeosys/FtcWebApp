@@ -134,6 +134,10 @@ use Cake\Cache\Cache;
                                             
                                             Subscribers
                                         </li>
+                                       <?php if(isset($isAdmin)){ 
+                                           if($isAdmin){
+                                       ?>
+                                        
                                          <li class="check-all user-main">
                                                <div class="check-style">
                                                 <input type="checkbox" value="None"  name="non_subscribers" id="non_sub" class="terms-check" />
@@ -142,6 +146,7 @@ use Cake\Cache\Cache;
                                             
                                             Non Subscribers
                                         </li>
+                                       <?php }} ?>
                                          <li class="check-all user-main">
                                                <div class="check-style">
                                                 <input type="checkbox" value="None"  name="direct_client" id="indirect" class="terms-check" />

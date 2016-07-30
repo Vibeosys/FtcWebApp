@@ -56,6 +56,7 @@ class UserSubscriptionTable extends Table {
         $conditions = [
             'SubscriberId =' => 0
         ];
+        $users = [];
         $count = 0;
         $rows = $this->connect()->find()->where($conditions);
         Log::debug('Non Subscriber query');

@@ -43,8 +43,10 @@ class LicensesTable extends V1\LicensesTable{
         $rows = $this->connect()->find('All', ['fields' => $fields])->join($join);
         \Cake\Log\Log::debug($rows->sql());
         if($rows->count()){
-            foreach ($rows as $row)
-            $users[$count++] = new UserGcmIdDto($row->UserId, $row->GcmId, $row->ApnId);
+            foreach ($rows as $row){
+                if($row->UserId != $subSystem->ownerId)
+                $users[$count++] = new UserGcmIdDto($row->UserId, $row->GcmId, $row->ApnId);
+            }
         }
         return $users;
     }

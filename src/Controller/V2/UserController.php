@@ -73,7 +73,8 @@ class UserController extends V1\UserController{
             parent::writeCookie('cur_email', $info->email);
             $info->subscriberId = $loginRequest->subscriberId;
             $userSubscriptionController = new UserSubscriptionController();
-            if($loginRequest->weblogin != 1)
+            $userController = new UserController();
+            if($loginRequest->weblogin != 1 and $userController->getTableObj()->isGroup($loginRequest->username, USER_GROUP))
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
                     new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $loginRequest->subscriberId));
             $response = new \App\Response\V1\BaseResponse(
@@ -107,31 +108,35 @@ class UserController extends V1\UserController{
        foreach ($request as $key => $value)
            if($value == 'true')
               $condition[$key] = $value; 
-       $this->conncetionCreator();
-       $subscriberId = parent::readCookie('sub_id');
+       $subscriberId = parent::readCookie('sub_id');    
+       $isAdmin = parent::readCookie('isAdmin');    
+       $this->conncetionCreator($subscriberId);
        $subscriberController = new SubscriptionController();
        $userSubscriptionController = new UserSubscriptionController();
         $licensesController = new LicensesController();
+        Log::debug($condition);
        if(key_exists('all', $condition) or (key_exists('sub', $condition) and key_exists('non_sub', $condition) and key_exists('indirect', $condition))){
             $allSubSystem = $subscriberController->getSubscriberSystem($subscriberId);
-            $allUserList = $licensesController->getSubscribedUser($allSubSystem);
-            $expiredUserList = $licensesController->getSubscribedUser($allSubSystem, true);
-            $nonUserList = $userSubscriptionController->getNonsubscribedUser();
+           
+            
             /*$inditectUserList = $licensesController->getIndirectUser($allSubSystem, TRUE);
             foreach ($inditectUserList as $user){
                 $userList[$counter++] = $user; 
             }*/
+             $allUserList = $licensesController->getSubscribedUser($allSubSystem);
             foreach ($allUserList as $user){
                 $userList[$counter++] = $user; 
             }
-            
-            foreach ($nonUserList as $user){
-                $userList[$counter++] = $user; 
-            }
-            
+            $expiredUserList = $licensesController->getSubscribedUser($allSubSystem, true);
             foreach ($expiredUserList as $user){
                 $userList[$counter++] = $user; 
-            } 
+            }
+            if($isAdmin){
+            $nonUserList = $userSubscriptionController->getNonsubscribedUser();
+            foreach ($nonUserList as $user){
+                $userList[$counter++] = $user; 
+            }}
+            
              Log::debug('All user condition true');
              $status = FALSE;
        } 
