@@ -63,6 +63,15 @@ class UserController extends V1\UserController{
             $this->response->body(json_encode($response));
             return;
         }
+        if($loginRequest->weblogin == 1){
+            if($this->getTableObj()->isGroup($loginRequest->username, USER_GROUP)){
+               $response = new \App\Response\V1\BaseResponse(
+                    DTO\ErrorDto::prepareError(110));
+            $this->response->body(json_encode($response));
+            return;   
+                
+            }
+        }
         //validate user using username, password, and validate license 
         //availability and expiry date
         // return bool true if all condition true else return error object

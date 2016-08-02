@@ -169,7 +169,8 @@ class UserController extends Controller\ApiController {
         $request = $this->getRequest();
         $forgotRequest = \App\Request\V1\ForgotPasswordSubRequest::Deserialize(
                 $request->data);
-        if (!$this->conncetionCreator($forgotRequest->subscriberId)) {
+        
+        if (!$this->conncetionCreator($forgotRequest->subscriberId) or is_null($forgotRequest->subscriberId)) {
             $response = new \App\Response\V1\BaseResponse(
                     DTO\ErrorDto::prepareError(105));
             $this->response->body(json_encode($response));
@@ -177,7 +178,9 @@ class UserController extends Controller\ApiController {
         }
         $result = $this->getTableObj()->getPassword(
                 $forgotRequest->username, $forgotRequest->email);
-        if ($result) {
+        $systemController = new V2\SystemsController();
+        
+        if ($result and $systemController->subscriberValidationCheck($result,$forgotRequest->subscriberId)) {
             $sub = TRUE;
             $link = $this->getChangePasswordLink($result, $sub);
             $this->reliseConnection();

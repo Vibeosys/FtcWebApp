@@ -143,7 +143,8 @@ use Cake\Cache\Cache;
                      if(value == 0){
                          window.location.replace('../../admin/login');
                      }
-                     jQuery('#cur_name').html(value +'<i class=" fa fa-angle-down"></i>');
+                     var uname = value.split(" ",1); 
+                     jQuery('#cur_name').html(uname +'...<i class=" fa fa-angle-down"></i>');
                  });
                  jQuery.post('/getcookie',{name:'cur_email'}, function(val){
                      jQuery('#cur_email').text(val);

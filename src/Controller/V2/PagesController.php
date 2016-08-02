@@ -67,7 +67,7 @@ class PagesController extends Controller\ApiController {
             $for = NON_SUBSCRIBER_PAGE;
         else {
             $subscriberController = new SubscriptionController();
-          $ownerSystem =  $subscriberController->getSubscriberSystem($subscriberId);
+          $ownerSystem =  $subscriberController->getSubscriberSystem($requestUser->subscriberId);
           $ownerId = $ownerSystem->ownerId;
         }
         
@@ -108,15 +108,14 @@ class PagesController extends Controller\ApiController {
 
     public function insertNewPage($newPage) {
         $result = $this->getTableObj()->insert($newPage);
-        if ($result) {
+        if ($result and $newPage->status) {
             $page = $this->getTableObj()->getSingalPage($result);
             $syncEntry = new DTO\SyncInsertDto(
                     $newPage->author, $this->tableName, INSERT, $page, $newPage->subscriberId);
             $syncController = new SyncController();
             $syncController->makeSyncEntry($syncEntry, $page->pageFor);
-            return $result;
         }
-        return FALSE;
+        return $result;
     }
     
    
@@ -140,7 +139,7 @@ class PagesController extends Controller\ApiController {
         $role = $userController->getTableObj()->isGroup(parent::readCookie('uname'), OWNER_GROUP);
         $pages = $this->getAllPages($userId);
           Log::debug($pages);
-          
+          Log::debug('Value of role :'.$role);
         $this->set([
             'pages' => $pages,
             'type' => $this->getPageTypesList(),
@@ -409,14 +408,13 @@ class PagesController extends Controller\ApiController {
     
      public function updatePage($page, $subscriberId, $authorId) {
         $result = $this->getTableObj()->updatePage($page);
-        if ($result) {
+        if ($result and $page->pageStatus) {
             $syncEntry = new DTO\SyncInsertDto(
                     $authorId, $this->tableName, UPDATE, $this->getTableObj()->getSingalPage($page->pageId), $subscriberId);
             $syncController = new SyncController();
             $syncController->makeSyncEntry($syncEntry, $page->pageFor);
-            return $result;
         }
-        return FALSE;
+       return $result;
     }
 
 }

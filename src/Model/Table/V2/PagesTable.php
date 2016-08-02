@@ -49,7 +49,8 @@ class PagesTable extends Table{
              'Status' => 'mobile_pages.Status',
              'PageTypeId' => 'mobile_pages.PageTypeId',
              'Active' => 'mobile_pages.Active',
-             'UpdatedDate' => 'mobile_pages.UpdatedDate'
+             'UpdatedDate' => 'mobile_pages.UpdatedDate',
+             'PageFor' => 'mobile_pages.PageFor'
          ];
         $pages = [];
         $counter = 0;
@@ -65,7 +66,7 @@ class PagesTable extends Table{
                     $row->Active,
                     $row->Author,
                     $row->UpdatedDate,
-                    $row->pageFor);
+                    $row->PageFor);
      return $pages;  
      }
      
