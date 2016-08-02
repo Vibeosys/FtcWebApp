@@ -90,13 +90,16 @@ class AppNotificationController extends Controller\ApiController {
         return $result;
     }
     public function appNotification() {
-        $request = $this->request->data;
+       $request = $this->request->data;
        $sendBy = parent::readCookie('cur_ad_id');
-       $this->conncetionCreator();
-        if(isset($request['send']) and $this->request->is('post')){
+       $subscriberId = parent::readCookie('sub_id');
+       $this->conncetionCreator($subscriberId);
+       if(isset($request['send']) and $this->request->is('post')){
             $counter = 0;
+            $u_count = 0;
             $i = 0;
             $device = [];
+            $users = [];
             $message = [];
             $contents = [];
             for ($i; $i < count($request); $i++)
@@ -105,9 +108,12 @@ class AppNotificationController extends Controller\ApiController {
                 if($key === 'client-'.$i){
                    $device[$counter++] = $value; 
                 }
-                
+                if($key === 'userId-'.$i)
+                        $users[$u_count++] = $value;
             }
-            Log::debug($device);
+            
+        Log::debug('User list of notification recipients');
+        Log::debug($users);
             if(!is_array($device) or empty($device)){
                 $this->set([
                     'message' => 'Recipents list is empty.',
@@ -117,9 +123,12 @@ class AppNotificationController extends Controller\ApiController {
                $message['title'] = $request['title'];
                $contents['en'] = $request['msg'];
                if($this->sendNotification($device, $message, $contents)){
-                   $this->addNewEntry(new DTO\AppNotificationInsertDto(
+                    Log::debug('notification was send.');
+                  $noteId = $this->addNewEntry(new DTO\AppNotificationInsertDto(
                           $sendBy , 
                            $message['title'], $contents['en'], count($device)));
+                  $userAppNotificationController = new UserAppNotificationController();
+                  $in_result = $userAppNotificationController->addUserNotification($users, $noteId);
                    $this->set([
                     'message' => 'Notification was send.',
                     'color' => 'green'
@@ -136,6 +145,23 @@ class AppNotificationController extends Controller\ApiController {
         if(!empty($notes))
             $this->set (['notes' => $notes,'isAdmin' => parent::readCookie('isAdmin')]);
         
+    }
+    
+    public function getMyNotification() {
+        $this->autoRender =  false;
+        $request = $this->request->data;
+        $baseRequest = \App\Request\V1\BaseRequest::Deserialize($request);
+        $requestUser = \App\Request\V1\UserRequest::Deserialize($baseRequest->user);
+        $this->conncetionCreator($requestUser->subscriberId);
+        if(!$this->userValidation($requestUser))
+            $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(110));
+        Log::debug('get notification device authenticated');
+        $result = $this->getTableObj()->getUserNotification($requestUser->userId);
+        if(empty($result))
+           $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(112));
+        else
+        $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareSuccessMessage(13), json_encode($result));
+        $this->response->body(json_encode($response));
     }
     
 

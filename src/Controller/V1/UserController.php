@@ -106,8 +106,14 @@ class UserController extends Controller\ApiController {
         $this->response->body(json_encode($response));
     }
 
-    public function checkUserCredential($username, $pwd = null) {
-        return $this->getTableObj()->validateCredential($username, $pwd);
+    public function checkUserCredential($username, $pwd = null, $subscriberId = null) {
+        $result =  $this->getTableObj()->validateCredential($username, $pwd);
+        if(is_null($subscriberId) or !$result)
+            return $result;
+        $subscriberController = new V2\SystemsController();
+        if($subscriberController->subscriberValidationCheck($result, $subscriberId))
+            return $result;
+        return FALSE;
     }
 
     public function usernameAvailability() {

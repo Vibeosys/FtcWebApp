@@ -11,6 +11,7 @@ use Cake\ORM\TableRegistry;
 use Cake\ORM\Table;
 use App\Model\Mtrait;
 use App\DTO;
+use Cake\Log\Log;
 /**
  * Description of AppNotificationTable
  *
@@ -49,6 +50,36 @@ class AppNotificationTable extends Table{
                         $row->SendBy, $row->NoteTitle, $row->NoteText, 
                         $row->NoOfRecipients, $row->SendDate, $row->NoteId);
           
+        return $notes;
+    }
+    
+    public function getUserNotification($userId) {
+        $pre_date = date("Y-m-d",strtotime("-1 month",strtotime(date("Y-m-d",strtotime("now") ) )));
+        $joins = [
+            
+            'UAN' => [
+                'table' => 'user_app_notification',
+                'type' => 'INNER',
+                'conditions' => 'app_notification.NoteId = UAN.NoteId and UAN.UserId = '.$userId
+                . ' and app_notification.SendDate > "'.$pre_date.'"'
+            ]
+        ];
+       
+        $fields = [
+            'NoteId'=> 'app_notification.NoteId',
+            'Title'=> 'app_notification.NoteTitle',
+            'Text'=> 'app_notification.NoteText',
+            'Date'=> 'app_notification.SendDate',
+        ];
+        Log::debug('previous one month date:');
+        $notes = [];
+        $counter = 0;
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($joins);
+        \Cake\Log\Log::debug($rows->sql());
+        if($rows->count())
+            foreach ($rows as $row)
+                $notes[$counter++] = new \App\Response\V2\UserAppNotificationResponse 
+                        ($row->NoteId, $row->Title, $row->Text, $row->Date);
         return $notes;
     }
 }

@@ -78,6 +78,8 @@ class SyncController extends Controller\ApiController{
         }   
         $syncManagementController = new SyncManagementController();
         $result = $syncManagementController->getSyncRefernce($requestUpdate->referenceId);
+        $syncDeleteResult=FALSE;
+        $deleteResult=FALSE;
         if($result){
             $syncDeleteResult = $this->getTableObj()->deleteSyncEntry($result->userId, $result->lastSync);
             $deleteResult = $syncManagementController->deleteSyncReference($result);

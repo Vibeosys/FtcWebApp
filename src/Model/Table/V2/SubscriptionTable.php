@@ -43,6 +43,7 @@ class SubscriptionTable extends V1\SubscriptionTable {
         return false;
     }
     
+       
     public function addDatabase(V2\DbTestConnectRequest $request) {
         
         $tableObj = $this->connect();

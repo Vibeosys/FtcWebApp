@@ -102,7 +102,7 @@ class ApiController extends AppController{
         }
         Log::debug('Subscriber Id of user :- '.$loginRequest->subscriberId);
         $userController = new V1\UserController();
-        $loginResult = $userController->checkUserCredential($loginRequest->username,$pwd);
+        $loginResult = $userController->checkUserCredential($loginRequest->username,$pwd, $loginRequest->subscriberId);
         Log::debug($loginResult);
         if($loginResult){
             if($loginRequest->subscriberId > 0)

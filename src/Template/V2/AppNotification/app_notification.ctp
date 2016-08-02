@@ -249,6 +249,7 @@ use Cake\Cache\Cache;
                                   '<div class="check-style"><input type="checkbox" value="None"  name="subscribers" id="select_'+ i +'" class="terms-check" checked/><label for="select_'+ i +'"> </label></div></td>'+
                                // '<input id="select_'+ i +'" type="checkbox"  checked></td>'+
                                 '<input type="text" style="display:block" value="'+json.gcmId +'" id="user_gcm_'+i+'">'+
+                                '<input type="hidden" value="'+json.userId +'" id="user_id_'+i+'">'+
                               '<td gcm ="'+json.gcmId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
                                 '<td>'+json.email +'</td></tr>';
                      i = i + 1; }
@@ -273,10 +274,12 @@ use Cake\Cache\Cache;
             if(jQuery('#select_'+i).is(':checked')){
             var name = $("#user_name_"+i).text();
             var gcm = $("#user_name_"+i).attr('gcm');
+            var uid = $("#user_id_"+i).val();
           //  var gcm = $("#user_gcm_"+i).val();
             var client = i + 1;
           user_list += '<div id="close_'+i+'" class="user-list-preview">'+name+
                '<input style="display: none" name="client-'+ client +'" id="client-1" type="text" value="'+ gcm +'">' +
+               '<input name="userId-'+ client +'" type="hidden" value="'+ uid +'">' +
                '<button onclick="removeme(this, event);" class="remove-user"><span class="fa fa-close"></span></button></div>';  
         }}
        

@@ -124,6 +124,7 @@ Router::scope('/v2/', function (RouteBuilder $routes) {
     $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
     $routes->connect('getpageupdates', ['controller' => $version.'Sync', 'action' => 'getPageUpdates']);
     $routes->connect('syncacknowledgement', ['controller' => $version.'Sync', 'action' => 'syncAcknowledgement']);
+    $routes->connect('getnotifications', ['controller' => $version.'AppNotification', 'action' => 'getMyNotification']);
     $routes->connect('notes', ['controller' => $version.'AppNotification', 'action' => 'createNotification']);
     $routes->fallbacks('DashedRoute');
 }); 

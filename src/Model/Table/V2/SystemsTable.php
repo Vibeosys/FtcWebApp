@@ -54,4 +54,29 @@ class SystemsTable extends Table{
             return FALSE;
         
     }
+    
+    public function isValidSubscriber($userId, $subscriberId) {
+         $joins = [
+            'Sub' => [
+                'table' => 'subscription',
+                'type' => 'INNER',
+                'conditions' => 'systems.ownerid = Sub.OwnerId and Sub.SubscriberId = '.$subscriberId
+            ],
+            'L' => [
+                'table' => 'licenses',
+                'type' => 'INNER',
+                'conditions' => 'systems.systemid = L.systemid and L.userid ='.$userId 
+            ]
+        ];
+       
+        $fields = [
+            'UserId' => 'L.userid'
+        ];
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($joins);
+        Log::debug($rows->sql());
+        if($rows->count())
+            return TRUE;
+        return FALSE;
+
+    }
 }

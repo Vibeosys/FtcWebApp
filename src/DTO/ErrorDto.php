@@ -76,8 +76,8 @@ class ErrorDto {
         10 => 'Trade history signal found.',
         11 => 'Pages found.',
         12 => 'Acknowledgement success.',
+        13 => 'Notification Found.',
         
-        13 => 'Database connected successfully.',
         14 => 'Requested profile found.',
         15 => 'User radius settings changed.',
         16 => 'User profile updated.',
