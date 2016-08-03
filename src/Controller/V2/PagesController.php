@@ -58,7 +58,7 @@ class PagesController extends Controller\ApiController {
         
         $getPagesRequest = $this->getRequest();
         $requestUser = \App\Request\V1\UserRequest::Deserialize($getPagesRequest->user);
-        $this->conncetionCreator($requestUser->subscriberId);
+        $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
         $licenceController = new LicensesController();
         $licenceCheck = $licenceController->isLicenseValid($requestUser->userId);
         $for = null;
@@ -67,7 +67,10 @@ class PagesController extends Controller\ApiController {
             $for = NON_SUBSCRIBER_PAGE;
         else {
             $subscriberController = new SubscriptionController();
-          $ownerSystem =  $subscriberController->getSubscriberSystem($requestUser->subscriberId);
+            $this->reliseConnection();
+             $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
+          $ownerSystem =  $subscriberController->getSubscriberSystem($this->getMySubscription($requestUser->subscriberId));
+          Log::debug($ownerSystem);
           $ownerId = $ownerSystem->ownerId;
         }
         
@@ -95,7 +98,7 @@ class PagesController extends Controller\ApiController {
     public function isPageNameAvailable() {
         $this->autoRender = FALSE;
         $pagename = $this->request->data['page'];
-        $this->conncetionCreator(parent::readCookie('sub_id'));
+        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
         if($this->getTableObj()->pageNameCheck($pagename))
         $this->response->body(0);
         else
@@ -133,7 +136,7 @@ class PagesController extends Controller\ApiController {
     }
     
     public function pageList() {
-        $this->conncetionCreator(parent::readCookie('sub_id'));
+        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
         $userController = new UserController();
         $userId = $userController->getTableObj()->validateCredential(parent::readCookie('uname'));
         $role = $userController->getTableObj()->isGroup(parent::readCookie('uname'), OWNER_GROUP);
@@ -239,7 +242,7 @@ class PagesController extends Controller\ApiController {
     }
     public function page() {
         $data = $this->request->data;
-        $this->conncetionCreator(parent::readCookie('sub_id'));
+        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
         $widgetController = new WidgetController();
         if ($this->request->is('post') and (isset($data['publish']) or isset($data['save']))) {
             if(!isset($data['pageId'])){
@@ -256,7 +259,7 @@ class PagesController extends Controller\ApiController {
             }
             // get current login admin user id
             $author = parent::readCookie('cur_ad_id');
-            $subscriberId = parent::readCookie('sub_id');
+            $subscriberId = $this->getMySubscription(parent::readCookie('sub_id'));
             $pageName = $data['page'];
             $pageStatus = INACTIVE;
             $pageActive = INACTIVE;
@@ -310,7 +313,7 @@ class PagesController extends Controller\ApiController {
     public function editPage() {
         $request = $this->request->data;
         $widgetController = new WidgetController();
-        $this->conncetionCreator(parent::readCookie('sub_id'));
+        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
         if($this->request->is('post') and isset($request['Edit'])){
             //$this->autoRender = FALSE;
             $pageId = $request['pageId'];
@@ -352,7 +355,7 @@ class PagesController extends Controller\ApiController {
                     $all[$count++] = $widget[0];
                 }
             }
-            $subscriberId = parent::readCookie('sub_id');
+            $subscriberId = $this->getMySubscription(parent::readCookie('sub_id'));
             $authorId = $request['author'];
             $pageName = $request['page'];
             $pageId = $request['pageId'];

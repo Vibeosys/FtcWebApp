@@ -35,7 +35,9 @@ class SubscriptionTable extends V1\SubscriptionTable {
         ];
         
         $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
+        \Cake\Log\Log::debug($rows->sql());
         if($rows->count()){
+            \Cake\Log\Log::debug('System found for user');
             foreach ($rows as $row)
                 return new DTO\SubscriberSystemDto($row->SubscriberId, 
                         $row->SystemId, $row->OwnerId);

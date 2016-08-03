@@ -41,7 +41,6 @@ class LicensesTable extends Table{
             'date_expired >' => date(DATE_TIME_FORMAT)  
         ];
           Log::debug('Is valid license for user:- '.$userId." condition for license is");
-          Log::debug($conditions);
         $rows = $this->connect()->find()->where($conditions);
         if($rows->count())
            return true;

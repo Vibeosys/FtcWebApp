@@ -113,10 +113,9 @@ use Cake\Cache\Cache;
                                 <li><a href="../appnotification" <?php if($this->fetch('AN')){ echo 'class="active"'; }?>>APP Notifications</a></li>
                             </ul>
                         </li>
-
-                        <li class="has-submenu <?php if($this->fetch('database')){ echo 'active'; }?>">
+                        <li class="has-submenu hide_it <?php if($this->fetch('database')){ echo 'active'; }?>">
                             <a href="../database" <?php if($this->fetch('database')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Database-25.png">Databases</a>
-                        </li>
+                        </li> 
                     </ul>
                     <!-- End navigation menu -->
                 </div>
@@ -150,6 +149,11 @@ use Cake\Cache\Cache;
                      jQuery('#cur_email').text(val);
                      if(val == 0){
                          window.location.replace('../../admin/login');
+                     }
+                 });
+                  jQuery.post('/getcookie',{name:'isAdmin'}, function(val){
+                     if(val == 0){
+                         jQuery('.hide_it').hide();
                      }
                  });
             });

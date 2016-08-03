@@ -52,6 +52,8 @@ class ApiController extends AppController{
     }
     
     public function conncetionCreator($subscriberId = 0) {
+        if(is_null($subscriberId))
+            return FALSE;
         $this->configDBToMain();
         if($subscriberId == 0){
             return true;
@@ -102,7 +104,8 @@ class ApiController extends AppController{
         }
         Log::debug('Subscriber Id of user :- '.$loginRequest->subscriberId);
         $userController = new V1\UserController();
-        $loginResult = $userController->checkUserCredential($loginRequest->username,$pwd, $loginRequest->subscriberId);
+        $loginResult = $userController->checkUserCredential($loginRequest->username,
+                $pwd, $this->getMySubscription($loginRequest->subscriberId));
         Log::debug($loginResult);
         if($loginResult){
             if($loginRequest->subscriberId > 0)
@@ -228,6 +231,26 @@ class ApiController extends AppController{
             }
         }
         
+    }
+    
+    public function getDatabasesubscription($composite) {
+        Log::debug('Composite subscriberId for database connection.'.$composite);
+        if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
+            Log::debug('Correct SubscriberId');
+            $sub = explode(SUBSCRIBERID_SAPARATOR, $composite);
+            return $sub[0];
+        }
+        return null;
+    }
+    
+    public function getMySubscription($composite) {
+        Log::debug('Composite subscriberId for business operation.'.$composite);
+           if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
+            Log::debug('Correct SubscriberId');
+               $sub = explode(SUBSCRIBERID_SAPARATOR, $composite);
+            return $sub[1]==1?$sub[0]:$sub[1];
+        }
+        return null;
     }
     
    

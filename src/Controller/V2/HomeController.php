@@ -23,7 +23,7 @@ class HomeController extends Controller\ApiController{
         $userController = new UserController();
        
         $subscriberId = parent::readCookie('sub_id');
-        $this->conncetionCreator($subscriberId);
+        $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
         $userId = $userController->checkUserCredential($username);
         $role = $userController->getTableObj()->isGroup($username, OWNER_GROUP);
         parent::writeCookie('cur_ad_id', $userId);

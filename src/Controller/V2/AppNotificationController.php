@@ -93,7 +93,7 @@ class AppNotificationController extends Controller\ApiController {
        $request = $this->request->data;
        $sendBy = parent::readCookie('cur_ad_id');
        $subscriberId = parent::readCookie('sub_id');
-       $this->conncetionCreator($subscriberId);
+       $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
        if(isset($request['send']) and $this->request->is('post')){
             $counter = 0;
             $u_count = 0;
@@ -152,7 +152,7 @@ class AppNotificationController extends Controller\ApiController {
         $request = $this->request->data;
         $baseRequest = \App\Request\V1\BaseRequest::Deserialize($request);
         $requestUser = \App\Request\V1\UserRequest::Deserialize($baseRequest->user);
-        $this->conncetionCreator($requestUser->subscriberId);
+        $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
         if(!$this->userValidation($requestUser))
             $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(110));
         Log::debug('get notification device authenticated');

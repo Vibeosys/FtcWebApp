@@ -63,9 +63,9 @@ use Cake\Cache\Cache;
                               <td>UnPublished</td>
                               <?php } ?>
                               <?php if(isset($role) and $role and $page->pageFor){ ?>
-                                <th>Subscriber</th>
+                                <th>Subscriber Only</th>
                                 <?php }else if(isset($role) and $role){ ?>
-                                  <th>Non Subscriber</th>
+                                  <th>For All</th>
                                 <?php }?>
                               <td>
                                   <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" name="Edit"><i class="fa fa-pencil-square-o fa-size"></i>

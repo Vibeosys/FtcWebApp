@@ -51,6 +51,8 @@ define('SUBSCRIBER_PAGE','1');
 
 define('NON_SUBSCRIBER_PAGE', '0');
 
+define('SUBSCRIBERID_SAPARATOR', '-');
+
 
 
 

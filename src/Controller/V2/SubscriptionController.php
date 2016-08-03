@@ -56,8 +56,12 @@ class SubscriptionController extends V1\SubscriptionController{
     }
     
     public function database() {
-        
-        $this->conncetionCreator();
+        if(!parent::readCookie('isAdmin')){
+            \Cake\Log\Log::debug('redirect to '.$this->request->query('back_url'));
+            $this->redirect($this->request->query('back_url'));
+        }
+        $subscriberId = parent::readCookie('sub_id');
+        $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
         $adminId = parent::readCookie('cur_ad_id');
         $userController = new UserController();
         $isOwner = $userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP);
@@ -75,7 +79,8 @@ class SubscriptionController extends V1\SubscriptionController{
         $request = $this->request->data;
         if($this->request->is('post')){
            // $this->autoRender = FALSE;
-            $this->conncetionCreator();
+          $subscriberId = parent::readCookie('sub_id');
+        $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
             $testConnect = \App\Request\V2\DbTestConnectRequest::Deserialize(json_encode($request));
             $result = $this->getTableObj()->addDatabase($testConnect);
             if($result)
@@ -101,7 +106,8 @@ class SubscriptionController extends V1\SubscriptionController{
             ]);
         }else if($this->request->is('post') and isset($request['save'])){
             //$this->autoRender = FALSE;
-                $this->conncetionCreator();
+                 $subscriberId = parent::readCookie('sub_id');
+        $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
                 $testConnect = \App\Request\V2\DbTestConnectRequest::Deserialize(json_encode($request));
                  $result = $this->getTableObj()->updateDatabase($testConnect);
             if($result)
