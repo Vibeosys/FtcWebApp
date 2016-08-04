@@ -10,6 +10,7 @@ namespace App\Model\Table\V1;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use App\DTO;
+use Cake\Cache\Cache;
 /**
  * Description of DatabaseConnectionTable
  *
@@ -19,6 +20,7 @@ class SubscriptionTable extends Table{
     
     public function connect() {
         return TableRegistry::get('subscription');
+        Cache::clear(FALSE);
     }
     
     public function getConnection($subscriberId) {

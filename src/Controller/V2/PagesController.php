@@ -66,10 +66,9 @@ class PagesController extends Controller\ApiController {
         if(!is_bool($licenceCheck))
             $for = NON_SUBSCRIBER_PAGE;
         else {
-            $subscriberController = new SubscriptionController();
-            $this->reliseConnection();
-             $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
-          $ownerSystem =  $subscriberController->getSubscriberSystem($this->getMySubscription($requestUser->subscriberId));
+          $systemController = new SubscriptionController();
+          $ownerSystem =  $systemController->getSubscriberSystem(
+                  $this->getMySubscription($requestUser->subscriberId));
           Log::debug($ownerSystem);
           $ownerId = $ownerSystem->ownerId;
         }

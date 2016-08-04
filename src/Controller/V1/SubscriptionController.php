@@ -25,6 +25,7 @@ class SubscriptionController extends Controller\ApiController{
     }
     
     public function getOwner($subscriberId) {
+        
         $id = $this->getTableObj()->getOwnerId($subscriberId);
         return $id;
         

@@ -25,6 +25,11 @@ class SystemsController extends Controller\ApiController{
         return $result;
     }
     
+    public function getSubscriberSystem($subscriberId) {
+        $result = $this->getTableObj()->getsystem($subscriberId);
+        return $result;
+    }
+    
     public function subscriberValidationCheck($userId, $subscriberId) {
         $result = $this->getTableObj()->isValidSubscriber($userId, $subscriberId);
         return $result;
