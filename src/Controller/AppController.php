@@ -19,6 +19,7 @@ use Cake\Event\Event;
 use Cake\Datasource;
 use Cake\Datasource\ConnectionManager;
 use Cake\Cache\Cache;
+use Cake\Log\Log;
 
 /**
  * Application Controller
@@ -58,9 +59,9 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
+        Log::debug(' initiolized DB');
         $this->config = $datasource = ConnectionManager::config('default');
         //ConnectionManager::config('local',$this->config);
-        Cache::disable();
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
     }

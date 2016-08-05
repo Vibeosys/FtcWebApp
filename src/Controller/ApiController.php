@@ -68,7 +68,7 @@ class ApiController extends AppController{
          $this->dumy['username'] = $config->username;   
          $this->dumy['password'] = $config->pwd;   
          $this->dumy['database'] = $config->dbName; 
-        // Log::debug($this->dumy);
+        Log::debug($this->dumy);
         }  else {
             Log::debug('Invalid subscription Id used for request. config value :'.$config);
             return $config;
@@ -78,6 +78,7 @@ class ApiController extends AppController{
     }
     
     public function configDBToMain() {
+        $this->reliseConnection();
         Log::debug('Database connect to owner');
         ConnectionManager::config('local',$this->config);
         return ConnectionManager::get('local');

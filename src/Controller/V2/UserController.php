@@ -81,7 +81,7 @@ class UserController extends V1\UserController{
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
              parent::writeCookie('cur_name', $info->fullName);
             parent::writeCookie('cur_email', $info->email);
-            $info->subscriberId = $this->getMySubscription($loginRequest->subscriberId);
+            $info->subscriberId = $loginRequest->subscriberId;
             $userSubscriptionController = new UserSubscriptionController();
             $userController = new UserController();
             if($loginRequest->weblogin != 1 and $userController->getTableObj()->isGroup($loginRequest->username, USER_GROUP))
@@ -120,8 +120,9 @@ class UserController extends V1\UserController{
               $condition[$key] = $value; 
        $subscriberId = parent::readCookie('sub_id');    
        $isAdmin = parent::readCookie('isAdmin');    
-       $this->conncetionCreator($this->getMySubscription($subscriberId));
-       $subscriberController = new SubscriptionController();
+       $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
+       $subscriberId = $this->getMySubscription($subscriberId);
+       $subscriberController = new SystemsController();
        $userSubscriptionController = new UserSubscriptionController();
         $licensesController = new LicensesController();
         Log::debug($condition);

@@ -18,19 +18,25 @@ use App\DTO;
 class HomeController extends Controller\ApiController{
     
     
+    public function initialize() {
+        Log::debug('initiolized');
+        parent::initialize();
+    }
     public function index() {
         $username = parent::readCookie('uname');
-        $userController = new UserController();
+        
        
         $subscriberId = parent::readCookie('sub_id');
+        if(!isset($subscriberId) and !isset($username)){
+              $this->redirect ('admin/login');
+        }
+       /* $userController = new UserController();
         $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
         $userId = $userController->checkUserCredential($username);
         $role = $userController->getTableObj()->isGroup($username, OWNER_GROUP);
         parent::writeCookie('cur_ad_id', $userId);
-        parent::writeCookie('isAdmin', $role);
-        if(!isset($subscriberId) and !isset($username)){
-              $this->redirect ('admin/login');
-        }
+        parent::writeCookie('isAdmin', $role);*/
+      
           
     }
     
