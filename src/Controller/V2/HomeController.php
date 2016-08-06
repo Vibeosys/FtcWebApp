@@ -30,12 +30,12 @@ class HomeController extends Controller\ApiController{
         if(!isset($subscriberId) and !isset($username)){
               $this->redirect ('admin/login');
         }
-       /* $userController = new UserController();
+        $userController = new UserController();
         $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
         $userId = $userController->checkUserCredential($username);
         $role = $userController->getTableObj()->isGroup($username, OWNER_GROUP);
         parent::writeCookie('cur_ad_id', $userId);
-        parent::writeCookie('isAdmin', $role);*/
+        parent::writeCookie('isAdmin', $role);
       
           
     }

@@ -271,8 +271,8 @@ class PagesController extends Controller\ApiController {
                     $this->getPageType($all), $pageActive, $author, $subscriberId, $pageFor);
             $pageId = $this->insertNewPage($newPage);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
-            
-            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageFor);
+            Log::debug('Page status for current request :- '.$pageStatus);
+            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageStatus, $pageFor);
             if($widgetResult){
                $response = [
                     'message' => DTO\ErrorDto::getWebMessage(4),
@@ -374,7 +374,7 @@ class PagesController extends Controller\ApiController {
             if($result){
                 $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
                 $updateResult = $widgetController->updatePageWidgets(
-                        $completeWidget, $authorId, $subscriberId, $pageId, $pageFor);
+                        $completeWidget, $authorId, $subscriberId, $pageId, $pageStatus, $pageFor);
                 if($updateResult){
                      $pageInfo = $this->getTableObj()->getSingalPage($pageId);
                      $widgets = $widgetController->getAllWidgets($pageId);

@@ -108,7 +108,7 @@ class UserController extends Controller\ApiController {
 
     public function checkUserCredential($username, $pwd = null, $subscriberId = null) {
         $result =  $this->getTableObj()->validateCredential($username, $pwd);
-        if(is_null($subscriberId) or !$result)
+        if(is_null($subscriberId) or !$result or $subscriberId == 0)
             return $result;
         $subscriberController = new V2\SystemsController();
         if($subscriberController->subscriberValidationCheck($result, $subscriberId))

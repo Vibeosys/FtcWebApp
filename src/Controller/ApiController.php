@@ -237,6 +237,7 @@ class ApiController extends AppController{
     }
     
     public function getDatabasesubscription($composite) {
+        if($composite == 0) return 0;
         Log::debug('Composite subscriberId for database connection.'.$composite);
         if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
             Log::debug('Correct SubscriberId');
@@ -247,6 +248,7 @@ class ApiController extends AppController{
     }
     
     public function getMySubscription($composite) {
+         if($composite == 0) return 0;
         Log::debug('Composite subscriberId for business operation.'.$composite);
            if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
             Log::debug('Correct SubscriberId');

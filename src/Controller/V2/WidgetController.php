@@ -32,9 +32,9 @@ class WidgetController extends Controller\ApiController{
         return $result;
     }
     
-     public function insertNewWidget($newWidget, $authorId, $subscriberId, $pageFor = null) {
+     public function insertNewWidget($newWidget, $authorId, $subscriberId, $status, $pageFor = null) {
         $result = $this->getTableObj()->insert($newWidget);
-        if($result){
+        if($result and $status){
             $syncEntry = new DTO\SyncInsertDto(
                     $authorId, 
                     $this->tableName, 
@@ -42,14 +42,14 @@ class WidgetController extends Controller\ApiController{
                     $this->getPageWidgets($result), $subscriberId);
             $syncController = new SyncController();
             $syncController->makeSyncEntry($syncEntry, $pageFor);
-            return $result;
+           
         }
-        return FALSE;
+        return $result;
     }
     
-    public function updatePageWidgets($widgets, $authorId, $subscriberId, $pageId, $pageFor) {
+    public function updatePageWidgets($widgets, $authorId, $subscriberId, $pageId, $status, $pageFor) {
         if($this->deletePageWidgets($pageId)){
-            $result = $this->insertNewWidget($widgets, $authorId, $subscriberId, $pageFor);
+            $result = $this->insertNewWidget($widgets, $authorId, $subscriberId, $status, $pageFor);
             return $result;
         }
         return FALSE;
