@@ -116,7 +116,7 @@ It is a long established fact that a reader will be distracted by the readable c
                   var pass = $('#user_pass').val();
                   var sId = $('#subscribe_id').val();
                   var url = '/v2/userSubLogin';
-                  var request = '{"username":"' +uname +'","pwd":"' +pass+ '","subscriberId":"' +sId+ '", "weblogin":1}';
+                  var request = '{"username":"' +uname +'","pwd":"' +pass+ '","subscriberId":' +sId+ ', "weblogin":1}';
                    if(!uname && !pass && !sId){
                       $('#user_login').css('border','1px solid red'); 
                        $('#user_pass').css('border','1px solid red');

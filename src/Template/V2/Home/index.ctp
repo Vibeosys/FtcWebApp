@@ -15,7 +15,7 @@ use Cake\Cache\Cache;
 ?>
 
 
-       <section class="page-section">
+       <section class="page-section" ng-app="myApp" ng-controller="MainCtrl">
         <div class="container">
             <div class="row">
                

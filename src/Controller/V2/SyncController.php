@@ -26,12 +26,12 @@ class SyncController extends Controller\ApiController{
     }
     
     public function makeSyncEntry(DTO\SyncInsertDto $syncEntry, $pageFor = null) {
-        //$this->reliseConnection();
-        //$this->conncetionCreator($syncEntry->subscriberId);
+        $this->reliseConnection();
+        $this->conncetionCreator($syncEntry->subscriberId);
         $userController = new UserController();
         $clients = $userController->getAdminClients($syncEntry->subscriberId, $pageFor);
-        //$this->reliseConnection();
-        //$this->conncetionCreator();
+        $this->reliseConnection();
+        $this->conncetionCreator();
         if(is_array($syncEntry->json)){
             foreach ($syncEntry->json as $json){
                  $result = $this->getTableObj()->newEntry($clients, $syncEntry->tableName, $syncEntry->tableOperation, $json);
@@ -48,7 +48,7 @@ class SyncController extends Controller\ApiController{
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user);
         $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
-        if(!$this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId))){
+        if(!$this->conncetionCreator($requestUser->subscriberId)){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;
@@ -71,7 +71,7 @@ class SyncController extends Controller\ApiController{
         $request = $this->getRequest();
         $requestUser = V1\UserRequest::Deserialize($request->user); 
         $requestUpdate = \App\Request\V2\SyncUpdatesRequest::Deserialize($request->data);
-        if(!$this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId))){
+        if(!$this->conncetionCreator($requestUser->subscriberId)){
             $dbError = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(105));
             $this->response->body($dbError);
             return;

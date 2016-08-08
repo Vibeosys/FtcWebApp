@@ -58,7 +58,7 @@ class PagesController extends Controller\ApiController {
         
         $getPagesRequest = $this->getRequest();
         $requestUser = \App\Request\V1\UserRequest::Deserialize($getPagesRequest->user);
-        $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
+        $this->conncetionCreator($requestUser->subscriberId);
         $licenceController = new LicensesController();
         $licenceCheck = $licenceController->isLicenseValid($requestUser->userId);
         $for = null;
@@ -66,10 +66,8 @@ class PagesController extends Controller\ApiController {
         if(!is_bool($licenceCheck))
             $for = NON_SUBSCRIBER_PAGE;
         else {
-          $systemController = new SystemsController();
-          $ownerSystem =  $systemController->getSubscriberSystem(
-                  $this->getMySubscription($requestUser->subscriberId));
-          Log::debug($ownerSystem);
+            $subscriberController = new SubscriptionController();
+          $ownerSystem =  $subscriberController->getSubscriberSystem($requestUser->subscriberId);
           $ownerId = $ownerSystem->ownerId;
         }
         
@@ -97,7 +95,7 @@ class PagesController extends Controller\ApiController {
     public function isPageNameAvailable() {
         $this->autoRender = FALSE;
         $pagename = $this->request->data['page'];
-        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
+        $this->conncetionCreator(parent::readCookie('sub_id'));
         if($this->getTableObj()->pageNameCheck($pagename))
         $this->response->body(0);
         else
@@ -135,7 +133,7 @@ class PagesController extends Controller\ApiController {
     }
     
     public function pageList() {
-        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
+        $this->conncetionCreator(parent::readCookie('sub_id'));
         $userController = new UserController();
         $userId = $userController->getTableObj()->validateCredential(parent::readCookie('uname'));
         $role = $userController->getTableObj()->isGroup(parent::readCookie('uname'), OWNER_GROUP);
@@ -241,7 +239,7 @@ class PagesController extends Controller\ApiController {
     }
     public function page() {
         $data = $this->request->data;
-        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
+        $this->conncetionCreator(parent::readCookie('sub_id'));
         $widgetController = new WidgetController();
         if ($this->request->is('post') and (isset($data['publish']) or isset($data['save']))) {
             if(!isset($data['pageId'])){
@@ -258,7 +256,7 @@ class PagesController extends Controller\ApiController {
             }
             // get current login admin user id
             $author = parent::readCookie('cur_ad_id');
-            $subscriberId = $this->getMySubscription(parent::readCookie('sub_id'));
+            $subscriberId = parent::readCookie('sub_id');
             $pageName = $data['page'];
             $pageStatus = INACTIVE;
             $pageActive = INACTIVE;
@@ -271,8 +269,8 @@ class PagesController extends Controller\ApiController {
                     $this->getPageType($all), $pageActive, $author, $subscriberId, $pageFor);
             $pageId = $this->insertNewPage($newPage);
             $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
-            Log::debug('Page status for current request :- '.$pageStatus);
-            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageStatus, $pageFor);
+            
+            $widgetResult = $widgetController->insertNewWidget($completeWidget, $author, $subscriberId, $pageFor);
             if($widgetResult){
                $response = [
                     'message' => DTO\ErrorDto::getWebMessage(4),
@@ -312,7 +310,7 @@ class PagesController extends Controller\ApiController {
     public function editPage() {
         $request = $this->request->data;
         $widgetController = new WidgetController();
-        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
+        $this->conncetionCreator(parent::readCookie('sub_id'));
         if($this->request->is('post') and isset($request['Edit'])){
             //$this->autoRender = FALSE;
             $pageId = $request['pageId'];
@@ -354,7 +352,7 @@ class PagesController extends Controller\ApiController {
                     $all[$count++] = $widget[0];
                 }
             }
-            $subscriberId = $this->getMySubscription(parent::readCookie('sub_id'));
+            $subscriberId = parent::readCookie('sub_id');
             $authorId = $request['author'];
             $pageName = $request['page'];
             $pageId = $request['pageId'];
@@ -374,7 +372,7 @@ class PagesController extends Controller\ApiController {
             if($result){
                 $completeWidget = $this->getWidgets($insert, $pageId, $subscriberId);
                 $updateResult = $widgetController->updatePageWidgets(
-                        $completeWidget, $authorId, $subscriberId, $pageId, $pageStatus, $pageFor);
+                        $completeWidget, $authorId, $subscriberId, $pageId, $pageFor);
                 if($updateResult){
                      $pageInfo = $this->getTableObj()->getSingalPage($pageId);
                      $widgets = $widgetController->getAllWidgets($pageId);

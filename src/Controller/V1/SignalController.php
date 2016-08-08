@@ -28,6 +28,7 @@ class SignalController extends Controller\ApiController{
         $this->autoRender = FALSE;
         $request = $this->getRequest();
         $signalRequest = \App\Request\V1\SignalRequest::Deserialize($request->data);
+        $requestUser = \App\Request\V1\UserRequest::Deserialize($request->user);
         $this->conncetionCreator();
         $signals = $this->getTableObj()->getSignal($signalRequest->date);
         if(empty($signals))

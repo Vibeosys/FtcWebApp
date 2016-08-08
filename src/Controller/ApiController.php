@@ -42,6 +42,7 @@ class ApiController extends AppController{
     
     public function getRequest() {
         $json = $this->request->input();
+        Log::debug($json);
         $request = \App\Request\V1\BaseRequest::Deserialize($json);
         return $request;
     }

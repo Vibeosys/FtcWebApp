@@ -54,11 +54,10 @@ class UserController extends V1\UserController{
         
         $loginRequest = \App\Request\V1\UserSubLoginRequest::Deserialize(
                 $request->data);
-        Log::debug("request data string: " . $request->data);
+         Log::debug("request data string: " . $request->data);
         Log::debug($loginRequest);
         //connect to database using subscriberId
-        if (!$this->conncetionCreator($this->getDatabasesubscription($loginRequest->subscriberId)) 
-                or !$this->getDatabaseSubscription($loginRequest->subscriberId)) {
+        if (!$this->conncetionCreator($loginRequest->subscriberId)) {
             $response = new \App\Response\V1\BaseResponse(
                     DTO\ErrorDto::prepareError(105));
             $this->response->body(json_encode($response));
@@ -86,7 +85,7 @@ class UserController extends V1\UserController{
             $userController = new UserController();
             if($loginRequest->weblogin != 1 and $userController->getTableObj()->isGroup($loginRequest->username, USER_GROUP))
             $notificationInsertResult = $userSubscriptionController->addNotificationDetails(
-                    new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $this->getMySubscription($loginRequest->subscriberId)));
+                    new DTO\UserGcmIdDto($info->userId, $loginRequest->gcmId, $loginRequest->apnId, $loginRequest->subscriberId));
             $response = new \App\Response\V1\BaseResponse(
                     DTO\ErrorDto::prepareSuccessMessage(3), json_encode($info));
         } else
@@ -120,9 +119,8 @@ class UserController extends V1\UserController{
               $condition[$key] = $value; 
        $subscriberId = parent::readCookie('sub_id');    
        $isAdmin = parent::readCookie('isAdmin');    
-       $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
-       $subscriberId = $this->getMySubscription($subscriberId);
-       $subscriberController = new SystemsController();
+       $this->conncetionCreator($subscriberId);
+       $subscriberController = new SubscriptionController();
        $userSubscriptionController = new UserSubscriptionController();
         $licensesController = new LicensesController();
         Log::debug($condition);
@@ -219,7 +217,7 @@ class UserController extends V1\UserController{
         $this->autoRender = FALSE;
         if($this->request->is('post')){
             $suscriberId = parent::readCookie('sub_id');
-            $this->conncetionCreator($this->getDatabasesubscription($suscriberId));
+            $this->conncetionCreator($suscriberId);
             $users = $this->getTableObj()->getAdminUser();
             if(empty($users))
                 $this->response->body (0);

@@ -71,9 +71,67 @@ $routes->connect('user/changepassword', ['controller' => 'V1/User', 'action' => 
  $routes->fallbacks('DashedRoute');    
 });
 
-// website route for V2
+/* website route for V2
 Router::scope('/', function (RouteBuilder $routes) {
     $version = 'V2/';
+    $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);
+    
+    $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
+    $routes->connect('/', ['controller' => $version.'Home', 'action' => 'index']);    
+    $routes->connect('gallery', ['controller' => $version.'Gallery', 'action' => 'gallery']);    
+    $routes->connect('database', ['controller' => $version.'Subscription', 'action' => 'database']);    
+    $routes->connect('database/add', ['controller' => $version.'Subscription', 'action' => 'addDatabase']);    
+    $routes->connect('database/edit', ['controller' => $version.'Subscription', 'action' => 'editDatabase']);    
+    $routes->connect('testdb', ['controller' => $version.'Subscription', 'action' => 'TestDatabaseConnection']);    
+    $routes->connect('emailnotification', ['controller' => $version.'EmailTemplates', 'action' => 'emailNotification']);    
+    $routes->connect('emailnotification/edit', ['controller' => $version.'Home', 'action' => 'editTemplate']);    
+    $routes->connect('appnotification', ['controller' => $version.'AppNotification', 'action' => 'appNotification']);    
+    $routes->connect('emailnotification/add', ['controller' => $version.'Home', 'action' => 'addTemplate']);    
+    $routes->connect('pages', ['controller' => $version.'Pages', 'action' => 'pageList']);    
+    $routes->connect('pages/page', ['controller' => $version.'Pages', 'action' => 'page']);    
+    $routes->connect('pages/edit', ['controller' => $version.'Pages', 'action' => 'editPage']);    
+    $routes->connect('user/createsubscription', ['controller' => $version.'Subscription', 'action' => 'createSubscription']);    
+    $routes->connect('user/assignsubscription', ['controller' => $version.'Home', 'action' => 'pageUnderConstruction']);
+    $routes->connect('setcookie', ['controller' => $version.'Home', 'action' => 'setCookie']);
+    $routes->connect('getcookie', ['controller' => $version.'Home', 'action' => 'getCookie']);
+    $routes->connect('pagenameavailable', ['controller' => $version.'Pages', 'action' => 'isPageNameAvailable']);
+    $routes->connect('logout', ['controller' => $version.'Home', 'action' => 'logout']);
+    $routes->connect('getuserlist', ['controller' => $version.'User', 'action' => 'getUserList']);
+    $routes->connect('getgalleryitems', ['controller' => $version.'Gallery', 'action' => 'getAllGallery']);
+    $routes->connect('galleryitemupload', ['controller' => $version.'Gallery', 'action' => 'galleryItemUpload']);
+    $routes->connect('readvideo', ['controller' => $version.'Gallery', 'action' => 'readVideo']);
+    $routes->connect('deleteimage', ['controller' => $version.'Gallery', 'action' => 'deleteImage']);
+    $routes->connect('getadminclient', ['controller' => $version.'User', 'action' => 'getOwnerClient']);
+ 
+    
+ $routes->fallbacks('DashedRoute');    
+});  */
+
+// V2 api 
+Router::scope('/v2/', function (RouteBuilder $routes) {
+    $version = 'V2/';
+    $routes->connect('getSignal', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);
+    $routes->connect('registerUser', ['controller' => $version.'User', 'action' => 'userregistration']);
+    $routes->connect('userLogin', ['controller' => $version.'User', 'action' => 'userLogin']);
+    $routes->connect('userSubLogin', ['controller' => $version.'User', 'action' => 'userSubLogin']);
+    $routes->connect('usernameAvailability', ['controller' => $version.'User', 'action' => 'usernameAvailability']);
+    $routes->connect('forgotPassword', ['controller' => $version.'User', 'action' => 'forgotPassword']);
+    $routes->connect('forgotSubPassword', ['controller' => $version.'User', 'action' => 'forgotSubPassword']);
+    $routes->connect('resetPassword', ['controller' => $version.'User', 'action' => 'resetPassword']);
+    $routes->connect('getUserProfile', ['controller' => $version.'User', 'action' => 'getUserProfile']);
+    $routes->connect('updateUserProfile', ['controller' => $version.'User', 'action' => 'updateUserProfile']);
+    $routes->connect('gettradehistory', ['controller' => $version.'TradeBackup', 'action' => 'getTradeBackup']);
+    $routes->connect('getpages', ['controller' => $version.'Pages', 'action' => 'getPages']);
+    $routes->connect('getpageupdates', ['controller' => $version.'Sync', 'action' => 'getPageUpdates']);
+    $routes->connect('syncacknowledgement', ['controller' => $version.'Sync', 'action' => 'syncAcknowledgement']);
+    $routes->connect('getnotifications', ['controller' => $version.'AppNotification', 'action' => 'getMyNotification']);
+    $routes->connect('notes', ['controller' => $version.'AppNotification', 'action' => 'createNotification']);
+    $routes->fallbacks('DashedRoute');
+}); 
+
+
+Router::scope('/', function (RouteBuilder $routes) {
+    $version = 'V3/';
     $routes->connect('admin/login', ['controller' => $version.'User', 'action' => 'adminWebLogin']);
     
     $routes->connect('user/management', ['controller' => $version.'User', 'action' => 'userManagement']);    
@@ -108,8 +166,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 // V2 api 
-Router::scope('/v2/', function (RouteBuilder $routes) {
-    $version = 'V2/';
+Router::scope('/v3/', function (RouteBuilder $routes) {
+    $version = 'V3/';
     $routes->connect('getSignal', ['controller' => $version.'Signal', 'action' => 'getTradeSignal']);
     $routes->connect('registerUser', ['controller' => $version.'User', 'action' => 'userregistration']);
     $routes->connect('userLogin', ['controller' => $version.'User', 'action' => 'userLogin']);

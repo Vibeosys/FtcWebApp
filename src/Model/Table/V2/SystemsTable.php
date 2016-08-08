@@ -79,30 +79,4 @@ class SystemsTable extends Table{
         return FALSE;
 
     }
-    
-     public function getsystem($subscriberId) {
-        
-        $join = [
-            'S' => [
-                'table' => 'subscription',
-                'type' => 'INNER',
-                'conditions' => 'systems.ownerid = S.OwnerId and S.SubscriberId = '.$subscriberId
-            ]
-        ];
-        $fields = [
-            'SubscriberId' => 'S.SubscriberId',
-            'OwnerId' => 'systems.ownerid',
-            'SystemId' => 'systems.systemid'
-        ];
-        
-        $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
-        //$rows = $this->connect()->find();
-        \Cake\Log\Log::debug($rows->sql());
-        if($rows->count()){
-            foreach ($rows as $row)
-                return new DTO\SubscriberSystemDto($row->SubscriberId, 
-                        $row->SystemId, $row->OwnerId);
-        }
-        return false;
-    }
 }

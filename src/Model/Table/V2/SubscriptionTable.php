@@ -10,8 +10,6 @@ namespace App\Model\Table\V2;
 use App\DTO;
 use App\Model\Table\V1;
 use App\Request\V2;
-use Cake\ORM\TableRegistry;
-use Cake\Cache\Cache;
 
 /**
  * Description of SubscriptionTable
@@ -20,11 +18,9 @@ use Cake\Cache\Cache;
  */
 class SubscriptionTable extends V1\SubscriptionTable {
 
-    public function connectNew() {
-        return TableRegistry::get('subscription');
-    }
+    
     public function getsystem($subscriberId) {
-        
+
         $join = [
             'S' => [
                 'table' => 'systems',
@@ -39,8 +35,6 @@ class SubscriptionTable extends V1\SubscriptionTable {
         ];
         
         $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
-        //$rows = $this->connect()->find();
-        \Cake\Log\Log::debug($rows->sql());
         if($rows->count()){
             foreach ($rows as $row)
                 return new DTO\SubscriberSystemDto($row->SubscriberId, 
