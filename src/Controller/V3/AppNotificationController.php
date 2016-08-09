@@ -154,8 +154,14 @@ class AppNotificationController extends V2\AppNotificationController {
         $baseRequest = \App\Request\V1\BaseRequest::Deserialize($request);
         $requestUser = \App\Request\V1\UserRequest::Deserialize($baseRequest->user);
         $this->conncetionCreator($this->getDatabasesubscription($requestUser->subscriberId));
-        if(!$this->userValidation($requestUser))
+        $validationResult = $this->userValidation($requestUser, FALSE);
+        Log::debug($validationResult);
+        if(!is_bool($validationResult)){
             $response = new \App\Response\V1\BaseResponse (DTO\ErrorDto::prepareError(110));
+        $this->response->body(json_encode($response));        
+        return;
+        
+        }
         Log::debug('get notification device authenticated');
         $result = $this->getTableObj()->getUserNotification($requestUser->userId);
         if(empty($result))

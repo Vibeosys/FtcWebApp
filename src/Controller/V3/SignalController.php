@@ -29,7 +29,7 @@ class SignalController extends V2\SignalController{
             $this->response->body(json_encode($response));
             return;
         }
-        $result = $this->userValidation($requestUser);
+        $result = $this->userValidation($requestUser, FALSE);
         if(is_bool($result)){
         $signals = $this->getTableObj()->getSignal($signalRequest->date);
         if(empty($signals))

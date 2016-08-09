@@ -33,7 +33,7 @@ class TradeBackupController extends V2\TradeBackupController{
             $this->response->body(json_encode($response));
             return;
         }
-         $result = $this->userValidation($requestUser);
+         $result = $this->userValidation($requestUser, false);
         if(is_bool($result)){
         $tradeHistoryRequest = \App\Request\V1\TradeHistoryRequest::Deserialize(
                 $request->data);

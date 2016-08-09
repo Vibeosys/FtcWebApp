@@ -22,6 +22,7 @@ class LicensesController extends Controller\ApiController{
     } 
     
     public function isLicenseValid($userId) {
+        \Cake\Log\Log::debug('Userid for licence check'.$userId);
         if($this->getTableObj()->isPresent($userId))
             if($this->getTableObj()->isValid($userId))
             return TRUE;

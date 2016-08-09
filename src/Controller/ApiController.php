@@ -69,7 +69,7 @@ class ApiController extends AppController{
          $this->dumy['username'] = $config->username;   
          $this->dumy['password'] = $config->pwd;   
          $this->dumy['database'] = $config->dbName; 
-        Log::debug($this->dumy);
+       
         }  else {
             Log::debug('Invalid subscription Id used for request. config value :'.$config);
             return $config;
@@ -110,8 +110,9 @@ class ApiController extends AppController{
         $userController = new V1\UserController();
         $loginResult = $userController->checkUserCredential($loginRequest->username,
                 $pwd, $this->getMySubscription($loginRequest->subscriberId));
-        Log::debug($loginResult);
+        Log::debug($loginRequest);
         if($loginResult){
+            Log::debug('User not valid');
             if($loginRequest->subscriberId > 0)
             return $this->checkLicenseValidity($loginResult);
         return TRUE;
@@ -239,6 +240,8 @@ class ApiController extends AppController{
     
     public function getDatabasesubscription($composite) {
         if($composite == 0) return 0;
+        $version = explode('/', $this->request->params['controller']);
+        if($version[0] == 'V2') return $composite; 
         Log::debug('Composite subscriberId for database connection.'.$composite);
         if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
             Log::debug('Correct SubscriberId');
@@ -250,6 +253,8 @@ class ApiController extends AppController{
     
     public function getMySubscription($composite) {
          if($composite == 0) return 0;
+          $version = explode('/', $this->request->params['controller']);
+        if($version[0] == 'V2') return $composite; 
         Log::debug('Composite subscriberId for business operation.'.$composite);
            if(strrchr($composite, SUBSCRIBERID_SAPARATOR)){
             Log::debug('Correct SubscriberId');

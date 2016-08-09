@@ -8,7 +8,7 @@
 
 namespace App\Model\Table\V3;
 use App\DTO;
-use App\Model\Table\V2;
+use App\Model\Table;
 use App\Request\V2;
 use Cake\ORM\TableRegistry;
 use Cake\Cache\Cache;
@@ -18,7 +18,7 @@ use Cake\Cache\Cache;
  *
  * @author niteen
  */
-class SubscriptionTable extends V2\SubscriptionTable {
+class SubscriptionTable extends Table\V2\SubscriptionTable {
 
     public function connectNew() {
         return TableRegistry::get('subscription');
