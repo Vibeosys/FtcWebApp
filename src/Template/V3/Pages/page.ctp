@@ -535,7 +535,7 @@ Page created for
                 }
                 scope.count++;
                 scope.countyoutube++;
-                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='youtube-" + scope.countyoutube + "' type='text'  placeholder='Youtube Video Link' class='form-control'  id=text-input-youtube-video-" + scope.countyoutube + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
+                angular.element(document.getElementById('space-for-tool')).append($compile("<div class='remove-" + scope.count + " push-margin'><div style='display:flex'>Video Link<input name='youtube-" + scope.count + "' type='text'  placeholder='Youtube Video Link' class='form-control'  id=text-input-youtube-video-" + scope.countyoutube + "></div> <button name='remove' class='btn-remove' id=remove-" + scope.count + " remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
 
             });
         };

@@ -41,7 +41,7 @@ use Cake\Cache\Cache;
                                 </span> </p>
                             
                             <lable>Message   <span id="limit_show" style=" color: gray;">(Maximum character limit - 1700)</span> 
-                                <textarea rows='7' name="msg" maxlength="1700"  class='form-control margin10'  id="html-template"></textarea>
+                                <textarea rows='7' name="msg" maxlength="1700"  class='form-control margin10'  id="html-template" required></textarea>
                                 
                             </lable>
                             

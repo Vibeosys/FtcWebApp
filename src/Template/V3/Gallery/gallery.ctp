@@ -29,7 +29,7 @@ use Cake\Cache\Cache;
                             <form action="galleryitemupload" method="post" enctype="multipart/form-data"> 
                                 <div class="box-input">
                                     <input type="file" name="file" id="fileLoader" class="inputfile inputfile-6" required/>
-                                    <label for="fileLoader"><span></span> <strong><i class="fa fa-upload"></i> Choose File</strong></label>
+                                    <label for="fileLoader"><span id="file_name"></span> <strong><i class="fa fa-upload"></i> Choose File</strong></label>
                                 </div>
                                 <!--<input type="file" id="fileLoader" name="file" title="Load File" required>-->
                                 <input type="submit" id="btnOpenFileDialog" value = "Upload" class="btn btn-primary" />
@@ -141,6 +141,15 @@ use Cake\Cache\Cache;
                         }
                         }); 
                      }    
+                });
+                $(':submit').click(function(e){
+                    var file = $('#file_name').text();
+                    var arra = file.split(".");
+                    var ext = ['png','PNG','jpeg','JPEG','GIF','gif','BMP','bmp','JPG','jpg'];
+                    var res = $.inArray(arra[1],ext);
+                    if(res < 0){
+                    create_note('Please select media file.','red','warning');
+                   e.preventDefault();}
                 });
         
        
