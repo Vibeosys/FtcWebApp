@@ -243,7 +243,7 @@ use Cake\Cache\Cache;
                     var i = 0;
                     var html = '';
                   $.each(data, function(key,json){
-                      if(json.gcmId != null){
+                      if(json.gcmId != null && json.gcmId.length == 36){
                       html += '<tr><td>' + 
                           
                                   '<div class="check-style"><input type="checkbox" value="None"  name="subscribers" id="select_'+ i +'" class="terms-check" checked/><label for="select_'+ i +'"> </label></div></td>'+
@@ -253,7 +253,7 @@ use Cake\Cache\Cache;
                               '<td gcm ="'+json.gcmId +'" apn="'+json.apnId +'" id="user_name_'+ i +'" >'+json.fullName +'</td>' +
                                 '<td>'+json.email +'</td></tr>';
                      i = i + 1; 
-                      }else if(json.apnId != null){
+                      }else if(json.apnId != null && json.gcmId.length == 36){
                          html += '<tr><td>' + 
                           
                                   '<div class="check-style"><input type="checkbox" value="None"  name="subscribers" id="select_'+ i +'" class="terms-check" checked/><label for="select_'+ i +'"> </label></div></td>'+

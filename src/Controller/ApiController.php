@@ -153,18 +153,25 @@ class ApiController extends AppController{
         $this->from_mail = $userEmail->username;
         $this->emailConfig['tls'] = true;
        Email::configTransport('gmail', $this->emailConfig);
+        Log::debug('mail configured to settings');
        return TRUE;
     }
     
     public function mail($to, $subject, $message, $userId = 0) {
+         Log::debug('In mail function');
         if(!$this->configureEmail($userId))
             return FALSE;
         $email = new Email();
+        try{
         $mainResult = $email->transport('gmail')->from([$this->from_mail => 'FTC Admin'])
                 ->to($to)
                 ->subject($subject)
                 ->emailFormat('html')
                 ->send($message);
+        }  catch (Cake\Network\Exception\SocketException $e){
+            Log::debug('Exception catched');
+            return FALSE; 
+        }
         if($mainResult)
             return TRUE;
         else

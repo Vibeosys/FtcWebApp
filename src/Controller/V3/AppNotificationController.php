@@ -12,6 +12,7 @@ use OneSignal\Notifications;
 use OneSignal\Devices;
 use OneSignal\Config;
 use OneSignal\OneSignal;
+use OneSignal\Exception\OneSignalException;
 use App\Controller\V2;
 use Cake\Log\Log;
 use App\Model\Table\V3;
@@ -53,19 +54,27 @@ class AppNotificationController extends V2\AppNotificationController {
             'isIos' => true
         ];
 
-        $result = $this->api->notifications->add($notificationData);
+       
+         try{
+                $result = $this->api->notifications->add($notificationData);
+                Log::debug($result); 
+            }  catch (OneSignalException $e){
+              
+                return $e->getErrors();
+            }
         if (is_array($result)) {
-            Log::debug('One signal notidication add result array : ');
-            Log::debug($result);
+            Log::debug('One signal notification add result array : ');
+            
             try{
             $resultOpen = $this->api->notifications->open($result['id']);
-            }  catch (OneSignal\Exception\OneSignalException $e){
-                return FALSE;
+            }  catch (OneSignalException $e){
+                
+                 return $e->getErrors();
             }
             if (is_array($resultOpen)) {
                 Log::debug('One signal notofication open result array: ');
                 Log::debug($resultOpen);
-                return $resultOpen['success'];
+                return $resultOpen;
             }
         }
         return FALSE;
@@ -123,7 +132,10 @@ class AppNotificationController extends V2\AppNotificationController {
             }else{
                $message['title'] = $request['title'];
                $contents['en'] = $request['msg'];
-               if($this->sendNotification($device, $message, $contents)){
+               $sendNoteResult = $this->sendNotification($device, $message, $contents);
+               Log::debug('Error from send notification');
+               Log::debug($sendNoteResult);
+               if(isset($sendNoteResult['success'])){
                     Log::debug('notification was send.');
                   $noteId = $this->addNewEntry(new DTO\AppNotificationInsertDto(
                           $sendBy , 
@@ -136,9 +148,9 @@ class AppNotificationController extends V2\AppNotificationController {
                 ]);
                }else
                   $this->set([
-                    'message' => 'Error in notification.',
+                    'message' => 'Your not registered with app notification.',
                     'color' => 'red'
-                ]);     
+                ]);
             }
         }
         
