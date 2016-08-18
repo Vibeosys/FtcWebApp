@@ -88,6 +88,7 @@ class SubscriptionTable extends Table\V2\SubscriptionTable {
         $conditions = [
             'subscription.Active =' => ACTIVE
         ];
+        
         if(!is_null($adminId))
             $conditions['subscription.OwnerId'] = $adminId;
         

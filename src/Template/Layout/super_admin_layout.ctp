@@ -27,7 +27,42 @@ use Cake\Cache\Cache;
         <?php if($this->fetch('css')){
            echo $this->fetch('css');   
         }?>
-       
+   <?= $this->Html->script('OneSignalSDK.js') ?>     
+   <script>
+      var OneSignal = OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "d7d678e9-7cd4-4e9d-b823-3f172572ef74",
+      autoRegister: true, /* Set to true to automatically prompt visitors */
+      subdomainName: 'ftctradenow',   
+       notifyButton: {
+        enable: true, /* Required to use the notify button */
+        size: 'medium', /* One of 'small', 'medium', or 'large' */
+        theme: 'inverse', /* One of 'default' (red-white) or 'inverse" (white-red) */
+        position: 'bottom-left', /* Either 'bottom-left' or 'bottom-right' */
+        offset: {
+            bottom: '10px',
+            left: '10px', /* Only applied if bottom-left */
+            right: '0px' /* Only applied if bottom-right */
+        },
+        prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
+        showCredit: false, /* Hide the OneSignal logo */
+        text: {
+            'tip.state.unsubscribed': 'Subscribe to notifications',
+            'tip.state.subscribed': "You're subscribed to notifications",
+            'tip.state.blocked': "You've blocked notifications",
+            'message.prenotify': 'Click to subscribe to notifications',
+            'message.action.subscribed': "Thanks for subscribing!",
+            'message.action.resubscribed': "You're subscribed to notifications",
+            'message.action.unsubscribed': "You won't receive notifications again",
+            'dialog.main.title': 'Manage Site Notifications',
+            'dialog.main.button.subscribe': 'SUBSCRIBE',
+            'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
+            'dialog.blocked.title': 'Unblock Notifications',
+            'dialog.blocked.message': "Follow these instructions to allow notifications:"
+        }
+    }
+    }]);   
+    </script>
     </head>
    <body>
      <!-- Navigation Bar-->
@@ -87,7 +122,7 @@ use Cake\Cache\Cache;
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
 					 <li class="has-submenu <?php if($this->fetch('home')){ echo 'active'; }?>">
-                            <a href="/?code=1" <?php if($this->fetch('home')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Home-25.png">Home</a>
+                            <a href="/" <?php if($this->fetch('home')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Home-25.png">Home</a>
                         </li>
                         <li class="has-submenu  <?php if($this->fetch('page_list')){ echo 'active'; }?>">
                             <a href="../pages" <?php if($this->fetch('page_list')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Versions-25.png">Custom Pages</a>

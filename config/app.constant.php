@@ -53,6 +53,10 @@ define('NON_SUBSCRIBER_PAGE', '0');
 
 define('SUBSCRIBERID_SAPARATOR', '-');
 
+define('FULL_LAYOUT', 'super_admin_layout');
+
+define('MONTHLY_LAYOUT', 'admin_layout');
+
 
 
 

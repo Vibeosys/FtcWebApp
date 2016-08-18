@@ -127,7 +127,8 @@ class AppNotificationController extends V2\AppNotificationController {
             if(!is_array($device) or empty($device)){
                 $this->set([
                     'message' => 'Recipents list is empty.',
-                    'color' => 'red'
+                    'color' => 'red',
+                    'layout' => parent::readCookie('current_layout')
                 ]);
             }else{
                $message['title'] = $request['title'];
@@ -144,20 +145,23 @@ class AppNotificationController extends V2\AppNotificationController {
                   $in_result = $userAppNotificationController->addUserNotification($users, $noteId);
                    $this->set([
                     'message' => 'Notification was send.',
-                    'color' => 'green'
+                    'color' => 'green',
+                       'layout' => parent::readCookie('current_layout')
                 ]);
                }else
                   $this->set([
                     'message' => 'Your not registered with app notification.',
-                    'color' => 'red'
+                    'color' => 'red',
+                      'layout' => parent::readCookie('current_layout')
                 ]);
             }
         }
-        
+        Log::debug(parent::readCookie('current_layout'));
         $notes = $this->getTableObj()->getNote($sendBy);
         if(!empty($notes))
-            $this->set (['notes' => $notes,'isAdmin' => parent::readCookie('isAdmin')]);
-        
+            $this->set (['notes' => $notes,'isAdmin' => parent::readCookie('isAdmin'), 'layout' => parent::readCookie('current_layout')]);
+        else
+            $this->set(['layout' => parent::readCookie('current_layout')]);  
     }
     
     public function getMyNotification() {

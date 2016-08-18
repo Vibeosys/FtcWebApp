@@ -180,6 +180,13 @@
     margin-top: -13px;
     margin-bottom: 17px;
 }
+.terms{
+    color: #ff3300;
+    font-weight: bold;
+}
+.in_terms {
+        list-style-type: disc;
+}
 *:focus {
     outline: 0 !important;
 }

@@ -8,7 +8,7 @@ use Cake\Cache\Cache;
     use Cake\View\ViewBuilder;
     use Cake\View\Helper\UrlHelper;
   
-    $this->layout = 'super_admin_layout';
+    $this->layout = $layout;
     $this->assign('title', 'User Management');
     $this->assign('user_management','1');
     $this->assign('CS','1');

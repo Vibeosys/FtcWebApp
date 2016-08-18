@@ -35,8 +35,15 @@ class HomeController extends V2\HomeController{
         $userId = $userController->checkUserCredential($username);
         $role = $userController->getTableObj()->isGroup($username, OWNER_GROUP);
         parent::writeCookie('cur_ad_id', $userId);
+        if(!$role)
+            $role = $userController->getTableObj()->isFullSubscriber ($username);
+        if($role)
+        $layout =  FULL_LAYOUT; 
+        else
+           $layout = MONTHLY_LAYOUT;
         parent::writeCookie('isAdmin', $role);
-      
+        parent::writeCookie('current_layout', $layout);
+        $this->set(['layout' => $layout]);
           
     }
     

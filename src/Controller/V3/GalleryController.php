@@ -54,7 +54,7 @@ class GalleryController extends V2\GalleryController {
     }
     
     public function gallery() {
-     
+        $this->set(['layout'=> parent::readCookie('current_layout')]);
     }
     
     public function readVideo() {

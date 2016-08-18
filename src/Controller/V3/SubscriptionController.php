@@ -60,18 +60,22 @@ class SubscriptionController extends V2\SubscriptionController{
             \Cake\Log\Log::debug('redirect to '.$this->request->query('back_url'));
             $this->redirect($this->request->query('back_url'));
         }
+         \Cake\Log\Log::debug('We are in database top');
         $subscriberId = parent::readCookie('sub_id');
         $this->conncetionCreator($this->getDatabasesubscription($subscriberId));
         $adminId = parent::readCookie('cur_ad_id');
         $userController = new UserController();
         $isOwner = $userController->userGroupCheck(parent::readCookie('uname'), OWNER_GROUP);
-        if($isOwner)
-         $adminId = null;
-        
-        $result = $this->getTableObj()->getDatabaseList($adminId);
+        \Cake\Log\Log::debug('We are in database middle');
+        if($isOwner or $userController->fullSubscriberCheck(parent::readCookie('uname'))){
+        $adminId = null; $isOwner = TRUE;}
+      
+        \Cake\Log\Log::debug('THIS is admin : '.$adminId);
+        $result = $userController->getAdminDatabaseList($adminId);
         $this->set([
             'dbs' => $result,
-            'isOwner' => $isOwner
+            'isOwner' => $isOwner,
+            'layout' => parent::readCookie('current_layout')
         ]);
     }
     
@@ -87,13 +91,17 @@ class SubscriptionController extends V2\SubscriptionController{
                 $this->set([
                     'subid' => $result,
                     'color' => 'green',
-                    'message' => DTO\ErrorDto::getWebMessage(8) 
+                    'message' => DTO\ErrorDto::getWebMessage(8),
+                     'layout' => parent::readCookie('current_layout')
                 ]);
               else 
               $this->set([
                     'color' => 'red',
-                    'message' => DTO\ErrorDto::getWebMessage(9) 
+                    'message' => DTO\ErrorDto::getWebMessage(9),
+                   'layout' => parent::readCookie('current_layout')
                 ]);    
+        }else {
+            $this->set([ 'layout' => parent::readCookie('current_layout')]);    
         }
     }
     
@@ -102,7 +110,8 @@ class SubscriptionController extends V2\SubscriptionController{
         if($this->request->is('post') and !isset($request['save'])){
             $editData = \App\Request\V2\DbTestConnectRequest::Deserialize(json_encode($request));
             $this->set([
-                'edit' => $editData
+                'edit' => $editData,
+                     'layout' => parent::readCookie('current_layout')
             ]);
         }else if($this->request->is('post') and isset($request['save'])){
             //$this->autoRender = FALSE;
@@ -114,12 +123,14 @@ class SubscriptionController extends V2\SubscriptionController{
                 $this->set([
                      
                     'color' => 'green',
-                    'message' => DTO\ErrorDto::getWebMessage(10) 
+                    'message' => DTO\ErrorDto::getWebMessage(10),
+                     'layout' => parent::readCookie('current_layout')
                 ]);
               else 
               $this->set([
                     'color' => 'red',
-                    'message' => DTO\ErrorDto::getWebMessage(11) 
+                    'message' => DTO\ErrorDto::getWebMessage(11),
+                   'layout' => parent::readCookie('current_layout')
                 ]);    
         }else
             $this->redirect ('database');

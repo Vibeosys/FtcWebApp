@@ -49,12 +49,14 @@ class EmailTemplatesController extends V2\EmailTemplatesController{
             if($this->editTemplate($template))
                 $response = [
                     'color' => 'green',
-                    'message' => 'Template has updated.'
+                    'message' => 'Template has updated.',
+                    'layout' => parent::readCookie('current_layout')
                 ];
             else
                $response = [
                     'color' => 'red',
-                    'message' => 'Error to update Template.'
+                    'message' => 'Error to update Template.',
+                   'layout' => parent::readCookie('current_layout')
                 ]; 
             
         }elseif ($this->request->is('post') and isset ($request['save'])) {
@@ -68,6 +70,7 @@ class EmailTemplatesController extends V2\EmailTemplatesController{
                 $response = [
                     'color' => 'green',
                     'message' => 'Template added into list.'
+                   
                 ];
             else
                $response = [
@@ -83,7 +86,9 @@ class EmailTemplatesController extends V2\EmailTemplatesController{
         }
        $temps = $this->getTableObj()->getTemplates(); 
        if(!empty($temps))
-       $response['temps'] = $temps; 
+       $response['temps'] = $temps;
+       
+       $response['layout'] = parent::readCookie('current_layout');
         $this->set ($response);
     }
     

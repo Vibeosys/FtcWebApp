@@ -8,7 +8,7 @@ use Cake\Cache\Cache;
     use Cake\View\ViewBuilder;
     use Cake\View\Helper\UrlHelper;
   
-    $this->layout = 'super_admin_layout';
+    $this->layout = $layout;
     $this->assign('title', 'App Notifications');
     $this->assign('notes','1');
     $this->assign('AN','1');
@@ -65,7 +65,7 @@ use Cake\Cache\Cache;
                  
                 <div class="template-history">
                     <div class="heading">
-                        <h2>Template History</h2>
+                        <h2>Notification History</h2>
                     
                     </div>
                    

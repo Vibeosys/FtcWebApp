@@ -5,6 +5,7 @@ namespace App\Error;
 use Cake\Error\BaseErrorHandler;
 use Cake\Log\Log;
 use Cake\Network\Response;
+use Cake\Network\Request;
 use App\DTO;
 
 class AppError extends BaseErrorHandler

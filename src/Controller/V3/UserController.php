@@ -100,8 +100,14 @@ class UserController extends V2\UserController{
         return $result;
     }
     // Web methods
-    public function adminWebLogin() {
-        
+    public function getAdminDatabaseList($adminId = NULL) {
+        $result = $this->getTableObj()->getDatabaseList($adminId);
+        return $result;
+    }
+    
+     public function fullSubscriberCheck($uname) {
+        $result = $this->getTableObj()->isFullSubscriber($uname);
+        return $result;
     }
     
     public function userManagement() {

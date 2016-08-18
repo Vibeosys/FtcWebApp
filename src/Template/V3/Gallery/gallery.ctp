@@ -8,7 +8,7 @@ use Cake\Cache\Cache;
     use Cake\View\ViewBuilder;
     use Cake\View\Helper\UrlHelper;
   
-    $this->layout = 'super_admin_layout';
+    $this->layout = $layout;
     $this->assign('title', 'Gallery');
     $this->assign('gallery','1');
     
@@ -103,14 +103,6 @@ use Cake\Cache\Cache;
                         '<a href="../'+ json.itemUrl+'" ><span class="fa fa-eye icon-hover"></span> Preview</a></div>'+   
                             '<div><button onclick="deleteme('+ json.itemId+');" data-toggle="modal" data-target="#myModal" class="alert-danger deleteme"><span class="remove"><span class="fa fa-close icon-hover"></span> Remove</span></button></div>'+
                             '</div></div></div>';
-                    }else{
-                    //html +=   '<div class="col-lg-2 col-md-3 col-xs-12 thumb">'+
-                          
-                      //      '<video class="video" controls>'+
-                        //              '<source src="/readvideo" type="video/mp4">'+
-                          //            'Your browser does not support HTML5 video.'+
-                            // '</video></div>';    
-                        
                     }
                   });
                 $('#item_list').html(html);

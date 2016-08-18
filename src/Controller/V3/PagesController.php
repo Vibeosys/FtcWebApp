@@ -145,7 +145,8 @@ class PagesController extends V2\PagesController {
         $this->set([
             'pages' => $pages,
             'type' => $this->getPageTypesList(),
-            'role' => $role
+            'role' => $role,
+            'layout' => parent::readCookie('current_layout')
                 ]);
         
     }
@@ -305,7 +306,8 @@ class PagesController extends V2\PagesController {
             $response['is_admin'] = 1;
         else
             $response['is_admin'] = 0;
-        Log::debug($response);
+        
+            $response['layout'] = parent::readCookie('current_layout');
         $this->set($response);
     }
     
@@ -325,11 +327,13 @@ class PagesController extends V2\PagesController {
                 'page' => $pageInfo,
                 'widgets' => $widgets,
                 'scopeCount' => count($widgets),
-                'role' => parent::readCookie('isAdmin')
+                'role' => parent::readCookie('isAdmin'),
+                'layout' => parent::readCookie('current_layout')
             ]);
         }else if($this->request->is('post') and (isset ($request['save'])
                 or isset ($request['publish']))){
           $response = $this->pageEditOperation($request);
+          $response['layout'] = parent::readCookie('current_layout');
           $this->set($response);
         }  else {
             Log::debug('forced redirect to pages due to insufficient data.');

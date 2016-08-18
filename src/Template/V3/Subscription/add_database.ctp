@@ -9,7 +9,7 @@ use Cake\Cache\Cache;
     use Cake\View\ViewBuilder;
     use Cake\View\Helper\UrlHelper;
   
-    $this->layout = 'super_admin_layout';
+    $this->layout = $layout;
     $this->assign('title', 'Add Database');
     $this->assign('database','1');
     

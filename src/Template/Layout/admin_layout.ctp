@@ -15,15 +15,54 @@ use Cake\Cache\Cache;
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>FTC Solutions</title>
+        <title><?= $this->fetch('title')?> | FTC Solutions </title>
+        
         <?= $this->Html->css('bootstrap.min.css') ?>
         <?= $this->Html->css('menu.css') ?>
         <?= $this->Html->css('responsive.css') ?>
         <?= $this->Html->css('icons.css') ?>
         <?= $this->Html->css('animate.min.css') ?>
         <?= $this->Html->css('font-awesome.css') ?>
-        
-        
+          <?= $this->Html->css('dropdown-style.css') ?>
+        <?php if($this->fetch('css')){
+           echo $this->fetch('css');   
+        }?>
+   <?= $this->Html->script('OneSignalSDK.js') ?>     
+   <script>
+      var OneSignal = OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "d7d678e9-7cd4-4e9d-b823-3f172572ef74",
+      autoRegister: true, /* Set to true to automatically prompt visitors */
+      subdomainName: 'ftctradenow',   
+       notifyButton: {
+        enable: true, /* Required to use the notify button */
+        size: 'medium', /* One of 'small', 'medium', or 'large' */
+        theme: 'inverse', /* One of 'default' (red-white) or 'inverse" (white-red) */
+        position: 'bottom-left', /* Either 'bottom-left' or 'bottom-right' */
+        offset: {
+            bottom: '10px',
+            left: '10px', /* Only applied if bottom-left */
+            right: '0px' /* Only applied if bottom-right */
+        },
+        prenotify: true, /* Show an icon with 1 unread message for first-time site visitors */
+        showCredit: false, /* Hide the OneSignal logo */
+        text: {
+            'tip.state.unsubscribed': 'Subscribe to notifications',
+            'tip.state.subscribed': "You're subscribed to notifications",
+            'tip.state.blocked': "You've blocked notifications",
+            'message.prenotify': 'Click to subscribe to notifications',
+            'message.action.subscribed': "Thanks for subscribing!",
+            'message.action.resubscribed': "You're subscribed to notifications",
+            'message.action.unsubscribed': "You won't receive notifications again",
+            'dialog.main.title': 'Manage Site Notifications',
+            'dialog.main.button.subscribe': 'SUBSCRIBE',
+            'dialog.main.button.unsubscribe': 'UNSUBSCRIBE',
+            'dialog.blocked.title': 'Unblock Notifications',
+            'dialog.blocked.message': "Follow these instructions to allow notifications:"
+        }
+    }
+    }]);   
+    </script>
     </head>
    <body>
      <!-- Navigation Bar-->
@@ -33,28 +72,32 @@ use Cake\Cache\Cache;
 
                     <!-- Logo container-->
                     <div class="logo">
-                        <a href="" class="logo">
-                        <?= $this->Html->image("logo.png",['style' => "width:97px; margin-top: -20px;margin-bottom: 17px;", 'class' => "logo-img"]) ?> </a>
-                    </div>
-                    <div class="heading-top">Admin Panel</div>
+                        <a href="" class="logo"><img src="../img/logo.png" class="logo-img"> </a>
+                        <div class="heading-top">Mobile APP Admin Panel</div>
+                       
+                   
+                      
                     <!-- End Logo container-->
-                    
+                    <div class="menu-toggle">
                     <div class="menu-extras">
-                        
+                         
                          <ul class="nav navbar-nav navbar-right pull-right">
                             
                           
 
                             <li class="dropdown">
-                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true">
-                                    <?= $this->Html->image("user.jpg",['alt' => "user-img", 'class' => "img-circle"]) ?><span >Admin </span></a>
+                                <a href="" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="../img/user.jpg" alt="user-img" class="img-circle">
+                                    <span id="cur_name" ></span></a>
+                                <span id="cur_email" class="email"></span>
                                 <ul class="dropdown-menu animated fadeInDown pull-right">
-                                    <li><a href=""><i class="fa fa-sign-out"></i> Logout</a></li>
+                                    <li><a href="../logout"><i class="fa fa-sign-out fa-logout"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
                         
-                        <div class="menu-item">
+                       
+                    </div>
+                         <div class="menu-item">
                             <!-- Mobile menu toggle-->
                             <a class="navbar-toggle">
                                 <div class="lines">
@@ -65,8 +108,8 @@ use Cake\Cache\Cache;
                             </a>
                             <!-- End mobile menu toggle-->
                         </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
             <!-- End topbar -->
@@ -78,34 +121,40 @@ use Cake\Cache\Cache;
                 <div id="navigation">
                     <!-- Navigation Menu-->
                     <ul class="navigation-menu">
-					 <li class="has-submenu ">
-                            <a href="" ><i class="fa fa-home icon-text-dash"></i>Home</a>
+					 <li class="has-submenu <?php if($this->fetch('home')){ echo 'active'; }?>">
+                            <a href="/" <?php if($this->fetch('home')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Home-25.png">Home</a>
                         </li>
-                      <!--  <li class="has-submenu active">
-                            <a href="page.html" class="active-menu" ><i class="fa fa-newspaper-o icon-text-dash"></i>Custom Pages</a>
-                        </li> -->
-                        <li class="has-submenu">
-                            <a href="user.html" ><i class="fa fa-server icon-text"></i>User Management</a>
+                        <li class="has-submenu  <?php if($this->fetch('page_list')){ echo 'active'; }?>">
+                            <a href="../pages" <?php if($this->fetch('page_list')){ echo 'class="active-menu"'; }?>><img src="../img/menu-icon/Versions-25.png">Custom Pages</a>
                         </li>
-                         <li class="has-submenu">
-                            <a href="#" ><i class="fa fa-picture-o icon-text"></i>Gallery</a>
-                        </li>
-                        <li class="has-submenu">
-                            <a href="#"><i class="fa fa-bell-o icon-text"></i>Notification</a>
+                     <!--   <li class="has-submenu <?php if($this->fetch('user_management')){ echo 'active'; }?>">
+                            <a href="../user/management" <?php if($this->fetch('user_management')){ echo 'class="active-menu"'; }?> ><img src="../img/menu-icon/UserGroups-25.png">User Management</a>
                             <ul class="submenu">
-                                <li><a href="email-notify.html">Email Notification</a></li>
-                                <li><a href="components-widgets.html">APP Notification</a></li>
+                                 <li><a href="../user/management" <?php if($this->fetch('VC')){ echo 'class="active"'; }?>>View Clients</a></li>
+                                 <li><a href="../user/createsubscription" <?php if($this->fetch('CS')){ echo 'class="active"'; }?> >Create Subscription</a></li>
+                                  <li><a href="../user/assignsubscription" <?php if($this->fetch('AS')){ echo 'class="active"'; }?>>Assign Subscription</a></li>
+                            </ul>
+                        </li> -->
+                         <li class="has-submenu <?php if($this->fetch('gallery')){ echo 'active'; }?>">
+                            <a href="../gallery" <?php if($this->fetch('gallery')){ echo 'class="active-menu"'; }?> >
+                                <img src="../img/menu-icon/Gallery-25.png">Gallery
+                            </a>
+                        </li>
+                        <li class="has-submenu <?php if($this->fetch('notes')){ echo 'active'; }?>">
+                            <a href="#" <?php if($this->fetch('notes')){ echo 'class="active-menu"'; }?>>
+                                <img src="../img/menu-icon/Notification-25.png">Notifications</a>
+                            <ul class="submenu">
+                                <li><a href="../emailnotification" <?php if($this->fetch('EN')){ echo 'class="active"'; }?>>Email Notifications</a></li>
+                                <li><a href="../appnotification" <?php if($this->fetch('AN')){ echo 'class="active"'; }?>>APP Notifications</a></li>
                             </ul>
                         </li>
-
-                        <li class="has-submenu">
-                            <a href="#" class="active-menu"><i class="fa fa-database icon-text"></i>Database</a>
-                        </li>
+                   
                     </ul>
                     <!-- End navigation menu -->
                 </div>
             </div>
             </div>
+            
         </header>
         <!-- End Navigation Bar-->
         <?php 
@@ -115,170 +164,39 @@ use Cake\Cache\Cache;
         ?>
         <!-- jQuery  -->
         <?= $this->Html->script('jquery.js') ?>
-        <?= $this->Html->script('bootstrap.min.js') ?>
         <?= $this->Html->script('jquery.app.js') ?>
-        <?= $this->Html->script('http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js') ?>
+        <?= $this->Html->script('bootstrap.min.js') ?>
        
-       
-      <script type='text/javascript'>
-
-var myApp = angular.module('myApp', []);
-
-function MainCtrl($scope) {
-    $scope.count = 0;
-	$scope.countfile = 0;
-    $scope.counttext = 0;
-    $scope.countlinktext = 0;
-    $scope.countvideolink = 0;
-    $scope.countheading = 0;
-}
-
-//Directive that returns an element which adds buttons on click which show an alert on click
-myApp.directive("addimage", function(){
-	return {
-		restrict: "E",
-		template: "<a style='cursor:pointer' addbuttons><span class='fa fa-picture-o' ></span>Add Images <span class='fa fa-plus plus-icon' ></span></a>"
-	}
-});
-myApp.directive("addtext", function(){
-	return {
-		restrict: "E",
-		template: "<a style='cursor:pointer' addtextdiv><span class='fa fa-align-left'></span>Add Text<span class='fa fa-plus plus-icon' ></span></a>"
-	}
-});
-myApp.directive("addlink", function(){
-	return {
-		restrict: "E",
-		template: "<a style='cursor:pointer' addlinktext><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></a>"
-	}
-});
-myApp.directive("addvideo", function(){
-	return {
-		restrict: "E",
-		template: "<a style='cursor:pointer' addvideolink><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></a>"
-	}
-});
-myApp.directive("addheading", function(){
-	return {
-		restrict: "E",
-		template: "<a style='cursor:pointer' addheadinglink><span class='fa fa-header'></span>Add Heading<span class='fa fa-plus plus-icon' ></span></a>"
-	}
-});
-
-//Directive for adding buttons on click that show an alert on click
-myApp.directive("addbuttons", function($compile){
-	return function(scope, element, attrs){
-		element.bind("click", function(){
-            scope.count++;
-			scope.countfile++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><input type='file' class='form-control' ng-model=myFile"+scope.countfile+" file id=file-input-"+scope.countfile+" accept='image/*'><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
-		});
-	};
-});
-myApp.directive("addtextdiv", function($compile){
-	return function(scope, element, attrs){
-		element.bind("click", function(){
-            scope.count++;
-			scope.counttext++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><textarea rows='4' placeholder='Text' class='form-control'  id=text-input-"+scope.counttext+" ng-model=textfile"+scope.count+"></textarea><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
-		});
-	};
-});
-myApp.directive("addlinktext", function($compile){
-	return function(scope, element, attrs){
-		element.bind("click", function(){
-            scope.count++;
-			scope.countlinktext++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><div style='display:flex'>Link<input type='text'  placeholder='Link' class='form-control link-input'  id=text-input-link-"+scope.countlinktext+" ng-model=linkfile"+scope.countlinktext+"> Link Caption<input type='text' placeholder='Link Caption' class='form-control link-input'  id=text-input-cap-link-"+scope.countlinktext+" ng-model=capfile"+scope.countlinktext+"></div> <button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
-		});
-	};
-});
-myApp.directive("addvideolink", function($compile){
-	return function(scope, element, attrs){
-		element.bind("click", function(){
-            scope.count++;
-			scope.countvideolink++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><div style='display:flex'>Video Link<input type='text'  placeholder='Video Link' class='form-control'  id=text-input-video-"+scope.countvideolink+" ng-model=videolinkfile"+scope.countvideolink+"></div> <button name='remove' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
-		});
-	};
-});
-
-myApp.directive("addheadinglink", function($compile){
-	return function(scope, element, attrs){
-		element.bind("click", function(){
-            scope.count++;
-			scope.countheading++;
-			angular.element(document.getElementById('space-for-tool')).append($compile("<div class=remove-"+scope.count+"><input type='text'  placeholder='Heading' class='form-control'  id=text-input-head-"+scope.countheading+" ng-model=headingfile"+scope.countheading+"><button name='Privew' class='btn-remove' id=remove-"+scope.count+" remove-me>Remove</button><div class='hr-line'><hr></div></div>")(scope));
-            
-		});
-	};
-});
-//Directive for showing an alert on click
-       /*
-myApp.directive("file", function($compile){
-	return function(scope, element, attrs){
-		element.bind("change", function(){
-			
-            angular.element(document.getElementById('privew-for-tool')).append($compile("<img ng-src="{{image_source}}"><br>")(scope));
-		});
-	};
-});
-*/
-myApp.directive("removeMe", function($rootScope) {
-      return function(scope,element,attrs)
-            {
-                element.bind("click",function() {
-                    var id= attrs['id'];
-                   
-                   $("."+id).remove();
-                });
-            }
-      
-});
-
-
-  
-  
-          
-       </script>  
-       <script>
-           /*
-function MainCtrl($scope) {
-    $scope.countForFile = 0;
-    $scope.countForText = 0;
-    $scope.AppendFile = function() {
-     $scope.countForFile++;
-     var myEl = angular.element( document.querySelector( '#space-for-tool' ) );
-     myEl.append("<input type='file' class='form-control' onchange='angular.element(this).scope().setFile(this)' accept='image/*'><br/>");  
+        <?= $this->Html->script('classie.js') ?>
+        <?= $this->Html->script('custom-file-input.js') ?>
+       <script type="text/javascript">
+            jQuery(document).ready(function(){
+                 jQuery.post('/getcookie',{name:'cur_name'}, function(value){
+                     if(value == 0){
+                         window.location.replace('../../admin/login');
+                     }
+                     var uname = value.split(" ",1); 
+                     jQuery('#cur_name').html(uname +'...<i class=" fa fa-angle-down"></i>');
+                 });
+                 jQuery.post('/getcookie',{name:'cur_email'}, function(val){
+                     jQuery('#cur_email').text(val);
+                     if(val == 0){
+                         window.location.replace('../../admin/login');
+                     }
+                 });
+                  jQuery.post('/getcookie',{name:'isAdmin'}, function(val){
+                     if(val == 0){
+                         jQuery('.hide_it').hide();
+                     }
+                 });
+            });
         
-    var privewEl = angular.element( document.querySelector( '#privew-for-tool' ) );
-        privewEl.append('<img ng-src="{{image_source}}">');
-    }
-    $scope.AppendText = function() {
-     $scope.countForText++;
-     var myEl = angular.element( document.querySelector( '#space-for-tool' ) );
-     myEl.append('<textarea rows="4" placeholder="Text" class="form-control" ></textarea><br/>');
-    }
-   $scope.setFile = function(element) {
-  $scope.currentFile = element.files[0];
-   var reader = new FileReader();
-
-  reader.onload = function(event) {
-    $scope.image_source = event.target.result
-    $scope.$apply()
-
-  }
-  // when the file is read it triggers the onload event above.
-  reader.readAsDataURL(element.files[0]);
-}
-}
-*/
-</script>
+        </script>      
+		
+     <?php if($this->fetch('script')){
+       echo $this->fetch('script');
        
+   }?>
 
     </body>
-</html>
+</html> 

@@ -8,6 +8,7 @@
 
 namespace App\Model\Table\V3;
 use App\Model\Table\V2;
+use App\Request\V2\DbTestConnectRequest;
 use App\DTO;
 
 /**
@@ -88,6 +89,66 @@ class UserTable extends V2\UserTable{
                 return new DTO\EmailSettingsDto($row->Host, $row->Port, 
                         $row->Username, $row->Pwd);
             return FALSE;
+        
+    }
+    
+    public function isFullSubscriber($uname) {
+        $join = [
+            'UP' => [
+                'table' => 'user_plan',
+                'type' => 'INNER',
+                'conditions' => 'users.userid = UP.userid and users.username = "'.$uname.'" and UP.planid = 3'
+            ]
+        ];
+        $fields = [
+            'UserId' => 'users.userid',
+            'PlanId' => 'UP.planid',
+        ];
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($join);
+        \Cake\Log\Log::debug($rows->sql());
+        if($rows->count())
+            return 1;
+            return 0;
+        
+    }
+    
+    public function getDatabaseList($adminId) {
+        $users = [];
+        $counter = 0;
+        $conditions = [
+            'SUB.Active =' => ACTIVE
+        ];
+        
+        if(!is_null($adminId))
+            $conditions['SUB.OwnerId'] = $adminId;
+        
+        $joins = [
+            'SUB' => [
+                'table' => 'subscription',
+                'type' => 'INNER',
+                'conditions' => 'users.userid = SUB.OwnerId'
+            ]
+        ];
+        
+        $fields = [
+            'SubId' => 'SUB.SubscriberId',
+            'Host' => 'SUB.Hostname',
+            'Uname' => 'SUB.Username',
+            'Port' => 'SUB.Port',
+            'Pwd' => 'SUB.Pwd',
+            'Dbname' => 'SUB.DatabaseName',
+            'Owner' => 'users.fullname',
+            'Active' => 'SUB.Active',
+            'Stype' => 'SUB.subscriptionType'
+        ];
+        $rows = $this->connect()->find('All',['fields' => $fields])->join($joins)->where($conditions);
+        \Cake\Log\Log::debug($rows->sql());
+        if($rows->count())
+            foreach ($rows as $row)
+                $users[$counter++] = new DbTestConnectRequest (
+                        $row->Host, $row->Pwd, $row->Uname, $row->Dbname, 
+                        $row->Port, $row->Owner, $row->SubId);
+        return $users;
         
     }
     

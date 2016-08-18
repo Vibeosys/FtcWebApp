@@ -9,7 +9,7 @@ use Cake\Cache\Cache;
     use Cake\View\ViewBuilder;
     use Cake\View\Helper\UrlHelper;
   
-    $this->layout = 'super_admin_layout';
+    $this->layout = $layout;
     $this->assign('title', 'Email Notifications');
     $this->assign('notes','1');
     $this->assign('EN','1');
