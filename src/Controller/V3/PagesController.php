@@ -422,5 +422,28 @@ class PagesController extends V2\PagesController {
         }
        return $result;
     }
+    
+    public function deletePages() {
+        $this->autoRender = FALSE;
+        $request = json_decode($this->request->input());
+        if(empty($request->id)){
+        $this->response->body(0);           return;}
+        $this->conncetionCreator($this->getDatabasesubscription(parent::readCookie('sub_id')));
+        $widgetController = new WidgetController();
+         $response = 0;
+         $page = $this->getTableObj()->getSingalPage($request->id);
+        if($widgetController->deletePageWidgets($request->id))
+            if($this->getTableObj()->deletePage($request->id)){
+                
+                  $syncEntry = new DTO\SyncInsertDto(
+                    parent::readCookie('cur_ad_id'), $this->tableName, DELETE, 
+                       $page, parent::readCookie('sub_id'));
+            $syncController = new SyncController();
+            $syncController->makeSyncEntry($syncEntry, $page->pageFor);
+                $response = $page->pageId;
+            }
+        $this->response->body($response);
+       // $this->response->send();
+    }
 
 }

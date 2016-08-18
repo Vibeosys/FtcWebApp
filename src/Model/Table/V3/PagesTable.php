@@ -132,4 +132,14 @@ class PagesTable extends V2\PagesTable{
             return TRUE;
         return FALSE;
    }
+   
+   public function deletePage($pageId) {
+        
+        $tableObj = $this->connect();
+        $oldPage = $tableObj->query()->delete();
+        $oldPage->where(['PageId =' => $pageId]); 
+        if($oldPage->execute())
+           return TRUE;
+        return FALSE;
+   }
 }

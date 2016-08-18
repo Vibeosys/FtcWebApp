@@ -29,7 +29,7 @@ class AppError extends BaseErrorHandler
         $response->body(json_encode($error));
         $response->send();
           }else{
-           echo '<h1>INTERNAL SERVER ERROR</h1><br><span><a href="/">Back To Home</a></span>';
+           echo '<h1>INTERNAL SERVER ERROR</h1><br><h3>'.$exception->getMessage().'</h3><br><span><a href="/">Back To Home</a></span>';
        }
     }
     public function handleFatalError($code, $description, $file, $line)

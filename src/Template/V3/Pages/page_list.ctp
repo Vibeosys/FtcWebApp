@@ -17,7 +17,7 @@ use Cake\Cache\Cache;
    <?= $this->Html->css('datatables/jquery.dataTables.min.css') ?>
    <?= $this->Html->css('datatables/buttons.bootstrap.min.css') ?>
    <?= $this->Html->css('datatables/responsive.bootstrap.min.css') ?>
-
+ <?= $this->Html->css('popup.css') ?>
 
 <?php $this->end('css');?>
 
@@ -51,7 +51,7 @@ use Cake\Cache\Cache;
                           <tbody>
                            <?php  foreach ($pages as $page){ ?>   
                           
-                              <tr>
+                              <tr id="row_<?= $page->pageId ?>">
                             <form action="../pages/edit" method="post">      
                                   <td><?= $i++ ?><input type="hidden" value="<?= $page->pageId ?>" name="pageId" ></td>
                               <td><?= $page->pageTitle ?></td>
@@ -70,6 +70,8 @@ use Cake\Cache\Cache;
                               <td>
                                   <button type="submit" class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" data-placement="left" name="Edit"><i class="fa fa-pencil-square-o fa-size"></i>
                               </button>
+                                    <button row="<?= $page->pageId ?>" type="button" class="btn btn-danger btn-circle btn-lg deleterow" data-toggle="tooltip" data-placement="right" title="Cancel"><i class="fa fa-close fa-size"></i>
+                            </button>
                               </td>
                                </form>
                             </tr>
@@ -88,6 +90,9 @@ use Cake\Cache\Cache;
            </div>
            
        </section>
+<div id="stop_action" class="stopable" style="">
+    <img id="stop_loader" src="../img/log_loader1.gif" alt="Please Wait">
+</div>
 
 <?php $this->start('script');?>
    <?= $this->Html->script('datatables/jquery.dataTables.min.js') ?>
@@ -111,6 +116,24 @@ use Cake\Cache\Cache;
             });
             var table = $('#datatable-fixed-header').DataTable({
               fixedHeader: true
+            });
+            
+            
+            $('.deleterow').on('click', function(e){
+                $('#stop_action').css('display','block');
+                var pageid = $(this).attr('row');
+                var url = '/deletepage';
+                
+                 $.post(url,'{"id":"'+pageid+'"}', function(val){
+                    if(val > 0){
+                         $('#row_'+val).remove();
+                           $('#stop_action').css('display','none');
+                     }else{
+                           $('#stop_action').css('display','none');
+                         alert('Operation not allowed');
+                     }
+                 });
+                
             });
           });
       

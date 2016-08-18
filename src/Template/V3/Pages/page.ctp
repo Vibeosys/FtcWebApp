@@ -98,18 +98,7 @@ use Cake\Cache\Cache;
                                     <hr>
                                 </div>
                             </div>
-
-                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
-                            <div class="remove-<?= $i ?> push-margin ng-scope">
-                                <div style="display:flex">Video Link
-                                    <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
-                                </div>
-                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
-                                <div class="hr-line">
-                                    <hr>
-                                </div>
-                            </div>
-                            
+                           
                              <?php }else if($widget->widgetTitle == 'YouTube'){ ?>
                             <div class="remove-<?= $i ?> push-margin ng-scope">
                                 <div style="display:flex">Video Link
@@ -212,7 +201,6 @@ use Cake\Cache\Cache;
                         <ul>
                             <li><addimage></addimage></li>
                             <li><addlink></addlink></li>
-                            <li><addvideo></addvideo></li>
                             <li><addyoutubevideo></addyoutubevideo></li>
                             <li><addtext></addtext></li>
                             <li><addheading></addheading></li>
@@ -240,17 +228,7 @@ use Cake\Cache\Cache;
                                <a target="_blank" href="<?= $data->link ?>"><?= $data->caption ?></a>
                             </div>
 
-                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
-                            <div class="remove-<?= $i ?> push-margin ng-scope">
-                                <div style="display:flex">Video Link
-                                    <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
-                                </div>
-                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
-                                <div class="hr-line">
-                                    <hr>
-                                </div>
-                            </div>
-                            
+                    
                         <?php }else if($widget->widgetTitle == 'YouTube'){ $video = explode('?v=', $data->link); ?>
                             <div class="video-preview push-space">
                                 <iframe width="300" height="200" src="https://www.youtube.com/embed/<?= $video[1] ?>"></iframe>
@@ -324,8 +302,7 @@ Page created for
                         <li class="active">
                             <a class="tab_btn" d_type="img" href="#image" data-toggle="tab">Images</a>
                         </li>
-                        <li><a class="tab_btn" d_type="vid" href="#video" data-toggle="tab">Videos</a>
-                        </li>
+                      
                     </ul>
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="image">
@@ -336,13 +313,7 @@ Page created for
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="video">
-                            <div class="container-fluid">
-                                <div class="row row-wrap">
-
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -435,12 +406,7 @@ Page created for
             template: "<button vbtype='custom' iam='Link' onclick='checkME(event,this);' style='cursor:pointer' addlinktext  class='btn-type linkcustom'><span class='fa fa-link'></span>Add Link<span class='fa fa-plus plus-icon' ></span></button>"
         }
     });
-    myApp.directive("addvideo", function () {
-        return {
-            restrict: "E",
-            template: "<button vbtype='custom' iam='Custom video' onclick='checkME(event,this);' style='cursor:pointer' addvideolink  class='btn-type linkcustom'><span class='fa fa-video-camera'></span>Add Video<span class='fa fa-plus plus-icon' ></span></button>"
-        }
-    });
+ 
      myApp.directive("addyoutubevideo", function () {
         return {
             restrict: "E",

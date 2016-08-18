@@ -97,16 +97,7 @@ use Cake\Cache\Cache;
                                 </div>
                             </div>
 
-                      <?php }else if($widget->widgetTitle == 'Video'){ ?>
-                            <div class="remove-<?= $i ?> push-margin ng-scope">
-                                <div style="display:flex">Video Link
-                                    <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
-                                </div>
-                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
-                                <div class="hr-line">
-                                    <hr>
-                                </div>
-                            </div>
+                     
                             
                              <?php }else if($widget->widgetTitle == 'YouTube'){ ?>
                             <div class="remove-<?= $i ?> push-margin ng-scope">
@@ -209,7 +200,7 @@ use Cake\Cache\Cache;
                         <ul>
                             <li><addimage></addimage></li>
                             <li><addlink></addlink></li>
-                            <li><addvideo></addvideo></li>
+                            
                             <li><addyoutubevideo></addyoutubevideo></li>
                             <li><addtext></addtext></li>
                             <li><addheading></addheading></li>
@@ -238,17 +229,7 @@ use Cake\Cache\Cache;
                                <a target="_blank" href="<?= $data->link ?>"><?= $data->caption ?></a>
                             </div>
 
-                      <?php }else if($widget->widgetTitle == 'Video5'){ ?>
-                            <div class="remove-<?= $i ?> push-margin ng-scope">
-                                <div style="display:flex">Video Link
-                                    <input name="video-<?= $i ?>" type="text" value="<?= $data->url ?>" placeholder="Video Link" class="form-control ng-pristine ng-valid">
-                                </div>
-                                <button name="remove" class="btn-remove" id="remove-<?= $i++ ?>" remove-me="">Remove</button>
-                                <div class="hr-line">
-                                    <hr>
-                                </div>
-                            </div>
-                            
+                     
                         <?php }else if($widget->widgetTitle == 'YouTube'){ $video = explode('?v=', $data->link); ?>
                             <div class="video-preview push-space">
                                 <iframe width="300" height="200" src="https://www.youtube.com/embed/<?= $video[1] ?>"></iframe>
@@ -300,8 +281,7 @@ use Cake\Cache\Cache;
                         <li class="active">
                             <a  href="#image" data-toggle="tab">Images</a>
                         </li>
-                        <li><a href="#video" data-toggle="tab">Videos</a>
-                        </li>
+                     
                     </ul>
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="image">
@@ -313,148 +293,7 @@ use Cake\Cache\Cache;
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="video">
-                           <div class="container-fluid">
-                                <div class="row row-wrap">
-
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="video.mp4" type="video/mp4">
-                                                <source src="video.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-2 col-md-3 col-xs-12 thumb">
-                                        <a class="thumbnail-video" href="#">
-
-                                            <video class="video" controls>
-                                                <source src="../img/mov_bbb.mp4" type="video/mp4">
-                                                <source src="mov_bbb.ogg" type="video/ogg">
-                                                Your browser does not support HTML5 video.
-                                            </video>
-                                            <!--
-                                                  <iframe class="video"  src="https://www.youtube.com/embed/fgExvIUYg5w">
-                                                 
-                                                 </iframe>-->
-                                            <div class="video-select"><i class="fa fa-check select-icon"></i></div>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">

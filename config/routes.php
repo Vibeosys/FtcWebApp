@@ -160,6 +160,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('readvideo', ['controller' => $version.'Gallery', 'action' => 'readVideo']);
     $routes->connect('deleteimage', ['controller' => $version.'Gallery', 'action' => 'deleteImage']);
     $routes->connect('getadminclient', ['controller' => $version.'User', 'action' => 'getOwnerClient']);
+    $routes->connect('deletepage', ['controller' => $version.'Pages', 'action' => 'deletePages']);
  
     
  $routes->fallbacks('DashedRoute');    
