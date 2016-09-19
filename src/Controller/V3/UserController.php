@@ -77,6 +77,8 @@ class UserController extends V2\UserController{
         //availability and expiry date
         // return bool true if all condition true else return error object
         $result = $this->userValidation($loginRequest);
+        Log::debug("response for validation");
+        Log::debug($result);
         if (is_bool($result)) {
             $info = $this->getTableObj()->getUserDetails($loginRequest->username);
              parent::writeCookie('cur_name', $info->fullName);
@@ -285,5 +287,39 @@ class UserController extends V2\UserController{
             $response = new \App\Response\V1\BaseResponse(
                     DTO\ErrorDto::prepareError(108));
         $this->response->body(json_encode($response));
+    }
+    public function adminWebLogin() {
+        $result = $this->readCookie('DbConf');
+        Log::debug($result.'value of DBConf');
+        if($result == 'no'){
+            
+            $this->set(['showDbError' => TRUE,
+                'text' => 'Your Database is not configured. 
+        Please configured before login.']);
+        }else if($this->readCookie('error')){
+            $this->set(['showDbError' => TRUE,
+                'text' => 'Unexpected error occured. 
+        Please contact administrator.']);
+        }
+       //$this->deleteCookie('DbConf');
+        //$this->deleteCookie('error');
+    }
+    
+     public function checkUserCredential($username, $pwd = null, $subscriberId = null) {
+        $result =  $this->getTableObj()->validateCredential($username, $pwd);
+        //Log::debug('result of uname and pass :'.$result->userId);
+         Log::debug($result);
+        if(is_null($subscriberId) or !$result or $subscriberId == 0)
+            return $result;
+        Log::debug('Owner group found for user');
+        if($result or $subscriberId == 0 or $result->groupId == 1){
+            Log::debug('Owner group is :'.$result->groupId);
+            return $result;
+        }
+          Log::debug('Owner group Not found for user');
+        $subscriberController = new V2\SystemsController();
+        if($subscriberController->subscriberValidationCheck($result->userId, $subscriberId))
+            return $result;
+        return FALSE;
     }
 }

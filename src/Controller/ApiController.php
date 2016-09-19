@@ -91,10 +91,8 @@ class ApiController extends AppController{
     
     public function checkLicenseValidity($userId) {
        
-        $licencesController = new V1\LicensesController();
-        $result = $licencesController->isLicenseValid($userId);
-        if(is_bool($result))
-            return TRUE;
+        $licencesController = new V3\MobileAppSubscrController();
+        $result = $licencesController->isUserPresent($userId);
         return $result;
     }
     
@@ -107,14 +105,16 @@ class ApiController extends AppController{
             $errorCode = 110;
         }
         Log::debug('Subscriber Id of user :- '.$loginRequest->subscriberId);
-        $userController = new V1\UserController();
+        $userController = new V3\UserController();
         $loginResult = $userController->checkUserCredential($loginRequest->username,
                 $pwd, $this->getMySubscription($loginRequest->subscriberId));
-        Log::debug($loginRequest);
         if($loginResult){
-            Log::debug('User not valid');
+            if($loginResult->groupId == '1')
+                return TRUE;
+            
             if($loginRequest->subscriberId > 0)
-            return $this->checkLicenseValidity($loginResult);
+            return $this->checkLicenseValidity($loginResult->userId);
+            
         return TRUE;
         }else
             return new \App\Response\V1\BaseResponse(DTO\ErrorDto::prepareError($errorCode));
@@ -197,16 +197,18 @@ class ApiController extends AppController{
     }
     
     public function writeCookie($name, $value, $expires = '1 Day', $path = '/') {
+        Log::debug('Cookie writen:'.$name);
         $this->Cookie->configKey($name, ['expires' => $expires ,'path' => $path]);
         $this->Cookie->write($name, $value);
     }
      
     public function readCookie($name) {
+        Log::debug('Cookie read:'.$name);
         return $this->Cookie->read($name);
     }
      
     public function deleteCookie($name) {
-        
+        Log::debug('Cookie deleted:'.$name);
         $this->Cookie->configKey($name, ['expires' => '-1 Day' ,'path' => '/']);
         $this->Cookie->delete($name);
     }

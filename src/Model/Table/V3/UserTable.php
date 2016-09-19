@@ -10,7 +10,7 @@ namespace App\Model\Table\V3;
 use App\Model\Table\V2;
 use App\Request\V2\DbTestConnectRequest;
 use App\DTO;
-
+use Cake\Log\Log;
 /**
  * Description of UserTable
  *
@@ -150,6 +150,34 @@ class UserTable extends V2\UserTable{
                         $row->Port, $row->Owner, $row->SubId);
         return $users;
         
+    }
+    
+     public function validateCredential($username, $pwd = null, $userId = null) {
+        if(is_null($pwd))
+            $conditions = [
+                'username =' => $username 
+            ];
+        else if(is_null($userId))
+            $conditions = [
+                'username =' => $username,
+                'password =' => $pwd
+            ];
+        else
+            $conditions = [
+                'userid =' => $userId,
+                'password =' => $pwd
+            ]; 
+        //print_r($conditions);
+        $rows = $this->connect()->find()->where($conditions);
+        Log::debug($rows->sql());
+        if($rows->count())
+            foreach ($rows as $row){
+               $user = new \stdClass();
+               $user->userId =  $row->userid;
+               $user->groupId =  $row->groupid;
+               return $user;
+            }
+        return FALSE;
     }
     
    

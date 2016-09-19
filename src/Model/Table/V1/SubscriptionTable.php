@@ -20,7 +20,7 @@ class SubscriptionTable extends Table{
     
     public function connect() {
         return TableRegistry::get('subscription');
-        Cache::clear(FALSE);
+      //  Cache::clear(FALSE);
     }
     
     public function getConnection($subscriberId) {
